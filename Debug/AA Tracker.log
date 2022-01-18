@@ -1,0 +1,259 @@
+﻿  AAGraphics.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\AAGraphics.cpp(256,20): warning C4018: '<': signed/unsigned mismatch
+  AA_Tracker.cpp
+  ANZACClass.cpp
+  AuxFunctions.cpp
+  BoardClass.cpp
+  BoardEconomies.cpp
+  BonusClass.cpp
+  Bonuses.cpp
+  BonusSection.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\BonusSection.cpp(859,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\BonusSection.cpp(878,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\BonusSection.cpp(913,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\BonusSection.cpp(921,22): warning C4018: '<': signed/unsigned mismatch
+  ChinaClass.cpp
+  CitiesSection.cpp
+  DebugGrid.cpp
+  DebugSwitches.cpp
+  FranceClass.cpp
+  GameClass.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\GameClass.cpp(574,10): warning C4267: 'argument': conversion from 'size_t' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GameClass.cpp(1329,31): warning C4267: 'argument': conversion from 'size_t' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GameClass.cpp(1330,48): warning C4267: 'argument': conversion from 'size_t' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GameClass.cpp(1894,42): warning C4244: '=': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GameClass.cpp(1895,53): warning C4244: '=': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GameClass.cpp(1896,42): warning C4244: '=': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GameClass.cpp(1897,55): warning C4244: '=': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+  GermanyClass.cpp
+  GraphClass.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(171,16): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(207,49): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(208,56): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(209,83): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(209,60): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(210,60): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(211,60): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(212,60): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(213,77): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(213,60): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(214,77): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(214,60): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(215,60): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(216,77): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(216,60): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(217,62): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(218,62): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(219,62): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(220,62): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(257,32): warning C4267: 'initializing': conversion from 'size_t' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(381,32): warning C4267: 'initializing': conversion from 'size_t' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(505,32): warning C4267: 'initializing': conversion from 'size_t' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(629,32): warning C4267: 'initializing': conversion from 'size_t' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(747,34): warning C4267: 'initializing': conversion from 'size_t' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(812,34): warning C4267: 'initializing': conversion from 'size_t' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(856,34): warning C4267: 'initializing': conversion from 'size_t' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(1192,20): warning C4244: 'initializing': conversion from 'LONG' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(1193,21): warning C4244: 'initializing': conversion from 'LONG' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(1194,19): warning C4244: 'initializing': conversion from 'LONG' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(1197,30): warning C4244: '=': conversion from 'LONG' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(1198,30): warning C4244: '=': conversion from 'LONG' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(1200,22): warning C4244: 'initializing': conversion from 'LONG' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(1226,47): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(1225,71): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(1231,47): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(1230,79): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(1263,48): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(1262,82): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(1279,95): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(1279,59): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(1279,29): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(1283,84): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(1283,47): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(1283,23): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(1285,81): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(1285,44): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\GraphClass.cpp(1285,23): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+  GraphScreen.cpp
+  ItalyClass.cpp
+  JapanClass.cpp
+  Generating Code...
+C:\Users\Adam\Documents\GitHub\AATracker\AuxFunctions.cpp(71): warning C4172: returning address of local variable or temporary: str
+C:\Users\Adam\Documents\GitHub\AATracker\AuxFunctions.cpp(19): warning C4172: returning address of local variable or temporary: str
+  Compiling...
+  LogClass.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\LogClass.cpp(17,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogClass.cpp(18,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogClass.cpp(19,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogClass.cpp(76,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogClass.cpp(77,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogClass.cpp(78,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogClass.cpp(273,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogClass.cpp(296,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogClass.cpp(297,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogClass.cpp(334,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogClass.cpp(373,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogClass.cpp(1241,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogClass.cpp(1259,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogClass.cpp(1298,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogClass.cpp(1313,21): warning C4018: '<': signed/unsigned mismatch
+  LogPair.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(6,36): warning C4244: 'argument': conversion from 'int' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(6,22): warning C4244: 'argument': conversion from 'int' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(7,48): warning C4244: 'argument': conversion from 'int' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(7,27): warning C4244: 'argument': conversion from 'int' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(97,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(107,10): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(142,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(144,10): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(172,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(174,10): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(207,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(209,10): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(236,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(238,10): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(260,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(262,10): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(289,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(337,17): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(339,10): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(362,17): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(364,10): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(392,17): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(394,10): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(418,17): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(420,10): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(437,17): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(439,10): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(483,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(600,18): warning C4244: 'return': conversion from 'WCHAR' to 'char', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(622,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\LogPair.cpp(631,20): warning C4018: '<': signed/unsigned mismatch
+  LogScreen.cpp
+  MainScreen.cpp
+  MenuCallbacks.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\MenuCallbacks.cpp(343,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\MenuCallbacks.cpp(359,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\MenuCallbacks.cpp(363,35): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\MenuCallbacks.cpp(401,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\MenuCallbacks.cpp(428,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\MenuCallbacks.cpp(730,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\MenuCallbacks.cpp(747,27): warning C4018: '<': signed/unsigned mismatch
+  MiniSpreadSection.cpp
+  NameSection.cpp
+  NationClass.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\NationClass.cpp(274,11): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\NationClass.cpp(282,11): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\NationClass.cpp(290,11): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\NationClass.cpp(298,11): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\NationClass.cpp(306,11): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\NationClass.cpp(314,11): warning C4018: '<': signed/unsigned mismatch
+  NationScreen.cpp
+  NationScreenAux.cpp
+  NationScreenConfig.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenConfig.cpp(193,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenConfig.cpp(269,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenConfig.cpp(353,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenConfig.cpp(369,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenConfig.cpp(385,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenConfig.cpp(401,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+  NationScreenHandlers.cpp
+  NationScreenSections.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenSections.cpp(26,9): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenSections.cpp(25,31): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenSections.cpp(25,24): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenSections.cpp(38,17): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenSections.cpp(37,39): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenSections.cpp(37,32): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenSections.cpp(56,13): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenSections.cpp(55,35): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenSections.cpp(55,28): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenSections.cpp(65,13): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenSections.cpp(64,35): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenSections.cpp(64,28): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenSections.cpp(81,17): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenSections.cpp(80,39): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenSections.cpp(80,32): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenSections.cpp(260,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\NationScreenSections.cpp(466,27): warning C4018: '<': signed/unsigned mismatch
+  NeutralSection.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\NeutralSection.cpp(29,21): warning C4156: deletion of an array expression without using the array form of 'delete'; array form substituted
+C:\Users\Adam\Documents\GitHub\AATracker\NeutralSection.cpp(29,21): warning C4154: deletion of an array expression; conversion to pointer supplied
+  PhaseSection.cpp
+  PurchaseClass.cpp
+  NatScreenPurchHelp.cpp
+  PurchaseSection.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(561,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(576,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(592,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(607,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(623,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(638,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(654,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(669,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(685,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(700,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(716,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(731,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(747,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(762,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(778,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(793,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(809,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(824,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(840,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(855,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(871,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(886,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(902,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(917,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(933,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(948,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(964,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(979,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(995,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(1010,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(1026,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(1041,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(1057,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(1072,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(1088,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(1103,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(1119,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(1134,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(1150,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseSection.cpp(1165,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+  ResearchClass.cpp
+  ResearchScreen.cpp
+  Generating Code...
+C:\Users\Adam\Documents\GitHub\AATracker\PurchaseClass.cpp(129): warning C4715: 'Purchase::getCost': not all control paths return a value
+  Compiling...
+  Section.cpp
+  SovietClass.cpp
+  SpreadScreen.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\SpreadScreen.cpp(9,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\SpreadScreen.cpp(93,20): warning C4018: '<': signed/unsigned mismatch
+  SpreadsheetClass.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\SpreadsheetClass.cpp(43,11): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\SpreadsheetClass.cpp(96,10): warning C4018: '<': signed/unsigned mismatch
+  StatusSection.cpp
+  Territories.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\Territories.cpp(781,6): warning C4805: '==': unsafe mix of type 'uint16_t' and type 'bool' in operation
+  TerritoryClass.cpp
+  UnitedKingdomClass.cpp
+  UnitedStatesClass.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\UnitedStatesClass.cpp(162,27): warning C4305: 'return': truncation from 'int' to 'bool'
+C:\Users\Adam\Documents\GitHub\AATracker\UnitedStatesClass.cpp(175,27): warning C4305: 'return': truncation from 'int' to 'bool'
+C:\Users\Adam\Documents\GitHub\AATracker\UnitedStatesClass.cpp(189,27): warning C4305: 'return': truncation from 'int' to 'bool'
+  WarchestSection.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\WarchestSection.cpp(101,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\WarchestSection.cpp(168,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Adam\Documents\GitHub\AATracker\WarchestSection.cpp(192,21): warning C4018: '<': signed/unsigned mismatch
+  WarMatrix.cpp
+  Wars.cpp
+  WarSection.cpp
+  Generating Code...
+C:\Users\Adam\Documents\GitHub\AATracker\UnitedStatesClass.cpp(196): warning C4715: 'UnitedStates::checkBonus': not all control paths return a value
+C:\Users\Adam\Documents\GitHub\AATracker\SpreadsheetClass.cpp(101): warning C4172: returning address of local variable or temporary: tmp
+C:\Users\Adam\Documents\GitHub\AATracker\SpreadsheetClass.cpp(112): warning C4172: returning address of local variable or temporary: tmp
+  AA Tracker.vcxproj -> C:\Users\Adam\Documents\GitHub\AATracker\Debug\AA Tracker.exe
