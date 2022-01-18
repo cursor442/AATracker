@@ -25,9 +25,6 @@
     <Filter Include="Source Files\Board">
       <UniqueIdentifier>{8b093e96-7243-4093-aeae-3dabd14f8693}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\SpreadScreen">
-      <UniqueIdentifier>{6da3aad9-9f4c-4945-9c7f-7e024505c417}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Research Screen">
       <UniqueIdentifier>{80496913-8b51-4a5d-9d2e-087ed6c3476c}</UniqueIdentifier>
     </Filter>
@@ -55,333 +52,357 @@
     <Filter Include="Header Files\Board">
       <UniqueIdentifier>{5ea4e7fe-d298-43c4-9c7a-78335a5e1a1d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Spread Screen">
+      <UniqueIdentifier>{e9ba4276-b8ec-4835-b1e3-079eeb342604}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Spread Screen">
+      <UniqueIdentifier>{6da3aad9-9f4c-4945-9c7f-7e024505c417}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Nation Screen\Screen Sections">
+      <UniqueIdentifier>{a103ab82-33ce-4a7c-9cc5-e6a853a71eee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Main Screen">
+      <UniqueIdentifier>{32ce6bfa-7823-4870-b31b-b63acb7221bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graph Screen">
+      <UniqueIdentifier>{e469b3e6-494d-4e73-b3c0-1323111f81c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{0aedfd85-2c54-45dc-9871-bd3c9a2f8abf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{050e47fa-1120-4074-9ba3-402491a90cb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Research Screen">
+      <UniqueIdentifier>{2e674b26-8a15-4252-afee-59f855d5405b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AA_Tracker.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SpreadsheetClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PurchaseClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FranceClass.h">
-      <Filter>Header Files\Nations</Filter>
-    </ClInclude>
-    <ClInclude Include="GermanyClass.h">
-      <Filter>Header Files\Nations</Filter>
-    </ClInclude>
-    <ClInclude Include="ItalyClass.h">
-      <Filter>Header Files\Nations</Filter>
-    </ClInclude>
-    <ClInclude Include="JapanClass.h">
-      <Filter>Header Files\Nations</Filter>
-    </ClInclude>
-    <ClInclude Include="SovietClass.h">
-      <Filter>Header Files\Nations</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitedKingdomClass.h">
-      <Filter>Header Files\Nations</Filter>
-    </ClInclude>
-    <ClInclude Include="UnitedStatesClass.h">
-      <Filter>Header Files\Nations</Filter>
-    </ClInclude>
-    <ClInclude Include="ChinaClass.h">
-      <Filter>Header Files\Nations</Filter>
-    </ClInclude>
-    <ClInclude Include="ANZACClass.h">
-      <Filter>Header Files\Nations</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ResearchClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NationClass.h">
-      <Filter>Header Files\Nations</Filter>
-    </ClInclude>
-    <ClInclude Include="LogClass.h">
-      <Filter>Header Files\Log Screen</Filter>
-    </ClInclude>
-    <ClInclude Include="LogPair.h">
-      <Filter>Header Files\Log Screen</Filter>
-    </ClInclude>
-    <ClInclude Include="LogText.h">
-      <Filter>Header Files\Log Screen</Filter>
-    </ClInclude>
-    <ClInclude Include="LogTerrs.h">
-      <Filter>Header Files\Log Screen</Filter>
-    </ClInclude>
-    <ClInclude Include="StatusSection.h">
-      <Filter>Header Files\Nation Screen</Filter>
-    </ClInclude>
-    <ClInclude Include="NameSection.h">
-      <Filter>Header Files\Nation Screen</Filter>
-    </ClInclude>
-    <ClInclude Include="CitiesSection.h">
-      <Filter>Header Files\Nation Screen</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphicsHeader.h">
+    <ClInclude Include="graphics\header\DebugGrid.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Section.h">
+    <ClInclude Include="graphics\header\Section.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="UseGDI.h">
+    <ClInclude Include="graphics\header\GraphicsHeader.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="PhaseSection.h">
-      <Filter>Header Files\Nation Screen</Filter>
-    </ClInclude>
-    <ClInclude Include="WarSection.h">
-      <Filter>Header Files\Nation Screen</Filter>
-    </ClInclude>
-    <ClInclude Include="BoardClass.h">
-      <Filter>Header Files\Board</Filter>
-    </ClInclude>
-    <ClInclude Include="Territories.h">
-      <Filter>Header Files\Board</Filter>
-    </ClInclude>
-    <ClInclude Include="WarMatrix.h">
-      <Filter>Header Files\Board</Filter>
-    </ClInclude>
-    <ClInclude Include="DebugGrid.h">
+    <ClInclude Include="graphics\header\UseGDI.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="PurchaseSection.h">
-      <Filter>Header Files\Nation Screen</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniSpreadSection.h">
-      <Filter>Header Files\Nation Screen</Filter>
-    </ClInclude>
-    <ClInclude Include="WarchestSection.h">
-      <Filter>Header Files\Nation Screen</Filter>
-    </ClInclude>
-    <ClInclude Include="BonusSection.h">
-      <Filter>Header Files\Nation Screen</Filter>
-    </ClInclude>
-    <ClInclude Include="BonusClass.h">
+    <ClInclude Include="board\header\BoardClass.h">
       <Filter>Header Files\Board</Filter>
     </ClInclude>
-    <ClInclude Include="TerritoryClass.h">
+    <ClInclude Include="board\header\BonusClass.h">
       <Filter>Header Files\Board</Filter>
     </ClInclude>
-    <ClInclude Include="NeutralSection.h">
+    <ClInclude Include="board\header\Territories.h">
+      <Filter>Header Files\Board</Filter>
+    </ClInclude>
+    <ClInclude Include="board\header\TerritoryClass.h">
+      <Filter>Header Files\Board</Filter>
+    </ClInclude>
+    <ClInclude Include="board\header\WarMatrix.h">
+      <Filter>Header Files\Board</Filter>
+    </ClInclude>
+    <ClInclude Include="logScreen\header\LogClass.h">
+      <Filter>Header Files\Log Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="logScreen\header\LogPair.h">
+      <Filter>Header Files\Log Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="logScreen\header\LogTerrs.h">
+      <Filter>Header Files\Log Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="logScreen\header\LogText.h">
+      <Filter>Header Files\Log Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="nations\header\ANZACClass.h">
+      <Filter>Header Files\Nations</Filter>
+    </ClInclude>
+    <ClInclude Include="nations\header\ChinaClass.h">
+      <Filter>Header Files\Nations</Filter>
+    </ClInclude>
+    <ClInclude Include="nations\header\FranceClass.h">
+      <Filter>Header Files\Nations</Filter>
+    </ClInclude>
+    <ClInclude Include="nations\header\GermanyClass.h">
+      <Filter>Header Files\Nations</Filter>
+    </ClInclude>
+    <ClInclude Include="nations\header\ItalyClass.h">
+      <Filter>Header Files\Nations</Filter>
+    </ClInclude>
+    <ClInclude Include="nations\header\JapanClass.h">
+      <Filter>Header Files\Nations</Filter>
+    </ClInclude>
+    <ClInclude Include="nations\header\NationClass.h">
+      <Filter>Header Files\Nations</Filter>
+    </ClInclude>
+    <ClInclude Include="nations\header\SovietClass.h">
+      <Filter>Header Files\Nations</Filter>
+    </ClInclude>
+    <ClInclude Include="nations\header\UnitedKingdomClass.h">
+      <Filter>Header Files\Nations</Filter>
+    </ClInclude>
+    <ClInclude Include="nations\header\UnitedStatesClass.h">
+      <Filter>Header Files\Nations</Filter>
+    </ClInclude>
+    <ClInclude Include="spreadScreen\header\SpreadsheetClass.h">
+      <Filter>Header Files\Spread Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="nationScreen\screenSections\header\BonusSection.h">
+      <Filter>Header Files\Nation Screen\Screen Sections</Filter>
+    </ClInclude>
+    <ClInclude Include="nationScreen\screenSections\header\CitiesSection.h">
+      <Filter>Header Files\Nation Screen\Screen Sections</Filter>
+    </ClInclude>
+    <ClInclude Include="nationScreen\screenSections\header\MiniSpreadSection.h">
+      <Filter>Header Files\Nation Screen\Screen Sections</Filter>
+    </ClInclude>
+    <ClInclude Include="nationScreen\screenSections\header\NameSection.h">
+      <Filter>Header Files\Nation Screen\Screen Sections</Filter>
+    </ClInclude>
+    <ClInclude Include="nationScreen\screenSections\header\NeutralSection.h">
+      <Filter>Header Files\Nation Screen\Screen Sections</Filter>
+    </ClInclude>
+    <ClInclude Include="nationScreen\screenSections\header\PhaseSection.h">
+      <Filter>Header Files\Nation Screen\Screen Sections</Filter>
+    </ClInclude>
+    <ClInclude Include="nationScreen\screenSections\header\PurchaseSection.h">
+      <Filter>Header Files\Nation Screen\Screen Sections</Filter>
+    </ClInclude>
+    <ClInclude Include="nationScreen\screenSections\header\StatusSection.h">
+      <Filter>Header Files\Nation Screen\Screen Sections</Filter>
+    </ClInclude>
+    <ClInclude Include="nationScreen\screenSections\header\WarchestSection.h">
+      <Filter>Header Files\Nation Screen\Screen Sections</Filter>
+    </ClInclude>
+    <ClInclude Include="nationScreen\screenSections\header\WarSection.h">
+      <Filter>Header Files\Nation Screen\Screen Sections</Filter>
+    </ClInclude>
+    <ClInclude Include="nationScreen\header\PurchaseClass.h">
       <Filter>Header Files\Nation Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="graphScreen\header\GraphClass.h">
+      <Filter>Header Files\Graph Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="game\header\AA_Tracker.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\header\framework.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\header\Resource.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="game\header\targetver.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="researchScreen\header\ResearchClass.h">
+      <Filter>Header Files\Research Screen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MainScreen.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="nationScreen\screenSections\source\BonusSection.cpp">
+      <Filter>Source Files\Nation Screen\Screen Sections</Filter>
     </ClCompile>
-    <ClCompile Include="MenuCallbacks.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="nationScreen\screenSections\source\CitiesSection.cpp">
+      <Filter>Source Files\Nation Screen\Screen Sections</Filter>
     </ClCompile>
-    <ClCompile Include="AA_Tracker.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="nationScreen\screenSections\source\MiniSpreadSection.cpp">
+      <Filter>Source Files\Nation Screen\Screen Sections</Filter>
     </ClCompile>
-    <ClCompile Include="GameClass.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="nationScreen\screenSections\source\NameSection.cpp">
+      <Filter>Source Files\Nation Screen\Screen Sections</Filter>
     </ClCompile>
-    <ClCompile Include="SpreadsheetClass.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="nationScreen\screenSections\source\NeutralSection.cpp">
+      <Filter>Source Files\Nation Screen\Screen Sections</Filter>
     </ClCompile>
-    <ClCompile Include="PurchaseClass.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="nationScreen\screenSections\source\PhaseSection.cpp">
+      <Filter>Source Files\Nation Screen\Screen Sections</Filter>
     </ClCompile>
-    <ClCompile Include="ANZACClass.cpp">
-      <Filter>Source Files\Nations</Filter>
+    <ClCompile Include="nationScreen\screenSections\source\PurchaseSection.cpp">
+      <Filter>Source Files\Nation Screen\Screen Sections</Filter>
     </ClCompile>
-    <ClCompile Include="ChinaClass.cpp">
-      <Filter>Source Files\Nations</Filter>
+    <ClCompile Include="nationScreen\screenSections\source\StatusSection.cpp">
+      <Filter>Source Files\Nation Screen\Screen Sections</Filter>
     </ClCompile>
-    <ClCompile Include="FranceClass.cpp">
-      <Filter>Source Files\Nations</Filter>
+    <ClCompile Include="nationScreen\screenSections\source\WarchestSection.cpp">
+      <Filter>Source Files\Nation Screen\Screen Sections</Filter>
     </ClCompile>
-    <ClCompile Include="GermanyClass.cpp">
-      <Filter>Source Files\Nations</Filter>
+    <ClCompile Include="nationScreen\screenSections\source\WarSection.cpp">
+      <Filter>Source Files\Nation Screen\Screen Sections</Filter>
     </ClCompile>
-    <ClCompile Include="ItalyClass.cpp">
-      <Filter>Source Files\Nations</Filter>
+    <ClCompile Include="graphics\source\AAGraphics.cpp">
+      <Filter>Source Files\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="JapanClass.cpp">
-      <Filter>Source Files\Nations</Filter>
+    <ClCompile Include="graphics\source\DebugGrid.cpp">
+      <Filter>Source Files\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="SovietClass.cpp">
-      <Filter>Source Files\Nations</Filter>
+    <ClCompile Include="graphics\source\DebugSwitches.cpp">
+      <Filter>Source Files\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="UnitedKingdomClass.cpp">
-      <Filter>Source Files\Nations</Filter>
+    <ClCompile Include="graphics\source\Section.cpp">
+      <Filter>Source Files\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="UnitedStatesClass.cpp">
-      <Filter>Source Files\Nations</Filter>
-    </ClCompile>
-    <ClCompile Include="NationScreenConfig.cpp">
-      <Filter>Source Files\Nation Screen</Filter>
-    </ClCompile>
-    <ClCompile Include="NationScreenSections.cpp">
-      <Filter>Source Files\Nation Screen</Filter>
-    </ClCompile>
-    <ClCompile Include="NationScreenHandlers.cpp">
-      <Filter>Source Files\Nation Screen</Filter>
-    </ClCompile>
-    <ClCompile Include="AuxFunctions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NatScreenPurchHelp.cpp">
-      <Filter>Source Files\Nation Screen</Filter>
-    </ClCompile>
-    <ClCompile Include="NationScreen.cpp">
-      <Filter>Source Files\Nation Screen</Filter>
-    </ClCompile>
-    <ClCompile Include="BoardClass.cpp">
+    <ClCompile Include="board\source\BoardClass.cpp">
       <Filter>Source Files\Board</Filter>
     </ClCompile>
-    <ClCompile Include="BoardEconomies.cpp">
+    <ClCompile Include="board\source\BonusClass.cpp">
       <Filter>Source Files\Board</Filter>
     </ClCompile>
-    <ClCompile Include="Bonuses.cpp">
+    <ClCompile Include="board\source\Territories.cpp">
       <Filter>Source Files\Board</Filter>
     </ClCompile>
-    <ClCompile Include="Territories.cpp">
+    <ClCompile Include="board\source\TerritoryClass.cpp">
       <Filter>Source Files\Board</Filter>
     </ClCompile>
-    <ClCompile Include="Wars.cpp">
+    <ClCompile Include="board\source\WarMatrix.cpp">
       <Filter>Source Files\Board</Filter>
     </ClCompile>
-    <ClCompile Include="ResearchClass.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="board\source\Wars.cpp">
+      <Filter>Source Files\Board</Filter>
     </ClCompile>
-    <ClCompile Include="SpreadScreen.cpp">
-      <Filter>Source Files\SpreadScreen</Filter>
+    <ClCompile Include="board\source\BoardEconomies.cpp">
+      <Filter>Source Files\Board</Filter>
     </ClCompile>
-    <ClCompile Include="ResearchScreen.cpp">
+    <ClCompile Include="board\source\Bonuses.cpp">
+      <Filter>Source Files\Board</Filter>
+    </ClCompile>
+    <ClCompile Include="logScreen\source\LogClass.cpp">
+      <Filter>Source Files\Log Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="logScreen\source\LogPair.cpp">
+      <Filter>Source Files\Log Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="logScreen\source\LogScreen.cpp">
+      <Filter>Source Files\Log Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="nations\source\ANZACClass.cpp">
+      <Filter>Source Files\Nations</Filter>
+    </ClCompile>
+    <ClCompile Include="nations\source\ChinaClass.cpp">
+      <Filter>Source Files\Nations</Filter>
+    </ClCompile>
+    <ClCompile Include="nations\source\FranceClass.cpp">
+      <Filter>Source Files\Nations</Filter>
+    </ClCompile>
+    <ClCompile Include="nations\source\GermanyClass.cpp">
+      <Filter>Source Files\Nations</Filter>
+    </ClCompile>
+    <ClCompile Include="nations\source\ItalyClass.cpp">
+      <Filter>Source Files\Nations</Filter>
+    </ClCompile>
+    <ClCompile Include="nations\source\JapanClass.cpp">
+      <Filter>Source Files\Nations</Filter>
+    </ClCompile>
+    <ClCompile Include="nations\source\NationClass.cpp">
+      <Filter>Source Files\Nations</Filter>
+    </ClCompile>
+    <ClCompile Include="nations\source\SovietClass.cpp">
+      <Filter>Source Files\Nations</Filter>
+    </ClCompile>
+    <ClCompile Include="nations\source\UnitedKingdomClass.cpp">
+      <Filter>Source Files\Nations</Filter>
+    </ClCompile>
+    <ClCompile Include="nations\source\UnitedStatesClass.cpp">
+      <Filter>Source Files\Nations</Filter>
+    </ClCompile>
+    <ClCompile Include="spreadScreen\source\SpreadScreen.cpp">
+      <Filter>Source Files\Spread Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="spreadScreen\source\SpreadsheetClass.cpp">
+      <Filter>Source Files\Spread Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="nationScreen\source\NationScreen.cpp">
+      <Filter>Source Files\Nation Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="nationScreen\source\NationScreenAux.cpp">
+      <Filter>Source Files\Nation Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="nationScreen\source\NationScreenConfig.cpp">
+      <Filter>Source Files\Nation Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="nationScreen\source\NationScreenHandlers.cpp">
+      <Filter>Source Files\Nation Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="nationScreen\source\NationScreenSections.cpp">
+      <Filter>Source Files\Nation Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="nationScreen\source\NatScreenPurchHelp.cpp">
+      <Filter>Source Files\Nation Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="nationScreen\source\PurchaseClass.cpp">
+      <Filter>Source Files\Nation Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="mainScreen\MainScreen.cpp">
+      <Filter>Source Files\Main Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="graphScreen\source\GraphClass.cpp">
+      <Filter>Source Files\Graph Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="graphScreen\source\GraphScreen.cpp">
+      <Filter>Source Files\Graph Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="game\source\AA_Tracker.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\source\AuxFunctions.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\source\GameClass.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\source\MenuCallbacks.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="researchScreen\source\ResearchClass.cpp">
       <Filter>Source Files\Research Screen</Filter>
     </ClCompile>
-    <ClCompile Include="GraphScreen.cpp">
-      <Filter>Source Files\Graph Screen</Filter>
-    </ClCompile>
-    <ClCompile Include="GraphClass.cpp">
-      <Filter>Source Files\Graph Screen</Filter>
-    </ClCompile>
-    <ClCompile Include="NationScreenAux.cpp">
-      <Filter>Source Files\Nation Screen</Filter>
-    </ClCompile>
-    <ClCompile Include="NationClass.cpp">
-      <Filter>Source Files\Nations</Filter>
-    </ClCompile>
-    <ClCompile Include="LogScreen.cpp">
-      <Filter>Source Files\Log Screen</Filter>
-    </ClCompile>
-    <ClCompile Include="LogClass.cpp">
-      <Filter>Source Files\Log Screen</Filter>
-    </ClCompile>
-    <ClCompile Include="LogPair.cpp">
-      <Filter>Source Files\Log Screen</Filter>
-    </ClCompile>
-    <ClCompile Include="AAGraphics.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Section.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="CitiesSection.cpp">
-      <Filter>Source Files\Nation Screen\Screen Sections</Filter>
-    </ClCompile>
-    <ClCompile Include="NameSection.cpp">
-      <Filter>Source Files\Nation Screen\Screen Sections</Filter>
-    </ClCompile>
-    <ClCompile Include="StatusSection.cpp">
-      <Filter>Source Files\Nation Screen\Screen Sections</Filter>
-    </ClCompile>
-    <ClCompile Include="PhaseSection.cpp">
-      <Filter>Source Files\Nation Screen\Screen Sections</Filter>
-    </ClCompile>
-    <ClCompile Include="WarSection.cpp">
-      <Filter>Source Files\Nation Screen\Screen Sections</Filter>
-    </ClCompile>
-    <ClCompile Include="WarMatrix.cpp">
-      <Filter>Source Files\Board</Filter>
-    </ClCompile>
-    <ClCompile Include="DebugGrid.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="PurchaseSection.cpp">
-      <Filter>Source Files\Nation Screen\Screen Sections</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniSpreadSection.cpp">
-      <Filter>Source Files\Nation Screen\Screen Sections</Filter>
-    </ClCompile>
-    <ClCompile Include="DebugSwitches.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="WarchestSection.cpp">
-      <Filter>Source Files\Nation Screen\Screen Sections</Filter>
-    </ClCompile>
-    <ClCompile Include="BonusSection.cpp">
-      <Filter>Source Files\Nation Screen\Screen Sections</Filter>
-    </ClCompile>
-    <ClCompile Include="BonusClass.cpp">
-      <Filter>Source Files\Board</Filter>
-    </ClCompile>
-    <ClCompile Include="TerritoryClass.cpp">
-      <Filter>Source Files\Board</Filter>
-    </ClCompile>
-    <ClCompile Include="NeutralSection.cpp">
-      <Filter>Source Files\Nation Screen\Screen Sections</Filter>
+    <ClCompile Include="researchScreen\source\ResearchScreen.cpp">
+      <Filter>Source Files\Research Screen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="small.ico">
+    <Image Include="bitmaps\ANZACIcon.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="AA_Tracker.ico">
+    <Image Include="bitmaps\ChinaIcon.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="UnitedStatesIcon.bmp">
+    <Image Include="bitmaps\FranceIcon.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="researchBack.bmp">
+    <Image Include="bitmaps\GermanyIcon.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="UnitedKingdomIcon.bmp">
+    <Image Include="bitmaps\ItalyIcon.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="JapanIcon.bmp">
+    <Image Include="bitmaps\JapanIcon.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="ANZACIcon.bmp">
+    <Image Include="bitmaps\researchBack.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="ChinaIcon.bmp">
+    <Image Include="bitmaps\SovietIcon.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="FranceIcon.bmp">
+    <Image Include="bitmaps\UnitedKingdomIcon.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="GermanyIcon.bmp">
+    <Image Include="bitmaps\UnitedStatesIcon.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="ItalyIcon.bmp">
+    <Image Include="bitmaps\AA_Tracker.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="SovietIcon.bmp">
+    <Image Include="bitmaps\small.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="AA_Tracker.rc">
+    <ResourceCompile Include="game\resource\AA_Tracker.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
