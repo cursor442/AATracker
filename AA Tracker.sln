@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AA Tracker", "AA Tracker.vcxproj", "{EED3EEA6-EADF-4AB5-BE2D-46DE5897C492}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EED3EEA6-EADF-4AB5-BE2D-46DE5897C492}.Debug|x64.ActiveCfg = Debug|x64
+		{EED3EEA6-EADF-4AB5-BE2D-46DE5897C492}.Debug|x64.Build.0 = Debug|x64
+		{EED3EEA6-EADF-4AB5-BE2D-46DE5897C492}.Debug|x86.ActiveCfg = Debug|Win32
+		{EED3EEA6-EADF-4AB5-BE2D-46DE5897C492}.Debug|x86.Build.0 = Debug|Win32
+		{EED3EEA6-EADF-4AB5-BE2D-46DE5897C492}.Release|x64.ActiveCfg = Release|x64
+		{EED3EEA6-EADF-4AB5-BE2D-46DE5897C492}.Release|x64.Build.0 = Release|x64
+		{EED3EEA6-EADF-4AB5-BE2D-46DE5897C492}.Release|x86.ActiveCfg = Release|Win32
+		{EED3EEA6-EADF-4AB5-BE2D-46DE5897C492}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7DA84516-CA7D-4FD5-B7AD-609D15FB5AF4}
+	EndGlobalSection
+EndGlobal
