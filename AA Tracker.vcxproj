@@ -147,10 +147,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="board\header\AirBaseClass.h" />
     <ClInclude Include="board\header\BoardClass.h" />
     <ClInclude Include="board\header\BonusClass.h" />
+    <ClInclude Include="board\header\IndustrialComplexClass.h" />
+    <ClInclude Include="board\header\NavalBaseClass.h" />
     <ClInclude Include="board\header\Territories.h" />
+    <ClInclude Include="board\header\TerritoriesClass.h" />
     <ClInclude Include="board\header\TerritoryClass.h" />
+    <ClInclude Include="board\header\TerritoryText.h" />
     <ClInclude Include="board\header\WarMatrix.h" />
     <ClInclude Include="game\header\AA_Tracker.h" />
     <ClInclude Include="game\header\framework.h" />
@@ -190,11 +195,15 @@
     <ClInclude Include="spreadScreen\header\SpreadsheetClass.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="board\source\AirBaseClass.cpp" />
     <ClCompile Include="board\source\BoardClass.cpp" />
     <ClCompile Include="board\source\BoardEconomies.cpp" />
     <ClCompile Include="board\source\BonusClass.cpp" />
     <ClCompile Include="board\source\Bonuses.cpp" />
+    <ClCompile Include="board\source\IndustrialComplexClass.cpp" />
+    <ClCompile Include="board\source\NavalBaseClass.cpp" />
     <ClCompile Include="board\source\Territories.cpp" />
+    <ClCompile Include="board\source\TerritoriesClass.cpp" />
     <ClCompile Include="board\source\TerritoryClass.cpp" />
     <ClCompile Include="board\source\WarMatrix.cpp" />
     <ClCompile Include="board\source\Wars.cpp" />

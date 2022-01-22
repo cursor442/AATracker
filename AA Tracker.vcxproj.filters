@@ -76,6 +76,12 @@
     <Filter Include="Header Files\Research Screen">
       <UniqueIdentifier>{2e674b26-8a15-4252-afee-59f855d5405b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Board\Territories">
+      <UniqueIdentifier>{2e9d5ada-9ffa-40c9-9563-63f82338c535}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Board\Territories">
+      <UniqueIdentifier>{9bfaa408-9ece-4d24-823e-ced112c1815f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\header\DebugGrid.h">
@@ -94,12 +100,6 @@
       <Filter>Header Files\Board</Filter>
     </ClInclude>
     <ClInclude Include="board\header\BonusClass.h">
-      <Filter>Header Files\Board</Filter>
-    </ClInclude>
-    <ClInclude Include="board\header\Territories.h">
-      <Filter>Header Files\Board</Filter>
-    </ClInclude>
-    <ClInclude Include="board\header\TerritoryClass.h">
       <Filter>Header Files\Board</Filter>
     </ClInclude>
     <ClInclude Include="board\header\WarMatrix.h">
@@ -201,6 +201,27 @@
     <ClInclude Include="researchScreen\header\ResearchClass.h">
       <Filter>Header Files\Research Screen</Filter>
     </ClInclude>
+    <ClInclude Include="board\header\Territories.h">
+      <Filter>Header Files\Board\Territories</Filter>
+    </ClInclude>
+    <ClInclude Include="board\header\TerritoriesClass.h">
+      <Filter>Header Files\Board\Territories</Filter>
+    </ClInclude>
+    <ClInclude Include="board\header\TerritoryClass.h">
+      <Filter>Header Files\Board\Territories</Filter>
+    </ClInclude>
+    <ClInclude Include="board\header\TerritoryText.h">
+      <Filter>Header Files\Board\Territories</Filter>
+    </ClInclude>
+    <ClInclude Include="board\header\IndustrialComplexClass.h">
+      <Filter>Header Files\Board\Territories</Filter>
+    </ClInclude>
+    <ClInclude Include="board\header\AirBaseClass.h">
+      <Filter>Header Files\Board\Territories</Filter>
+    </ClInclude>
+    <ClInclude Include="board\header\NavalBaseClass.h">
+      <Filter>Header Files\Board\Territories</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="nationScreen\screenSections\source\BonusSection.cpp">
@@ -249,12 +270,6 @@
       <Filter>Source Files\Board</Filter>
     </ClCompile>
     <ClCompile Include="board\source\BonusClass.cpp">
-      <Filter>Source Files\Board</Filter>
-    </ClCompile>
-    <ClCompile Include="board\source\Territories.cpp">
-      <Filter>Source Files\Board</Filter>
-    </ClCompile>
-    <ClCompile Include="board\source\TerritoryClass.cpp">
       <Filter>Source Files\Board</Filter>
     </ClCompile>
     <ClCompile Include="board\source\WarMatrix.cpp">
@@ -361,6 +376,24 @@
     </ClCompile>
     <ClCompile Include="researchScreen\source\ResearchScreen.cpp">
       <Filter>Source Files\Research Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="board\source\Territories.cpp">
+      <Filter>Source Files\Board\Territories</Filter>
+    </ClCompile>
+    <ClCompile Include="board\source\TerritoriesClass.cpp">
+      <Filter>Source Files\Board\Territories</Filter>
+    </ClCompile>
+    <ClCompile Include="board\source\TerritoryClass.cpp">
+      <Filter>Source Files\Board\Territories</Filter>
+    </ClCompile>
+    <ClCompile Include="board\source\IndustrialComplexClass.cpp">
+      <Filter>Source Files\Board\Territories</Filter>
+    </ClCompile>
+    <ClCompile Include="board\source\AirBaseClass.cpp">
+      <Filter>Source Files\Board\Territories</Filter>
+    </ClCompile>
+    <ClCompile Include="board\source\NavalBaseClass.cpp">
+      <Filter>Source Files\Board\Territories</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
