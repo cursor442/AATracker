@@ -477,13 +477,15 @@
 char* uint2char(uint16_t);
 char  uint2char_(uint16_t);
 char* int2char(int);
-char int2char_(int);
+char  int2char_(int);
 void  remZeros(char*, uint16_t);
 uint16_t char2uint(char*, uint16_t);
 uint16_t char2uint_(char);
-int char2int(char*, int);
-int char2int_(char);
+int  char2int(char*, int);
+int  char2int_(char);
+
 bool isBeforeNation(uint16_t, uint16_t);
+int  whichSide(int);
 
 // Next default values for new objects
 //

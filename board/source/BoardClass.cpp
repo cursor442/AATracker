@@ -9,6 +9,7 @@ Board::Board()
 	gameCurrNation = TURN_GER;
 	gameTurnPhase = PR_PHASE;
 
+	territories = NULL;
 	neutralLean = SIDE_NEUTRAL;
 	mongoliaLean = false;
 
@@ -70,6 +71,7 @@ Board::Board()
 	alliesVicCities.resize(2);
 
 	warMatrix = new WarMatrix();
+	territories = new Territories();
 	bonuses = new BonusClass;
 
 	ready = false;
@@ -84,6 +86,7 @@ Board::~Board()
 	}
 
 	delete warMatrix;
+	delete territories;
 	delete bonuses;
 }
 
@@ -121,13 +124,7 @@ void Board::setGameType(int type)
 			nations[8] = new ANZAC(nationNames[8]);
 	}
 	if (nations[3] == NULL)
-		nations[3] = new UnitedStates(nationNames[3], gameType);	
-
-	if (gameType == GLOBAL_GAME)
-	{
-		territories[TER_WEST_INDIA].owner = TURN_UKP;
-		territories[TER_W_CANADA].owner = TURN_UKE;
-	}
+		nations[3] = new UnitedStates(nationNames[3], gameType);
 
 	if (gameType == EUROPE_GAME)
 	{
@@ -147,12 +144,11 @@ void Board::setGameType(int type)
 	axisVicCities[1] = axisVicCities[0];
 	alliesVicCities[1] = alliesVicCities[0];
 
-	configureTerritories();
 	ready = true;
 
 	warMatrix->setGameType(type);
+	territories->setGameType(type);
 	bonuses->setGameType(type);
-
 }
 
 void Board::setGameResearch(bool research)

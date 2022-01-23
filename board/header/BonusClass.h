@@ -3,7 +3,7 @@
 
 #include "../../game/header/Resource.h"
 #include "../../nations/header/NationClass.h"
-#include "../../board/header/Territories.h"
+#include "../../board/header/TerritoriesClass.h"
 #include "../../board/header/WarMatrix.h"
 
 struct bonusStatus {
@@ -44,7 +44,7 @@ public:
 	int getTransferValNat();
 	int getTransferVal();
 
-	void updateBonuses(HWND, Nation**, WarMatrix*, territory*, int, int, bool, int);
+	void updateBonuses(HWND, Nation**, WarMatrix*, Territories*, int, int, bool, int);
 
 	void resetBonusUpdate();
 	vector<bonusTransaction>* getBonusUpdate();

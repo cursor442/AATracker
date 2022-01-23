@@ -26,6 +26,7 @@ public:
 	int  getAlphabet();
 	int  getSide();
 	int  getOwner();
+	int  getOriginalSide();
 	int  getOriginal();
 	int  getValue();
 

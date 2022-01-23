@@ -11,8 +11,9 @@
 #include "../../nations/header/ItalyClass.h"
 #include "../../nations/header/ANZACClass.h"
 #include "../../nations/header/FranceClass.h"
+
 #include "../../board/header/WarMatrix.h"
-#include "../../board/header/Territories.h"
+#include "../../board/header/TerritoriesClass.h"
 #include "../../board/header/BonusClass.h"
 
 struct vicDlyEur {
@@ -26,18 +27,26 @@ public:
 	Board();
 	~Board();
 
-	void         configureTerritories();
-	void         setTerritoryOwner(uint16_t, uint16_t);
-	void         getTerritoryName(uint16_t, listTerritory&);
-	uint16_t     getTerritoryAlphabet(uint16_t);
-	uint16_t     getTerritoryOwner(uint16_t);
-	uint16_t     getTerritoryValue(uint16_t);
-	uint16_t     getTerritoryOriginal(uint16_t);
-	void         transferTerritory(HWND, int, int&, int&, int&, bool&, bool&);
-//	vector<int>& transferTerritory(uint16_t, uint16_t);
-	void         transferTerritory(HWND, int, int, vector<int>&);
-	void         transferTerritoryAllies(HWND, uint16_t, vector<vector<int>>&);
-	uint16_t     calcNationIncome(uint16_t);
+	///////////////////////////////////////////////////////////////////////////
+	//// Territories
+	///////////////////////////////////////////////////////////////////////////
+
+	void setTerritoryOwner(int, int);
+
+	void getTerritoryName(int, listTerritory&);
+	int  getTerritoryAlphabet(int);
+	int  getTerritoryOriginal(int);
+	int  getTerritoryOwner(int);
+	int  getTerritoryValue(int);
+	
+	void transferTerritory(HWND, int, int&, int&, int&, bool&, bool&);
+	void transferTerritory(HWND, int, int, vector<int>&);
+	void transferTerritoryAllies(HWND, int, vector<vector<int>>&);
+	int  calcNationIncome(int);
+
+	///////////////////////////////////////////////////////////////////////////
+	//// Board Configuration
+	///////////////////////////////////////////////////////////////////////////
 
 	void setGameType(int);
 	void setGameResearch(bool);
@@ -153,7 +162,6 @@ private:
 	uint16_t gameCurrNation;
 	uint16_t gameTurnPhase;
 
-	territory territories[201];
 	bool mongoliaLean;
 	int neutralLean;
 
@@ -174,6 +182,7 @@ private:
 	vector<uint16_t> axisVicCities, alliesVicCities;
 
 	WarMatrix* warMatrix;
+	Territories* territories;
 	BonusClass* bonuses;
 };
 

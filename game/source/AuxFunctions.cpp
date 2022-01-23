@@ -116,6 +116,17 @@ bool isBeforeNation(uint16_t target, uint16_t current)
 		return true;
 }
 
+int whichSide(int nat)
+{
+	if (nat == TURN_GER || nat == TURN_ITA || nat == TURN_JPN)
+		return SIDE_AXIS;
+	else if (nat == TURN_SOV || nat == TURN_USA || nat == TURN_CHN ||
+		nat == TURN_UKE || nat == TURN_UKP || nat == TURN_ANZ || nat == TURN_FRA)
+		return SIDE_ALLIES;
+	else
+		return SIDE_NEUTRAL;
+}
+
 uint16_t char2uint(char* str, uint16_t n)
 {
 	uint16_t val = 0;
@@ -202,3 +213,4 @@ int char2int_(char c)
 	else
 		return 0;
 }
+

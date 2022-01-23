@@ -22,7 +22,7 @@ void Territories::setGameType(int type)
 	{
 		// Last territory on Pacific map
 		// Will just be easier to have both Europe and Pacific arrays the same size as Global
-		territories.resize(TER_MEXICO);
+		territories.resize(TER_MEXICO + 1);
 
 		switch (gameType)
 		{
@@ -478,7 +478,17 @@ int Territories::getTerritoryOwner(int ter)
 	return territories[ter]->getOwner();
 }
 
+int Territories::getTerritoryOwnerSide(int ter)
+{
+	return territories[ter]->getSide();
+}
+
 int Territories::getTerritoryOriginal(int ter)
+{
+	return territories[ter]->getOriginal();
+}
+
+int Territories::getTerritoryOriginalSide(int ter)
 {
 	return territories[ter]->getOriginal();
 }
@@ -494,7 +504,7 @@ bool Territories::getIsCap(int ter)
 	return territories[ter]->getIsCap();
 }
 
-bool Territories::transferTerritory(int ter, int nat)
+void Territories::transferTerritory(int ter, int nat)
 {
 	territories[ter]->setOwner(nat);
 }

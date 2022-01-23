@@ -80,18 +80,17 @@ int Territory::getAlphabet()
 
 int Territory::getSide()
 {
-	if (owner == TURN_GER || owner == TURN_ITA || owner == TURN_JPN)
-		return SIDE_AXIS;
-	else if (owner == TURN_SOV || owner == TURN_USA || owner == TURN_CHN ||
-		owner == TURN_UKE || owner == TURN_UKP || owner == TURN_ANZ || owner == TURN_FRA)
-		return SIDE_ALLIES;
-	else
-		return SIDE_NEUTRAL;
+	return whichSide(owner);
 }
 
 int Territory::getOwner()
 {
 	return owner;
+}
+
+int Territory::getOriginalSide()
+{
+	return whichSide(original);
 }
 
 int Territory::getOriginal()

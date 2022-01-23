@@ -201,7 +201,7 @@ int BonusClass::getTransferVal()
 	return _transferVal;
 }
 
-void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix, territory* territories, int turn, int nat, bool popups, int transferVal)
+void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix, Territories* territories, int turn, int nat, bool popups, int transferVal)
 {
 	int total = 0; // Bonus total for specified nation
 	int cnt = 0;   // Total territories for counting bonuses
@@ -239,11 +239,11 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 		{
 			// controlSovTerrBonus, 5 each
 			{
-				if (territories[TER_NOVGOROD].owner == TURN_GER)
+				if (territories->getTerritoryOwner(TER_NOVGOROD) == TURN_GER)
 					cnt++;
-				if (territories[TER_VOLGOGRAD].owner == TURN_GER)
+				if (territories->getTerritoryOwner(TER_VOLGOGRAD) == TURN_GER)
 					cnt++;
-				if (territories[TER_RUSSIA].owner == TURN_GER)
+				if (territories->getTerritoryOwner(TER_RUSSIA) == TURN_GER)
 					cnt++;
 				nations[TURN_GER]->updateBonus(BONS_GER_CTY, cnt, false);
 
@@ -261,7 +261,7 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 
 			// axisCaucusBonus, 5
 			{
-				bool cond = (territories[TER_CAUCASUS].side == SIDE_AXIS);
+				bool cond = (territories->getTerritoryOwner(TER_CAUCASUS) == SIDE_AXIS);
 
 				if (cond)
 				{
@@ -284,7 +284,7 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 
 		// gerEgyptBonus, 5
 		{
-			bool cond0 = (territories[TER_EGYPT].side == SIDE_AXIS);
+			bool cond0 = (territories->getTerritoryOwner(TER_EGYPT) == SIDE_AXIS);
 			bool cond1 = false;
 
 			if (cond0 && popups)
@@ -319,13 +319,13 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 
 		// denNorBonus, 5
 		{
-			bool cond0 = (((territories[TER_SWEDEN].owner == FULL_NEUTRAL) && neutralLean != SIDE_ALLIES) ||
-				(territories[TER_SWEDEN].side == SIDE_AXIS));
+			bool cond0 = (((territories->getTerritoryOwner(TER_SWEDEN) == FULL_NEUTRAL) && neutralLean != SIDE_ALLIES) ||
+				(territories->getTerritoryOwner(TER_SWEDEN) == SIDE_AXIS));
 			bool cond1 = false;
 
 			if (cond0)
 			{
-				cond1 = ((territories[TER_DENMARK].owner == TURN_GER) && (territories[TER_NORWAY].owner == TURN_GER));
+				cond1 = ((territories->getTerritoryOwner(TER_DENMARK) == TURN_GER) && (territories->getTerritoryOwner(TER_NORWAY) == TURN_GER));
 
 				if (cond1)
 				{
@@ -350,11 +350,11 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 
 		// gerMidEastBonus, 2 each
 		{
-			if (territories[TER_IRAQ].owner == TURN_GER)
+			if (territories->getTerritoryOwner(TER_IRAQ) == TURN_GER)
 				cnt++;
-			if (territories[TER_PERSIA].owner == TURN_GER)
+			if (territories->getTerritoryOwner(TER_PERSIA) == TURN_GER)
 				cnt++;
-			if (territories[TER_NW_PERSIA].owner == TURN_GER)
+			if (territories->getTerritoryOwner(TER_NW_PERSIA) == TURN_GER)
 				cnt++;
 			nations[TURN_GER]->updateBonus(BONS_GER_PER, cnt, false);
 
@@ -380,7 +380,7 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 		{
 			// independenceBonus, 5
 			{
-				bool cond0 = (territories[TER_ARCHANGEL].owner == TURN_SOV);
+				bool cond0 = (territories->getTerritoryOwner(TER_ARCHANGEL) == TURN_SOV);
 				bool cond1 = false;
 
 				if (cond0 && popups)
@@ -427,7 +427,7 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 								 TER_IRAQ };
 
 				for (int i = 0; i < 21; i++)
-					if (territories[ters[i]].owner == TURN_SOV)
+					if (territories->getTerritoryOwner(ters[i]) == TURN_SOV)
 						cnt++;
 
 				nations[TURN_SOV]->updateBonus(BONS_SOV_AXT, cnt, false);
@@ -447,7 +447,7 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 
 			// controlGerBonus, 10
 			{
-				if (territories[TER_GERMANY].owner == TURN_SOV)
+				if (territories->getTerritoryOwner(TER_GERMANY) == TURN_SOV)
 				{
 					nations[TURN_SOV]->updateBonus(BONS_SOV_GER, BONS_NON, true);
 					if (sovControlGer == false)
@@ -491,7 +491,7 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 				else if (msgboxID == IDNO)
 					cond2 = true;
 			}
-			else if (territories[TER_FR_IND_CHINA].owner == TURN_JPN)
+			else if (territories->getTerritoryOwner(TER_FR_IND_CHINA) == TURN_JPN)
 				cond2 = false;
 			else
 				cond2 = true;
@@ -524,9 +524,9 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 			{
 				bool cond = false;
 
-				if (territories[TER_GUAM].side == SIDE_AXIS && territories[TER_MIDWAY].side == SIDE_AXIS &&
-					territories[TER_WAKE_ISLAND].side == SIDE_AXIS && territories[TER_GILBERT_ISL].side == SIDE_AXIS &&
-					territories[TER_SOLOMON_ISL].side == SIDE_AXIS)
+				if (territories->getTerritoryOwnerSide(TER_GUAM) == SIDE_AXIS && territories->getTerritoryOwnerSide(TER_MIDWAY) == SIDE_AXIS &&
+					territories->getTerritoryOwnerSide(TER_WAKE_ISLAND) == SIDE_AXIS && territories->getTerritoryOwnerSide(TER_GILBERT_ISL) == SIDE_AXIS &&
+					territories->getTerritoryOwnerSide(TER_SOLOMON_ISL) == SIDE_AXIS)
 				{
 					nations[TURN_JPN]->updateBonus(BONS_JPN_ISL, BONS_NON, true);
 					cond = true;
@@ -547,13 +547,13 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 
 			// majorTerritoriesBonus, 5 each
 			{
-				if (territories[TER_INDIA].side == SIDE_AXIS)
+				if (territories->getTerritoryOwnerSide(TER_INDIA) == SIDE_AXIS)
 					cnt++;
-				if (territories[TER_NEW_S_WALES].side == SIDE_AXIS)
+				if (territories->getTerritoryOwnerSide(TER_NEW_S_WALES) == SIDE_AXIS)
 					cnt++;
-				if (territories[TER_HAWAII].side == SIDE_AXIS)
+				if (territories->getTerritoryOwnerSide(TER_HAWAII) == SIDE_AXIS)
 					cnt++;
-				if (territories[TER_WESTERN_USA].side == SIDE_AXIS)
+				if (territories->getTerritoryOwnerSide(TER_WESTERN_USA) == SIDE_AXIS)
 					cnt++;
 				nations[TURN_JPN]->updateBonus(BONS_JPN_TER, cnt, false);
 
@@ -574,8 +574,8 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 			{
 				bool cond = false;
 
-				if (territories[TER_SUMATRA].side == SIDE_AXIS && territories[TER_JAVA].side == SIDE_AXIS &&
-					territories[TER_BORNEO].side == SIDE_AXIS && territories[TER_CELEBES].side == SIDE_AXIS)
+				if (territories->getTerritoryOwnerSide(TER_SUMATRA) == SIDE_AXIS && territories->getTerritoryOwnerSide(TER_JAVA) == SIDE_AXIS &&
+					territories->getTerritoryOwnerSide(TER_BORNEO) == SIDE_AXIS && territories->getTerritoryOwnerSide(TER_CELEBES) == SIDE_AXIS)
 				{
 					nations[TURN_JPN]->updateBonus(BONS_JPN_JAV, BONS_NON, true);
 					cond = true;
@@ -608,7 +608,7 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 				{
 					bool cond = false;
 
-					if (territories[TER_EASTERN_USA].owner == TURN_USA && territories[TER_CENTRAL_USA].owner == TURN_USA)
+					if (territories->getTerritoryOwner(TER_EASTERN_USA) == TURN_USA && territories->getTerritoryOwner(TER_CENTRAL_USA) == TURN_USA)
 					{
 						nations[TURN_USA]->updateBonus(BONS_USA_USA, BONS_NON, true);
 						cond = true;
@@ -632,8 +632,8 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 				{
 					bool cond = false;
 
-					if (territories[TER_SE_MEXICO].owner == TURN_USA && territories[TER_CENT_AMERICA].owner == TURN_USA &&
-						territories[TER_WEST_INDIES].owner == TURN_USA)
+					if (territories->getTerritoryOwner(TER_SE_MEXICO) == TURN_USA && territories->getTerritoryOwner(TER_CENT_AMERICA) == TURN_USA &&
+						territories->getTerritoryOwner(TER_WEST_INDIES) == TURN_USA)
 					{
 						nations[TURN_USA]->updateBonus(BONS_USA_EUR_TER, BONS_NON, true);
 						cond = true;
@@ -661,7 +661,7 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 				{
 					bool cond = false;
 
-					if (territories[TER_WESTERN_USA].owner == TURN_USA)
+					if (territories->getTerritoryOwner(TER_WESTERN_USA) == TURN_USA)
 					{
 						nations[TURN_USA]->updateBonus(BONS_USA_USA, BONS_NON, true);
 						cond = true;
@@ -684,7 +684,7 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 				{
 					bool cond = false;
 
-					if (territories[TER_ALASKA].owner == TURN_USA && territories[TER_MEXICO].owner == TURN_USA)
+					if (territories->getTerritoryOwner(TER_ALASKA) == TURN_USA && territories->getTerritoryOwner(TER_MEXICO) == TURN_USA)
 					{
 						nations[TURN_USA]->updateBonus(BONS_USA_PAC_TER, BONS_NON, true);
 						cond = true;
@@ -707,8 +707,8 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 				{
 					bool cond = false;
 
-					if (territories[TER_ALEUTIAN_ISL].owner == TURN_USA && territories[TER_HAWAII].owner == TURN_USA && 
-						territories[TER_JOHNSTON_ISL].owner == TURN_USA && territories[TER_LINE_ISLANDS].owner == TURN_USA)
+					if (territories->getTerritoryOwner(TER_ALEUTIAN_ISL) == TURN_USA && territories->getTerritoryOwner(TER_HAWAII) == TURN_USA && 
+						territories->getTerritoryOwner(TER_JOHNSTON_ISL) == TURN_USA && territories->getTerritoryOwner(TER_LINE_ISLANDS) == TURN_USA)
 					{
 						nations[TURN_USA]->updateBonus(BONS_USA_PAC_ISL, BONS_NON, true);
 						cond = true;
@@ -731,7 +731,7 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 				{
 					bool cond = false;
 
-					if (territories[TER_PHILIPPINES].owner == TURN_USA)
+					if (territories->getTerritoryOwner(TER_PHILIPPINES) == TURN_USA)
 					{
 						nations[TURN_USA]->updateBonus(BONS_USA_PHI, BONS_NON, true);
 						cond = true;
@@ -783,8 +783,8 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 				{
 					bool cond = false;
 
-					if (territories[TER_EASTERN_USA].owner == TURN_USA && territories[TER_CENTRAL_USA].owner == TURN_USA && 
-						territories[TER_WESTERN_USA].owner == TURN_USA)
+					if (territories->getTerritoryOwner(TER_EASTERN_USA) == TURN_USA && territories->getTerritoryOwner(TER_CENTRAL_USA) == TURN_USA &&
+						territories->getTerritoryOwner(TER_WESTERN_USA) == TURN_USA)
 					{
 						nations[TURN_USA]->updateBonus(BONS_USA_USA, BONS_NON, true);
 						cond = true;
@@ -807,9 +807,9 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 				{
 					bool cond = false;
 
-					if (territories[TER_ALASKA].owner == TURN_USA && territories[TER_ALEUTIAN_ISL].owner == TURN_USA &&
-						territories[TER_HAWAII].owner == TURN_USA && territories[TER_JOHNSTON_ISL].owner == TURN_USA &&
-						territories[TER_LINE_ISLANDS].owner == TURN_USA)
+					if (territories->getTerritoryOwner(TER_ALASKA) == TURN_USA && territories->getTerritoryOwner(TER_ALEUTIAN_ISL) == TURN_USA &&
+						territories->getTerritoryOwner(TER_HAWAII) == TURN_USA && territories->getTerritoryOwner(TER_JOHNSTON_ISL) == TURN_USA &&
+						territories->getTerritoryOwner(TER_LINE_ISLANDS) == TURN_USA)
 					{
 						nations[TURN_USA]->updateBonus(BONS_USA_GLO_ISL, BONS_NON, true);
 						cond = true;
@@ -832,8 +832,8 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 				{
 					bool cond = false;
 
-					if (territories[TER_MEXICO].owner == TURN_USA && territories[TER_SE_MEXICO].owner == TURN_USA &&
-						territories[TER_CENT_AMERICA].owner == TURN_USA && territories[TER_WEST_INDIES].owner == TURN_USA)
+					if (territories->getTerritoryOwner(TER_MEXICO) == TURN_USA && territories->getTerritoryOwner(TER_SE_MEXICO) == TURN_USA &&
+						territories->getTerritoryOwner(TER_CENT_AMERICA) == TURN_USA && territories->getTerritoryOwner(TER_WEST_INDIES) == TURN_USA)
 					{
 						nations[TURN_USA]->updateBonus(BONS_USA_GLO_TER, BONS_NON, true);
 						cond = true;
@@ -856,7 +856,7 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 				{
 					bool cond = false;
 
-					if (territories[TER_PHILIPPINES].owner == TURN_USA)
+					if (territories->getTerritoryOwner(TER_PHILIPPINES) == TURN_USA)
 					{
 						nations[TURN_USA]->updateBonus(BONS_USA_PHI, BONS_NON, true);
 						cond = true;
@@ -877,7 +877,7 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 
 				// franceBonus, 5
 				{
-					bool cond0 = (territories[TER_FRANCE].owner == TURN_FRA);
+					bool cond0 = (territories->getTerritoryOwner(TER_FRANCE) == TURN_FRA);
 					bool cond1 = false;
 
 					if (cond0 && popups)
@@ -943,8 +943,8 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 		{
 			bool cond = false;
 
-			if (territories[TER_INDIA].side == SIDE_ALLIES && territories[TER_BURMA].side == SIDE_ALLIES &&
-				territories[TER_YUNNAN].side == SIDE_ALLIES && territories[TER_SZECHWAN].side == SIDE_ALLIES)
+			if (territories->getTerritoryOwnerSide(TER_INDIA) == SIDE_ALLIES && territories->getTerritoryOwner(TER_BURMA) == SIDE_ALLIES &&
+				territories->getTerritoryOwnerSide(TER_YUNNAN) == SIDE_ALLIES && territories->getTerritoryOwner(TER_SZECHWAN) == SIDE_ALLIES)
 			{
 				nations[TURN_CHN]->updateBonus(BONS_CHN_BUR, BONS_NON, true);
 				cond = true;
@@ -981,7 +981,7 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 
 			bool cond = true;
 			for (uint16_t i = 0; i < 26; i++)
-				if (territories[ters[i]].owner != TURN_UKE)
+				if (territories->getTerritoryOwner(ters[i]) != TURN_UKE)
 					cond = false;
 
 			if (cond)
@@ -1015,7 +1015,7 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 
 			if (warMatrix->getAtWarWith(TURN_JPN, TURN_UKP))
 			{
-				if (territories[TER_KWANGTUNG].owner == TURN_UKP && territories[TER_MALAYA].owner == TURN_UKP)
+				if (territories->getTerritoryOwner(TER_KWANGTUNG) == TURN_UKP && territories->getTerritoryOwner(TER_MALAYA) == TURN_UKP)
 				{
 					nations[TURN_UKP]->updateBonus(ukpIdx, BONS_NON, true);
 					cond = true;
@@ -1044,13 +1044,13 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 		{
 			bool cond = false;
 
-			if (territories[TER_GIBRALTAR].side == SIDE_AXIS)
+			if (territories->getTerritoryOwnerSide(TER_GIBRALTAR) == SIDE_AXIS)
 				cnt++;
-			if (territories[TER_SOUTH_FRANCE].side == SIDE_AXIS)
+			if (territories->getTerritoryOwnerSide(TER_SOUTH_FRANCE) == SIDE_AXIS)
 				cnt++;
-			if (territories[TER_GREECE].side == SIDE_AXIS)
+			if (territories->getTerritoryOwnerSide(TER_GREECE) == SIDE_AXIS)
 				cnt++;
-			if (territories[TER_EGYPT].side == SIDE_AXIS)
+			if (territories->getTerritoryOwnerSide(TER_EGYPT) == SIDE_AXIS)
 				cnt++;
 			if (cnt >= 3)
 			{
@@ -1111,9 +1111,9 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 		{
 			bool cond = false;
 
-			if (territories[TER_MOROCCO].side == SIDE_AXIS && territories[TER_ALGERIA].side == SIDE_AXIS &&
-				territories[TER_TUNISIA].side == SIDE_AXIS && territories[TER_LIBYA].side == SIDE_AXIS &&
-				territories[TER_TOBRUK].side == SIDE_AXIS && territories[TER_ALEXANDRIA].side == SIDE_AXIS)
+			if (territories->getTerritoryOwnerSide(TER_MOROCCO) == SIDE_AXIS && territories->getTerritoryOwnerSide(TER_ALGERIA) == SIDE_AXIS &&
+				territories->getTerritoryOwnerSide(TER_TUNISIA) == SIDE_AXIS && territories->getTerritoryOwnerSide(TER_LIBYA) == SIDE_AXIS &&
+				territories->getTerritoryOwnerSide(TER_TOBRUK) == SIDE_AXIS && territories->getTerritoryOwnerSide(TER_ALEXANDRIA) == SIDE_AXIS)
 			{
 				nations[TURN_ITA]->updateBonus(BONS_ITA_AFR, BONS_NON, true);
 				cond = true;
@@ -1134,11 +1134,11 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 
 		// middleEastBonus, 2 each
 		{
-			if (territories[TER_IRAQ].owner == TURN_ITA)
+			if (territories->getTerritoryOwner(TER_IRAQ) == TURN_ITA)
 				cnt++;
-			if (territories[TER_PERSIA].owner == TURN_ITA)
+			if (territories->getTerritoryOwner(TER_PERSIA) == TURN_ITA)
 				cnt++;
-			if (territories[TER_NW_PERSIA].owner == TURN_ITA)
+			if (territories->getTerritoryOwner(TER_NW_PERSIA) == TURN_ITA)
 				cnt++;
 			nations[TURN_ITA]->updateBonus(BONS_ITA_PER, cnt, false);
 
@@ -1165,7 +1165,7 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 		{
 			// origTerritoryBonus, 5
 			{
-				bool cond0 = (territories[TER_MALAYA].side == SIDE_ALLIES);
+				bool cond0 = (territories->getTerritoryOwnerSide(TER_MALAYA) == SIDE_ALLIES);
 				bool cond1 = true;
 
 				uint16_t ters[10] = { TER_W_AUSTRALIA, TER_N_TERRITORY, TER_S_AUSTRALIA, TER_QUEENSLAND,
@@ -1174,7 +1174,7 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 				if (cond0)
 				{
 					for (int i = 0; i < 10; i++)
-						if (territories[ters[i]].owner != TURN_ANZ)
+						if (territories->getTerritoryOwner(ters[i]) != TURN_ANZ)
 							cond1 = false;
 
 					if (cond1)
@@ -1202,8 +1202,8 @@ void BonusClass::updateBonuses(HWND hDlg, Nation** nations, WarMatrix* warMatrix
 			{
 				bool cond = false;
 
-				if (territories[TER_DUT_N_GUINEA].side == SIDE_ALLIES && territories[TER_NEW_GUINEA].side == SIDE_ALLIES &&
-					territories[TER_NEW_BRITAIN].side == SIDE_ALLIES && territories[TER_SOLOMON_ISL].side == SIDE_ALLIES)
+				if (territories->getTerritoryOwnerSide(TER_DUT_N_GUINEA) == SIDE_ALLIES && territories->getTerritoryOwnerSide(TER_NEW_GUINEA) == SIDE_ALLIES &&
+					territories->getTerritoryOwnerSide(TER_NEW_BRITAIN) == SIDE_ALLIES && territories->getTerritoryOwner(TER_SOLOMON_ISL) == SIDE_ALLIES)
 				{
 					nations[TURN_ANZ]->updateBonus(BONS_ANZ_ISL, BONS_NON, true);
 					cond = true;

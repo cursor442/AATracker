@@ -38,11 +38,13 @@ public:
 	void getTerritoryName(int, listTerritory&);
 	int  getTerritoryAlphabet(int);
 	int  getTerritoryOwner(int);
+	int  getTerritoryOwnerSide(int);
 	int  getTerritoryOriginal(int);
+	int  getTerritoryOriginalSide(int);
 	int  getTerritoryValue(int);
 
 	bool getIsCap(int);
-	bool transferTerritory(int, int);
+	void transferTerritory(int, int);
 
 private:
 	vector<Territory*> territories;
