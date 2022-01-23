@@ -117,7 +117,7 @@ int Game::getCityOwn(int city, bool& sameSide)
 		ter = TER_EASTERN_USA;
 		break;
 	case CITY_SANFRAN:
-		ter = TER_WEST_USA;
+		ter = TER_WESTERN_USA;
 		break;
 	case CITY_LONDON:
 		ter = TER_UTD_KINGDOM;

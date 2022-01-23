@@ -9,6 +9,8 @@ Territory::Territory(WCHAR* n, int a, int orig, int own, int v, int m, bool coas
 	value = v;
 
 	map = m;
+	city = CITY_NON;
+	isCap = false;
 
 	isCoastal = coast;
 	isIsland = false;
@@ -31,6 +33,7 @@ Territory::~Territory()
 		delete navalBase;
 }
 
+
 void Territory::setOriginal(int orig)
 {
 	original = orig;
@@ -46,9 +49,33 @@ void Territory::setMap(int m)
 	map = m;
 }
 
+void Territory::setCity(int c, bool cap)
+{
+	city = c;
+	isCap = cap;
+}
+
+void Territory::setIsCap(bool cond)
+{
+	isCap = cond;
+}
+
 void Territory::setIsIsland(bool i)
 {
 	isIsland = i;
+}
+
+
+terName& Territory::getName()
+{
+	terName tmp;
+	wcsncpy_s(tmp.t, name, TERRITORY_NAMELEN);
+	return tmp;
+}
+
+int Territory::getAlphabet()
+{
+	return alphabet;
 }
 
 int Territory::getSide()
@@ -62,6 +89,36 @@ int Territory::getSide()
 		return SIDE_NEUTRAL;
 }
 
+int Territory::getOwner()
+{
+	return owner;
+}
+
+int Territory::getOriginal()
+{
+	return original;
+}
+
+int Territory::getValue()
+{
+	return value;
+}
+
+int Territory::getMap()
+{
+	return map;
+}
+
+int Territory::getCity()
+{
+	return city;
+}
+
+bool Territory::getIsCap()
+{
+	return isCap;
+}
+
 bool Territory::getIsCoastal()
 {
 	return isCoastal;
@@ -71,6 +128,7 @@ bool Territory::getIsIsland()
 {
 	return isIsland;
 }
+
 
 bool Territory::getIsValidForChina()
 {
@@ -112,6 +170,7 @@ bool Territory::getValidForNavalBase()
 	else
 		return false;
 }
+
 
 bool Territory::placeIC(int type)
 {
@@ -196,6 +255,7 @@ bool Territory::placeNavalBase()
 	else
 		return false;
 }
+
 
 bool Territory::getHasIC()
 {

@@ -288,6 +288,7 @@
 #define VIC_ALLIES_GLO 5
 
 // Victory cities
+#define CITY_NON     -1
 #define CITY_BERLIN   0
 #define CITY_ROME     1
 #define CITY_WARSAW   2

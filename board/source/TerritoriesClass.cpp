@@ -14,43 +14,50 @@ Territories::~Territories()
 			delete territories[i];
 }
 
+
 void Territories::setGameType(int type)
 {
 	gameType = type;
+	if (territories.size() == 0) // Make sure this is only run once
+	{
+		// Last territory on Pacific map
+		// Will just be easier to have both Europe and Pacific arrays the same size as Global
+		territories.resize(TER_MEXICO);
 
-	// Last territory on Pacific map
-	// Will just be easier to have both Europe and Pacific arrays the same size as Global
-	territories.resize(TER_MEXICO); 
-
-	switch (gameType)
-	{
-	case EUROPE_GAME:
-	{
-		configEurTerrs();
-		configEurIslands();
-		configEurFacilities();
-		break;
-	}
-	case PACIFIC_GAME:
-	{
-		configPacTerrs();
-		configPacIslands();
-		configPacFacilities();
-		break;
-	}
-	case GLOBAL_GAME:
-	{
-		configEurTerrs();
-		configEurIslands();
-		configEurFacilities();
-		configPacTerrs();
-		configPacIslands();
-		configPacFacilities();
-		globalGameAdj();
-		break;
-	}
-	default:
-		break;
+		switch (gameType)
+		{
+		case EUROPE_GAME:
+		{
+			configEurTerrs();
+			configEurCities();
+			configEurIslands();
+			configEurFacilities();
+			break;
+		}
+		case PACIFIC_GAME:
+		{
+			configPacTerrs();
+			configPacCities();
+			configPacIslands();
+			configPacFacilities();
+			break;
+		}
+		case GLOBAL_GAME:
+		{
+			configEurTerrs();
+			configEurCities();
+			configEurIslands();
+			configEurFacilities();
+			configPacTerrs();
+			configPacCities();
+			configPacIslands();
+			configPacFacilities();
+			globalGameAdj();
+			break;
+		}
+		default:
+			break;
+		}
 	}
 }
 
@@ -177,6 +184,23 @@ void Territories::configEurTerrs()
 	territories[TER_EAST_PERSIA]  = new Territory(e_persia     , 42,  ALLY_NEUTRAL, ALLY_NEUTRAL, 0 , EUROPE_MAP, true );
 	territories[TER_AFGHANISTAN]  = new Territory(afghan       , 0,   FULL_NEUTRAL, FULL_NEUTRAL, 0 , EUROPE_MAP, false);
 	territories[TER_WEST_INDIA]   = new Territory(w_india      , 191, TURN_UKE,     TURN_UKE,     2 , EUROPE_MAP, true );
+}
+
+void Territories::configEurCities()
+{
+	// Capitals
+	territories[TER_GERMANY]->setCity(CITY_BERLIN, true);
+	territories[TER_RUSSIA]->setCity(CITY_MOSCOW, true);
+	territories[TER_EASTERN_USA]->setCity(CITY_WASH, true);
+	territories[TER_UTD_KINGDOM]->setCity(CITY_LONDON, true);
+	territories[TER_SOUTH_ITALY]->setCity(CITY_ROME, true);
+	territories[TER_FRANCE]->setCity(CITY_PARIS, true);
+
+	territories[TER_ONTARIO]->setCity(CITY_OTTAWA);
+	territories[TER_POLAND]->setCity(CITY_WARSAW);
+	territories[TER_NOVGOROD]->setCity(CITY_LENIN);
+	territories[TER_VOLGOGRAD]->setCity(CITY_STALIN);
+	territories[TER_EGYPT]->setCity(CITY_CAIRO);
 }
 
 void Territories::configEurIslands()
@@ -329,6 +353,20 @@ void Territories::configPacTerrs()
 	territories[TER_MEXICO]       = new Territory(mexico       , 100, TURN_USA,     TURN_USA,     2 , PACIFIC_MAP, true );
 }
 
+void Territories::configPacCities()
+{
+	// Capitals
+	territories[TER_JAPAN]->setCity(CITY_TOKYO, true);
+	territories[TER_WESTERN_USA]->setCity(CITY_SANFRAN, true);
+	territories[TER_INDIA]->setCity(CITY_CALC, true);
+	territories[TER_NEW_S_WALES]->setCity(CITY_SYDNEY, true);
+
+	territories[TER_KIANGSU]->setCity(CITY_SHANG);
+	territories[TER_KWANGTUNG]->setCity(CITY_HONG);
+	territories[TER_PHILIPPINES]->setCity(CITY_MANILA);
+	territories[TER_HAWAII]->setCity(CITY_HONO);
+}
+
 void Territories::configPacIslands()
 {
 	// By game definition, I guess Japan isn't an island
@@ -407,8 +445,56 @@ void Territories::globalGameAdj()
 	territories[TER_W_CANADA]->setOriginal(TURN_UKE); territories[TER_W_CANADA]->setOwner(TURN_UKE);
 	territories[TER_W_CANADA]->setMap(EUROPE_MAP);
 
+	// San Francisco is not the capital
+	territories[TER_WESTERN_USA]->setIsCap(false);
+
 	// Downgrade United States ICs
 	territories[TER_EASTERN_USA]->downgradeIC();
 	territories[TER_CENTRAL_USA]->downgradeIC();
 	territories[TER_WESTERN_USA]->downgradeIC();
+}
+
+
+void Territories::setTerritoryOwner(int ter, int own)
+{
+	territories[ter]->setOwner(own);
+}
+
+
+void Territories::getTerritoryName(int ter, listTerritory& list)
+{
+	wcsncpy_s(list.name, territories[ter]->getName().t, TERRITORY_NAMELEN);
+	list.id = ter;
+	list.alph = territories[ter]->getAlphabet();
+}
+
+int Territories::getTerritoryAlphabet(int ter)
+{
+	return territories[ter]->getAlphabet();
+}
+
+int Territories::getTerritoryOwner(int ter)
+{
+	return territories[ter]->getOwner();
+}
+
+int Territories::getTerritoryOriginal(int ter)
+{
+	return territories[ter]->getOriginal();
+}
+
+int Territories::getTerritoryValue(int ter)
+{
+	return territories[ter]->getValue();
+}
+
+
+bool Territories::getIsCap(int ter)
+{
+	return territories[ter]->getIsCap();
+}
+
+bool Territories::transferTerritory(int ter, int nat)
+{
+	territories[ter]->setOwner(nat);
 }

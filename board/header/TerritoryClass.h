@@ -17,11 +17,21 @@ public:
 	void setOriginal(int);
 	void setOwner(int);
 	void setMap(int);
+	void setCity(int, bool = false);
+	void setIsCap(bool);
 
 	void setIsIsland(bool);
 
+	terName& getName();
+	int  getAlphabet();
 	int  getSide();
+	int  getOwner();
+	int  getOriginal();
+	int  getValue();
 
+	int  getMap();
+	int  getCity();
+	bool getIsCap();
 	bool getIsCoastal();
 	bool getIsIsland();
 	bool getIsValidForChina();
@@ -51,6 +61,8 @@ private:
 	int   value;
 
 	int   map;
+	int   city;
+	bool  isCap;
 
 	bool  isCoastal;
 	bool  isIsland;

@@ -3,6 +3,10 @@
 
 #define TERRITORY_NAMELEN 32
 
+struct terName {
+	WCHAR t[TERRITORY_NAMELEN];
+};
+
 // Europe territories
 static WCHAR alberta[TERRITORY_NAMELEN]      = L"Alberta, Saskatchewan, Manitoba";
 static WCHAR ontario[TERRITORY_NAMELEN]      = L"Ontario";
