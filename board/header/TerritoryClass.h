@@ -3,6 +3,7 @@
 
 #include "../../game/header/Resource.h"
 #include "Territories.h"
+#include "TerritoryText.h"
 #include "IndustrialComplexClass.h"
 #include "AirBaseClass.h"
 #include "NavalBaseClass.h"

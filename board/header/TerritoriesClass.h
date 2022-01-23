@@ -2,8 +2,6 @@
 #define TERRITORIES_CLASS
 
 #include "../../game/header/Resource.h"
-#include "../../board/header/Territories.h"
-#include "../../board/header/TerritoryText.h"
 #include "../../board/header/TerritoryClass.h"
 
 struct territoryTransaction {
