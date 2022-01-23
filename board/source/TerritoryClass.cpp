@@ -1,16 +1,223 @@
 #include "../header/TerritoryClass.h"
 
-TerritoryClass::TerritoryClass()
+Territory::Territory(WCHAR* n, int a, int orig, int own, int v, int m, bool coast, bool chn)
 {
-	gameType = NULL_GAME;
+	wcsncpy_s(name, n, TERRITORY_NAMELEN);
+	alphabet = a;
+	original = orig;
+	owner = own;
+	value = v;
+
+	map = m;
+
+	isCoastal = coast;
+	isIsland = false;
+	isValidForChina = chn;
+
+	industrialComplex = NULL;
+	airBase = NULL;
+	navalBase = NULL;
 }
 
-TerritoryClass::~TerritoryClass()
+Territory::~Territory()
 {
+	if (industrialComplex != NULL)
+		delete industrialComplex;
 
+	if (airBase != NULL)
+		delete airBase;
+
+	if (navalBase != NULL)
+		delete navalBase;
 }
 
-void TerritoryClass::setGameType(int type)
+void Territory::setOriginal(int orig)
 {
-	gameType = type;
+	original = orig;
+}
+
+void Territory::setOwner(int own)
+{
+	owner = own;
+}
+
+void Territory::setMap(int m)
+{
+	map = m;
+}
+
+void Territory::setIsIsland(bool i)
+{
+	isIsland = i;
+}
+
+int Territory::getSide()
+{
+	if (owner == TURN_GER || owner == TURN_ITA || owner == TURN_JPN)
+		return SIDE_AXIS;
+	else if (owner == TURN_SOV || owner == TURN_USA || owner == TURN_CHN ||
+		owner == TURN_UKE || owner == TURN_UKP || owner == TURN_ANZ || owner == TURN_FRA)
+		return SIDE_ALLIES;
+	else
+		return SIDE_NEUTRAL;
+}
+
+bool Territory::getIsCoastal()
+{
+	return isCoastal;
+}
+
+bool Territory::getIsIsland()
+{
+	return isIsland;
+}
+
+bool Territory::getIsValidForChina()
+{
+	return isValidForChina;
+}
+
+bool Territory::getValidForMinorIC()
+{
+	// Must have IPC value of 2 or higher
+	// Cannot be built on an island
+	if (value >= 2 && !isIsland)
+		return true;
+	else
+		return false;
+}
+
+bool Territory::getValidForMajorIC()
+{
+	// Must have IPC value of 3 or higher
+	// Must by controlled by original owner
+	// Cannot be built on an island
+	if (value >= 3 && (owner == original) && !isIsland)
+		return true;
+	else
+		return false;
+}
+
+bool Territory::getValidForAirBase()
+{
+	// Can be built on any controlled territory
+	return true;
+}
+
+bool Territory::getValidForNavalBase()
+{
+	// Can be built on any controlled coastal territory
+	if (isCoastal)
+		return true;
+	else
+		return false;
+}
+
+bool Territory::placeIC(int type)
+{
+	if (type == MINOR_IC)
+	{
+		if (getValidForMinorIC() && industrialComplex == NULL)
+		{
+			industrialComplex = new IndustrialComplex(MINOR_IC);
+			return true;
+		}
+		else
+			return false;
+	}
+	else if (type == MAJOR_IC)
+	{
+		if (getValidForMajorIC() && industrialComplex == NULL)
+		{
+			industrialComplex = new IndustrialComplex(MAJOR_IC);
+			return true;
+		}
+		else
+			return false;
+	}
+	else
+		return false;
+}
+
+bool Territory::upgradeIC()
+{
+	if (getValidForMajorIC() && industrialComplex != NULL)
+	{
+		if (industrialComplex->getICType() == MINOR_IC)
+		{
+			industrialComplex->upgradeIC();
+			return true;
+		}
+		else
+			return false;
+	}
+	else
+		return false;
+}
+
+bool Territory::downgradeIC()
+{
+	if (industrialComplex != NULL)
+		return industrialComplex->downgradeIC();
+	else
+		return false;
+}
+
+bool Territory::destroyIC()
+{
+	if (industrialComplex != NULL)
+	{
+		delete industrialComplex;
+		industrialComplex = NULL;
+		return true;
+	}
+	else
+		return false;
+}
+
+bool Territory::placeAirBase()
+{
+	if (getValidForAirBase() && airBase == NULL)
+	{
+		airBase = new AirBase();
+		return true;
+	}
+	else
+		return false;
+}
+
+bool Territory::placeNavalBase()
+{
+	if (getValidForNavalBase() && navalBase == NULL)
+	{
+		navalBase = new NavalBase();
+		return true;
+	}
+	else
+		return false;
+}
+
+bool Territory::getHasIC()
+{
+	if (industrialComplex != NULL)
+		return true;
+	else
+		return false;
+}
+
+int Territory::getICType()
+{
+	if (industrialComplex != NULL)
+		return industrialComplex->getICType();
+	else
+		return NULL_IC;
+}
+
+int Territory::getICCapacity()
+{
+	if (industrialComplex != NULL)
+		return industrialComplex->getICCapacity();
+	else
+		return 0;
+
 }

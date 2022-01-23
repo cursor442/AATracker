@@ -1,6 +1,7 @@
 #ifndef INDUSTRIAL_COMPLEX_CLASS
 #define INDUSTRIAL_COMPLEX_CLASS
 
+#define NULL_IC          -1
 #define MINOR_IC          0
 #define MAJOR_IC          1
 
@@ -19,6 +20,7 @@ public:
 	bool damageIC(int);
 	bool repairIC(int);
 	bool upgradeIC();
+	bool downgradeIC();
 
 	int getICType();
 	int getICDamage();

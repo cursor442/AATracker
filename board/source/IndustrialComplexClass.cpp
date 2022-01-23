@@ -69,6 +69,20 @@ bool IndustrialComplex::upgradeIC()
 		return false;
 }
 
+bool IndustrialComplex::downgradeIC()
+{
+	if (IC_type == MAJOR_IC)
+	{
+		IC_type = MINOR_IC;
+		IC_max_capacity = MINOR_IC_CAPCITY;
+		if (IC_damage > (MINOR_IC_CAPCITY * 2))
+			IC_damage = (MINOR_IC_CAPCITY * 2);
+		return true;
+	}
+	else
+		return false;
+}
+
 int IndustrialComplex::getICType()
 {
 	return IC_type;
