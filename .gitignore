@@ -45,3 +45,4 @@
 *.ipch
 .vs/AA Tracker/v16/.suo
 game/resource/RCa16896
+*.enc

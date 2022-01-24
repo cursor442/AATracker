@@ -22,7 +22,7 @@ public:
 
 	void setIsIsland(bool);
 
-	terName& getName();
+	terName getName();
 	int  getAlphabet();
 	int  getSide();
 	int  getOwner();

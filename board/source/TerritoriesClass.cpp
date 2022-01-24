@@ -463,7 +463,8 @@ void Territories::setTerritoryOwner(int ter, int own)
 
 void Territories::getTerritoryName(int ter, listTerritory& list)
 {
-	wcsncpy_s(list.name, territories[ter]->getName().t, TERRITORY_NAMELEN);
+	terName tmp = territories[ter]->getName();
+	wcsncpy_s(list.name.t, tmp.t, TERRITORY_NAMELEN);
 	list.id = ter;
 	list.alph = territories[ter]->getAlphabet();
 }

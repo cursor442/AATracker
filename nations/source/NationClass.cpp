@@ -105,11 +105,13 @@ void Nation::addNationBank(int turn, int val)
 		else
 			bank[turn] += val;
 	}
+
+	calcNextNationBank(turn);
 }
 
 void Nation::calcNextNationBank(int turn)
 {
-	if (turn < nationSize)
+	if (turn < (nationSize - 1))
 	{
 		int temp = bank[turn] + income[turn] + bonus[turn] - penalty[turn] - expenses[turn];
 		bank[++turn] = temp;
@@ -131,6 +133,8 @@ void Nation::addNationIncome(int turn, int val)
 		else
 			income[turn] += val;
 	}
+
+	calcNextNationBank(turn);
 }
 
 void Nation::setNationBonus(int turn, int val)
@@ -148,6 +152,8 @@ void Nation::addNationBonus(int turn, int val)
 		else
 			bonus[turn] += val;
 	}
+
+	calcNextNationBank(turn);
 }
 
 void Nation::setNationPenalty(int turn, int val)
@@ -162,6 +168,8 @@ void Nation::addNationPenalty(int turn, int val)
 	{
 		penalty[turn] += val;
 	}
+
+	calcNextNationBank(turn);
 }
 
 void Nation::setNationExpenses(int turn, int val)
@@ -179,6 +187,8 @@ void Nation::addNationExpenses(int turn, int val)
 		else
 			expenses[turn] += val;
 	}
+
+	calcNextNationBank(turn);
 }
 
 void Nation::setNationTerritories(int turn, int val)

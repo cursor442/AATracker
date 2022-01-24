@@ -66,7 +66,7 @@ void Territory::setIsIsland(bool i)
 }
 
 
-terName& Territory::getName()
+terName Territory::getName()
 {
 	terName tmp;
 	wcsncpy_s(tmp.t, name, TERRITORY_NAMELEN);

@@ -35,17 +35,13 @@ int Board::getTerritoryValue(int ter)
 void Board::transferTerritory(HWND hDlg, int ter, int& own, int &captureAmount, int &prev, bool &isLib, bool& libCap)
 {
 	int currNat = own;
-	//prev = territories[ter].owner;
 	prev = territories->getTerritoryOwner(ter);
-	//int orig = territories[ter].original;
 	int orig = territories->getTerritoryOriginal(ter);
-	//int val = (int)territories[ter].value;
 	int val = territories->getTerritoryValue(ter);
 
 	int transferVal = 0;
 
 	// This is definitely not the best way to do this
-	//bool isCap = false;
 	bool isCap = territories->getIsCap(ter);
 	libCap = false;
 	isLib = false;
@@ -384,8 +380,6 @@ void Board::transferTerritory(HWND hDlg, int ter, int& own, int &captureAmount, 
 	// Update bonuses
 	updateBonuses(hDlg, own, false, captureAmount);
 
-	calcNextNationBank(own, gameTurn);
-
 	// check victory
 
 
@@ -440,7 +434,7 @@ void Board::transferTerritoryAllies(HWND hDlg, int libNat, vector<vector<int>>& 
 	for (int i = 0; i < 10; i++)
 		targets[i].resize(0);
 
-	bool currSide = whichSide(libNat);
+	int currSide = whichSide(libNat);
 
 	// Go through all territories, transfer all territories controlled by allies that originally belonged to
 	// liberated nation and adjust economies

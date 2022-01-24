@@ -298,8 +298,8 @@ INT_PTR CALLBACK Game::DeclareWar(HWND hDlg, UINT message, WPARAM wParam, LPARAM
 
 INT_PTR CALLBACK Game::CaptureTerritory(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    TCHAR    ListItem[32];
-    TCHAR    A[32];
+    WCHAR  ListItem[TERRITORY_NAMELEN];
+    WCHAR  A[TERRITORY_NAMELEN];
     WPARAM ItemIndex;
 
     int currNat = gameBoard->getGameCurrNation();
@@ -375,7 +375,7 @@ INT_PTR CALLBACK Game::CaptureTerritory(HWND hDlg, UINT message, WPARAM wParam, 
         }        
     }
 
-    for (n = 0; n < 32; n++)
+    for (n = 0; n < TERRITORY_NAMELEN; n++)
         ListItem[n] = '\0';
     
     UNREFERENCED_PARAMETER(lParam);
@@ -396,10 +396,10 @@ INT_PTR CALLBACK Game::CaptureTerritory(HWND hDlg, UINT message, WPARAM wParam, 
         if (alphabetizedTerritories.size() > 0)
         {
             k = 0;
-            wcscpy_s(A, sizeof(A) / sizeof(TCHAR), (TCHAR*)alphabetizedTerritories[0].name);
+            wcscpy_s(A, sizeof(A) / sizeof(WCHAR), (WCHAR*)alphabetizedTerritories[0].name.t);
             for (n = 0; n < alphabetizedTerritories.size(); n++)
             {
-                wcscpy_s(A, sizeof(A) / sizeof(TCHAR), (TCHAR*)alphabetizedTerritories[n].name);
+                wcscpy_s(A, sizeof(A) / sizeof(WCHAR), (WCHAR*)alphabetizedTerritories[n].name.t);
                 SendMessage(captureTerritoryMenu, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)A);
                 SendMessage(captureTerritoryMenu, CB_SETCURSEL, (WPARAM)0, (LPARAM)0);
             }
@@ -426,7 +426,7 @@ INT_PTR CALLBACK Game::CaptureTerritory(HWND hDlg, UINT message, WPARAM wParam, 
     
             for (k = 0; k < alphabetizedTerritories.size(); k++)
             {
-                if (_tcscmp(ListItem, alphabetizedTerritories[k].name) == 0)
+                if (_tcscmp(ListItem, alphabetizedTerritories[k].name.t) == 0)
                     break;
             }
         }

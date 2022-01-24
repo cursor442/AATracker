@@ -5,9 +5,9 @@
 #include "../../board/header/TerritoryClass.h"
 
 struct listTerritory {
-	WCHAR name[TERRITORY_NAMELEN];
-	int   id;
-	int   alph;
+	terName name;
+	int     id;
+	int     alph;
 };
 
 struct territoryTransaction {
