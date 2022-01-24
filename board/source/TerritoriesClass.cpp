@@ -3,6 +3,7 @@
 Territories::Territories()
 {
 	territories.resize(0);
+	neutrals.resize(0);
 
 	gameType = NULL_GAME;
 }
@@ -31,6 +32,7 @@ void Territories::setGameType(int type)
 			configEurTerrs();
 			configEurCities();
 			configEurIslands();
+			configEurNeutrals();
 			configEurFacilities();
 			break;
 		}
@@ -39,6 +41,7 @@ void Territories::setGameType(int type)
 			configPacTerrs();
 			configPacCities();
 			configPacIslands();
+			configPacNeutrals();
 			configPacFacilities();
 			break;
 		}
@@ -47,10 +50,12 @@ void Territories::setGameType(int type)
 			configEurTerrs();
 			configEurCities();
 			configEurIslands();
+			configEurNeutrals();
 			configEurFacilities();
 			configPacTerrs();
 			configPacCities();
 			configPacIslands();
+			configPacNeutrals();
 			configPacFacilities();
 			globalGameAdj();
 			break;
@@ -213,6 +218,22 @@ void Territories::configEurIslands()
 	territories[TER_CYPRUS]->setIsIsland(true);
 	territories[TER_MALTA]->setIsIsland(true);
 	territories[TER_MADAGASCAR]->setIsIsland(true);
+}
+
+void Territories::configEurNeutrals()
+{
+	for (int i = TER_ALBERTA; i <= TER_WEST_INDIA; i++)
+	{
+		int side = territories[i]->getSide();
+		if (side == SIDE_NEUTRAL)
+		{
+			territoryTransaction tmp;
+			tmp.id = i;
+			tmp.side = SIDE_NEUTRAL;
+			tmp.owner = territories[i]->getOwner();
+			neutrals.push_back(tmp);
+		}
+	}
 }
 
 void Territories::configEurFacilities()
@@ -401,6 +422,22 @@ void Territories::configPacIslands()
 	territories[TER_SAMOA]->setIsIsland(true);
 }
 
+void Territories::configPacNeutrals()
+{
+	for (int i = TER_EVENKIYSKIY; i <= TER_MEXICO; i++)
+	{
+		int side = territories[i]->getSide();
+		if (side == SIDE_NEUTRAL)
+		{
+			territoryTransaction tmp;
+			tmp.id = i;
+			tmp.side = SIDE_NEUTRAL;
+			tmp.owner = territories[i]->getOwner();
+			neutrals.push_back(tmp);
+		}
+	}
+}
+
 void Territories::configPacFacilities()
 {
 	// Japan
@@ -508,4 +545,9 @@ bool Territories::getIsCap(int ter)
 void Territories::transferTerritory(int ter, int nat)
 {
 	territories[ter]->setOwner(nat);
+}
+
+void Territories::getNeutralTerrs(vector<territoryTransaction>& tmp)
+{
+	tmp = neutrals;
 }

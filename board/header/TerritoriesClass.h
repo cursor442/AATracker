@@ -26,10 +26,12 @@ public:
 	void configEurTerrs();
 	void configEurCities();
 	void configEurIslands();
+	void configEurNeutrals();
 	void configEurFacilities();
 	void configPacTerrs();
 	void configPacCities();
 	void configPacIslands();
+	void configPacNeutrals();
 	void configPacFacilities();
 	void globalGameAdj();
 
@@ -46,8 +48,11 @@ public:
 	bool getIsCap(int);
 	void transferTerritory(int, int);
 
+	void getNeutralTerrs(vector<territoryTransaction>&);
+
 private:
 	vector<Territory*> territories;
+	vector<territoryTransaction> neutrals;
 
 	int gameType;
 

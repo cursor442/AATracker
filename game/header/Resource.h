@@ -484,7 +484,7 @@ uint16_t char2uint_(char);
 int  char2int(char*, int);
 int  char2int_(char);
 
-bool isBeforeNation(uint16_t, uint16_t);
+bool isBeforeNation(int, int);
 int  whichSide(int);
 
 // Next default values for new objects
