@@ -281,6 +281,7 @@ void Game::resetGameControls()
 	nsBonusRow = BONS_ALL;
 	lockPhase = false;
 
+	neutralSection->resetNeutralBox();
 	miniSpreadSection->resetMiniSpreadText();
 	warchestSection->resetWarchestBox();
 	bonusSection->resetBonusBox();

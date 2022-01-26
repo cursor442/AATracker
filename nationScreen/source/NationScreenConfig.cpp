@@ -237,6 +237,7 @@ void Game::configNationScreen()
 			gfx->font16, gfx->font24_b, gfx->textBrush, gfx->backBrush, gfx->paneBrush);
 		neutralSection->configNationBrushesP(gfx->gerBrushP, gfx->sovBrushP, gfx->jpnBrushP, gfx->usaBrushP, gfx->chnBrushP, gfx->ukBrushP,
 			gfx->itaBrushP, gfx->anzBrushP, gfx->fraBrushP);
+		neutralSection->configDrawTools(gfx->tileBrushL, gfx->neutBrush, gfx->axisBrush, gfx->allyBrush, gfx->font18_b, gfx->font20_b);
 
 		neutralFrame = purchaseFrame;
 		neutralSection->configureNeutralBox(neutralFrame, 1);
@@ -318,7 +319,6 @@ void Game::configNationScreen()
 		warchestFrame.Height = (nationScreenWindow0.Height / 2) - warchestFrame.Y - 12;
 		warchestSection->configureWarchestBox(warchestFrame, miniSpreadFrame, 1);
 	}
-
 
 	// Bonus section
 	if (bonusSection == NULL)

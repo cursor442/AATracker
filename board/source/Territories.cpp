@@ -31,6 +31,11 @@ int Board::getTerritoryValue(int ter)
 	return territories->getTerritoryValue(ter);
 }
 
+void Board::getNeutralTerrs(vector<territoryTransaction>& ters)
+{
+	territories->getNeutralTerrs(ters);
+}
+
 
 void Board::transferTerritory(HWND hDlg, int ter, int& own, int &captureAmount, int &prev, bool &isLib, bool& libCap)
 {
@@ -397,7 +402,6 @@ void Board::transferTerritory(HWND hDlg, int currOwn, int origOwn, vector<int> &
 	// Liberator gives liberated its territories
 	for (int i = low; i <= high; i++)
 	{
-		//if (territories[i].owner == currOwn && territories[i].original == origOwn)
 		if (territories->getTerritoryOwner(i) == currOwn && territories->getTerritoryOriginal(i) == origOwn)
 		{
 			// Transfer the territory
@@ -441,21 +445,17 @@ void Board::transferTerritoryAllies(HWND hDlg, int libNat, vector<vector<int>>& 
 	for (int i = low; i <= high; i++)
 	{
 		// Controlled by same side, originally controlled by liberated nation, not currently controlled by liberated nation
-		//if (whichSide(territories[i].owner) == currSide && territories[i].original == libNat && territories[i].owner != libNat)
 		if (territories->getTerritoryOwnerSide(i) == currSide && 
 			territories->getTerritoryOriginal(i) == libNat && territories->getTerritoryOwner(i) != libNat)
 		{
 			// Note who the territory is transferred from
-			//int prevOwn = territories[i].owner;
 			int prevOwn = territories->getTerritoryOwner(i);
 
 			// Transfer the territory
-			//setTerritoryOwner(i, libNat);
 			territories->setTerritoryOwner(i, libNat);
 			nations[prevOwn]->addNationTerritories(prevOwn, -1);
 			nations[libNat]->addNationTerritories(libNat, 1);
 
-			//int val = territories[i].value;
 			int val = territories->getTerritoryValue(i);
 
 			// Subtract income from previous owner
@@ -487,9 +487,7 @@ int Board::calcNationIncome(int nat)
 		low = TER_EVENKIYSKIY;
 
 	for (int i = low; i <= high; i++)
-		//if (territories[i].owner == nat)
 		if (territories->getTerritoryOwner(i) == nat)
-			//tot += territories[i].value;
 			tot += territories->getTerritoryValue(i);
 
 	return tot;

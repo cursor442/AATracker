@@ -234,6 +234,8 @@ void Territories::configEurNeutrals()
 			neutrals.push_back(tmp);
 		}
 	}
+
+	alphabetizeList(neutrals);
 }
 
 void Territories::configEurFacilities()
@@ -424,6 +426,8 @@ void Territories::configPacIslands()
 
 void Territories::configPacNeutrals()
 {
+	int startIdx = neutrals.size();
+
 	for (int i = TER_EVENKIYSKIY; i <= TER_MEXICO; i++)
 	{
 		int side = territories[i]->getSide();
@@ -436,6 +440,9 @@ void Territories::configPacNeutrals()
 			neutrals.push_back(tmp);
 		}
 	}
+
+	int stopIdx = neutrals.size() - 1;
+	alphabetizeList(neutrals, startIdx, stopIdx);
 }
 
 void Territories::configPacFacilities()
@@ -550,4 +557,71 @@ void Territories::transferTerritory(int ter, int nat)
 void Territories::getNeutralTerrs(vector<territoryTransaction>& tmp)
 {
 	tmp = neutrals;
+}
+
+
+void Territories::alphabetizeList(vector<territoryTransaction>& list)
+{
+	vector<territoryTransaction> tmp;
+	tmp.resize(list.size());
+
+	for (int i = 0; i < tmp.size(); i++)
+	{
+		// Find the minimum
+		int min = TER_MEXICO;
+		int idx = 0;
+		for (int j = 0; j < list.size(); j++)
+		{
+			int alph = territories[list[j].id]->getAlphabet();
+			if (alph < min)
+			{
+				min = alph;
+				idx = j;
+			}
+		}
+
+		// Assign to alphabetized list
+		tmp[i] = list[idx];
+		list.erase(list.begin() + idx);
+	}
+
+	// Copy alphabetized list to original list
+	list = tmp;
+}
+
+void Territories::alphabetizeList(vector<territoryTransaction>& list, int begin, int end)
+{
+	int len = end - begin;
+
+	vector<territoryTransaction> tmp;
+	tmp.resize(len);
+
+	// Copy part of list to temp list
+	for (int i = 0; i < len; i++)
+	{
+		int idx = begin + i;
+		tmp[i] = list[idx];
+	}
+
+	// Copy partial list back to main list in alphabetical order
+	for (int i = 0; i < len; i++)
+	{
+		// Find the minimum
+		int min = TER_MEXICO;
+		int idx = 0;
+		for (int j = 0; j < tmp.size(); j++)
+		{
+			int alph = territories[tmp[j].id]->getAlphabet();
+			if (alph < min)
+			{
+				min = alph;
+				idx = j;
+			}
+		}
+
+		// Assign to alphabetized list
+		int idx0 = begin + i;
+		list[idx0] = tmp[idx];
+		tmp.erase(tmp.begin() + idx);
+	}
 }

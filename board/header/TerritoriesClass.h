@@ -56,6 +56,9 @@ private:
 
 	int gameType;
 
+	void alphabetizeList(vector<territoryTransaction>&);
+	void alphabetizeList(vector<territoryTransaction>&, int, int);
+
 };
 
 #endif

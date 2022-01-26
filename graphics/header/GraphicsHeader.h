@@ -41,6 +41,26 @@ public:
 	void config(HDC&);
 
 	///////////////////////////////////////////////////////////////////////////
+	//// Colors
+	///////////////////////////////////////////////////////////////////////////
+
+	Color* clearColor;
+	Color* blackColor, * whiteColor, * redColor;
+	Color* backColor, * paneColor;
+
+	Color* gerColorP, * gerColorS, * gerColorF,
+		* sovColorP, * sovColorS, * sovColorF,
+		* jpnColorP, * jpnColorS, * jpnColorF,
+		* usaColorP, * usaColorS, * usaColorF,
+		* chnColorP, * chnColorS, * chnColorF,
+		* ukColorP,  * ukColorS,  * ukColorF,
+		* itaColorP, * itaColorS, * itaColorF,
+		* anzColorP, * anzColorS, * anzColorF,
+		* fraColorP, * fraColorS, * fraColorF;
+
+	Color* neutColorB, * neutColorH;
+
+	///////////////////////////////////////////////////////////////////////////
 	//// Pens
 	///////////////////////////////////////////////////////////////////////////
 
@@ -96,6 +116,8 @@ public:
 		* anzBrushP, * anzBrushS, * anzBrushF,
 		* fraBrushP, * fraBrushS, * fraBrushF;
 
+	// Neutral brushes
+	HatchBrush* neutBrush, * axisBrush, * allyBrush;
 };
 
 class AABox

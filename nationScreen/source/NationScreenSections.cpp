@@ -208,6 +208,10 @@ void Game::drawCombinedArms(HDC& hdc)
 
 void Game::drawNeutralBox(HDC& hdc)
 {
+    int gameType = gameBoard->getGameType();
+    vector<territoryTransaction> terrs;
+    gameBoard->getNeutralTerrs(terrs);
+    neutralSection->updateNeutralFormat(gameType, terrs);
     neutralSection->drawNeutralBox(graphics, dbg_boundbox, dbg_sections, dbg_layers);
 }
 

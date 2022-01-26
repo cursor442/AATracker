@@ -6,23 +6,28 @@ NeutralSection::NeutralSection(Pen* p0, Pen* p1, FontFamily* ff, StringFormat* s
 {
 	neutralFrame = new AABox("Neutrals Section");
 
-	neutralStatusBox = new AABox("Status");
-
 	for (int i = 0; i < NEUTRAL_COLS; i++)
 		for (int j = 0; j < NEUTRAL_ROWS; j++)
 			neutralBox[i][j] = new AABox("Neutral");
 
-	WCHAR stat[] = L"Neutral territories are Neutral";
+	neutralText.resize(0);
 
-	wcsncpy_s(neutralStatusText, stat, ARRAYSIZE(stat));
+	neutralPos.resize(0);
 
+	tileBrushL = NULL;
+	neutBrush = NULL;
+	axisBrush = NULL;
+	allyBrush = NULL;
+
+	statusFont = NULL;
+	neutralFont = NULL;
+
+	neutralBrush.resize(0);
 }
 
 NeutralSection::~NeutralSection()
 {
 	delete neutralFrame;
-
-	delete neutralStatusBox;
 
 	for (int i = 0; i < NEUTRAL_COLS; i++)
 		for (int j = 0; j < NEUTRAL_ROWS; j++)
@@ -32,12 +37,10 @@ NeutralSection::~NeutralSection()
 void NeutralSection::configureNeutralBox(RectF& frame, int layer)
 {
 	neutralFrame->config(frame, layer);
-
-	neutralStatusBox->config(neutralFrame->box, layer + 1);
-	neutralStatusBox->box.Width = neutralFrame->box.Width / NEUTRAL_COLS;
-	neutralStatusBox->box.Height = neutralFrame->box.Height / NEUTRAL_ROWS;
 	
-	neutralBox[0][0]->config(neutralStatusBox->box, layer + 1);
+	neutralBox[0][0]->config(neutralFrame->box, layer + 1);
+	neutralBox[0][0]->box.Width = frame.Width / NEUTRAL_COLS;
+	neutralBox[0][0]->box.Height = neutralFrame->box.Height / NEUTRAL_ROWS;
 
 	for (int i = 1; i < NEUTRAL_COLS; i++)
 	{
@@ -58,9 +61,103 @@ void NeutralSection::configureNeutralBox(RectF& frame, int layer)
 	}
 }
 
-void NeutralSection::configDrawTools()
+void NeutralSection::configDrawTools(SolidBrush* b0, HatchBrush* h0, HatchBrush* h1, HatchBrush* h2, Font* f0, Font* f1)
 {
-	
+	tileBrushL = b0;
+
+	neutBrush = h0;
+	axisBrush = h1;
+	allyBrush = h2;
+
+	statusFont = f0;
+	neutralFont = f1;
+}
+
+void NeutralSection::resetNeutralBox()
+{
+	neutralText.resize(0);
+}
+
+void NeutralSection::updateNeutralFormat(int gameType, vector<territoryTransaction>& neutralUpdate)
+{
+	// Initial configuration
+	if (neutralText.size() == 0)
+	{
+		int idx = 0;
+		switch (gameType)
+		{
+		case EUROPE_GAME:
+		{
+			neutralText.resize(NEUTRAL_EUR_S);
+			for (int i = 0; i < neutralText.size(); i++)
+				wcsncpy_s(neutralText[i].t, eurNeutral[i], NEUTRAL_NAMELEN);
+
+			neutralPos.resize(NEUTRAL_EUR_S);
+			neutralBrush.resize(NEUTRAL_EUR_S);
+			break;
+		}
+		case PACIFIC_GAME:
+		{
+			neutralText.resize(NEUTRAL_PAC_S);
+			for (int i = 0; i < neutralText.size(); i++)
+				wcsncpy_s(neutralText[i].t, pacNeutral[i], NEUTRAL_NAMELEN);
+
+			neutralPos.resize(NEUTRAL_PAC_S);
+			neutralBrush.resize(NEUTRAL_PAC_S);
+			break;
+		}
+		case GLOBAL_GAME:
+		{
+			neutralText.resize(NEUTRAL_EUR_S + NEUTRAL_PAC_S);
+			for (int i = 0; i < NEUTRAL_EUR_S; i++)
+				wcsncpy_s(neutralText[i].t, eurNeutral[i], NEUTRAL_NAMELEN);
+			idx = NEUTRAL_EUR_S;
+			for (int i = 0; i < NEUTRAL_PAC_S; i++)
+			{
+				wcsncpy_s(neutralText[idx].t, pacNeutral[i], NEUTRAL_NAMELEN);
+				idx++;
+			}
+
+			neutralPos.resize(NEUTRAL_EUR_S + NEUTRAL_PAC_S);
+			neutralBrush.resize(NEUTRAL_EUR_S + NEUTRAL_PAC_S);
+			break;
+		}
+		default:
+			break;
+		}
+
+		// Save the location of each territory
+		for (int i = 0; i < neutralUpdate.size(); i++)
+			neutralPos[i] = neutralUpdate[i].id;
+	}
+
+	// Update brushes
+	for (int i = 0; i < neutralUpdate.size(); i++)
+	{
+		// Get index corresponding to territory
+		vector<int>::iterator it;
+		it = find(neutralPos.begin(), neutralPos.end(), neutralUpdate[i].id);
+		int idx = it - neutralPos.begin();
+
+		switch (neutralUpdate[i].owner)
+		{
+		case FULL_NEUTRAL: neutralBrush[idx] = neutBrush; break;
+		case AXIS_NEUTRAL: neutralBrush[idx] = axisBrush; break;
+		case ALLY_NEUTRAL: neutralBrush[idx] = allyBrush; break;
+		case MONGOLIA_TER: neutralBrush[idx] = neutBrush; break;
+		case TURN_GER: neutralBrush[idx] = gerBrushP; break;
+		case TURN_SOV: neutralBrush[idx] = sovBrushP; break;
+		case TURN_JPN: neutralBrush[idx] = jpnBrushP; break;
+		case TURN_USA: neutralBrush[idx] = usaBrushP; break;
+		case TURN_CHN: neutralBrush[idx] = chnBrushP; break;
+		case TURN_UKE: neutralBrush[idx] = ukBrushP; break;
+		case TURN_UKP: neutralBrush[idx] = ukBrushP; break;
+		case TURN_ITA: neutralBrush[idx] = itaBrushP; break;
+		case TURN_ANZ: neutralBrush[idx] = anzBrushP; break;
+		case TURN_FRA: neutralBrush[idx] = fraBrushP; break;
+		default: neutralBrush[idx] = neutBrush; break;
+		}
+	}
 }
 
 void NeutralSection::drawNeutralBox(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, int layers)
@@ -74,20 +171,36 @@ void NeutralSection::drawNeutralBox(Graphics* graphics, bool dbg_boundbox, bool 
 	{
 		neutralFrame->drawFrame(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
 
-		neutralStatusBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		int idxC = 0, idxR = 0;
+		for (int i = 0; i < neutralBrush.size(); i++)
+		{
+			idxC = i / NEUTRAL_ROWS;
+			idxR = i % NEUTRAL_ROWS;
+			neutralBox[idxC][idxR]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, neutralText[i].t, layers);
+		}
 
-		for (int i = 0; i < NEUTRAL_COLS; i++)
-			for (int j = 0; j < NEUTRAL_ROWS; j++)
-				if (!(i == 0 && j == 0))
-					neutralBox[i][j]->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		for (int i = neutralBrush.size(); i < (NEUTRAL_COLS * NEUTRAL_ROWS); i++)
+		{
+			idxC = i / NEUTRAL_ROWS;
+			idxR = i % NEUTRAL_ROWS;
+			neutralBox[idxC][idxR]->drawFrame(graphics, borderPen, baseTextFont, textFormat, textBrush, backBrush, layers);
+		}
 	}
 	else // Actual graphics
 	{
-		neutralStatusBox->drawBox(graphics, pen, baseTextFont, textFormat, textBrush, backBrush, neutralStatusText, layers);
+		int idxC = 0, idxR = 0;
+		for (int i = 0; i < neutralBrush.size(); i++)
+		{
+			idxC = i / NEUTRAL_ROWS;
+			idxR = i % NEUTRAL_ROWS;
+			neutralBox[idxC][idxR]->drawBox(graphics, pen, neutralFont, centerFormat, textBrush, neutralBrush[i], neutralText[i].t, layers);
+		}
 
-		for (int i = 0; i < NEUTRAL_COLS; i++)
-			for (int j = 0; j < NEUTRAL_ROWS; j++)
-				if (!(i == 0 && j == 0))
-					neutralBox[i][j]->drawBox(graphics, pen, baseTextFont, textFormat, textBrush, backBrush, L"", layers);
+		for (int i = neutralBrush.size(); i < (NEUTRAL_COLS * NEUTRAL_ROWS); i++)
+		{
+			idxC = i / NEUTRAL_ROWS;
+			idxR = i % NEUTRAL_ROWS;
+			neutralBox[idxC][idxR]->drawBox(graphics, pen, baseTextFont, textFormat, textBrush, tileBrushL, L"", layers);
+		}
 	}
 }

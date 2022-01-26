@@ -3,6 +3,26 @@
 AAGraphics::AAGraphics()
 {
 	///////////////////////////////////////////////////////////////////////////
+	//// Colors
+	///////////////////////////////////////////////////////////////////////////
+
+	clearColor = NULL;
+	blackColor = NULL; whiteColor = NULL; redColor = NULL;
+	backColor  = NULL; paneColor  = NULL;
+
+	gerColorP = NULL; gerColorS = NULL; gerColorF = NULL;
+	sovColorP = NULL; sovColorS = NULL; sovColorF = NULL;
+	jpnColorP = NULL; jpnColorS = NULL; jpnColorF = NULL;
+	usaColorP = NULL; usaColorS = NULL; usaColorF = NULL;
+	chnColorP = NULL; chnColorS = NULL; chnColorF = NULL;
+	ukColorP  = NULL; ukColorS  = NULL; ukColorF  = NULL;
+	itaColorP = NULL; itaColorS = NULL; itaColorF = NULL;
+	anzColorP = NULL; anzColorS = NULL; anzColorF = NULL;
+	fraColorP = NULL; fraColorS = NULL; fraColorF = NULL;
+
+	neutColorB = NULL; neutColorH = NULL;
+
+	///////////////////////////////////////////////////////////////////////////
 	//// Pens
 	///////////////////////////////////////////////////////////////////////////
 
@@ -58,10 +78,33 @@ AAGraphics::AAGraphics()
 	itaBrushP = NULL; itaBrushS = NULL; itaBrushF = NULL;
 	anzBrushP = NULL; anzBrushS = NULL; anzBrushF = NULL;
 	fraBrushP = NULL; fraBrushS = NULL; fraBrushF = NULL;
+
+	// Neutral brushes
+	neutBrush = NULL; axisBrush = NULL; allyBrush = NULL;
 }
 
 AAGraphics::~AAGraphics()
 {
+	///////////////////////////////////////////////////////////////////////////
+	//// Colors
+	///////////////////////////////////////////////////////////////////////////
+
+	delete clearColor;
+	delete blackColor; delete whiteColor; delete redColor;
+	delete backColor;  delete paneColor;
+
+	delete gerColorP; delete gerColorS; delete gerColorF;
+	delete sovColorP; delete sovColorS; delete sovColorF;
+	delete jpnColorP; delete jpnColorS; delete jpnColorF;
+	delete usaColorP; delete usaColorS; delete usaColorF;
+	delete chnColorP; delete chnColorS; delete chnColorF;
+	delete ukColorP ; delete ukColorS ; delete ukColorF ;
+	delete itaColorP; delete itaColorS; delete itaColorF;
+	delete anzColorP; delete anzColorS; delete anzColorF;
+	delete fraColorP; delete fraColorS; delete fraColorF;
+
+	delete neutColorB; delete neutColorH;
+
 	///////////////////////////////////////////////////////////////////////////
 	//// Pens
 	///////////////////////////////////////////////////////////////////////////
@@ -89,7 +132,7 @@ AAGraphics::~AAGraphics()
 	delete font28;
 	delete font32;
 	delete font64_b;
-	
+
 	///////////////////////////////////////////////////////////////////////////
 	//// Brushes
 	///////////////////////////////////////////////////////////////////////////
@@ -118,19 +161,64 @@ AAGraphics::~AAGraphics()
 	delete itaBrushP; delete itaBrushS; delete itaBrushF;
 	delete anzBrushP; delete anzBrushS; delete anzBrushF;
 	delete fraBrushP; delete fraBrushS; delete fraBrushF;
+
+	// Neutral brushes
+	delete neutBrush; delete axisBrush; delete allyBrush;
 }
 
 void AAGraphics::config(HDC& hdc)
 {
 	///////////////////////////////////////////////////////////////////////////
+	//// Colors
+	///////////////////////////////////////////////////////////////////////////
+
+	clearColor = new Color(0,   0,   0,   0  );
+	blackColor = new Color(255, 0,   0,   0  );
+	whiteColor = new Color(255, 255, 255);
+	redColor   = new Color(255, 0,   0);
+	backColor  = new Color(255, 240, 240, 240);
+	paneColor  = new Color(212, 212, 212);
+
+	gerColorP = new Color(77,  93,  83 );
+	gerColorS = new Color(109, 122, 114);
+	gerColorF = new Color(223, 226, 224);
+	sovColorP = new Color(255, 26,  0  );
+	sovColorS = new Color(255, 68,  46 );
+	sovColorF = new Color(255, 213, 209);
+	jpnColorP = new Color(188, 0,   45 );
+	jpnColorS = new Color(200, 46,  83 );
+	jpnColorF = new Color(243, 209, 217);
+	usaColorP = new Color(107, 142, 35 );
+	usaColorS = new Color(134, 163, 75 );
+	usaColorF = new Color(228, 234, 215);
+	chnColorP = new Color(0,   0,   149);
+	chnColorS = new Color(46,  46,  168);
+	chnColorF = new Color(209, 209, 236);
+	ukColorP  = new Color(240, 230, 140);
+	ukColorS  = new Color(243, 235, 161);
+	ukColorF  = new Color(252, 250, 234);
+	itaColorP = new Color(0,   140, 69 );
+	itaColorS = new Color(46,  161, 103);
+	itaColorF = new Color(209, 234, 221);
+	anzColorP = new Color(47,  87,  21 );
+	anzColorS = new Color(85,  118, 64 );
+	anzColorF = new Color(217, 224, 212);
+	fraColorP = new Color(0,   114, 187);
+	fraColorS = new Color(46,  140, 199);
+	fraColorF = new Color(209, 229, 243);
+
+	neutColorB = new Color(190, 160, 120); 
+	neutColorH = new Color(202, 176, 141);
+
+	///////////////////////////////////////////////////////////////////////////
 	//// Pens
 	///////////////////////////////////////////////////////////////////////////
 
-	borderlessPen = new Pen(Color(0, 0, 0, 0));
-	blackPen1 = new Pen(Color(255, 0, 0, 0), 1);
-	blackPen2 = new Pen(Color(255, 0, 0, 0), 2);
-	blackPen4 = new Pen(Color(255, 0, 0, 0), 4);
-	backPen = new Pen(Color(255, 240, 240, 240));
+	borderlessPen = new Pen(*clearColor);
+	blackPen1     = new Pen(*blackColor, 1);
+	blackPen2     = new Pen(*blackColor, 2);
+	blackPen4     = new Pen(*blackColor, 4);
+	backPen       = new Pen(*backColor);
 
 	///////////////////////////////////////////////////////////////////////////
 	//// Fonts
@@ -161,21 +249,21 @@ void AAGraphics::config(HDC& hdc)
 
 	HFONT* tmp_font17 = new HFONT(CreateFont(17, 0, 0, 0, FW_REGULAR, 0, 0, 0, 0, 0, 0, 2, 0, L"TMP_FONT17"));
 
-	font12 = new Font(calibriFamily, FONT12_S, FontStyleRegular, UnitPixel);
+	font12   = new Font(calibriFamily, FONT12_S, FontStyleRegular, UnitPixel);
 	font12_b = new Font(calibriFamily, FONT12_S, FontStyleBold, UnitPixel);
-	font14 = new Font(calibriFamily, FONT14_S, FontStyleRegular, UnitPixel);
+	font14   = new Font(calibriFamily, FONT14_S, FontStyleRegular, UnitPixel);
 	font14_b = new Font(calibriFamily, FONT14_S, FontStyleBold, UnitPixel);
-	font16 = new Font(calibriFamily, FONT16_S, FontStyleRegular, UnitPixel);
+	font16   = new Font(calibriFamily, FONT16_S, FontStyleRegular, UnitPixel);
 	font16_b = new Font(calibriFamily, FONT16_S, FontStyleBold, UnitPixel);
-	font17 = new Font(hdc, *tmp_font17);
-	font18 = new Font(calibriFamily, FONT18_S, FontStyleRegular, UnitPixel);
+	font17   = new Font(hdc, *tmp_font17);
+	font18   = new Font(calibriFamily, FONT18_S, FontStyleRegular, UnitPixel);
 	font18_b = new Font(calibriFamily, FONT18_S, FontStyleBold, UnitPixel);
-	font20 = new Font(calibriFamily, FONT20_S, FontStyleRegular, UnitPixel);
+	font20   = new Font(calibriFamily, FONT20_S, FontStyleRegular, UnitPixel);
 	font20_b = new Font(calibriFamily, FONT20_S, FontStyleBold, UnitPixel);
-	font24 = new Font(calibriFamily, FONT24_S, FontStyleRegular, UnitPixel);
+	font24   = new Font(calibriFamily, FONT24_S, FontStyleRegular, UnitPixel);
 	font24_b = new Font(calibriFamily, FONT24_S, FontStyleBold, UnitPixel);
-	font28 = new Font(calibriFamily, FONT28_S, FontStyleRegular, UnitPixel);
-	font32 = new Font(calibriFamily, FONT32_S, FontStyleRegular, UnitPixel);
+	font28   = new Font(calibriFamily, FONT28_S, FontStyleRegular, UnitPixel);
+	font32   = new Font(calibriFamily, FONT32_S, FontStyleRegular, UnitPixel);
 	font64_b = new Font(calibriFamily, FONT64_S, FontStyleBold, UnitPixel);
 
 	delete tmp_font17;
@@ -184,14 +272,14 @@ void AAGraphics::config(HDC& hdc)
 	//// Brushes
 	///////////////////////////////////////////////////////////////////////////
 
-	textBrush = new SolidBrush(Color(255, 0, 0, 0));
-	paneBrush = new SolidBrush(Color(212, 212, 212));
-	backBrush = new SolidBrush(Color(240, 240, 240));
+	textBrush  = new SolidBrush(*blackColor);
+	paneBrush  = new SolidBrush(*paneColor);
+	backBrush  = new SolidBrush(*backColor);
 	tileBrushL = new SolidBrush(Color(234, 234, 234));
 	tileBrushD = new SolidBrush(Color(191, 191, 191));
-	whiteBrush = new SolidBrush(Color(255, 255, 255));
-	redBrush = new SolidBrush(Color(255, 0, 0));
-	clearBrush = new SolidBrush(Color(0, 0, 0, 0));
+	whiteBrush = new SolidBrush(*whiteColor);
+	redBrush   = new SolidBrush(*redColor);
+	clearBrush = new SolidBrush(*clearColor);
 
 	// Phase section brushes
 	resBrushP   = new SolidBrush(Color(89,  89,  89));
@@ -210,33 +298,38 @@ void AAGraphics::config(HDC& hdc)
 	incBrushS   = new SolidBrush(Color(229, 217, 238));
 
 	// Nation brushes
-	gerBrushP = new SolidBrush(Color(77,  93,  83));
-	gerBrushS = new SolidBrush(Color(109, 122, 114));
-	gerBrushF = new SolidBrush(Color(223, 226, 224));
-	sovBrushP = new SolidBrush(Color(255, 26,  0));
-	sovBrushS = new SolidBrush(Color(255, 68,  46));
-	sovBrushF = new SolidBrush(Color(255, 213, 209));
-	jpnBrushP = new SolidBrush(Color(188, 0,   45));
-	jpnBrushS = new SolidBrush(Color(200, 46,  83));
-	jpnBrushF = new SolidBrush(Color(243, 209, 217));
-	usaBrushP = new SolidBrush(Color(107, 142, 35));
-	usaBrushS = new SolidBrush(Color(134, 163, 75));
-	usaBrushF = new SolidBrush(Color(228, 234, 215));
-	chnBrushP = new SolidBrush(Color(0,   0,   149));
-	chnBrushS = new SolidBrush(Color(46,  46,  168));
-	chnBrushF = new SolidBrush(Color(209, 209, 236));
-	ukBrushP  = new SolidBrush(Color(240, 230, 140));
-	ukBrushS  = new SolidBrush(Color(243, 235, 161));
-	ukBrushF  = new SolidBrush(Color(252, 250, 234));
-	itaBrushP = new SolidBrush(Color(0,   140, 69));
-	itaBrushS = new SolidBrush(Color(46,  161, 103));
-	itaBrushF = new SolidBrush(Color(209, 234, 221));
-	anzBrushP = new SolidBrush(Color(47,  87,  21));
-	anzBrushS = new SolidBrush(Color(85,  118, 64));
-	anzBrushF = new SolidBrush(Color(217, 224, 212));
-	fraBrushP = new SolidBrush(Color(0,   114, 187));
-	fraBrushS = new SolidBrush(Color(46,  140, 199));
-	fraBrushF = new SolidBrush(Color(209, 229, 243));
+	gerBrushP = new SolidBrush(*gerColorP);
+	gerBrushS = new SolidBrush(*gerColorS);
+	gerBrushF = new SolidBrush(*gerColorF);
+	sovBrushP = new SolidBrush(*sovColorP);
+	sovBrushS = new SolidBrush(*sovColorS);
+	sovBrushF = new SolidBrush(*sovColorF);
+	jpnBrushP = new SolidBrush(*jpnColorP);
+	jpnBrushS = new SolidBrush(*jpnColorS);
+	jpnBrushF = new SolidBrush(*jpnColorF);
+	usaBrushP = new SolidBrush(*usaColorP);
+	usaBrushS = new SolidBrush(*usaColorS);
+	usaBrushF = new SolidBrush(*usaColorF);
+	chnBrushP = new SolidBrush(*chnColorP);
+	chnBrushS = new SolidBrush(*chnColorS);
+	chnBrushF = new SolidBrush(*chnColorF);
+	ukBrushP  = new SolidBrush(*ukColorP );
+	ukBrushS  = new SolidBrush(*ukColorS );
+	ukBrushF  = new SolidBrush(*ukColorF );
+	itaBrushP = new SolidBrush(*itaColorP);
+	itaBrushS = new SolidBrush(*itaColorS);
+	itaBrushF = new SolidBrush(*itaColorF);
+	anzBrushP = new SolidBrush(*anzColorP);
+	anzBrushS = new SolidBrush(*anzColorS);
+	anzBrushF = new SolidBrush(*anzColorF);
+	fraBrushP = new SolidBrush(*fraColorP);
+	fraBrushS = new SolidBrush(*fraColorS);
+	fraBrushF = new SolidBrush(*fraColorF);
+
+	// Neutral brushes
+	neutBrush = new HatchBrush(HatchStyleVertical, *neutColorH, *neutColorB);
+	axisBrush = new HatchBrush(HatchStyleBackwardDiagonal, *gerColorF, *gerColorS);
+	allyBrush = new HatchBrush(HatchStyleForwardDiagonal, Color(252, 250, 234), Color(134, 163, 75));
 }
 
 AABox::AABox()

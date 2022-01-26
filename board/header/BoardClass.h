@@ -38,6 +38,7 @@ public:
 	int  getTerritoryOriginal(int);
 	int  getTerritoryOwner(int);
 	int  getTerritoryValue(int);
+	void getNeutralTerrs(vector<territoryTransaction>&);
 	
 	void transferTerritory(HWND, int, int&, int&, int&, bool&, bool&);
 	void transferTerritory(HWND, int, int, vector<int>&);
