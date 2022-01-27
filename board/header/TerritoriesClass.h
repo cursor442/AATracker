@@ -3,6 +3,7 @@
 
 #include "../../game/header/Resource.h"
 #include "../../board/header/TerritoryClass.h"
+#include "../../board/header/MongoliaClass.h"
 
 struct listTerritory {
 	terName name;
@@ -48,6 +49,7 @@ public:
 	bool getIsCap(int);
 	void transferTerritory(int, int);
 
+	void setNeutralLean(int);
 	void getNeutralTerrs(vector<territoryTransaction>&);
 
 private:

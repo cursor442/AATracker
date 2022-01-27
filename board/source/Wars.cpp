@@ -126,43 +126,9 @@ bool Board::getFRABonus()
 	return fraBonus;
 }
 
-void Board::setLean(int side)
-{
-	if (neutralLean == SIDE_NEUTRAL)
-	{
-		if (side == SIDE_AXIS || side == SIDE_ALLIES)
-			neutralLean = side;
-	}
-
-	bonuses->setNeutralLean(neutralLean);
-}
-
-int Board::getLean()
-{
-	return neutralLean;
-}
-
-void Board::setMong()
-{
-	mongoliaLean = true;
-}
-
-bool Board::getMong()
-{
-	return mongoliaLean;
-}
-
 bool Board::isAtWar(uint16_t nat)
 {
 	return nations[nat]->isAtWar();
-}
-
-uint16_t Board::whichSide(uint16_t nat)
-{
-	if (nat == TURN_GER || nat == TURN_JPN || nat == TURN_ITA)
-		return SIDE_AXIS;
-	else
-		return SIDE_ALLIES;
 }
 
 bool Board::canDeclareWarOn(uint16_t aggressor, uint16_t defender)

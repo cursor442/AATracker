@@ -492,3 +492,59 @@ int Board::calcNationIncome(int nat)
 
 	return tot;
 }
+
+
+void Board::setNeutralLean(int side)
+{
+	if (neutralLean == SIDE_NEUTRAL)
+	{
+		if (side == SIDE_AXIS || side == SIDE_ALLIES)
+			neutralLean = side;
+	}
+
+	bonuses->setNeutralLean(neutralLean);
+}
+
+void Board::setMong()
+{
+	mongoliaLean = true;
+}
+
+int Board::getNeutralLean()
+{
+	return neutralLean;
+}
+
+bool Board::getMong()
+{
+	return mongoliaLean;
+}
+
+bool Board::attackNeutral(HWND hWnd)
+{
+	int msgboxID = MessageBox(hWnd, L"Attacking a strict neutral territory will\nturn all other strict neutrals against you!\nContinue?",
+		L"Attack Strict Neutral", MB_ICONEXCLAMATION | MB_YESNO);
+
+	if (msgboxID == IDNO)
+		return false;
+	else if (msgboxID == IDYES)
+	{
+		int currSide = whichSide(gameCurrNation);
+
+		int side = SIDE_NEUTRAL;
+		if (currSide == SIDE_AXIS)
+			side = SIDE_ALLIES;
+		else if (currSide == SIDE_ALLIES)
+			side = SIDE_AXIS;
+
+		setNeutralLean(side);
+		return true;
+	}
+	else
+		return false;
+}
+
+void Board::occupyNeutral()
+{
+
+}

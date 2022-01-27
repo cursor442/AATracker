@@ -54,7 +54,7 @@ public:
 	int  getICCapacity();
 
 
-private:
+protected:
 	WCHAR name[TERRITORY_NAMELEN];
 	int   alphabet;
 	int   original;

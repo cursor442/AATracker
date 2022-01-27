@@ -301,12 +301,12 @@ void Territories::configPacTerrs()
 	territories[TER_SIBERIA]      = new Territory(siberia      , 148, TURN_SOV,     TURN_SOV,     1 , PACIFIC_MAP, true );
 	territories[TER_SOV_FAR_EAST] = new Territory(sov_far_east , 160, TURN_SOV,     TURN_SOV,     1 , PACIFIC_MAP, true );
 	territories[TER_TIMGUSKA]     = new Territory(timguska     , 171, TURN_SOV,     TURN_SOV,     1 , PACIFIC_MAP, false);
-	territories[TER_OLGIY]        = new Territory(olgiy        , 121, MONGOLIA_TER, MONGOLIA_TER, 0 , PACIFIC_MAP, false);
-	territories[TER_DZAVHAN]      = new Territory(dzavhan      , 41,  MONGOLIA_TER, MONGOLIA_TER, 0 , PACIFIC_MAP, false);
-	territories[TER_TSAGAAN_OLOM] = new Territory(tsagaan      , 174, MONGOLIA_TER, MONGOLIA_TER, 0 , PACIFIC_MAP, false);
-	territories[TER_CNT_MONGOLIA] = new Territory(cent_mongol  , 31,  MONGOLIA_TER, MONGOLIA_TER, 0 , PACIFIC_MAP, false);
-	territories[TER_ULAANBAATAR]  = new Territory(ulaanbaatar  , 180, MONGOLIA_TER, MONGOLIA_TER, 0 , PACIFIC_MAP, false);
-	territories[TER_BUYANT_UHAA]  = new Territory(buyant       , 26,  MONGOLIA_TER, MONGOLIA_TER, 0 , PACIFIC_MAP, false);
+	territories[TER_OLGIY]        = new  Mongolia(olgiy        , 121, MONGOLIA_TER, MONGOLIA_TER, 0 , PACIFIC_MAP, false);
+	territories[TER_DZAVHAN]      = new  Mongolia(dzavhan      , 41,  MONGOLIA_TER, MONGOLIA_TER, 0 , PACIFIC_MAP, false);
+	territories[TER_TSAGAAN_OLOM] = new  Mongolia(tsagaan      , 174, MONGOLIA_TER, MONGOLIA_TER, 0 , PACIFIC_MAP, false);
+	territories[TER_CNT_MONGOLIA] = new  Mongolia(cent_mongol  , 31,  MONGOLIA_TER, MONGOLIA_TER, 0 , PACIFIC_MAP, false);
+	territories[TER_ULAANBAATAR]  = new  Mongolia(ulaanbaatar  , 180, MONGOLIA_TER, MONGOLIA_TER, 0 , PACIFIC_MAP, false);
+	territories[TER_BUYANT_UHAA]  = new  Mongolia(buyant       , 26,  MONGOLIA_TER, MONGOLIA_TER, 0 , PACIFIC_MAP, false);
 	territories[TER_KANSU]        = new Territory(kansu        , 81,  TURN_CHN,     TURN_CHN,     1 , PACIFIC_MAP, false, true);
 	territories[TER_SUIYUAN]      = new Territory(suiyuan      , 162, TURN_CHN,     TURN_CHN,     1 , PACIFIC_MAP, false, true);
 	territories[TER_CHAHAR]       = new Territory(chahar       , 34,  TURN_CHN,     TURN_CHN,     1 , PACIFIC_MAP, false, true);
@@ -428,7 +428,7 @@ void Territories::configPacNeutrals()
 {
 	int startIdx = neutrals.size();
 
-	for (int i = TER_EVENKIYSKIY; i <= TER_MEXICO; i++)
+	for (int i = TER_OLGIY; i <= TER_BUYANT_UHAA; i++)
 	{
 		int side = territories[i]->getSide();
 		if (side == SIDE_NEUTRAL)
@@ -552,6 +552,42 @@ bool Territories::getIsCap(int ter)
 void Territories::transferTerritory(int ter, int nat)
 {
 	territories[ter]->setOwner(nat);
+}
+
+
+void Territories::setNeutralLean(int side)
+{
+	int newOwner = FULL_NEUTRAL;
+	if (side == SIDE_AXIS)
+		newOwner = AXIS_NEUTRAL;
+	else if (side == SIDE_ALLIES)
+		newOwner = ALLY_NEUTRAL;
+
+	if (territories[TER_ALBERTA] != NULL) // Not a Pacific game
+	{
+		for (int i = TER_ALBERTA; i <= TER_WEST_INDIA; i++)
+		{
+			int side = territories[i]->getSide();
+			int owner = territories[i]->getOwner();
+			if (side == SIDE_NEUTRAL && owner == FULL_NEUTRAL)
+			{
+				territories[i]->setOwner(newOwner);
+			}
+		}
+	}
+
+	if (territories[TER_OLGIY] != NULL)
+	{
+		for (int i = TER_OLGIY; i <= TER_BUYANT_UHAA; i++)
+		{
+			int side = territories[i]->getSide();
+			int owner = territories[i]->getOwner();
+			if (side == SIDE_NEUTRAL && owner == FULL_NEUTRAL)
+			{
+				territories[i]->setOwner(newOwner);
+			}
+		}
+	}
 }
 
 void Territories::getNeutralTerrs(vector<territoryTransaction>& tmp)

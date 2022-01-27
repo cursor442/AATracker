@@ -45,6 +45,13 @@ public:
 	void transferTerritoryAllies(HWND, int, vector<vector<int>>&);
 	int  calcNationIncome(int);
 
+	void setNeutralLean(int);
+	void setMong();
+	int  getNeutralLean();
+	bool getMong();
+	bool attackNeutral(HWND);
+	void occupyNeutral();
+
 	///////////////////////////////////////////////////////////////////////////
 	//// Board Configuration
 	///////////////////////////////////////////////////////////////////////////
@@ -101,7 +108,6 @@ public:
 	int      getNationTerritories(int, int);
 	WarMatrix* getWarMatrix();
 	bool     getAtWarWith(int, int);
-	uint16_t whichSide(uint16_t);
 	bool     canDeclareWarOn(uint16_t, uint16_t);
 
 	void     setLondonFallen();
@@ -112,8 +118,6 @@ public:
 	void     setSovControlGer();
 	void     setUSABonus();
 	void     setFRABonus();
-	void     setLean(int);
-	void     setMong();
 	bool     isAtWar(uint16_t);
 
 	bool     getLondonFallen();
@@ -124,8 +128,6 @@ public:
 	bool     getSovControlGer();
 	bool     getUSABonus();
 	bool     getFRABonus();
-	int      getLean();
-	bool     getMong();
 
 	void     updateBonuses(HWND, int, bool, int = 0);
 	uint16_t checkBonus(uint16_t, uint16_t, bool&);

@@ -222,6 +222,9 @@
     <ClInclude Include="board\header\NavalBaseClass.h">
       <Filter>Header Files\Board\Territories</Filter>
     </ClInclude>
+    <ClInclude Include="board\header\MongoliaClass.h">
+      <Filter>Header Files\Board\Territories</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="nationScreen\screenSections\source\BonusSection.cpp">
@@ -393,6 +396,9 @@
       <Filter>Source Files\Board\Territories</Filter>
     </ClCompile>
     <ClCompile Include="board\source\NavalBaseClass.cpp">
+      <Filter>Source Files\Board\Territories</Filter>
+    </ClCompile>
+    <ClCompile Include="board\source\MongoliaClass.cpp">
       <Filter>Source Files\Board\Territories</Filter>
     </ClCompile>
   </ItemGroup>

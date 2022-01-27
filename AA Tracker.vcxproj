@@ -151,6 +151,7 @@
     <ClInclude Include="board\header\BoardClass.h" />
     <ClInclude Include="board\header\BonusClass.h" />
     <ClInclude Include="board\header\IndustrialComplexClass.h" />
+    <ClInclude Include="board\header\MongoliaClass.h" />
     <ClInclude Include="board\header\NavalBaseClass.h" />
     <ClInclude Include="board\header\Territories.h" />
     <ClInclude Include="board\header\TerritoriesClass.h" />
@@ -201,6 +202,7 @@
     <ClCompile Include="board\source\BonusClass.cpp" />
     <ClCompile Include="board\source\Bonuses.cpp" />
     <ClCompile Include="board\source\IndustrialComplexClass.cpp" />
+    <ClCompile Include="board\source\MongoliaClass.cpp" />
     <ClCompile Include="board\source\NavalBaseClass.cpp" />
     <ClCompile Include="board\source\Territories.cpp" />
     <ClCompile Include="board\source\TerritoriesClass.cpp" />
