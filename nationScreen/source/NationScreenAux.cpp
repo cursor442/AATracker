@@ -165,8 +165,8 @@ int Game::getCityOwn(int city, bool& sameSide)
 	}
 
 	int own = gameBoard->getTerritoryOwner(ter);
-	int side = gameBoard->whichSide(own);
-	int currSide = gameBoard->whichSide(gameBoard->getGameCurrNation());
+	int side = whichSide(own);
+	int currSide = whichSide(gameBoard->getGameCurrNation());
 
 	sameSide = (side == currSide);
 	return own;

@@ -78,6 +78,11 @@ void NeutralSection::resetNeutralBox()
 	neutralText.resize(0);
 }
 
+bool NeutralSection::getNeutralConfig()
+{
+	return (neutralText.size() != 0);
+}
+
 void NeutralSection::updateNeutralFormat(int gameType, vector<territoryTransaction>& neutralUpdate)
 {
 	// Initial configuration

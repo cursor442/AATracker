@@ -36,6 +36,40 @@ void Board::getNeutralTerrs(vector<territoryTransaction>& ters)
 	territories->getNeutralTerrs(ters);
 }
 
+void Board::getNeutralTerrs(vector<listTerritory>& ters, int side)
+{
+	territories->getNeutralTerrs(ters, side);
+}
+
+int Board::getNeutralTerrUpdateSize()
+{
+	return territories->getNeutralTerrUpdateSize();
+}
+
+void Board::getNeutralTerrUpdate(vector<territoryTransaction>& ters)
+{
+	territories->getNeutralTerrUpdate(ters);
+}
+
+void Board::resetNeutralTerrUpdate()
+{
+	territories->resetNeutralTerrUpdate();
+}
+
+
+// Neutral territory transfer
+void Board::transferTerritory(HWND hDlg, int ter, int& own)
+{
+	int currNat = own;
+	int val = territories->getTerritoryValue(ter);
+
+	// Need to give new owner income first
+	nations[own]->addNationIncome(gameTurn, val);
+
+	// Transfer the territory
+	territories->transferTerritory(ter, own);
+	nations[own]->addNationTerritories(gameTurn, 1);
+}
 
 void Board::transferTerritory(HWND hDlg, int ter, int& own, int &captureAmount, int &prev, bool &isLib, bool& libCap)
 {
@@ -374,7 +408,6 @@ void Board::transferTerritory(HWND hDlg, int ter, int& own, int &captureAmount, 
 		nations[prev]->addNationIncome(gameTurn, -1 * val);
 
 	// Transfer the territory
-	//setTerritoryOwner(ter, own);
 	territories->transferTerritory(ter, own);
 	if (isBeforeNation(prev, own))
 		nations[prev]->addNationTerritories(gameTurn + 1, -1);
@@ -503,6 +536,7 @@ void Board::setNeutralLean(int side)
 	}
 
 	bonuses->setNeutralLean(neutralLean);
+	territories->setNeutralLean(neutralLean);
 }
 
 void Board::setMong()

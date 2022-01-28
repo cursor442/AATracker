@@ -64,12 +64,13 @@
 #define IDD_DECLAREWARBOX       83
 #define IDD_CAPTUREBOX          84
 #define IDD_UKCAPTUREBOX        85
+#define IDD_OCCUPYNEUTBOX       86
 
-#define IDD_RESEARCHBOX         86
-#define IDD_RESEARCHRESBOX      87
-#define IDD_UKRESEARCHBOX       88
-#define IDD_WARBONDBOX          89
-#define IDD_CUSTLOGBOX          90
+#define IDD_RESEARCHBOX         87
+#define IDD_RESEARCHRESBOX      88
+#define IDD_UKRESEARCHBOX       89
+#define IDD_WARBONDBOX          90
+#define IDD_CUSTLOGBOX          91
 
 ///////////////////////////////////////////////////////////////////////////
 //// Dialogue Fields (121-250)
@@ -87,6 +88,7 @@
 #define IDC_CAPTURETER          131
 #define IDC_UKE_CAPTURESEL      132
 #define IDC_UKP_CAPTURESEL      133
+#define IDC_OCCUPYNEUT          134
 
 #define IDC_RESEARCHNUM         140
 #define IDC_RESEARCHRESNUM      141
@@ -108,6 +110,8 @@
 #define IDB_CAPTURETER          253
 #define IDB_RESEARCH            254
 #define IDB_RESEARCHGO          255
+#define IDB_ATTACKNEUT          256
+#define IDB_OCCUPYNEUT          257
 
 #define IDB_INFUP               270
 #define IDB_INFDN               271
@@ -216,13 +220,12 @@
 #define PHASE_SECT    0x0004
 #define WAR_SECT      0x0008
 #define CITY_SECT     0x0010
-#define CITY1_SECT    0x1000
 #define PURCH_SECT    0x0020
 #define SPREAD_SECT   0x0040
 #define CHEST_SECT    0x0080
 #define BONUS_SECT    0x0100
 #define PURCHT_SECT   0x0200
-#define ALL_SECT      0x1FFF
+#define ALL_SECT      0x0FFF
 
 ///////////////////////////////////////////////////////////////////////////
 //// Game Types
@@ -244,6 +247,10 @@
 #define NC_PHASE      4
 #define MN_PHASE      5
 #define CI_PHASE      6
+
+#define NON_PHASE    -1
+#define ALL_PHASE     0
+#define BUT_PHASE     1
 
 ///////////////////////////////////////////////////////////////////////////
 //// Player Turns
@@ -339,6 +346,14 @@
 
 #define PURCH_TITLE           21
 #define PURCH_HEAD            22
+
+///////////////////////////////////////////////////////////////////////////
+//// Neutral Territories
+///////////////////////////////////////////////////////////////////////////
+
+#define NEUT_NONE       -1
+#define NEUT_ALL         0
+#define NEUT_UPD         1
 
 ///////////////////////////////////////////////////////////////////////////
 //// Spreadsheet Configuration

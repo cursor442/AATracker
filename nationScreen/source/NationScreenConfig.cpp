@@ -342,20 +342,25 @@ void Game::configNationScreen()
 	
 	// Buttons section 
 	{
-		REAL phaseFrameLeft = phaseSection->getBoxEdge(-1, BOX_LEFT);
+		REAL buttonLeft = (REAL)nameFrame.GetRight();
+		REAL buttonWidth = cityFrameR.GetRight() - buttonLeft;
+
 		REAL purchBoxTop = phaseSection->getBoxEdge(PR_PHASE, BOX_TOP);
 		REAL purchBoxHeight = phaseSection->getBoxEdge(PR_PHASE, BOX_HEIGHT);
 		REAL cmBoxTop = phaseSection->getBoxEdge(CM_PHASE, BOX_TOP);
 		REAL cmBoxHeight = phaseSection->getBoxEdge(CM_PHASE, BOX_HEIGHT);
+		REAL ccBoxTop = phaseSection->getBoxEdge(CC_PHASE, BOX_TOP);
+		REAL ccBoxHeight = phaseSection->getBoxEdge(CC_PHASE, BOX_HEIGHT);
+
 		if (nextPhaseButton == NULL)
 		{
 			nextPhaseButton = CreateWindow(
 				L"BUTTON",                                             // Predefined class; Unicode assumed 
 				L"Next Phase",                                         // Button text 
 				WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
-				phaseFrameLeft - 132,                                  // x position 
+				buttonLeft,                                            // x position 
 				purchBoxTop,                                           // y position 
-				120,                                                   // Button width
+				buttonWidth,                                           // Button width
 				purchBoxHeight,                                        // Button height
 				main_Wnd,                                              // Parent window
 				(HMENU)IDB_NEXTPHASE,                                  // Menu.
@@ -369,9 +374,9 @@ void Game::configNationScreen()
 				L"BUTTON",                                             // Predefined class; Unicode assumed 
 				L"Research Dice",                                      // Button text 
 				WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
-				phaseFrameLeft - 132,                                  // x position 
+				buttonLeft,                                            // x position 
 				cmBoxTop,                                              // y position 
-				120,                                                   // Button width
+				buttonWidth,                                           // Button width
 				cmBoxHeight,                                           // Button height
 				main_Wnd,                                              // Parent window
 				(HMENU)IDB_RESEARCH,                                   // Menu.
@@ -385,9 +390,9 @@ void Game::configNationScreen()
 				L"BUTTON",                                             // Predefined class; Unicode assumed 
 				L"Declare War",                                        // Button text 
 				WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
-				phaseFrameLeft - 132,                                  // x position 
+				buttonLeft,                                            // x position 
 				cmBoxTop,                                              // y position 
-				120,                                                   // Button width
+				buttonWidth,                                           // Button width
 				cmBoxHeight,                                           // Button height
 				main_Wnd,                                              // Parent window
 				(HMENU)IDB_DECLAREWAR,                                 // Menu.
@@ -401,12 +406,44 @@ void Game::configNationScreen()
 				L"BUTTON",                                             // Predefined class; Unicode assumed 
 				L"Capture Territory",                                  // Button text 
 				WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
-				phaseFrameLeft - 132,                                  // x position 
+				buttonLeft,                                            // x position 
 				cmBoxTop,                                              // y position 
-				120,                                                   // Button width
+				buttonWidth,                                           // Button width
 				cmBoxHeight,                                           // Button height
 				main_Wnd,                                              // Parent window
 				(HMENU)IDB_CAPTURETER,                                 // Menu.
+				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
+				NULL);
+		}
+
+		if (attackNeutralButton == NULL)
+		{
+			attackNeutralButton = CreateWindow(
+				L"BUTTON",                                             // Predefined class; Unicode assumed 
+				L"Attack Neutral",                                     // Button text 
+				WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
+				buttonLeft,                                            // x position 
+				ccBoxTop,                                              // y position 
+				buttonWidth,                                           // Button width
+				ccBoxHeight,                                           // Button height
+				main_Wnd,                                              // Parent window
+				(HMENU)IDB_ATTACKNEUT,                                 // Menu.
+				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
+				NULL);
+		}
+
+		if (occupyNeutralButton == NULL)
+		{
+			occupyNeutralButton = CreateWindow(
+				L"BUTTON",                                             // Predefined class; Unicode assumed 
+				L"Occupy Neutral",                                    // Button text 
+				WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
+				buttonLeft,                                            // x position 
+				cmBoxTop,                                              // y position 
+				buttonWidth,                                           // Button width
+				cmBoxHeight,                                           // Button height
+				main_Wnd,                                              // Parent window
+				(HMENU)IDB_OCCUPYNEUT,                                 // Menu.
 				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
 				NULL);
 		}

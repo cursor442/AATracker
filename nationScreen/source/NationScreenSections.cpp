@@ -8,22 +8,28 @@ void Game::drawNameFrame(HDC& hdc)
 
 void Game::drawPhaseFrame(HDC& hdc)
 {
+    if (nsPhase == ALL_PHASE)
+    {
+        int currPhase = gameBoard->getGameTurnPhase();
+        int currNat = gameBoard->getGameCurrNation();
+
+        phaseSection->drawPhaseBox(graphics, currPhase, gameBoard->getGameResearch(), dbg_boundbox, dbg_sections, dbg_layers);
+    }
+
+    if (nsPhase != NON_PHASE)
+    {
+        drawPhaseFrameButtons();
+    }
+
+    nsPhase = NON_PHASE;
+}
+
+void Game::drawPhaseFrameButtons()
+{
     int currPhase = gameBoard->getGameTurnPhase();
     int currNat = gameBoard->getGameCurrNation();
-
-    phaseSection->drawPhaseBox(graphics, currPhase, gameBoard->getGameResearch(), dbg_boundbox, dbg_sections, dbg_layers);
-
-    // Action buttons section
-    REAL phaseFrameLeft = phaseSection->getBoxEdge(-1, BOX_LEFT);
-    REAL purchBoxTop = phaseSection->getBoxEdge(PR_PHASE, BOX_TOP);
-    REAL purchBoxHeight = phaseSection->getBoxEdge(PR_PHASE, BOX_HEIGHT);
-    REAL cmBoxTop = phaseSection->getBoxEdge(CM_PHASE, BOX_TOP);
-    REAL cmBoxHeight = phaseSection->getBoxEdge(CM_PHASE, BOX_HEIGHT);
-
-    SetWindowPos(nextPhaseButton, HWND_TOP,
-        phaseFrameLeft - 132, purchBoxTop, 120,
-        purchBoxHeight, SWP_SHOWWINDOW | SWP_NOZORDER);
-
+    
+    ShowWindow(nextPhaseButton, SW_SHOW);
     switch (currPhase)
     {
     case RS_PHASE:
@@ -32,54 +38,61 @@ void Game::drawPhaseFrame(HDC& hdc)
         ShowWindow(captureTerritoryButton, SW_HIDE);
 
         if (gameBoard->getCount(currNat) != 12)
-            SetWindowPos(researchButton, HWND_TOP,
-                phaseFrameLeft - 132, cmBoxTop, 120,
-                cmBoxHeight, SWP_SHOWWINDOW | SWP_NOZORDER);
+            ShowWindow(researchButton, SW_SHOW);
         else
             ShowWindow(researchButton, SW_HIDE);
     }
-        break;
+    break;
     case PR_PHASE:
     {
         ShowWindow(researchButton, SW_HIDE);
         ShowWindow(declareWarButton, SW_HIDE);
     }
-        break;
+    break;
     case CM_PHASE:
     {
         ShowWindow(researchButton, SW_HIDE);
         ShowWindow(captureTerritoryButton, SW_HIDE);
 
-        SetWindowPos(declareWarButton, HWND_TOP,
-            phaseFrameLeft - 132, cmBoxTop, 120,
-            cmBoxHeight, SWP_SHOWWINDOW | SWP_NOZORDER);
+        ShowWindow(declareWarButton, SW_SHOW);
+
+        if (gameBoard->getNeutralLean() == SIDE_NEUTRAL)
+            ShowWindow(attackNeutralButton, SW_SHOW);
+        else
+            ShowWindow(attackNeutralButton, SW_HIDE);
     }
-        break;
+    break;
     case CC_PHASE:
     {
         ShowWindow(declareWarButton, SW_HIDE);
+        ShowWindow(attackNeutralButton, SW_HIDE);
 
-        SetWindowPos(captureTerritoryButton, HWND_TOP,
-            phaseFrameLeft - 132, cmBoxTop, 120,
-            cmBoxHeight, SWP_SHOWWINDOW | SWP_NOZORDER);
+        ShowWindow(captureTerritoryButton, SW_SHOW);
     }
-        break;
+    break;
     case NC_PHASE:
     {
         ShowWindow(captureTerritoryButton, SW_HIDE);
+
+        ShowWindow(occupyNeutralButton, SW_SHOW);
+        break;
+    }
+    case MN_PHASE:
+    {
+        ShowWindow(occupyNeutralButton, SW_HIDE);
         break;
     }
     case CI_PHASE:
+    {
         if (gameBoard->getGameCurrNation() == TURN_USA && gameBoard->getGameTurn() == 2)
         {
             ShowWindow(researchButton, SW_HIDE);
             ShowWindow(captureTerritoryButton, SW_HIDE);
 
-            SetWindowPos(declareWarButton, HWND_TOP,
-                phaseFrameLeft - 132, cmBoxTop, 120,
-                cmBoxHeight, SWP_SHOWWINDOW | SWP_NOZORDER);
+            ShowWindow(declareWarButton, SW_SHOW);
         }
         break;
+    }
     default: break;
     }
 }
@@ -96,7 +109,7 @@ void Game::drawWarFrame(HDC& hdc)
 void Game::drawCitiesFrame(HDC& hdc)
 {
     int currNat = gameBoard->getGameCurrNation();
-    int currSide = gameBoard->whichSide(currNat);
+    int currSide = whichSide(currNat);
     int gameType = gameBoard->getGameType();
 
     int min = CITY_BERLIN;
@@ -114,22 +127,6 @@ void Game::drawCitiesFrame(HDC& hdc)
     }
 
     citiesSection->drawCityBox(graphics, gameType, dbg_boundbox, dbg_sections, dbg_layers);
-}
-
-// Single city
-void Game::drawCitiesFrame(HDC& hdc, uint16_t city)
-{
-    hFont = (HFONT)SelectObject(hdc, headerFont);
-
-    switch (city)
-    {
-    case CITY_BERLIN:
-
-        break;
-
-    default:
-        break;
-    }
 }
 
 void Game::drawStatusFrame(HDC& hdc)
@@ -210,9 +207,35 @@ void Game::drawNeutralBox(HDC& hdc)
 {
     int gameType = gameBoard->getGameType();
     vector<territoryTransaction> terrs;
-    gameBoard->getNeutralTerrs(terrs);
-    neutralSection->updateNeutralFormat(gameType, terrs);
-    neutralSection->drawNeutralBox(graphics, dbg_boundbox, dbg_sections, dbg_layers);
+
+    // Have to do initial config first if not done already
+    if (!neutralSection->getNeutralConfig())
+    {
+        gameBoard->getNeutralTerrs(terrs);
+        neutralSection->updateNeutralFormat(gameType, terrs);
+        terrs.resize(0);
+    }
+
+    if (nsNeut == NEUT_ALL)
+    {
+        // Trying to draw full but there is a pending update, do the update first
+        if (gameBoard->getNeutralTerrUpdateSize() != 0)
+        {
+            gameBoard->getNeutralTerrUpdate(terrs);
+            neutralSection->updateNeutralFormat(gameType, terrs);
+        }
+
+        neutralSection->drawNeutralBox(graphics, dbg_boundbox, dbg_sections, dbg_layers);
+    }
+    else if (nsNeut == NEUT_UPD)
+    {
+        gameBoard->getNeutralTerrUpdate(terrs);
+        neutralSection->updateNeutralFormat(gameType, terrs);
+        neutralSection->drawNeutralBox(graphics, dbg_boundbox, dbg_sections, dbg_layers);
+        gameBoard->resetNeutralTerrUpdate();
+    }
+
+    nsNeut = NEUT_NONE;
 }
 
 void Game::drawMiniSpread(HDC& hdc)

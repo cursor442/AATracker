@@ -65,8 +65,10 @@ public:
 	
 	// Nation screen graphics switches
 	int nsSection;     // Screen section to update
+	int nsPhase;       // Buttons only option, etc.
 	int nsCity;        // City box to update
 	int nsUnit;        // Purchase unit to update
+	int nsNeut;        // Neutral territories to update
 	int nsTurn, nsCol; // Mini spread box to update
 	int nsWC;          // Warchest box to update
 	int nsBonusRow;    // Bonus box to update
@@ -106,6 +108,7 @@ public:
 	INT_PTR CALLBACK ResearchUK(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 	INT_PTR CALLBACK WarBonds(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 	INT_PTR CALLBACK CustomLog(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+	INT_PTR CALLBACK OccupyNeutral(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 
 	// Constructor and destructor
 	Game();
@@ -161,10 +164,10 @@ public:
 	// Nation screen section updates
 	void drawNameFrame(HDC&);
 	void drawStatusFrame(HDC&);
-	void drawPhaseFrame(HDC&); // Includes action buttons
+	void drawPhaseFrame(HDC&);
+	void drawPhaseFrameButtons();
 	void drawWarFrame(HDC&);
 	void drawCitiesFrame(HDC&);
-	void drawCitiesFrame(HDC&, uint16_t); // Unimplemented //////////////////////////////////////////////////////
 	void drawPurchaseFrame(HDC&);
 	void drawCombinedArms(HDC&); // Combined Arms reference
 	void drawNeutralBox(HDC&); // Neutral territories status
@@ -194,7 +197,7 @@ public:
 	void resetPurchases();
 	void updatePurchases(uint16_t);
 	void undoPurchases(uint16_t);
-	bool calcPrice();	
+	bool calcPrice();
 
 	///////////////////////////////////////////////////////////////////////////
 	//// Spreadsheet screen
@@ -333,7 +336,7 @@ private:
 
 	// Turn phase buttons
 	HWND nextPhaseButton, researchButton, declareWarButton,
-		captureTerritoryButton;
+		captureTerritoryButton, attackNeutralButton, occupyNeutralButton;
 
 	// Purchase section
 	PurchaseSection* purchaseSection;

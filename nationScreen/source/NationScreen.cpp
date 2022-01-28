@@ -77,19 +77,22 @@ bool Game::NationScreen(HDC& hdc, PAINTSTRUCT& ps)
         if ((nsSection & CITY_SECT) != 0)
             drawCitiesFrame(hdc);
 
-        if ((nsSection & CITY1_SECT) != 0)
-            drawCitiesFrame(hdc, nsCity);
-
         if ((nsSection & PURCH_SECT) != 0)
         {
             if (purchaseTab == TAB_PURCH)
             {
-                drawPurchaseFrame(hdc);
+                if (nsNeut == NEUT_NONE)
+                {
+                    drawPurchaseFrame(hdc);
+                }
             }
             else if (purchaseTab == TAB_COMB)
             {
-                hideNationScreenPurchButtons();
-                drawCombinedArms(hdc);
+                if (nsNeut == NEUT_NONE)
+                {
+                    hideNationScreenPurchButtons();
+                    drawCombinedArms(hdc);
+                }
             }
             else if (purchaseTab == TAB_NEUTRAL)
             {
@@ -127,6 +130,8 @@ void Game::hideNationScreen()
     ShowWindow(researchButton, SW_HIDE);
     ShowWindow(declareWarButton, SW_HIDE);
     ShowWindow(captureTerritoryButton, SW_HIDE);
+    ShowWindow(attackNeutralButton, SW_HIDE);
+    ShowWindow(occupyNeutralButton, SW_HIDE);
 
     hideNationScreenPurchButtons();
 

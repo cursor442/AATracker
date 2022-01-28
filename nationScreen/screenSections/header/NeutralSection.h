@@ -18,6 +18,7 @@ public:
 	void configDrawTools(SolidBrush*, HatchBrush*, HatchBrush*, HatchBrush*, Font*, Font*);
 	void resetNeutralBox();
 
+	bool getNeutralConfig();
 	void updateNeutralFormat(int, vector<territoryTransaction>&);
 
 	void drawNeutralBox(Graphics*, bool, bool, int);

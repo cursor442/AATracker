@@ -13,6 +13,7 @@ INT_PTR CALLBACK ResearchResWrapper(HWND hDlg, UINT message, WPARAM wParam, LPAR
 INT_PTR CALLBACK ResearchUKWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 INT_PTR CALLBACK WarBondWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 INT_PTR CALLBACK CustomLogWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+INT_PTR CALLBACK OccupyNeutralWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 
 Game* game = new Game;
 
@@ -271,6 +272,21 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
                 break;
             }
+            case IDB_ATTACKNEUT:
+            {
+                game->gameBoard->attackNeutral(hWnd);
+                game->nsSection |= PHASE_SECT | PURCH_SECT;
+                game->nsPhase = BUT_PHASE;
+                game->nsNeut = NEUT_UPD;
+                RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+                break;
+            }
+            case IDB_OCCUPYNEUT:
+            {
+                DialogBox(game->hInst, MAKEINTRESOURCE(IDD_OCCUPYNEUTBOX), hWnd, OccupyNeutralWrapper);
+                RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+                break;
+            }
             case IDB_INFUP:    case IDB_INFDN:    case IDB_ARTUP:  case IDB_ARTDN:  case IDB_MECHUP:  case IDB_MECHDN:  case IDB_TANKUP:  case IDB_TANKDN:  case IDB_AAAUP:case IDB_AAADN:case IDB_FIGHTUP:case IDB_FIGHTDN: case IDB_TACTUP: case IDB_TACTDN: case IDB_STRATUP:case IDB_STRATDN:
             case IDB_BATTLEUP: case IDB_BATTLEDN: case IDB_AIRCCUP:case IDB_AIRCCDN:case IDB_CRUISEUP:case IDB_CRUISEDN:case IDB_DESTRUP: case IDB_DESTRDN: case IDB_SUBUP:case IDB_SUBDN:case IDB_TRANSUP:case IDB_TRANSDN: case IDB_MAJORUP:case IDB_MAJORDN:case IDB_MINORUP:case IDB_MINORDN:
             case IDB_MINORUPUP:case IDB_MINORUPDN:case IDB_AIRBUP: case IDB_AIRBDN: case IDB_NAVBUP:  case IDB_NAVBDN:  case IDB_REPAIRUP:case IDB_REPAIRDN:
@@ -479,8 +495,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 {
                     if (game->whichScreen != NATION_SCREEN)
                     {
-                        game->nsSection = ALL_SECT;
                         game->whichScreen = NATION_SCREEN;
+                        game->nsSection = ALL_SECT;
+                        game->nsPhase = ALL_PHASE;
+                        game->nsNeut = NEUT_ALL;
                         RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
                     }
                     else
@@ -489,6 +507,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                         {
                             game->purchaseTab = pur;
                             game->nsSection = PURCH_SECT; // Only update this section
+
+                            if (game->purchaseTab == TAB_NEUTRAL)
+                                game->nsNeut = NEUT_ALL;
+
                             RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
                         }
                         else if (game->ukTab != uks)
@@ -675,4 +697,9 @@ INT_PTR CALLBACK WarBondWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM l
 INT_PTR CALLBACK CustomLogWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
     return game->CustomLog(hDlg, message, wParam, lParam);
+}
+
+INT_PTR CALLBACK OccupyNeutralWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+{
+    return game->OccupyNeutral(hDlg, message, wParam, lParam);
 }

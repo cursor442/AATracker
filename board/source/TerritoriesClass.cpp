@@ -4,6 +4,7 @@ Territories::Territories()
 {
 	territories.resize(0);
 	neutrals.resize(0);
+	neutralUpdate.resize(0);
 
 	gameType = NULL_GAME;
 }
@@ -501,6 +502,41 @@ void Territories::globalGameAdj()
 
 void Territories::setTerritoryOwner(int ter, int own)
 {
+	if (whichSide(territories[ter]->getOwner()) == SIDE_NEUTRAL)
+	{
+		territoryTransaction tmp;
+		
+		tmp.id = ter;
+		tmp.owner = own;
+		tmp.side = whichSide(own);
+		neutralUpdate.push_back(tmp);
+
+		// Either erase from or update neutral list
+		if (whichSide(own) != SIDE_NEUTRAL)
+		{
+			for (int i = 0; i < neutrals.size(); i++)
+			{
+				if (neutrals[i].id == ter)
+				{
+					neutrals.erase(neutrals.begin() + i);
+					break;
+				}
+			}
+		}
+		else
+		{
+			for (int i = 0; i < neutrals.size(); i++)
+			{
+				if (neutrals[i].id == ter)
+				{
+					neutrals[i].owner = own;
+					neutrals[i].side = whichSide(own);
+					break;
+				}
+			}
+		}
+	}
+
 	territories[ter]->setOwner(own);
 }
 
@@ -551,6 +587,40 @@ bool Territories::getIsCap(int ter)
 
 void Territories::transferTerritory(int ter, int nat)
 {
+	if (whichSide(territories[ter]->getOwner()) == SIDE_NEUTRAL)
+	{
+		territoryTransaction tmp;
+
+		tmp.id = ter;
+		tmp.owner = nat;
+		tmp.side = whichSide(nat);
+		neutralUpdate.push_back(tmp);
+
+		if (whichSide(nat) != SIDE_NEUTRAL)
+		{
+			for (int i = 0; i < neutrals.size(); i++)
+			{
+				if (neutrals[i].id == ter)
+				{
+					neutrals.erase(neutrals.begin() + i);
+					break;
+				}
+			}
+		}
+		else
+		{
+			for (int i = 0; i < neutrals.size(); i++)
+			{
+				if (neutrals[i].id == ter)
+				{
+					neutrals[i].owner = nat;
+					neutrals[i].side = whichSide(nat);
+					break;
+				}
+			}
+		}
+	}
+	
 	territories[ter]->setOwner(nat);
 }
 
@@ -572,11 +642,26 @@ void Territories::setNeutralLean(int side)
 			if (side == SIDE_NEUTRAL && owner == FULL_NEUTRAL)
 			{
 				territories[i]->setOwner(newOwner);
+				for (int i = 0; i < neutrals.size(); i++)
+				{
+					if (neutrals[i].id == i)
+					{
+						neutrals[i].owner = newOwner;
+						neutrals[i].side = whichSide(newOwner);
+						break;
+					}
+				}
+
+				territoryTransaction tmp;
+				tmp.id = i;
+				tmp.owner = newOwner;
+				tmp.side = whichSide(newOwner);
+				neutralUpdate.push_back(tmp);
 			}
 		}
 	}
 
-	if (territories[TER_OLGIY] != NULL)
+	if (territories[TER_OLGIY] != NULL) // Not a Europe game
 	{
 		for (int i = TER_OLGIY; i <= TER_BUYANT_UHAA; i++)
 		{
@@ -585,6 +670,21 @@ void Territories::setNeutralLean(int side)
 			if (side == SIDE_NEUTRAL && owner == FULL_NEUTRAL)
 			{
 				territories[i]->setOwner(newOwner);
+				for (int i = 0; i < neutrals.size(); i++)
+				{
+					if (neutrals[i].id == i)
+					{
+						neutrals[i].owner = newOwner;
+						neutrals[i].side = whichSide(newOwner);
+						break;
+					}
+				}
+
+				territoryTransaction tmp;
+				tmp.id = i;
+				tmp.owner = newOwner;
+				tmp.side = whichSide(newOwner);
+				neutralUpdate.push_back(tmp);
 			}
 		}
 	}
@@ -593,6 +693,45 @@ void Territories::setNeutralLean(int side)
 void Territories::getNeutralTerrs(vector<territoryTransaction>& tmp)
 {
 	tmp = neutrals;
+}
+
+void Territories::getNeutralTerrs(vector<listTerritory>& terrs, int side)
+{
+	terrs.resize(0);
+
+	int lean = FULL_NEUTRAL;
+	if (side == SIDE_AXIS)
+		lean = AXIS_NEUTRAL;
+	else if (side == SIDE_ALLIES)
+		lean = ALLY_NEUTRAL;
+
+	for (int i = 0; i < neutrals.size(); i++)
+	{
+		int owner = territories[neutrals[i].id]->getOwner();
+		if (owner == lean) // Territory is a friendly neutral
+		{
+			listTerritory tmp;
+			tmp.name = territories[neutrals[i].id]->getName();
+			tmp.id = neutrals[i].id;
+			tmp.alph = territories[neutrals[i].id]->getAlphabet();
+			terrs.push_back(tmp);
+		}
+	}
+}
+
+int Territories::getNeutralTerrUpdateSize()
+{
+	return neutralUpdate.size();
+}
+
+void Territories::getNeutralTerrUpdate(vector<territoryTransaction>& tmp)
+{
+	tmp = neutralUpdate;
+}
+
+void Territories::resetNeutralTerrUpdate()
+{
+	neutralUpdate.resize(0);
 }
 
 

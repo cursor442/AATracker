@@ -329,7 +329,7 @@ void AAGraphics::config(HDC& hdc)
 	// Neutral brushes
 	neutBrush = new HatchBrush(HatchStyleVertical, *neutColorH, *neutColorB);
 	axisBrush = new HatchBrush(HatchStyleBackwardDiagonal, *gerColorF, *gerColorS);
-	allyBrush = new HatchBrush(HatchStyleForwardDiagonal, Color(252, 250, 234), Color(134, 163, 75));
+	allyBrush = new HatchBrush(HatchStyleForwardDiagonal, *ukColorF, *usaColorS);
 }
 
 AABox::AABox()

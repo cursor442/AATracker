@@ -5,7 +5,9 @@ Game::Game()
 	gameBoard = new Board;
 	success = false;
 	nsSection = ALL_SECT;
+	nsPhase = ALL_PHASE;
 	nsUnit = PURCH_TITLE;
+	nsNeut = NEUT_ALL;
 	nsTurn = SPREAD_ALL_ROWS;
 	nsCol = SPREAD_ALL_COLS;
 	nsUKToggle = false;
@@ -49,6 +51,7 @@ Game::Game()
 	//// Nation Screen
 	///////////////////////////////////////////////////////////////////////////
 
+	// Sections
 	nameSection = NULL;
 	phaseSection = NULL;
 	warSection = NULL;
@@ -60,10 +63,13 @@ Game::Game()
 	warchestSection = NULL;
 	bonusSection = NULL;
 
+	// Buttons
 	nextPhaseButton = NULL;
 	researchButton = NULL;
 	declareWarButton = NULL;
 	captureTerritoryButton = NULL;
+	attackNeutralButton = NULL;
+	occupyNeutralButton = NULL;
 
 	// Tabs
 	nationScreenTabs = NULL;
@@ -195,6 +201,7 @@ Game::~Game()
 	//// Nation Screen
 	///////////////////////////////////////////////////////////////////////////
 
+	// Sections
 	DeleteObject(nameSection);
 	DeleteObject(phaseSection);
 	DeleteObject(warSection);
@@ -206,11 +213,15 @@ Game::~Game()
 	DeleteObject(warchestSection);
 	DeleteObject(bonusSection);
 
+	// Buttons
 	DeleteObject(nextPhaseButton);
 	DeleteObject(researchButton);
 	DeleteObject(declareWarButton);
 	DeleteObject(captureTerritoryButton);
+	DeleteObject(attackNeutralButton);
+	DeleteObject(occupyNeutralButton);
 
+	// Tabs
 	DeleteObject(nationScreenTabs);
 	DeleteObject(purchaseSectionTabs);
 	DeleteObject(ukEconomyTabs);
@@ -271,7 +282,9 @@ void Game::resetGameControls()
 	// Nation Screen
 	nsSection = ALL_SECT;
 
+	nsPhase = ALL_PHASE;
 	nsUnit = PURCH_TITLE;
+	nsNeut = NEUT_ALL;
 	nsTurn = SPREAD_ALL_ROWS;
 	nsCol = SPREAD_ALL_COLS;
 
@@ -819,9 +832,9 @@ bool Game::doSaveGame(HWND hWnd, Board& gameBoard)
 				WriteFile(hFile, misc_, (DWORD)32, &bytesWritten, NULL);
 
 				misc_[1] = 'N'; misc_[2] = 'E'; misc_[3] = 'U';
-				if (gameBoard.getLean() == SIDE_AXIS)
+				if (gameBoard.getNeutralLean() == SIDE_AXIS)
 					misc_[6] = 'X';
-				else if (gameBoard.getLean() == SIDE_ALLIES)
+				else if (gameBoard.getNeutralLean() == SIDE_ALLIES)
 					misc_[6] = 'Y';
 				else
 					misc_[6] = 'N';
@@ -1533,11 +1546,11 @@ void Game::doLoadGame(HWND hWnd, Board& gameBoard)
 
 				success = ReadFile(hFile, str, (DWORD)32, &bytesRead, NULL);
 				if (str[6] == 'X')
-					gameBoard.setLean(SIDE_AXIS);
+					gameBoard.setNeutralLean(SIDE_AXIS);
 				else if (str[6] == 'Y')
-					gameBoard.setLean(SIDE_ALLIES);
+					gameBoard.setNeutralLean(SIDE_ALLIES);
 				else
-					gameBoard.setLean(SIDE_NEUTRAL);
+					gameBoard.setNeutralLean(SIDE_NEUTRAL);
 
 				success = ReadFile(hFile, str, (DWORD)32, &bytesRead, NULL);
 				if (str[6] == 'Y')

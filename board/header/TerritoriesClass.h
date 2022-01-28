@@ -51,10 +51,16 @@ public:
 
 	void setNeutralLean(int);
 	void getNeutralTerrs(vector<territoryTransaction>&);
+	void getNeutralTerrs(vector<listTerritory>&, int);
+	int  getNeutralTerrUpdateSize();
+	void getNeutralTerrUpdate(vector<territoryTransaction>&);
+
+	void resetNeutralTerrUpdate();
 
 private:
 	vector<Territory*> territories;
 	vector<territoryTransaction> neutrals;
+	vector<territoryTransaction> neutralUpdate;
 
 	int gameType;
 

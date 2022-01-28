@@ -226,7 +226,7 @@ INT_PTR CALLBACK Game::DeclareWar(HWND hDlg, UINT message, WPARAM wParam, LPARAM
         switch (wParam)
         {
         case IDOK:
-            if (gameBoard.whichSide(currNat) == SIDE_AXIS)
+            if (whichSide(currNat) == SIDE_AXIS)
             {
                 if (k == TURN_USA)
                     if (gameBoard.isAtWar(TURN_USA))
@@ -316,7 +316,7 @@ INT_PTR CALLBACK Game::CaptureTerritory(HWND hDlg, UINT message, WPARAM wParam, 
     // Whose territories are valid?
     for (int i = 0; i <= TURN_FRA; i++)
     {
-        if (gameBoard->whichSide(currNat) == SIDE_AXIS)
+        if (whichSide(currNat) == SIDE_AXIS)
         {
             if (gameBoard->getAtWarWith(currNat, i) == true)
                 wars.push_back(i);
@@ -1115,6 +1115,104 @@ INT_PTR CALLBACK Game::CustomLog(HWND hDlg, UINT message, WPARAM wParam, LPARAM 
                 EndDialog(hDlg, TRUE);
                 return TRUE;
             }
+        }
+        case IDCANCEL:
+            EndDialog(hDlg, TRUE);
+            return TRUE;
+        }
+        return 0;
+
+        break;
+    }
+    return (INT_PTR)FALSE;
+}
+
+INT_PTR CALLBACK Game::OccupyNeutral(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+{
+    WCHAR  ListItem[TERRITORY_NAMELEN]; 
+    WCHAR  A[TERRITORY_NAMELEN];
+    WPARAM ItemIndex;
+
+    for (int i = 0; i < TERRITORY_NAMELEN; i++)
+        ListItem[i] = '\0';
+
+    int currNat = gameBoard->getGameCurrNation();
+    int currTurn = gameBoard->getGameTurn();
+    vector<listTerritory> validNeutrals;
+
+    // Which territories are valid?
+    gameBoard->getNeutralTerrs(validNeutrals, whichSide(currNat));
+
+    UNREFERENCED_PARAMETER(lParam);
+    switch (message)
+    {
+    case WM_INITDIALOG:
+        // Set the default push button to "Cancel." 
+        SendMessage(hDlg,
+            DM_SETDEFID,
+            (WPARAM)IDCANCEL,
+            (LPARAM)0);
+
+        HWND occupyNeutralMenu;
+        occupyNeutralMenu = GetDlgItem(hDlg, IDC_OCCUPYNEUT);
+
+        memset(&A, 0, sizeof(A));
+
+        if (validNeutrals.size() > 0)
+        {
+            k = 0;
+            wcscpy_s(A, sizeof(A) / sizeof(WCHAR), (WCHAR*)validNeutrals[0].name.t);
+            for (n = 0; n < validNeutrals.size(); n++)
+            {
+                wcscpy_s(A, sizeof(A) / sizeof(WCHAR), (WCHAR*)validNeutrals[n].name.t);
+                SendMessage(occupyNeutralMenu, (UINT)CB_ADDSTRING, (WPARAM)0, (LPARAM)A);
+                SendMessage(occupyNeutralMenu, CB_SETCURSEL, (WPARAM)0, (LPARAM)0);
+            }
+            return (INT_PTR)TRUE;
+        }
+        else
+        {
+            MessageBox(hDlg,
+                L"No valid territories remaining.",
+                L"Error",
+                MB_OK);
+            EndDialog(hDlg, TRUE);
+            return (INT_PTR)FALSE;
+        }
+
+    case WM_COMMAND:
+        if (HIWORD(wParam) == CBN_SELCHANGE && LOWORD(wParam) == IDC_CAPTURETER)
+        {
+            ItemIndex = SendMessage((HWND)lParam, (UINT)CB_GETCURSEL,
+                (WPARAM)0, (LPARAM)0);
+
+            (TCHAR)SendMessage((HWND)lParam, (UINT)CB_GETLBTEXT,
+                (WPARAM)ItemIndex, (LPARAM)ListItem);
+
+            for (k = 0; k < validNeutrals.size(); k++)
+            {
+                if (_tcscmp(ListItem, validNeutrals[k].name.t) == 0)
+                    break;
+            }
+        }
+
+        switch (wParam)
+        {
+        case IDOK:
+        {
+            gameBoard->transferTerritory(hDlg, validNeutrals[k].id, currNat);
+
+            updateSpreadsheet(currNat, currTurn, true);
+
+            gameLog->addLogText(currTurn, V_OCCUPY, currNat, validNeutrals[k].id);
+
+            nsSection = PURCH_SECT | SPREAD_SECT;
+            nsNeut = NEUT_UPD;
+            nsCol = SPREAD_ALL_COLS;
+            nsTurn = SPREAD_ALL_ROWS;
+
+            EndDialog(hDlg, TRUE);
+            return TRUE;
         }
         case IDCANCEL:
             EndDialog(hDlg, TRUE);
