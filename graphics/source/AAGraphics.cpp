@@ -1,6 +1,6 @@
 #include "../header/GraphicsHeader.h"
 
-AAGraphics::AAGraphics()
+AAGraphics::AAGraphics(HWND hWnd, RectF rect)
 {
 	///////////////////////////////////////////////////////////////////////////
 	//// Colors
@@ -81,6 +81,12 @@ AAGraphics::AAGraphics()
 
 	// Neutral brushes
 	neutBrush = NULL; axisBrush = NULL; allyBrush = NULL;
+
+	///////////////////////////////////////////////////////////////////////////
+	//// Tooltips
+	///////////////////////////////////////////////////////////////////////////
+
+	tooltips = new AATooltips(hWnd, rect);
 }
 
 AAGraphics::~AAGraphics()
@@ -164,6 +170,12 @@ AAGraphics::~AAGraphics()
 
 	// Neutral brushes
 	delete neutBrush; delete axisBrush; delete allyBrush;
+
+	///////////////////////////////////////////////////////////////////////////
+	//// Tooltips
+	///////////////////////////////////////////////////////////////////////////
+
+	delete tooltips;
 }
 
 void AAGraphics::config(HDC& hdc)
@@ -330,159 +342,11 @@ void AAGraphics::config(HDC& hdc)
 	neutBrush = new HatchBrush(HatchStyleVertical, *neutColorH, *neutColorB);
 	axisBrush = new HatchBrush(HatchStyleBackwardDiagonal, *gerColorF, *gerColorS);
 	allyBrush = new HatchBrush(HatchStyleForwardDiagonal, *ukColorF, *usaColorS);
-}
 
-AABox::AABox()
-{
-	layer = 0;
+	///////////////////////////////////////////////////////////////////////////
+	//// Tooltips
+	///////////////////////////////////////////////////////////////////////////
 
-	for (int i = 0; i < DEFAULT_TEXTLEN; i++)
-		defaultText[i] = '\0';
-}
-
-AABox::AABox(const char* def)
-{
-	layer = 0;
-
-	for (int i = 0; i < DEFAULT_TEXTLEN; i++)
-		defaultText[i] = '\0';
-	for (int i = 0; i < strlen(def); i++)
-		defaultText[i] = def[i];
-}
-
-AABox::~AABox()
-{
-
-}
-
-void AABox::config(RectF r, int l)
-{
-	box = r;
-	layer = l;
-}
-
-void AABox::drawFrame(Graphics* graphics, Pen* pen, Font* font, StringFormat* sf, Brush* b0, Brush* b1, int layers)
-{
-	if (layer <= layers)
-	{
-		graphics->FillRectangle(b1, box);
-		graphics->DrawRectangle(pen, box);
-		graphics->DrawString(defaultText, -1, font, box, sf, b0);
-	}
-}
-
-void AABox::drawBox(Graphics* graphics, Pen* pen, Font* font, StringFormat* sf, Brush* b0, Brush* b1, const WCHAR* str, int layers)
-{
-	if (layer <= layers)
-	{
-		graphics->FillRectangle(b1, box);
-		graphics->DrawRectangle(pen, box);
-		graphics->DrawString(str, -1, font, box, sf, b0);
-	}
-}
-
-AATri::AATri()
-{
-	layer = 0;
-
-	for (int i = 0; i < DEFAULT_TEXTLEN; i++)
-		defaultText[i] = '\0';
-}
-
-AATri::~AATri()
-{
-
-}
-
-void AATri::config(PointF p0, PointF p1, PointF p2, int l)
-{
-	tri[0] = p0;
-	tri[1] = p1;
-	tri[2] = p2;
-	layer = l;
-}
-
-void AATri::drawTri(Graphics* graphics, Pen* pen, Brush* b0, int layers)
-{
-	if (layer <= layers)
-	{
-		graphics->FillPolygon(b0, tri, 3);
-		graphics->DrawPolygon(pen, tri, 3);
-	}
-}
-
-AAQuad::AAQuad()
-{
-	layer = 0;
-
-	for (int i = 0; i < DEFAULT_TEXTLEN; i++)
-		defaultText[i] = '\0';
-}
-
-AAQuad::~AAQuad()
-{
-
-}
-
-void AAQuad::config(PointF p0, PointF p1, PointF p2, PointF p3, int l)
-{
-	quad[0] = p0;
-	quad[1] = p1;
-	quad[2] = p2;
-	quad[3] = p3;
-	layer = l;
-}
-
-void AAQuad::drawQuad(Graphics* graphics, Pen* pen, Brush* b0, int layers)
-{
-	if (layer <= layers)
-	{
-		graphics->FillPolygon(b0, quad, 4);
-		graphics->DrawPolygon(pen, quad, 4);
-	}
-}
-
-AABox6::AABox6(const char* def)
-	:AABox(def)
-{
-	layer = 0;
-}
-
-AABox6::~AABox6()
-{
-
-}
-
-void AABox6::config(PointF p0, PointF p1, PointF p2, PointF p3, PointF p4, PointF p5, RectF& b0, RectF& b1, int l)
-{
-	box6[0] = p0;
-	box6[1] = p1;
-	box6[2] = p2;
-	box6[3] = p3;
-	box6[4] = p4;
-	box6[5] = p5;
-
-	box0 = b0;
-	box1 = b1;
-
-	layer = l;
-}
-
-void AABox6::drawBox6(Graphics* graphics, Pen* pen, Font* font, StringFormat* sf, Brush* b0, Brush* b1, int layers, bool rects)
-{
-	if (layer <= layers)
-	{
-		graphics->FillPolygon(b1, box6, 6);
-		graphics->DrawPolygon(pen, box6, 6);
-
-		if (rects)
-		{
-			graphics->FillRectangle(b1, box0);
-			graphics->FillRectangle(b1, box1);
-			graphics->DrawRectangle(pen, box0);
-			graphics->DrawRectangle(pen, box1);
-			graphics->DrawString(defaultText, -1, font, box0, sf, b0);
-			graphics->DrawString(defaultText, -1, font, box1, sf, b0);
-		}
-	}
+	tooltips->configBaseDrawTools(blackPen1, borderlessPen, calibriFamily, leftCenterFormat, centerFormat,
+		font16, textBrush, backBrush, paneBrush);
 }

@@ -4,7 +4,9 @@
 #include "../../game/header/framework.h"
 #include "UseGDI.h"
 
+#include "GraphicsObjects.h"
 #include "../../logScreen/header/LogText.h"
+#include "AATooltips.h"
 
 #define FONT12_S        12
 #define FONT14_S        14
@@ -22,20 +24,10 @@
 
 #define NAMEFONT_S      65
 
-#define DEFAULT_TEXTLEN 20
-#define PURCH_TEXTLEN   64
-
-#define BOX_LEFT        0
-#define BOX_RIGHT       1
-#define BOX_TOP         2
-#define BOX_BOTTOM      3
-#define BOX_WIDTH       4
-#define BOX_HEIGHT      5
-
 class AAGraphics
 {
 public:
-	AAGraphics();
+	AAGraphics(HWND, RectF);
 	~AAGraphics();
 
 	void config(HDC&);
@@ -118,68 +110,12 @@ public:
 
 	// Neutral brushes
 	HatchBrush* neutBrush, * axisBrush, * allyBrush;
-};
 
-class AABox
-{
-public:
-	AABox();
-	AABox(const char*);
-	~AABox();
+	///////////////////////////////////////////////////////////////////////////
+	//// Tooltips
+	///////////////////////////////////////////////////////////////////////////
 
-	void config(RectF, int);
-
-	void drawFrame(Graphics*, Pen*, Font*, StringFormat*, Brush*, Brush*, int);
-	void drawBox(Graphics*, Pen*, Font*, StringFormat*, Brush*, Brush*, const WCHAR*, int);
-
-	RectF box;
-	int layer;
-
-	WCHAR defaultText[DEFAULT_TEXTLEN];
-	
-};
-
-class AATri : public AABox
-{
-public:
-	AATri();
-	~AATri();
-
-	void config(PointF, PointF, PointF, int);
-
-	void drawTri(Graphics*, Pen*, Brush*, int);
-
-	PointF tri[3];
-
-};
-
-class AAQuad : public AABox
-{
-public:
-	AAQuad();
-	~AAQuad();
-
-	void config(PointF, PointF, PointF, PointF, int);
-
-	void drawQuad(Graphics*, Pen*, Brush*, int);
-
-	PointF quad[4];
-};
-
-class AABox6 : public AABox
-{
-public:
-	AABox6(const char*);
-	~AABox6();
-
-	void config(PointF, PointF, PointF, PointF, PointF, PointF, RectF&, RectF&, int);
-
-	void drawBox6(Graphics*, Pen*, Font*, StringFormat*, Brush*, Brush*, int, bool = false);
-
-	PointF box6[6];
-	RectF  box0;
-	RectF  box1;
-
+	AATooltips* tooltips;
 };
 
 #endif // !AA_GRAPHICS
