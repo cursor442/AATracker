@@ -6,6 +6,9 @@
 void Game::configNationScreen()
 {
 	int gameType = gameBoard->getGameType();
+
+	if (screenFrames.s.size() < (NATION_SCREEN + 1))
+		screenFrames.s.resize((NATION_SCREEN + 1));
 	
 	// Tabs section
 	if (nationScreenTabs == NULL)
@@ -88,6 +91,14 @@ void Game::configNationScreen()
 		nameFrame.Width -= (14 * nationScreenWindow0.Width / 20);
 		nameFrame.Height -= (7 * nationScreenWindow0.Height / 8);
 		nameSection->configureNameBox(nameFrame, 1);
+
+		if (screenFrames.s[NATION_SCREEN].f.size() < (NAME_SECT_IDX + 1))
+		{
+			screenFrames.s[NATION_SCREEN].f.resize(NAME_SECT_IDX + 1);
+			screenFrames.s[NATION_SCREEN].b.resize(NAME_SECT_IDX + 1);
+		}
+		screenFrames.s[NATION_SCREEN].f[NAME_SECT_IDX] = nameFrame;
+		screenFrames.s[NATION_SCREEN].b[NAME_SECT_IDX] = NAME_SECT;
 	}
 
 	// Turn phase section
@@ -106,6 +117,14 @@ void Game::configNationScreen()
 		phaseFrame.Inflate(-18, -24);
 		phaseFrame.X += 6;
 		phaseSection->configurePhaseBox(phaseFrame, 1);
+
+		if (screenFrames.s[NATION_SCREEN].f.size() < (PHASE_SECT_IDX + 1))
+		{
+			screenFrames.s[NATION_SCREEN].f.resize(PHASE_SECT_IDX + 1);
+			screenFrames.s[NATION_SCREEN].b.resize(PHASE_SECT_IDX + 1);
+		}
+		screenFrames.s[NATION_SCREEN].f[PHASE_SECT_IDX] = phaseFrame;
+		screenFrames.s[NATION_SCREEN].b[PHASE_SECT_IDX] = PHASE_SECT;
 	}
 
 	// War with section
@@ -123,6 +142,14 @@ void Game::configNationScreen()
 		warFrame.Y = phaseFrame.GetBottom() + 12;
 		warFrame.Height = (3 * nationScreenWindow0.Height / 8) - warFrame.Y - 36;
 		warSection->configureWarBox(warFrame, 1);
+
+		if (screenFrames.s[NATION_SCREEN].f.size() < (WAR_SECT_IDX + 1))
+		{
+			screenFrames.s[NATION_SCREEN].f.resize(WAR_SECT_IDX + 1);
+			screenFrames.s[NATION_SCREEN].b.resize(WAR_SECT_IDX + 1);
+		}
+		screenFrames.s[NATION_SCREEN].f[WAR_SECT_IDX] = warFrame;
+		screenFrames.s[NATION_SCREEN].b[WAR_SECT_IDX] = WAR_SECT;
 	}
 
 	// Cities section
@@ -154,6 +181,14 @@ void Game::configNationScreen()
 
 		citiesSection->configureCityBox(cityFrameL, cityFrameR, 1);
 
+		if (screenFrames.s[NATION_SCREEN].f.size() < (CITY_SECT_IDX + 1))
+		{
+			screenFrames.s[NATION_SCREEN].f.resize(CITY_SECT_IDX + 1);
+			screenFrames.s[NATION_SCREEN].b.resize(CITY_SECT_IDX + 1);
+		}
+		screenFrames.s[NATION_SCREEN].f[CITY_SECT_IDX] = cityFrame;
+		screenFrames.s[NATION_SCREEN].b[CITY_SECT_IDX] = CITY_SECT;
+
 	}
 
 	// Game status section
@@ -169,6 +204,14 @@ void Game::configNationScreen()
 		statusFrame.Y = cityFrameR.Y;
 		statusFrame.Height = cityFrameL.Y - cityFrameR.Y;
 		statusSection->configureStatusBox(statusFrame, 1);
+
+		if (screenFrames.s[NATION_SCREEN].f.size() < (STAT_SECT_IDX + 1))
+		{
+			screenFrames.s[NATION_SCREEN].f.resize(STAT_SECT_IDX + 1);
+			screenFrames.s[NATION_SCREEN].b.resize(STAT_SECT_IDX + 1);
+		}
+		screenFrames.s[NATION_SCREEN].f[STAT_SECT_IDX] = statusFrame;
+		screenFrames.s[NATION_SCREEN].b[STAT_SECT_IDX] = STAT_SECT;
 	}
 	
 	// Purchase section
@@ -184,6 +227,14 @@ void Game::configNationScreen()
 		purchaseFrame.Height = nationScreenWindow0.GetBottom() - purchaseFrame.Y;
 		purchaseFrame.Inflate(-24, -24);
 		purchaseSection->configurePurchaseBox(main_Wnd, purchaseFrame, 1);
+
+		if (screenFrames.s[NATION_SCREEN].f.size() < (PURCH_SECT_IDX + 1))
+		{
+			screenFrames.s[NATION_SCREEN].f.resize(PURCH_SECT_IDX + 1);
+			screenFrames.s[NATION_SCREEN].b.resize(PURCH_SECT_IDX + 1);
+		}
+		screenFrames.s[NATION_SCREEN].f[PURCH_SECT_IDX] = purchaseFrame;
+		screenFrames.s[NATION_SCREEN].b[PURCH_SECT_IDX] = PURCH_SECT;
 	}
 
 	// Purchase section tabs
@@ -261,6 +312,14 @@ void Game::configNationScreen()
 		miniSpreadFrame.Inflate(-24, -24);
 		miniSpreadFrame.Height = cityFrame.GetBottom() - miniSpreadFrame.Y;
 		miniSpreadSection->configureMiniSpread(miniSpreadFrame, 1);
+
+		if (screenFrames.s[NATION_SCREEN].f.size() < (SPREAD_SECT_IDX + 1))
+		{
+			screenFrames.s[NATION_SCREEN].f.resize(SPREAD_SECT_IDX + 1);
+			screenFrames.s[NATION_SCREEN].b.resize(SPREAD_SECT_IDX + 1);
+		}
+		screenFrames.s[NATION_SCREEN].f[SPREAD_SECT_IDX] = miniSpreadFrame;
+		screenFrames.s[NATION_SCREEN].b[SPREAD_SECT_IDX] = SPREAD_SECT;
 	}
 
 	// UK Global economy tabs
@@ -318,6 +377,14 @@ void Game::configNationScreen()
 		warchestFrame.Y = miniSpreadFrame.GetBottom() + 24;
 		warchestFrame.Height = (nationScreenWindow0.Height / 2) - warchestFrame.Y - 12;
 		warchestSection->configureWarchestBox(warchestFrame, miniSpreadFrame, 1);
+
+		if (screenFrames.s[NATION_SCREEN].f.size() < (CHEST_SECT_IDX + 1))
+		{
+			screenFrames.s[NATION_SCREEN].f.resize(CHEST_SECT_IDX + 1);
+			screenFrames.s[NATION_SCREEN].b.resize(CHEST_SECT_IDX + 1);
+		}
+		screenFrames.s[NATION_SCREEN].f[CHEST_SECT_IDX] = warchestFrame;
+		screenFrames.s[NATION_SCREEN].b[CHEST_SECT_IDX] = CHEST_SECT;
 	}
 
 	// Bonus section
@@ -338,6 +405,14 @@ void Game::configNationScreen()
 		bonusFrame.Height = nationScreenWindow0.Height - bonusFrame.Y;
 		bonusFrame.Inflate(0, -24);
 		bonusSection->configureBonusBox(bonusFrame, 1);
+
+		if (screenFrames.s[NATION_SCREEN].f.size() < (BONUS_SECT_IDX + 1))
+		{
+			screenFrames.s[NATION_SCREEN].f.resize(BONUS_SECT_IDX + 1);
+			screenFrames.s[NATION_SCREEN].b.resize(BONUS_SECT_IDX + 1);
+		}
+		screenFrames.s[NATION_SCREEN].f[BONUS_SECT_IDX] = bonusFrame;
+		screenFrames.s[NATION_SCREEN].b[BONUS_SECT_IDX] = BONUS_SECT;
 	}
 	
 	// Buttons section 
@@ -364,8 +439,11 @@ void Game::configNationScreen()
 				purchBoxHeight,                                        // Button height
 				main_Wnd,                                              // Parent window
 				(HMENU)IDB_NEXTPHASE,                                  // Menu.
-				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
-				NULL);
+				hInst,
+				NULL);			
+
+			RectF rect = { buttonLeft, purchBoxTop, buttonWidth, purchBoxHeight };
+			gfx->tooltips->registerTooltip(graphics, (int)nextPhaseButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Proceed to the next phase");
 		}
 
 		if (researchButton == NULL)
@@ -382,6 +460,9 @@ void Game::configNationScreen()
 				(HMENU)IDB_RESEARCH,                                   // Menu.
 				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
 				NULL);
+
+			RectF rect = { buttonLeft, cmBoxTop, buttonWidth, cmBoxHeight };
+			gfx->tooltips->registerTooltip(graphics, (int)researchButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Enter results of research rolls");
 		}
 
 		if (declareWarButton == NULL)
@@ -398,6 +479,9 @@ void Game::configNationScreen()
 				(HMENU)IDB_DECLAREWAR,                                 // Menu.
 				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
 				NULL);
+
+			RectF rect = { buttonLeft, cmBoxTop, buttonWidth, cmBoxHeight };
+			gfx->tooltips->registerTooltip(graphics, (int)declareWarButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Declare war on another player");
 		}
 		
 		if (captureTerritoryButton == NULL)
@@ -414,6 +498,9 @@ void Game::configNationScreen()
 				(HMENU)IDB_CAPTURETER,                                 // Menu.
 				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
 				NULL);
+
+			RectF rect = { buttonLeft, cmBoxTop, buttonWidth, cmBoxHeight };
+			gfx->tooltips->registerTooltip(graphics, (int)captureTerritoryButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Territories captured during Conduct Combat phase");
 		}
 
 		if (attackNeutralButton == NULL)
@@ -430,13 +517,16 @@ void Game::configNationScreen()
 				(HMENU)IDB_ATTACKNEUT,                                 // Menu.
 				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
 				NULL);
+
+			RectF rect = { buttonLeft, ccBoxTop, buttonWidth, ccBoxHeight };
+			gfx->tooltips->registerTooltip(graphics, (int)attackNeutralButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Attack a strict neutral territory\nAll strict neutral territories will become unfriendly");
 		}
 
 		if (occupyNeutralButton == NULL)
 		{
 			occupyNeutralButton = CreateWindow(
 				L"BUTTON",                                             // Predefined class; Unicode assumed 
-				L"Occupy Neutral",                                    // Button text 
+				L"Occupy Neutral",                                     // Button text 
 				WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
 				buttonLeft,                                            // x position 
 				cmBoxTop,                                              // y position 
@@ -446,6 +536,66 @@ void Game::configNationScreen()
 				(HMENU)IDB_OCCUPYNEUT,                                 // Menu.
 				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
 				NULL);
+
+			RectF rect = { buttonLeft, cmBoxTop, buttonWidth, cmBoxHeight };
+			gfx->tooltips->registerTooltip(graphics, (int)occupyNeutralButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Occupy a friendly neutral territory");
+		}
+
+		if (attackMongoliaButton == NULL)
+		{
+			attackMongoliaButton = CreateWindow(
+				L"BUTTON",                                             // Predefined class; Unicode assumed 
+				L"Attack Mongolia",                                    // Button text 
+				WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
+				buttonLeft,                                            // x position 
+				cmBoxTop,                                              // y position 
+				buttonWidth,                                           // Button width
+				cmBoxHeight,                                           // Button height
+				main_Wnd,                                              // Parent window
+				(HMENU)IDB_ATTACKMONG,                                 // Menu.
+				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
+				NULL);
+
+			RectF rect = { buttonLeft, cmBoxTop, buttonWidth, cmBoxHeight };
+			gfx->tooltips->registerTooltip(graphics, (int)attackMongoliaButton, NATION_SCREEN, rect, TT_DIR_LEFT, "You are attacking a Mongolian territory in your Combat Move phase");
+		}
+
+		if (attackJapanButton == NULL)
+		{
+			attackJapanButton = CreateWindow(
+				L"BUTTON",                                             // Predefined class; Unicode assumed 
+				L"Attack Japan",                                       // Button text 
+				WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
+				buttonLeft,                                            // x position 
+				ccBoxTop,                                              // y position 
+				buttonWidth,                                           // Button width
+				ccBoxHeight,                                           // Button height
+				main_Wnd,                                              // Parent window
+				(HMENU)IDB_ATTACKJPN,                                  // Menu.
+				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
+				NULL);
+
+			RectF rect = { buttonLeft, ccBoxTop, buttonWidth, ccBoxHeight };
+			gfx->tooltips->registerTooltip(graphics, (int)attackJapanButton, NATION_SCREEN, rect, TT_DIR_LEFT, "You are attacking Korea or any Mongolia-adjactent\nJapanese territory in your Combat Move phase");
+		}
+
+		if (attackSovietButton == NULL)
+		{
+			attackSovietButton = CreateWindow(
+				L"BUTTON",                                             // Predefined class; Unicode assumed 
+				L"Attack Soviet Union",                                // Button text 
+				WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
+				buttonLeft,                                            // x position 
+				ccBoxTop,                                              // y position 
+				buttonWidth,                                           // Button width
+				ccBoxHeight,                                           // Button height
+				main_Wnd,                                              // Parent window
+				(HMENU)IDB_ATTACKSOV,                                  // Menu.
+				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
+				NULL);
+
+			RectF rect = { buttonLeft, ccBoxTop, buttonWidth, ccBoxHeight };
+			gfx->tooltips->registerTooltip(graphics, (int)attackSovietButton, NATION_SCREEN, rect, TT_DIR_LEFT, "You are attacking a Mongolia-adjactent\nSoviet territory in your Combat Move phase");
 		}
 	}
 }

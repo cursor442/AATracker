@@ -28,15 +28,6 @@
 
 #define MAX_LOADSTRING 100
 
-#define MAIN_SCREEN    1
-#define NATION_SCREEN  2
-#define SPREAD0_SCREEN 3
-#define SPREAD1_SCREEN 4
-#define GRAPH_SCREEN   5
-#define LOG_SCREEN     6
-#define RES_SCREEN     7
-#define REF_SCREEN     8
-
 class Game
 {
 public:
@@ -49,8 +40,8 @@ public:
 	///////////////////////////////////////////////////////////////////////////
 
 	WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
-	WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
-	HINSTANCE hInst;                                // current instance
+	WCHAR szWindowClass[MAX_LOADSTRING];            // The main window class name
+	HINSTANCE hInst;                                // Current instance
 	ULONG_PTR gdiplusToken;
 	UINT whichScreen, purchaseTab, ukTab;           // The current screen, purchase, UK tabs
 	UINT whichTab;                                  // Current log tab
@@ -81,6 +72,16 @@ public:
 	int updateNatGraph;
 
 	bool whichUpdateNatGraph, doUpdateGraph;
+
+	// Buttons
+	void showButton(HWND&);
+	void hideButton(HWND&);
+	
+	// Tooltips
+	bool activeTooltip;              // The mouse has been hovering over a tooltip-enabled location for long enough
+	bool deactivateTooltip;          // The mouse has moved off of the current tooltip-enabled location
+	void drawTooltip(HWND&, LPARAM); // Draw the currently selected tooltip
+	void hideTooltip(HWND&, LPARAM); // Hide the previously selected tooltip
 
 	// Debug
 	bool dbg_boundbox;
@@ -303,6 +304,8 @@ private:
 
 	// Screen brushes
 	HBRUSH tileBrush, tileDBrush;
+
+	framesList screenFrames;
 		   
 	///////////////////////////////////////////////////////////////////////////
 	//// Nation Screen
@@ -336,7 +339,8 @@ private:
 
 	// Turn phase buttons
 	HWND nextPhaseButton, researchButton, declareWarButton,
-		captureTerritoryButton, attackNeutralButton, occupyNeutralButton;
+		captureTerritoryButton, attackNeutralButton, occupyNeutralButton,
+		attackMongoliaButton, attackJapanButton, attackSovietButton;
 
 	// Purchase section
 	PurchaseSection* purchaseSection;
@@ -420,6 +424,7 @@ private:
 	// Misc
 	int n, k, u;
 	vector<int> saveNations[3];
+
 };
 
 #endif

@@ -41,16 +41,22 @@ Game::Game()
 	calibriFamily = NULL;
 	logTextFont = NULL; logTurnFont = NULL;
 
+	// Tooltips
+	activeTooltip = false;
+	deactivateTooltip = false;
+	
 	// Debug
 	dbg_boundbox = false;
 	dbg_layers = 99;
 	dbg_sections = false;
 	dbg_grid = 0;
 
+	screenFrames.s.resize(0);
+
 	///////////////////////////////////////////////////////////////////////////
 	//// Nation Screen
 	///////////////////////////////////////////////////////////////////////////
-
+	
 	// Sections
 	nameSection = NULL;
 	phaseSection = NULL;
@@ -70,6 +76,9 @@ Game::Game()
 	captureTerritoryButton = NULL;
 	attackNeutralButton = NULL;
 	occupyNeutralButton = NULL;
+	attackMongoliaButton = NULL;
+	attackJapanButton = NULL;
+	attackSovietButton = NULL;
 
 	// Tabs
 	nationScreenTabs = NULL;
@@ -220,6 +229,9 @@ Game::~Game()
 	DeleteObject(captureTerritoryButton);
 	DeleteObject(attackNeutralButton);
 	DeleteObject(occupyNeutralButton);
+	DeleteObject(attackMongoliaButton);
+	DeleteObject(attackJapanButton);
+	DeleteObject(attackSovietButton);
 
 	// Tabs
 	DeleteObject(nationScreenTabs);
@@ -841,7 +853,7 @@ bool Game::doSaveGame(HWND hWnd, Board& gameBoard)
 				WriteFile(hFile, misc_, (DWORD)32, &bytesWritten, NULL);
 
 				misc_[1] = 'M'; misc_[2] = 'O'; misc_[3] = 'N';
-				if (gameBoard.getMong() == true)
+				if (gameBoard.getMongoliaLean() == true)
 					misc_[6] = 'Y';
 				else
 					misc_[6] = 'N';
@@ -1554,7 +1566,7 @@ void Game::doLoadGame(HWND hWnd, Board& gameBoard)
 
 				success = ReadFile(hFile, str, (DWORD)32, &bytesRead, NULL);
 				if (str[6] == 'Y')
-					gameBoard.setMong();
+					gameBoard.setMongoliaLean(SIDE_NEUTRAL); // This is wrong now
 			}
 
 			// Log
@@ -1894,10 +1906,7 @@ void Game::hideScreen()
 }
 
 void Game::configGraphics(HDC& hdc)
-{
-	gfx = new AAGraphics();
-	gfx->config(hdc);
-	
+{	
 	// Convert main window RECT to RectF for use with GDIplus
 	GetClientRect(main_Wnd, &this->nationScreenRect);
 
@@ -1908,6 +1917,10 @@ void Game::configGraphics(HDC& hdc)
 	nationScreenWindow0.Width = nationScreenRect.right - nationScreenRect.left;
 	nationScreenWindow0.Y = nationScreenRect.top;
 	nationScreenWindow0.Height = nationScreenRect.bottom - nationScreenRect.top;
+
+	gfx = new AAGraphics(main_Wnd, nationScreenWindow0);
+	gfx->config(hdc);
+	gfx->tooltips->configScreenFrames(&screenFrames);
 
 	// Fonts
 	logTextFont = new Font(calibriFamily, TEXTFONT_S, FontStyleRegular, UnitPixel);
@@ -1926,6 +1939,8 @@ void Game::configGameScreens()
 	configGraphScreen();
 	configLogScreen();
 	configResearchScreen();
+
+	gfx->tooltips->configScreenFrames(&screenFrames);
 }
 
 void Game::setupGDI()

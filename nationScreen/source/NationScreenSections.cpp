@@ -29,67 +29,67 @@ void Game::drawPhaseFrameButtons()
     int currPhase = gameBoard->getGameTurnPhase();
     int currNat = gameBoard->getGameCurrNation();
     
-    ShowWindow(nextPhaseButton, SW_SHOW);
+    showButton(nextPhaseButton);
     switch (currPhase)
     {
     case RS_PHASE:
     {
-        ShowWindow(declareWarButton, SW_HIDE);
-        ShowWindow(captureTerritoryButton, SW_HIDE);
+        hideButton(declareWarButton);
+        hideButton(captureTerritoryButton);
 
         if (gameBoard->getCount(currNat) != 12)
-            ShowWindow(researchButton, SW_SHOW);
+            showButton(researchButton);
         else
-            ShowWindow(researchButton, SW_HIDE);
+            hideButton(researchButton);
     }
     break;
     case PR_PHASE:
     {
-        ShowWindow(researchButton, SW_HIDE);
-        ShowWindow(declareWarButton, SW_HIDE);
+        hideButton(researchButton);
+        hideButton(declareWarButton);
     }
     break;
     case CM_PHASE:
     {
-        ShowWindow(researchButton, SW_HIDE);
-        ShowWindow(captureTerritoryButton, SW_HIDE);
+        hideButton(researchButton);
+        hideButton(captureTerritoryButton);
 
-        ShowWindow(declareWarButton, SW_SHOW);
+        showButton(declareWarButton);
 
         if (gameBoard->getNeutralLean() == SIDE_NEUTRAL)
-            ShowWindow(attackNeutralButton, SW_SHOW);
+            showButton(attackNeutralButton);
         else
-            ShowWindow(attackNeutralButton, SW_HIDE);
+            hideButton(attackNeutralButton);
     }
     break;
     case CC_PHASE:
     {
-        ShowWindow(declareWarButton, SW_HIDE);
-        ShowWindow(attackNeutralButton, SW_HIDE);
+        hideButton(declareWarButton);
+        hideButton(attackNeutralButton);
 
-        ShowWindow(captureTerritoryButton, SW_SHOW);
+        showButton(captureTerritoryButton);
     }
     break;
     case NC_PHASE:
     {
-        ShowWindow(captureTerritoryButton, SW_HIDE);
+        hideButton(captureTerritoryButton);
 
-        ShowWindow(occupyNeutralButton, SW_SHOW);
+        showButton(occupyNeutralButton);
         break;
     }
     case MN_PHASE:
     {
-        ShowWindow(occupyNeutralButton, SW_HIDE);
+        hideButton(occupyNeutralButton);
         break;
     }
     case CI_PHASE:
     {
         if (gameBoard->getGameCurrNation() == TURN_USA && gameBoard->getGameTurn() == 2)
         {
-            ShowWindow(researchButton, SW_HIDE);
-            ShowWindow(captureTerritoryButton, SW_HIDE);
+            hideButton(researchButton);
+            hideButton(captureTerritoryButton);
 
-            ShowWindow(declareWarButton, SW_SHOW);
+            showButton(declareWarButton);
         }
         break;
     }

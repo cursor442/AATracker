@@ -108,6 +108,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>comctl32.lib;UxTheme.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -162,8 +163,11 @@
     <ClInclude Include="game\header\framework.h" />
     <ClInclude Include="game\header\Resource.h" />
     <ClInclude Include="game\header\targetver.h" />
+    <ClInclude Include="graphics\header\AATooltip.h" />
+    <ClInclude Include="graphics\header\AATooltips.h" />
     <ClInclude Include="graphics\header\DebugGrid.h" />
     <ClInclude Include="graphics\header\GraphicsHeader.h" />
+    <ClInclude Include="graphics\header\GraphicsObjects.h" />
     <ClInclude Include="graphics\header\Section.h" />
     <ClInclude Include="graphics\header\UseGDI.h" />
     <ClInclude Include="graphScreen\header\GraphClass.h" />
@@ -214,8 +218,12 @@
     <ClCompile Include="game\source\GameClass.cpp" />
     <ClCompile Include="game\source\MenuCallbacks.cpp" />
     <ClCompile Include="graphics\source\AAGraphics.cpp" />
+    <ClCompile Include="graphics\source\AATooltip.cpp" />
+    <ClCompile Include="graphics\source\AATooltips.cpp" />
     <ClCompile Include="graphics\source\DebugGrid.cpp" />
     <ClCompile Include="graphics\source\DebugSwitches.cpp" />
+    <ClCompile Include="graphics\source\GraphicsHandlers.cpp" />
+    <ClCompile Include="graphics\source\GraphicsObjects.cpp" />
     <ClCompile Include="graphics\source\Section.cpp" />
     <ClCompile Include="graphScreen\source\GraphClass.cpp" />
     <ClCompile Include="graphScreen\source\GraphScreen.cpp" />

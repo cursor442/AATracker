@@ -126,17 +126,17 @@ bool Game::NationScreen(HDC& hdc, PAINTSTRUCT& ps)
 
 void Game::hideNationScreen()
 {
-    ShowWindow(nextPhaseButton, SW_HIDE);
-    ShowWindow(researchButton, SW_HIDE);
-    ShowWindow(declareWarButton, SW_HIDE);
-    ShowWindow(captureTerritoryButton, SW_HIDE);
-    ShowWindow(attackNeutralButton, SW_HIDE);
-    ShowWindow(occupyNeutralButton, SW_HIDE);
+    hideButton(nextPhaseButton);
+    hideButton(researchButton);
+    hideButton(declareWarButton);
+    hideButton(captureTerritoryButton);
+    hideButton(attackNeutralButton);
+    hideButton(occupyNeutralButton);
 
     hideNationScreenPurchButtons();
 
-    ShowWindow(purchaseSectionTabs, SW_HIDE);
-    ShowWindow(ukEconomyTabs, SW_HIDE);
+    hideButton(purchaseSectionTabs);
+    hideButton(ukEconomyTabs);
 }
 
 void Game::hideNationScreenPurchButtons()

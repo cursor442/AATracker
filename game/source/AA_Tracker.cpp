@@ -139,9 +139,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
     HMENU hMenu;
     hMenu = GetMenu(hWnd);
-    //hMenu = main_Menu;
-
-    //HMENU debugMenu = GetSubMenu(hMenu, 1);
 
     switch (message)
     {
@@ -202,10 +199,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 temp = game->getMainWnd();
                 game->deleteBoard();
                 game->setMainWnd(temp);
-                game->configNationScreen();
-                game->configSpreadScreen();
-                game->configResearchScreen();
-                game->configLogScreen();
+                game->configGameScreens();
                 game->doLoadGame(hWnd, *game->gameBoard);
                 if (game->success)
                 {
@@ -214,8 +208,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                     game->configSpread(*game->gameBoard);
                     game->loadMiniSpreads();
                     game->loadSpreadsheets();
-                    game->configNationScreen();
-                    game->configGraphScreen();
+                    game->configGameScreens();
                 }
                 CheckMenuItem(hMenu, IDM_DBG_BOUNDBOX, MF_UNCHECKED);
                 RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
@@ -285,6 +278,25 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
                 DialogBox(game->hInst, MAKEINTRESOURCE(IDD_OCCUPYNEUTBOX), hWnd, OccupyNeutralWrapper);
                 RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+                break;
+            }
+            case IDB_ATTACKMONG:
+            {
+                game->gameBoard->attackNeutral(hWnd);
+                game->nsSection |= PHASE_SECT | PURCH_SECT;
+                game->nsPhase = BUT_PHASE;
+                game->nsNeut = NEUT_UPD;
+                RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+                break;
+            }
+            case IDB_ATTACKJPN:
+            {
+
+                break;
+            }
+            case IDB_ATTACKSOV:
+            {
+
                 break;
             }
             case IDB_INFUP:    case IDB_INFDN:    case IDB_ARTUP:  case IDB_ARTDN:  case IDB_MECHUP:  case IDB_MECHDN:  case IDB_TANKUP:  case IDB_TANKDN:  case IDB_AAAUP:case IDB_AAADN:case IDB_FIGHTUP:case IDB_FIGHTDN: case IDB_TACTUP: case IDB_TACTDN: case IDB_STRATUP:case IDB_STRATDN:
@@ -476,8 +488,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             default:
                 return DefWindowProc(hWnd, message, wParam, lParam);
             }
+
+            break;
         }
-        break;
     case WM_NOTIFY:
     {
         switch (((LPNMHDR)lParam)->code)
@@ -550,11 +563,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                     RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
                     break;
                 }
+                break;
             }
         }
-    }
         break;
-
+    }
     case WM_VSCROLL:
     {/*
         int xDelta = 0;
@@ -592,7 +605,29 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             yNewPos = yCurrentScroll;*/
     }
         break;
+    case WM_TIMER:
+    {
+        switch (wParam)
+        {
+        case TT_SAMPLE_TIMER_ID:
+        {
+            game->gfx->tooltips->updateCurrPoint(hWnd, lParam, game->activeTooltip, game->deactivateTooltip);
 
+            if (game->deactivateTooltip)
+                RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+            break;
+        }
+        case TT_HOVER_TIMER_ID: // Tooltip hover timer
+        {
+            KillTimer(hWnd, TT_HOVER_TIMER_ID);
+
+            game->activeTooltip = true;
+            RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);            
+            break;
+        }
+        }
+        break;
+    }
     case WM_PAINT:
     {
         PAINTSTRUCT ps;
@@ -605,9 +640,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             game->configGameScreens();
         }
 
+        // Hide tooltip if necessary
+        game->hideTooltip(hWnd, lParam);
+        
+        // Draw debug grid if enabled
         if (game->dbg_grid != 0)
             game->debugGrid->drawGrid(game->graphics, game->dbg_grid);
 
+        // Main draw function
         switch (game->whichScreen)
         {
         case MAIN_SCREEN:
@@ -644,6 +684,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             game->MainScreen(hdc, ps, *game->gameBoard);
             break;
         }
+
+        // Draw tooltip if active
+        game->drawTooltip(hWnd, lParam);
 
         delete game->graphics;
         EndPaint(hWnd, &ps);

@@ -225,6 +225,15 @@
     <ClInclude Include="board\header\MongoliaClass.h">
       <Filter>Header Files\Board\Territories</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\header\AATooltips.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\header\AATooltip.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\header\GraphicsObjects.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="nationScreen\screenSections\source\BonusSection.cpp">
@@ -400,6 +409,18 @@
     </ClCompile>
     <ClCompile Include="board\source\MongoliaClass.cpp">
       <Filter>Source Files\Board\Territories</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\source\AATooltips.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\source\AATooltip.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\source\GraphicsObjects.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\source\GraphicsHandlers.cpp">
+      <Filter>Source Files\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

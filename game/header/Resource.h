@@ -112,6 +112,9 @@
 #define IDB_RESEARCHGO          255
 #define IDB_ATTACKNEUT          256
 #define IDB_OCCUPYNEUT          257
+#define IDB_ATTACKMONG          258
+#define IDB_ATTACKJPN           259
+#define IDB_ATTACKSOV           260
 
 #define IDB_INFUP               270
 #define IDB_INFDN               271
@@ -169,6 +172,11 @@
 #define IDB_CUSTLOG             351
 
 ///////////////////////////////////////////////////////////////////////////
+//// (800-899)
+///////////////////////////////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////////////////////////////
 //// Icons (900+)
 ///////////////////////////////////////////////////////////////////////////
 
@@ -194,6 +202,20 @@
 #define TAB_LOG                 4
 #define TAB_RESEARCH            5
 #define TAB_REFERENCE           6
+
+///////////////////////////////////////////////////////////////////////////
+//// Screens
+///////////////////////////////////////////////////////////////////////////
+
+#define SCREEN_NONE   -1
+#define MAIN_SCREEN    0
+#define NATION_SCREEN  1
+#define SPREAD0_SCREEN 2
+#define SPREAD1_SCREEN 3
+#define GRAPH_SCREEN   4
+#define LOG_SCREEN     5
+#define RES_SCREEN     6
+#define REF_SCREEN     7
 
 ///////////////////////////////////////////////////////////////////////////
 //// Purchase Section Tabs
@@ -226,6 +248,16 @@
 #define BONUS_SECT    0x0100
 #define PURCHT_SECT   0x0200
 #define ALL_SECT      0x0FFF
+
+#define NAME_SECT_IDX   0
+#define STAT_SECT_IDX   1
+#define PHASE_SECT_IDX  2
+#define WAR_SECT_IDX    3
+#define CITY_SECT_IDX   4
+#define PURCH_SECT_IDX  5
+#define SPREAD_SECT_IDX 6
+#define CHEST_SECT_IDX  7
+#define BONUS_SECT_IDX  8
 
 ///////////////////////////////////////////////////////////////////////////
 //// Game Types
