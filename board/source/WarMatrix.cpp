@@ -2,18 +2,20 @@
 
 WarMatrix::WarMatrix()
 {
-	for (int i = 0; i < 10; i++)
-		for (int j = 0; j < 10; j++)
+	for (int i = 0; i < WAR_MATRIX_SIZE; i++)
+		for (int j = 0; j < WAR_MATRIX_SIZE; j++)
 			warMatrix[i][j] = false;
 	warMatrix[TURN_GER][TURN_UKE] = true;
 	warMatrix[TURN_GER][TURN_UKP] = true;
 	warMatrix[TURN_GER][TURN_ANZ] = true;
 	warMatrix[TURN_GER][TURN_FRA] = true;
+	warMatrix[TURN_GER][DUTCH_TER] = true;
 	warMatrix[TURN_JPN][TURN_CHN] = true;
 	warMatrix[TURN_ITA][TURN_UKE] = true;
 	warMatrix[TURN_ITA][TURN_UKP] = true;
 	warMatrix[TURN_ITA][TURN_ANZ] = true;
 	warMatrix[TURN_ITA][TURN_FRA] = true;
+	warMatrix[TURN_ITA][DUTCH_TER] = true;
 
 	gameType = NULL_GAME;
 }

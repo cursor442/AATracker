@@ -34,6 +34,7 @@ void Territories::setGameType(int type)
 			configEurCities();
 			configEurIslands();
 			configEurNeutrals();
+			configEurDutch();
 			configEurFacilities();
 			break;
 		}
@@ -43,6 +44,7 @@ void Territories::setGameType(int type)
 			configPacCities();
 			configPacIslands();
 			configPacNeutrals();
+			configPacDutch();
 			configPacFacilities();
 			break;
 		}
@@ -52,11 +54,13 @@ void Territories::setGameType(int type)
 			configEurCities();
 			configEurIslands();
 			configEurNeutrals();
+			configEurDutch();
 			configEurFacilities();
 			configPacTerrs();
 			configPacCities();
 			configPacIslands();
 			configPacNeutrals();
+			configPacDutch();
 			configPacFacilities();
 			globalGameAdj();
 			break;
@@ -232,6 +236,24 @@ void Territories::configEurNeutrals()
 			tmp.id = i;
 			tmp.side = SIDE_NEUTRAL;
 			tmp.owner = territories[i]->getOwner();
+			neutrals.push_back(tmp);
+		}
+	}
+
+	alphabetizeList(neutrals);
+}
+
+void Territories::configEurDutch()
+{
+	for (int i = TER_ALBERTA; i <= TER_WEST_INDIA; i++)
+	{
+		int own = territories[i]->getOwner();
+		if (own == DUTCH_TER)
+		{
+			territoryTransaction tmp;
+			tmp.id = i;
+			tmp.side = SIDE_ALLIES;
+			tmp.owner = own;
 			neutrals.push_back(tmp);
 		}
 	}
@@ -446,6 +468,24 @@ void Territories::configPacNeutrals()
 	alphabetizeList(neutrals, startIdx, stopIdx);
 }
 
+void Territories::configPacDutch()
+{
+	for (int i = TER_EVENKIYSKIY; i <= TER_MEXICO; i++)
+	{
+		int own = territories[i]->getOwner();
+		if (own == DUTCH_TER)
+		{
+			territoryTransaction tmp;
+			tmp.id = i;
+			tmp.side = SIDE_ALLIES;
+			tmp.owner = own;
+			neutrals.push_back(tmp);
+		}
+	}
+
+	alphabetizeList(neutrals);
+}
+
 void Territories::configPacFacilities()
 {
 	// Japan
@@ -625,7 +665,7 @@ void Territories::transferTerritory(int ter, int nat)
 }
 
 
-void Territories::setNeutralLean(int side)
+void Territories::setNeutralLean(int side, int nat, bool mongoliaCond)
 {
 	int newOwner = FULL_NEUTRAL;
 	if (side == SIDE_AXIS)
@@ -637,9 +677,9 @@ void Territories::setNeutralLean(int side)
 	{
 		for (int i = TER_ALBERTA; i <= TER_WEST_INDIA; i++)
 		{
-			int side = territories[i]->getSide();
-			int owner = territories[i]->getOwner();
-			if (side == SIDE_NEUTRAL && owner == FULL_NEUTRAL)
+			int currSide = territories[i]->getSide();
+			int currOwner = territories[i]->getOwner();
+			if (currSide == SIDE_NEUTRAL && currOwner == FULL_NEUTRAL)
 			{
 				territories[i]->setOwner(newOwner);
 				for (int i = 0; i < neutrals.size(); i++)
@@ -663,28 +703,33 @@ void Territories::setNeutralLean(int side)
 
 	if (territories[TER_OLGIY] != NULL) // Not a Europe game
 	{
-		for (int i = TER_OLGIY; i <= TER_BUYANT_UHAA; i++)
+		for (int i = TER_OLGIY; i <= TER_BUYANT_UHAA; i++) // Mongolia only
 		{
-			int side = territories[i]->getSide();
-			int owner = territories[i]->getOwner();
-			if (side == SIDE_NEUTRAL && owner == FULL_NEUTRAL)
+			int currSide = territories[i]->getSide();
+			int currOwner = territories[i]->getOwner();
+			if (currSide == SIDE_NEUTRAL && currOwner == MONGOLIA_TER) // Still strict/owned by Mongolia
 			{
-				territories[i]->setOwner(newOwner);
-				for (int i = 0; i < neutrals.size(); i++)
+				// Mongolia becomes pro-Allies like a normal strict neutral
+				// Mongolia becomes pro-Axis only if Soviet Union attacks it directly
+				if (newOwner == ALLY_NEUTRAL || (newOwner == AXIS_NEUTRAL && mongoliaCond)) 
 				{
-					if (neutrals[i].id == i)
+					territories[i]->setOwner(newOwner);
+					for (int i = 0; i < neutrals.size(); i++)
 					{
-						neutrals[i].owner = newOwner;
-						neutrals[i].side = whichSide(newOwner);
-						break;
+						if (neutrals[i].id == i)
+						{
+							neutrals[i].owner = newOwner;
+							neutrals[i].side = whichSide(newOwner);
+							break;
+						}
 					}
-				}
 
-				territoryTransaction tmp;
-				tmp.id = i;
-				tmp.owner = newOwner;
-				tmp.side = whichSide(newOwner);
-				neutralUpdate.push_back(tmp);
+					territoryTransaction tmp;
+					tmp.id = i;
+					tmp.owner = newOwner;
+					tmp.side = whichSide(newOwner);
+					neutralUpdate.push_back(tmp);
+				}
 			}
 		}
 	}
@@ -695,7 +740,7 @@ void Territories::getNeutralTerrs(vector<territoryTransaction>& tmp)
 	tmp = neutrals;
 }
 
-void Territories::getNeutralTerrs(vector<listTerritory>& terrs, int side)
+void Territories::getNeutralTerrs(vector<listTerritory>& terrs, int side, bool incDutch)
 {
 	terrs.resize(0);
 
@@ -708,7 +753,8 @@ void Territories::getNeutralTerrs(vector<listTerritory>& terrs, int side)
 	for (int i = 0; i < neutrals.size(); i++)
 	{
 		int owner = territories[neutrals[i].id]->getOwner();
-		if (owner == lean) // Territory is a friendly neutral
+		// Territory is a friendly neutral or UK/ANZAC can occupy Dutch territories
+		if (owner == lean || (incDutch && owner == DUTCH_TER)) 
 		{
 			listTerritory tmp;
 			tmp.name = territories[neutrals[i].id]->getName();

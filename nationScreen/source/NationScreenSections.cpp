@@ -26,6 +26,7 @@ void Game::drawPhaseFrame(HDC& hdc)
 
 void Game::drawPhaseFrameButtons()
 {
+    int gameType = gameBoard->getGameType();
     int currPhase = gameBoard->getGameTurnPhase();
     int currNat = gameBoard->getGameCurrNation();
     
@@ -56,16 +57,44 @@ void Game::drawPhaseFrameButtons()
 
         showButton(declareWarButton);
 
-        if (gameBoard->getNeutralLean() == SIDE_NEUTRAL)
-            showButton(attackNeutralButton);
-        else
-            hideButton(attackNeutralButton);
+        if (gameBoard->isAtWar(currNat))
+        {
+            if (gameBoard->getNeutralLean() == SIDE_NEUTRAL && currNat != TURN_CHN)
+                showButton(attackNeutralButton);
+            else
+                hideButton(attackNeutralButton);
+        }
+
+        if ((currNat == TURN_SOV) && (gameType == GLOBAL_GAME) &&
+            (gameBoard->getMongoliaLean() == SIDE_NEUTRAL) && (gameBoard->isAtWar(TURN_SOV)))
+        {
+            showButton(attackMongoliaButton);
+            
+            if (gameBoard->getAtWarWith(TURN_JPN, TURN_SOV) && gameBoard->getMongoliaLean() == SIDE_NEUTRAL &&
+                !gameBoard->getSOVAttackedJapan())
+                showButton(attackJapanButton);
+            else
+                hideButton(attackJapanButton);
+        }
+        else if ((currNat == TURN_JPN) && (gameType == GLOBAL_GAME) &&
+            (gameBoard->getMongoliaLean() != SIDE_AXIS) && (gameBoard->isAtWar(TURN_JPN)))
+        {
+            if (gameBoard->getAtWarWith(TURN_JPN, TURN_SOV) && !gameBoard->getJPNAttackedSovietFlag() &&
+                !gameBoard->getSOVAttackedJapan())
+                showButton(attackSovietButton);
+            else
+                hideButton(attackSovietButton);
+        }
     }
     break;
     case CC_PHASE:
     {
         hideButton(declareWarButton);
         hideButton(attackNeutralButton);
+
+        hideButton(attackMongoliaButton);
+        hideButton(attackJapanButton);
+        hideButton(attackSovietButton);
 
         showButton(captureTerritoryButton);
     }

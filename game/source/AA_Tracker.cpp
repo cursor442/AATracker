@@ -282,7 +282,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             case IDB_ATTACKMONG:
             {
-                game->gameBoard->attackNeutral(hWnd);
+                game->gameBoard->attackMongolia(hWnd);
                 game->nsSection |= PHASE_SECT | PURCH_SECT;
                 game->nsPhase = BUT_PHASE;
                 game->nsNeut = NEUT_UPD;
@@ -291,12 +291,20 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             case IDB_ATTACKJPN:
             {
-
+                game->gameBoard->attackJapan(hWnd);
+                game->nsSection |= PHASE_SECT | PURCH_SECT;
+                game->nsPhase = BUT_PHASE;
+                game->nsNeut = NEUT_UPD;
+                RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
                 break;
             }
             case IDB_ATTACKSOV:
             {
-
+                game->gameBoard->attackSoviet(hWnd);
+                game->nsSection |= PHASE_SECT | PURCH_SECT;
+                game->nsPhase = BUT_PHASE;
+                game->nsNeut = NEUT_UPD;
+                RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
                 break;
             }
             case IDB_INFUP:    case IDB_INFDN:    case IDB_ARTUP:  case IDB_ARTDN:  case IDB_MECHUP:  case IDB_MECHDN:  case IDB_TANKUP:  case IDB_TANKDN:  case IDB_AAAUP:case IDB_AAADN:case IDB_FIGHTUP:case IDB_FIGHTDN: case IDB_TACTUP: case IDB_TACTDN: case IDB_STRATUP:case IDB_STRATDN:

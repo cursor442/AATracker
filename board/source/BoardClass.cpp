@@ -11,7 +11,7 @@ Board::Board()
 
 	territories = NULL;
 	neutralLean = SIDE_NEUTRAL;
-	mongoliaLean = false;
+	mongoliaLean = SIDE_NEUTRAL;
 
 	for (uint16_t i = 0; i < 10; i++)
 		nations[i] = NULL;
@@ -66,6 +66,9 @@ Board::Board()
 	sovControlGer = false;
 	usaBonus = false;
 	fraBonus = false;
+	jpnAttackedSoviet = false;
+	jpnAttackedSovietFlag = false;
+	sovAttackedJapan = false;
 
 	axisVicCities.resize(2);
 	alliesVicCities.resize(2);

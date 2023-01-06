@@ -240,11 +240,13 @@ INT_PTR CALLBACK Game::DeclareWar(HWND hDlg, UINT message, WPARAM wParam, LPARAM
                     {
                         gameBoard.setAtWarWith(TURN_JPN, whichUK);
                         gameBoard.setAtWarWith(TURN_JPN, TURN_ANZ);
+                        gameBoard.setAtWarWith(TURN_JPN, DUTCH_TER);
                     }
                     else if (k == TURN_ANZ)
                     {
                         gameBoard.setAtWarWith(TURN_JPN, TURN_UKE);
                         gameBoard.setAtWarWith(TURN_JPN, TURN_UKP);
+                        gameBoard.setAtWarWith(TURN_JPN, DUTCH_TER);
                     }
                 }
             }
@@ -254,11 +256,15 @@ INT_PTR CALLBACK Game::DeclareWar(HWND hDlg, UINT message, WPARAM wParam, LPARAM
                 if (((currNat == whichUK) || (currNat == TURN_ANZ)) && k == TURN_JPN)
                 {
                     if (currNat == whichUK)
+                    {
                         gameBoard.setAtWarWith(k, TURN_ANZ);
+                        gameBoard.setAtWarWith(k, DUTCH_TER);
+                    }
                     else if (currNat == TURN_ANZ)
                     {
                         gameBoard.setAtWarWith(TURN_JPN, TURN_UKE);
                         gameBoard.setAtWarWith(TURN_JPN, TURN_UKP);
+                        gameBoard.setAtWarWith(TURN_JPN, DUTCH_TER);
                     }
                 }
             }
@@ -278,7 +284,8 @@ INT_PTR CALLBACK Game::DeclareWar(HWND hDlg, UINT message, WPARAM wParam, LPARAM
             nsTurn = currTurn;
             nsCol = BONS_POS;
             nsBonusRow = BONS_UPD;
-            nsSection = WAR_SECT | SPREAD_SECT | BONUS_SECT;
+            nsPhase = CM_PHASE;
+            nsSection = PHASE_SECT | WAR_SECT | SPREAD_SECT | BONUS_SECT;
 
             gameLog->addLogText(currTurn, V_WAR, currNat, k);
 
@@ -314,7 +321,7 @@ INT_PTR CALLBACK Game::CaptureTerritory(HWND hDlg, UINT message, WPARAM wParam, 
     int prev = 0;
 
     // Whose territories are valid?
-    for (int i = 0; i <= TURN_FRA; i++)
+    for (int i = 0; i <= DUTCH_TER; i++)
     {
         if (whichSide(currNat) == SIDE_AXIS)
         {
@@ -361,7 +368,7 @@ INT_PTR CALLBACK Game::CaptureTerritory(HWND hDlg, UINT message, WPARAM wParam, 
                 min = 201;
                 for (int j = 0; j < validTerritories.size(); j++)
                 {
-                    if (validTerritories[j].alph < min)
+                    if (validTerritories[j].alph <= min)
                     {
                         min = validTerritories[j].alph;
                         idx = j;
@@ -475,10 +482,13 @@ INT_PTR CALLBACK Game::CaptureTerritory(HWND hDlg, UINT message, WPARAM wParam, 
 
             gameBoard->transferTerritory(hDlg, alphabetizedTerritories[k].id, currNat, captureAmount, prev, isLib, isLibCap);
 
-            if (isBeforeNation(prev, currNat))
-                updateSpreadsheet(prev, currTurn + 1, true);
-            else
-                updateSpreadsheet(prev, currTurn, true);
+            if (prev < DUTCH_TER)
+            {
+                if (isBeforeNation(prev, currNat))
+                    updateSpreadsheet(prev, currTurn + 1, true);
+                else
+                    updateSpreadsheet(prev, currTurn, true);
+            }
             updateSpreadsheet(currNat, currTurn, true);
 
             if (!isLib)
@@ -1141,7 +1151,11 @@ INT_PTR CALLBACK Game::OccupyNeutral(HWND hDlg, UINT message, WPARAM wParam, LPA
     vector<listTerritory> validNeutrals;
 
     // Which territories are valid?
-    gameBoard->getNeutralTerrs(validNeutrals, whichSide(currNat));
+    // UKP and ANZAC can occupy Dutch territories
+    if (currNat == TURN_UKE || currNat == TURN_ANZ)
+        gameBoard->getNeutralTerrs(validNeutrals, whichSide(currNat), true);
+    else
+        gameBoard->getNeutralTerrs(validNeutrals, whichSide(currNat));
 
     UNREFERENCED_PARAMETER(lParam);
     switch (message)

@@ -426,6 +426,13 @@ void Game::configNationScreen()
 		REAL cmBoxHeight = phaseSection->getBoxEdge(CM_PHASE, BOX_HEIGHT);
 		REAL ccBoxTop = phaseSection->getBoxEdge(CC_PHASE, BOX_TOP);
 		REAL ccBoxHeight = phaseSection->getBoxEdge(CC_PHASE, BOX_HEIGHT);
+		REAL ncBoxTop = phaseSection->getBoxEdge(NC_PHASE, BOX_TOP);
+		REAL ncBoxHeight = phaseSection->getBoxEdge(NC_PHASE, BOX_HEIGHT);
+
+		REAL specialButtonLeft0 = (REAL)cityFrameR.X - 24;
+		REAL specialButtonLeft1 = (REAL)(cityFrameR.X + (cityFrameR.Width / 2));
+		REAL specialButtonWidth0 = (REAL)(specialButtonLeft1 - specialButtonLeft0);
+		REAL specialButtonWidth1 = (REAL)(phaseSection->getBoxEdge(NC_PHASE, BOX_LEFT) - specialButtonLeft1);
 
 		if (nextPhaseButton == NULL)
 		{
@@ -547,17 +554,17 @@ void Game::configNationScreen()
 				L"BUTTON",                                             // Predefined class; Unicode assumed 
 				L"Attack Mongolia",                                    // Button text 
 				WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
-				buttonLeft,                                            // x position 
-				cmBoxTop,                                              // y position 
-				buttonWidth,                                           // Button width
-				cmBoxHeight,                                           // Button height
+				specialButtonLeft0,                                    // x position 
+				ncBoxTop,                                              // y position 
+				specialButtonWidth0,                                   // Button width
+				ncBoxHeight,                                           // Button height
 				main_Wnd,                                              // Parent window
 				(HMENU)IDB_ATTACKMONG,                                 // Menu.
 				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
 				NULL);
 
-			RectF rect = { buttonLeft, cmBoxTop, buttonWidth, cmBoxHeight };
-			gfx->tooltips->registerTooltip(graphics, (int)attackMongoliaButton, NATION_SCREEN, rect, TT_DIR_LEFT, "You are attacking a Mongolian territory in your Combat Move phase");
+			RectF rect = { specialButtonLeft0, ncBoxTop, specialButtonWidth0, ncBoxHeight };
+			gfx->tooltips->registerTooltip(graphics, (int)attackMongoliaButton, NATION_SCREEN, rect, TT_DIR_LEFT, "You are attacking a Mongolian territory\nin your Combat Move phase");
 		}
 
 		if (attackJapanButton == NULL)
@@ -566,17 +573,17 @@ void Game::configNationScreen()
 				L"BUTTON",                                             // Predefined class; Unicode assumed 
 				L"Attack Japan",                                       // Button text 
 				WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
-				buttonLeft,                                            // x position 
-				ccBoxTop,                                              // y position 
-				buttonWidth,                                           // Button width
-				ccBoxHeight,                                           // Button height
+				specialButtonLeft1,                                    // x position 
+				ncBoxTop,                                              // y position 
+				specialButtonWidth1,                                   // Button width
+				ncBoxHeight,                                           // Button height
 				main_Wnd,                                              // Parent window
 				(HMENU)IDB_ATTACKJPN,                                  // Menu.
 				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
 				NULL);
 
-			RectF rect = { buttonLeft, ccBoxTop, buttonWidth, ccBoxHeight };
-			gfx->tooltips->registerTooltip(graphics, (int)attackJapanButton, NATION_SCREEN, rect, TT_DIR_LEFT, "You are attacking Korea or any Mongolia-adjactent\nJapanese territory in your Combat Move phase");
+			RectF rect = { specialButtonLeft1, ncBoxTop, specialButtonWidth1, ncBoxHeight };
+			gfx->tooltips->registerTooltip(graphics, (int)attackJapanButton, NATION_SCREEN, rect, TT_DIR_RIGHT, "You are attacking Korea or any Mongolia-adjactent\nJapanese territory in your Combat Move phase");
 		}
 
 		if (attackSovietButton == NULL)
@@ -585,16 +592,16 @@ void Game::configNationScreen()
 				L"BUTTON",                                             // Predefined class; Unicode assumed 
 				L"Attack Soviet Union",                                // Button text 
 				WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
-				buttonLeft,                                            // x position 
-				ccBoxTop,                                              // y position 
-				buttonWidth,                                           // Button width
-				ccBoxHeight,                                           // Button height
+				buttonLeft - 24,                                       // x position 
+				ncBoxTop,                                              // y position 
+				buttonWidth + 24,                                      // Button width
+				ncBoxHeight,                                           // Button height
 				main_Wnd,                                              // Parent window
 				(HMENU)IDB_ATTACKSOV,                                  // Menu.
 				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
 				NULL);
 
-			RectF rect = { buttonLeft, ccBoxTop, buttonWidth, ccBoxHeight };
+			RectF rect = { buttonLeft - 24, ncBoxTop, buttonWidth + 24, ncBoxHeight };
 			gfx->tooltips->registerTooltip(graphics, (int)attackSovietButton, NATION_SCREEN, rect, TT_DIR_LEFT, "You are attacking a Mongolia-adjactent\nSoviet territory in your Combat Move phase");
 		}
 	}

@@ -3,6 +3,8 @@
 
 #include "../../game/header/Resource.h"
 
+#define WAR_MATRIX_SIZE 11
+
 class WarMatrix
 {
 public:
@@ -16,7 +18,7 @@ public:
 	bool getAtWarWith(int, int);
 
 private:
-	bool warMatrix[10][10];
+	bool warMatrix[WAR_MATRIX_SIZE][WAR_MATRIX_SIZE];
 
 	int gameType;
 };

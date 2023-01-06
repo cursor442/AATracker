@@ -132,6 +132,9 @@ void Game::hideNationScreen()
     hideButton(captureTerritoryButton);
     hideButton(attackNeutralButton);
     hideButton(occupyNeutralButton);
+    hideButton(attackMongoliaButton);
+    hideButton(attackSovietButton);
+    hideButton(attackJapanButton);
 
     hideNationScreenPurchButtons();
 

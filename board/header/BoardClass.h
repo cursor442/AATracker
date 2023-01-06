@@ -39,7 +39,7 @@ public:
 	int  getTerritoryOwner(int);
 	int  getTerritoryValue(int);
 	void getNeutralTerrs(vector<territoryTransaction>&);
-	void getNeutralTerrs(vector<listTerritory>&, int);
+	void getNeutralTerrs(vector<listTerritory>&, int, bool = false);
 	int  getNeutralTerrUpdateSize();
 	void getNeutralTerrUpdate(vector<territoryTransaction>&);
 	void resetNeutralTerrUpdate();
@@ -50,12 +50,17 @@ public:
 	void transferTerritoryAllies(HWND, int, vector<vector<int>>&);
 	int  calcNationIncome(int);
 
-	void setNeutralLean(int);
-	void setMong();
+	void setNeutralLean(int, bool = false);
+	void setMongoliaLean(int);
 	int  getNeutralLean();
-	bool getMong();
+	int  getMongoliaLean();
 	bool attackNeutral(HWND);
+	bool attackMongolia(HWND);
+	bool attackJapan(HWND);
+	bool attackSoviet(HWND);
 	void occupyNeutral();
+
+	void mongoliaJoinsSoviet(HWND);
 
 	///////////////////////////////////////////////////////////////////////////
 	//// Board Configuration
@@ -123,6 +128,9 @@ public:
 	void     setSovControlGer();
 	void     setUSABonus();
 	void     setFRABonus();
+	void     setJPNAttackedSoviet(bool);
+	void     setJPNAttackedSovietFlag(bool);
+	void     setSOVAttackedJapan(bool);
 	bool     isAtWar(uint16_t);
 
 	bool     getLondonFallen();
@@ -133,6 +141,9 @@ public:
 	bool     getSovControlGer();
 	bool     getUSABonus();
 	bool     getFRABonus();
+	bool     getJPNAttackedSoviet();
+	bool     getJPNAttackedSovietFlag();
+	bool     getSOVAttackedJapan();
 
 	void     updateBonuses(HWND, int, bool, int = 0);
 	uint16_t checkBonus(uint16_t, uint16_t, bool&);
@@ -170,8 +181,8 @@ private:
 	uint16_t gameCurrNation;
 	uint16_t gameTurnPhase;
 
-	bool mongoliaLean;
 	int neutralLean;
+	int mongoliaLean;
 
 	Nation* nations[10];
 	uint16_t cities[19];
@@ -187,6 +198,8 @@ private:
 	bool londonFallen, NAFallen, jpnDeclaredWarOnUK,
 		declaredWarOnUSA, sovControlGer, usaBonus,
 		franceLiberated, fraBonus;
+	bool jpnAttackedSoviet, jpnAttackedSovietFlag;
+	bool sovAttackedJapan;
 	vector<uint16_t> axisVicCities, alliesVicCities;
 
 	WarMatrix* warMatrix;

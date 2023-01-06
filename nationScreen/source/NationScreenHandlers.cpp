@@ -30,6 +30,18 @@ bool Game::nextTurnPhase(HWND& hWnd)
 		gameBoard->addPurchases(purchases);
 		// Don't reset the purchases until end of turn to keep reference
 	}
+	else if (phase == CC_PHASE)
+	{
+		// All neutral or pro-Allies Mongolian territories join the Soviet Union
+		if (nat == TURN_JPN && gameBoard->getJPNAttackedSovietFlag() && !gameBoard->getJPNAttackedSoviet())
+		{
+			gameBoard->mongoliaJoinsSoviet(hWnd);
+			gameBoard->setJPNAttackedSovietFlag(false);
+			gameBoard->setJPNAttackedSoviet(false);
+			nsSection |= PURCH_SECT;
+			nsNeut = NEUT_UPD;
+		}
+	}
 	else if (phase == CI_PHASE)
 	{
 		// Prepare current nation's next turn
@@ -92,6 +104,13 @@ bool Game::nextTurnPhase(HWND& hWnd)
 	{
 		captureAmount = 0;
 		nsSection = PHASE_SECT;
+		nsPhase = ALL_PHASE;
+	}
+	else if (phase == NC_PHASE)
+	{
+		// Japan attacks Soviet Union condition
+		if (nsNeut = NEUT_UPD)
+			nsSection |= PHASE_SECT;
 		nsPhase = ALL_PHASE;
 	}
 	else if (phase == CI_PHASE)

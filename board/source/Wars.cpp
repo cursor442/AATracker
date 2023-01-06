@@ -14,7 +14,6 @@ void Board::setWarMatrix(int axis, int ally, bool val)
 		if (ally == TURN_USA || ally == TURN_CHN || ally == TURN_UKP || ally == TURN_ANZ)
 			nations[ally]->goToWar();
 		break;
-		break;
 	case GLOBAL_GAME:
 		nations[ally]->goToWar();
 		break;
@@ -25,7 +24,9 @@ void Board::setWarMatrix(int axis, int ally, bool val)
 void Board::setAtWarWith(int axis, int ally)
 {
 	warMatrix->setWarMatrix(axis, ally, true);
-	nations[ally]->goToWar();
+
+	if (ally < DUTCH_TER)
+		nations[ally]->goToWar();
 }
 
 WarMatrix* Board::getWarMatrix()
@@ -124,6 +125,36 @@ void Board::setFRABonus()
 bool Board::getFRABonus()
 {
 	return fraBonus;
+}
+
+void Board::setJPNAttackedSoviet(bool val)
+{
+	jpnAttackedSoviet = val;
+}
+
+bool Board::getJPNAttackedSoviet()
+{
+	return jpnAttackedSoviet;
+}
+
+void Board::setJPNAttackedSovietFlag(bool val)
+{
+	jpnAttackedSovietFlag = val;
+}
+
+bool Board::getJPNAttackedSovietFlag()
+{
+	return jpnAttackedSovietFlag;
+}
+
+void Board::setSOVAttackedJapan(bool val)
+{
+	sovAttackedJapan = val;
+}
+
+bool Board::getSOVAttackedJapan()
+{
+	return sovAttackedJapan;
 }
 
 bool Board::isAtWar(uint16_t nat)

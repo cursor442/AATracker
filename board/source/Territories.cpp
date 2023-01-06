@@ -36,9 +36,9 @@ void Board::getNeutralTerrs(vector<territoryTransaction>& ters)
 	territories->getNeutralTerrs(ters);
 }
 
-void Board::getNeutralTerrs(vector<listTerritory>& ters, int side)
+void Board::getNeutralTerrs(vector<listTerritory>& ters, int side, bool incDutch)
 {
-	territories->getNeutralTerrs(ters, side);
+	territories->getNeutralTerrs(ters, side, incDutch);
 }
 
 int Board::getNeutralTerrUpdateSize()
@@ -71,7 +71,7 @@ void Board::transferTerritory(HWND hDlg, int ter, int& own)
 	nations[own]->addNationTerritories(gameTurn, 1);
 }
 
-void Board::transferTerritory(HWND hDlg, int ter, int& own, int &captureAmount, int &prev, bool &isLib, bool& libCap)
+void Board::transferTerritory(HWND hDlg, int ter, int& own, int& captureAmount, int& prev, bool& isLib, bool& libCap)
 {
 	int currNat = own;
 	prev = territories->getTerritoryOwner(ter);
@@ -127,43 +127,43 @@ void Board::transferTerritory(HWND hDlg, int ter, int& own, int &captureAmount, 
 		switch (own)
 		{
 		case TURN_GER:
-			{
-				setNationControlsCapital(TURN_GER, true);
-				setCityControl(CITY_BERLIN, SIDE_AXIS, TURN_GER);
+		{
+			setNationControlsCapital(TURN_GER, true);
+			setCityControl(CITY_BERLIN, SIDE_AXIS, TURN_GER);
 
-				if (isBeforeNation(TURN_GER, currNat))
-					nations[TURN_GER]->setNationIncome(gameTurn + 1, calcNationIncome(TURN_GER));
-				else
-					nations[TURN_GER]->setNationIncome(gameTurn, calcNationIncome(TURN_GER));
+			if (isBeforeNation(TURN_GER, currNat))
+				nations[TURN_GER]->setNationIncome(gameTurn + 1, calcNationIncome(TURN_GER));
+			else
+				nations[TURN_GER]->setNationIncome(gameTurn, calcNationIncome(TURN_GER));
 
-				break;
-			}
+			break;
+		}
 		case TURN_SOV:
-			{
-				setNationControlsCapital(TURN_SOV, true);
-				setCityControl(CITY_MOSCOW, SIDE_ALLIES, TURN_SOV);
+		{
+			setNationControlsCapital(TURN_SOV, true);
+			setCityControl(CITY_MOSCOW, SIDE_ALLIES, TURN_SOV);
 
-				if (isBeforeNation(TURN_SOV, currNat))
-					nations[TURN_SOV]->setNationIncome(gameTurn + 1, calcNationIncome(TURN_SOV));
-				else
-					nations[TURN_SOV]->setNationIncome(gameTurn, calcNationIncome(TURN_SOV));
+			if (isBeforeNation(TURN_SOV, currNat))
+				nations[TURN_SOV]->setNationIncome(gameTurn + 1, calcNationIncome(TURN_SOV));
+			else
+				nations[TURN_SOV]->setNationIncome(gameTurn, calcNationIncome(TURN_SOV));
 
-				break;
-			}
+			break;
+		}
 		case TURN_JPN:
-			{
-				setNationControlsCapital(TURN_JPN, true);
-				setCityControl(CITY_TOKYO, SIDE_AXIS, TURN_JPN);
+		{
+			setNationControlsCapital(TURN_JPN, true);
+			setCityControl(CITY_TOKYO, SIDE_AXIS, TURN_JPN);
 
-				if (isBeforeNation(TURN_JPN, currNat))
-					nations[TURN_JPN]->setNationIncome(gameTurn + 1, calcNationIncome(TURN_JPN));
-				else
-					nations[TURN_JPN]->setNationIncome(gameTurn, calcNationIncome(TURN_JPN));
+			if (isBeforeNation(TURN_JPN, currNat))
+				nations[TURN_JPN]->setNationIncome(gameTurn + 1, calcNationIncome(TURN_JPN));
+			else
+				nations[TURN_JPN]->setNationIncome(gameTurn, calcNationIncome(TURN_JPN));
 
-				break;
-			}
+			break;
+		}
 		case TURN_USA:
-			{
+		{
 			setNationControlsCapital(TURN_USA, true);
 			if (gameType != PACIFIC_GAME)
 				setCityControl(CITY_WASH, SIDE_ALLIES, TURN_USA);
@@ -176,68 +176,68 @@ void Board::transferTerritory(HWND hDlg, int ter, int& own, int &captureAmount, 
 				nations[TURN_USA]->setNationIncome(gameTurn, calcNationIncome(TURN_USA));
 
 			break;
-			}
+		}
 		case TURN_UKE:
-			{
-				setNationControlsCapital(TURN_UKE, true);
-				setCityControl(CITY_LONDON, SIDE_ALLIES, TURN_UKE);
+		{
+			setNationControlsCapital(TURN_UKE, true);
+			setCityControl(CITY_LONDON, SIDE_ALLIES, TURN_UKE);
 
-				if (isBeforeNation(TURN_UKE, currNat))
-					nations[TURN_UKE]->setNationIncome(gameTurn + 1, calcNationIncome(TURN_UKE));
-				else
-					nations[TURN_UKE]->setNationIncome(gameTurn, calcNationIncome(TURN_UKE));
+			if (isBeforeNation(TURN_UKE, currNat))
+				nations[TURN_UKE]->setNationIncome(gameTurn + 1, calcNationIncome(TURN_UKE));
+			else
+				nations[TURN_UKE]->setNationIncome(gameTurn, calcNationIncome(TURN_UKE));
 
-				break;
-			}
+			break;
+		}
 		case TURN_UKP:
-			{
-				setNationControlsCapital(TURN_UKP, true);
-				setCityControl(CITY_CALC, SIDE_ALLIES, TURN_UKP);
+		{
+			setNationControlsCapital(TURN_UKP, true);
+			setCityControl(CITY_CALC, SIDE_ALLIES, TURN_UKP);
 
-				if (isBeforeNation(TURN_UKP, currNat))
-					nations[TURN_UKP]->setNationIncome(gameTurn + 1, calcNationIncome(TURN_UKP));
-				else
-					nations[TURN_UKP]->setNationIncome(gameTurn, calcNationIncome(TURN_UKP));
+			if (isBeforeNation(TURN_UKP, currNat))
+				nations[TURN_UKP]->setNationIncome(gameTurn + 1, calcNationIncome(TURN_UKP));
+			else
+				nations[TURN_UKP]->setNationIncome(gameTurn, calcNationIncome(TURN_UKP));
 
-				break;
-			}
+			break;
+		}
 		case TURN_ITA:
-			{
-				setNationControlsCapital(TURN_ITA, true);
-				setCityControl(CITY_ROME, SIDE_AXIS, TURN_ITA);
+		{
+			setNationControlsCapital(TURN_ITA, true);
+			setCityControl(CITY_ROME, SIDE_AXIS, TURN_ITA);
 
-				if (isBeforeNation(TURN_ITA, currNat))
-					nations[TURN_ITA]->setNationIncome(gameTurn + 1, calcNationIncome(TURN_ITA));
-				else
-					nations[TURN_ITA]->setNationIncome(gameTurn, calcNationIncome(TURN_ITA));
+			if (isBeforeNation(TURN_ITA, currNat))
+				nations[TURN_ITA]->setNationIncome(gameTurn + 1, calcNationIncome(TURN_ITA));
+			else
+				nations[TURN_ITA]->setNationIncome(gameTurn, calcNationIncome(TURN_ITA));
 
-				break;
-			}
+			break;
+		}
 		case TURN_ANZ:
-			{
-				setNationControlsCapital(TURN_ANZ, true);
-				setCityControl(CITY_SYDNEY, SIDE_ALLIES, TURN_ANZ);
+		{
+			setNationControlsCapital(TURN_ANZ, true);
+			setCityControl(CITY_SYDNEY, SIDE_ALLIES, TURN_ANZ);
 
-				if (isBeforeNation(TURN_ANZ, currNat))
-					nations[TURN_ANZ]->setNationIncome(gameTurn + 1, calcNationIncome(TURN_ANZ));
-				else
-					nations[TURN_ANZ]->setNationIncome(gameTurn, calcNationIncome(TURN_ANZ));
+			if (isBeforeNation(TURN_ANZ, currNat))
+				nations[TURN_ANZ]->setNationIncome(gameTurn + 1, calcNationIncome(TURN_ANZ));
+			else
+				nations[TURN_ANZ]->setNationIncome(gameTurn, calcNationIncome(TURN_ANZ));
 
-				break;
-			}
+			break;
+		}
 		case TURN_FRA:
-			{
-				setNationControlsCapital(TURN_FRA, true);
-				setCityControl(CITY_PARIS, SIDE_ALLIES, TURN_FRA);
-				franceLiberated = true;
+		{
+			setNationControlsCapital(TURN_FRA, true);
+			setCityControl(CITY_PARIS, SIDE_ALLIES, TURN_FRA);
+			franceLiberated = true;
 
-				if (isBeforeNation(TURN_FRA, currNat))
-					nations[TURN_FRA]->setNationIncome(gameTurn + 1, calcNationIncome(TURN_FRA));
-				else
-					nations[TURN_FRA]->setNationIncome(gameTurn, calcNationIncome(TURN_FRA));
+			if (isBeforeNation(TURN_FRA, currNat))
+				nations[TURN_FRA]->setNationIncome(gameTurn + 1, calcNationIncome(TURN_FRA));
+			else
+				nations[TURN_FRA]->setNationIncome(gameTurn, calcNationIncome(TURN_FRA));
 
-				break;
-			}
+			break;
+		}
 		default: break;
 		}
 	}
@@ -402,17 +402,24 @@ void Board::transferTerritory(HWND hDlg, int ter, int& own, int &captureAmount, 
 	captureAmount = transferVal;
 
 	// Subtract income from previous owner
-	if (isBeforeNation(prev, own))
-		nations[prev]->addNationIncome(gameTurn + 1, -1 * val);
-	else
-		nations[prev]->addNationIncome(gameTurn, -1 * val);
+	if (prev < DUTCH_TER)
+	{
+		if (isBeforeNation(prev, own))
+			nations[prev]->addNationIncome(gameTurn + 1, -1 * val);
+		else
+			nations[prev]->addNationIncome(gameTurn, -1 * val);
+	}
 
 	// Transfer the territory
 	territories->transferTerritory(ter, own);
-	if (isBeforeNation(prev, own))
-		nations[prev]->addNationTerritories(gameTurn + 1, -1);
-	else
-		nations[prev]->addNationTerritories(gameTurn, -1);
+
+	if (prev < DUTCH_TER)
+	{
+		if (isBeforeNation(prev, own))
+			nations[prev]->addNationTerritories(gameTurn + 1, -1);
+		else
+			nations[prev]->addNationTerritories(gameTurn, -1);
+	}
 	nations[own]->addNationTerritories(gameTurn, 1);
 
 	// Update bonuses
@@ -527,21 +534,35 @@ int Board::calcNationIncome(int nat)
 }
 
 
-void Board::setNeutralLean(int side)
+void Board::setNeutralLean(int side, bool mongoliaCond)
 {
-	if (neutralLean == SIDE_NEUTRAL)
+	if (neutralLean == SIDE_NEUTRAL && !mongoliaCond)
 	{
 		if (side == SIDE_AXIS || side == SIDE_ALLIES)
 			neutralLean = side;
-	}
 
-	bonuses->setNeutralLean(neutralLean);
-	territories->setNeutralLean(neutralLean);
+		if (side == SIDE_ALLIES)
+			setMongoliaLean(SIDE_ALLIES);
+
+		bonuses->setNeutralLean(neutralLean);
+		territories->setNeutralLean(neutralLean, gameCurrNation);
+	}
+	else if (mongoliaLean == SIDE_NEUTRAL && mongoliaCond)
+	{
+		if (neutralLean == SIDE_NEUTRAL && (side == SIDE_AXIS || side == SIDE_ALLIES))
+		{
+			neutralLean = side;
+			bonuses->setNeutralLean(neutralLean);
+			territories->setNeutralLean(neutralLean, gameCurrNation, mongoliaCond);
+		}
+
+		setMongoliaLean(side);
+	}
 }
 
-void Board::setMong()
+void Board::setMongoliaLean(int side)
 {
-	mongoliaLean = true;
+	mongoliaLean = side;
 }
 
 int Board::getNeutralLean()
@@ -549,7 +570,7 @@ int Board::getNeutralLean()
 	return neutralLean;
 }
 
-bool Board::getMong()
+int Board::getMongoliaLean()
 {
 	return mongoliaLean;
 }
@@ -578,7 +599,81 @@ bool Board::attackNeutral(HWND hWnd)
 		return false;
 }
 
+bool Board::attackMongolia(HWND hWnd)
+{
+	if (gameType == GLOBAL_GAME && gameCurrNation == TURN_SOV)
+	{
+		int msgboxID = IDNO;
+		if (getNeutralLean() == SIDE_NEUTRAL)
+		{
+			msgboxID = MessageBox(hWnd, L"Attacking Mongolia will turn all\nother strict neutrals against you!\n\nContinue?",
+				L"Attack Mongolia", MB_ICONEXCLAMATION | MB_YESNO);
+		}
+		else if (getNeutralLean() == SIDE_AXIS && getMongoliaLean() == SIDE_NEUTRAL)
+		{
+			msgboxID = MessageBox(hWnd, L"Attacking Mongolia will\nturn it against you!\n\nContinue?",
+				L"Attack Mongolia", MB_ICONEXCLAMATION | MB_YESNO);
+		}
+
+		if (msgboxID == IDNO)
+			return false;
+		else if (msgboxID == IDYES)
+		{
+			setNeutralLean(SIDE_AXIS, true);
+			return true;
+		}
+		else
+			return false;
+	}
+	else
+		return false;
+}
+
+bool Board::attackJapan(HWND hWnd)
+{
+	int msgboxID = MessageBox(hWnd, L"Attacking Korea or any Mongolia-adjacent Japanese-controlled territory "
+		L"will prevent Mongolia from joining the Soviet Union if Japan attacks you!\n\nContinue?",
+		L"Attack Soviet Union", MB_ICONEXCLAMATION | MB_YESNO);
+
+	if (msgboxID == IDNO)
+		return false;
+	else if (msgboxID == IDYES)
+	{
+		sovAttackedJapan = true;
+		return true;
+	}
+}
+
+bool Board::attackSoviet(HWND hWnd)
+{
+	int msgboxID = MessageBox(hWnd, L"Attacking the Soviet Union will cause all\nNeutral or Pro-Allies Mongolian territories\n"
+		L"to join the Soviet Union at the end\nof your Conduct Combat phase!\n\nContinue?",
+		L"Attack Soviet Union", MB_ICONEXCLAMATION | MB_YESNO);
+
+	if (msgboxID == IDNO)
+		return false;
+	else if (msgboxID == IDYES)
+	{
+		jpnAttackedSovietFlag = true;
+		return true;
+	}
+}
+
 void Board::occupyNeutral()
 {
 
+}
+
+void Board::mongoliaJoinsSoviet(HWND hDlg)
+{
+	int newOwn = TURN_SOV;
+	for (int i = TER_OLGIY; i <= TER_BUYANT_UHAA; i++) // Mongolia only
+	{
+		// Still strict/owned by Mongolia and not leaning toward Axis
+		int currSide = territories->getTerritoryOwnerSide(i);
+		if (currSide == SIDE_NEUTRAL && mongoliaLean != SIDE_AXIS)
+		{
+			transferTerritory(hDlg, i, newOwn);
+		}
+	}
 }

@@ -28,11 +28,13 @@ public:
 	void configEurCities();
 	void configEurIslands();
 	void configEurNeutrals();
+	void configEurDutch();
 	void configEurFacilities();
 	void configPacTerrs();
 	void configPacCities();
 	void configPacIslands();
 	void configPacNeutrals();
+	void configPacDutch();
 	void configPacFacilities();
 	void globalGameAdj();
 
@@ -49,9 +51,9 @@ public:
 	bool getIsCap(int);
 	void transferTerritory(int, int);
 
-	void setNeutralLean(int);
+	void setNeutralLean(int, int, bool = false);
 	void getNeutralTerrs(vector<territoryTransaction>&);
-	void getNeutralTerrs(vector<listTerritory>&, int);
+	void getNeutralTerrs(vector<listTerritory>&, int, bool = false);
 	int  getNeutralTerrUpdateSize();
 	void getNeutralTerrUpdate(vector<territoryTransaction>&);
 
@@ -63,7 +65,7 @@ private:
 	vector<territoryTransaction> neutralUpdate;
 
 	int gameType;
-
+	
 	void alphabetizeList(vector<territoryTransaction>&);
 	void alphabetizeList(vector<territoryTransaction>&, int, int);
 
