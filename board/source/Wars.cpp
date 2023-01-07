@@ -39,6 +39,11 @@ bool Board::getAtWarWith(int axis, int ally)
 	return warMatrix->getAtWarWith(axis, ally);
 }
 
+bool Board::getNationIsAtWar(int nat)
+{
+	return nations[nat]->isAtWar();
+}
+
 void Board::setLondonFallen()
 {
 	londonFallen = true;

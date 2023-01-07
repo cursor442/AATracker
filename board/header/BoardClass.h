@@ -117,6 +117,7 @@ public:
 	int      getNationPenalty(int, int);
 	int      getNationExpenses(int, int);
 	int      getNationTerritories(int, int);
+	bool     getNationIsAtWar(int);
 	WarMatrix* getWarMatrix();
 	bool     getAtWarWith(int, int);
 	bool     canDeclareWarOn(uint16_t, uint16_t);

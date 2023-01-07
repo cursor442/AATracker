@@ -1,12 +1,7 @@
 ﻿  BoardClass.cpp
   BoardEconomies.cpp
-  BonusClass.cpp
   Bonuses.cpp
   Territories.cpp
-  TerritoriesClass.cpp
-C:\Users\Adam\Documents\GitHub\AATracker\board\source\TerritoriesClass.cpp(452,32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\board\source\TerritoriesClass.cpp(467,35): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\board\source\TerritoriesClass.cpp(775,29): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
   Wars.cpp
   AA_Tracker.cpp
   AuxFunctions.cpp
@@ -78,20 +73,8 @@ C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\GraphicsHandlers.cpp(61
   LogScreen.cpp
   MainScreen.cpp
 C:\Users\Adam\Documents\GitHub\AATracker\mainScreen\MainScreen.cpp(11,36): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  NeutralSection.cpp
-C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\NeutralSection.cpp(34,21): warning C4156: deletion of an array expression without using the array form of 'delete'; array form substituted
-C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\NeutralSection.cpp(34,21): warning C4154: deletion of an array expression; conversion to pointer supplied
-C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\NeutralSection.cpp(145,11): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\NeutralSection.cpp(187,3): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\NeutralSection.cpp(204,3): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   NatScreenPurchHelp.cpp
   NationScreen.cpp
-  Generating Code...
-C:\Users\Adam\Documents\GitHub\AATracker\game\source\AuxFunctions.cpp(70): warning C4172: returning address of local variable or temporary: str
-C:\Users\Adam\Documents\GitHub\AATracker\game\source\AuxFunctions.cpp(18): warning C4172: returning address of local variable or temporary: str
-C:\Users\Adam\Documents\GitHub\AATracker\board\source\Territories.cpp(650): warning C4715: 'Board::attackJapan': not all control paths return a value
-C:\Users\Adam\Documents\GitHub\AATracker\board\source\Territories.cpp(665): warning C4715: 'Board::attackSoviet': not all control paths return a value
-  Compiling...
   NationScreenAux.cpp
   NationScreenConfig.cpp
 C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(243,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
@@ -124,6 +107,12 @@ C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.
 C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(605,68): warning C4311: 'type cast': pointer truncation from 'HWND' to 'int'
 C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(605,68): warning C4302: 'type cast': truncation from 'HWND' to 'int'
   NationScreenHandlers.cpp
+  Generating Code...
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\AuxFunctions.cpp(18): warning C4172: returning address of local variable or temporary: str
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\AuxFunctions.cpp(70): warning C4172: returning address of local variable or temporary: str
+C:\Users\Adam\Documents\GitHub\AATracker\board\source\Territories.cpp(650): warning C4715: 'Board::attackJapan': not all control paths return a value
+C:\Users\Adam\Documents\GitHub\AATracker\board\source\Territories.cpp(665): warning C4715: 'Board::attackSoviet': not all control paths return a value
+  Compiling...
   NationScreenSections.cpp
   ResearchScreen.cpp
   SpreadScreen.cpp

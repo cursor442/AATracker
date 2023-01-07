@@ -103,7 +103,8 @@ void Game::drawPhaseFrameButtons()
     {
         hideButton(captureTerritoryButton);
 
-        showButton(occupyNeutralButton);
+        if (gameBoard->getNationIsAtWar(currNat))
+            showButton(occupyNeutralButton);
         break;
     }
     case MN_PHASE:
