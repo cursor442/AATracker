@@ -31,6 +31,11 @@ int Board::getTerritoryValue(int ter)
 	return territories->getTerritoryValue(ter);
 }
 
+bool Board::getTerritoryValidForChina(int ter)
+{
+	return territories->getIsValidForChina(ter);
+}
+
 void Board::getNeutralTerrs(vector<territoryTransaction>& ters)
 {
 	territories->getNeutralTerrs(ters);

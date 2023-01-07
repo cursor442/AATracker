@@ -357,9 +357,21 @@ INT_PTR CALLBACK Game::CaptureTerritory(HWND hDlg, UINT message, WPARAM wParam, 
             {
                 if (gameBoard->getTerritoryOwner(i) == wars[j])
                 {
-                    gameBoard->getTerritoryName(i, temp);
-                    validTerritories.push_back(temp);
-                    break;
+                    if (currNat == TURN_CHN)
+                    {
+                        if (gameBoard->getTerritoryValidForChina(i))
+                        {
+                            gameBoard->getTerritoryName(i, temp);
+                            validTerritories.push_back(temp);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        gameBoard->getTerritoryName(i, temp);
+                        validTerritories.push_back(temp);
+                        break;
+                    }
                 }
             }
         }

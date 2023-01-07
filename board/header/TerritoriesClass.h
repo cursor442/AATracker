@@ -49,6 +49,7 @@ public:
 	int  getTerritoryValue(int);
 
 	bool getIsCap(int);
+	bool getIsValidForChina(int);
 	void transferTerritory(int, int);
 
 	void setNeutralLean(int, int, bool = false);

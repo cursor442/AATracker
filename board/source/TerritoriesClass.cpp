@@ -625,6 +625,11 @@ bool Territories::getIsCap(int ter)
 	return territories[ter]->getIsCap();
 }
 
+bool Territories::getIsValidForChina(int ter)
+{
+	return territories[ter]->getIsValidForChina();
+}
+
 void Territories::transferTerritory(int ter, int nat)
 {
 	if (whichSide(territories[ter]->getOwner()) == SIDE_NEUTRAL)

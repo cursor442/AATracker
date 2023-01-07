@@ -38,6 +38,7 @@ public:
 	int  getTerritoryOriginal(int);
 	int  getTerritoryOwner(int);
 	int  getTerritoryValue(int);
+	bool getTerritoryValidForChina(int);
 	void getNeutralTerrs(vector<territoryTransaction>&);
 	void getNeutralTerrs(vector<listTerritory>&, int, bool = false);
 	int  getNeutralTerrUpdateSize();
