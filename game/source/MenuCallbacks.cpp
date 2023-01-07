@@ -310,6 +310,7 @@ INT_PTR CALLBACK Game::CaptureTerritory(HWND hDlg, UINT message, WPARAM wParam, 
     WPARAM ItemIndex;
 
     int currNat = gameBoard->getGameCurrNation();
+    int currSide = whichSide(currNat);
     int currTurn = gameBoard->getGameTurn();
     int type = gameBoard->getGameType();
     vector<listTerritory> validTerritories;
@@ -342,6 +343,12 @@ INT_PTR CALLBACK Game::CaptureTerritory(HWND hDlg, UINT message, WPARAM wParam, 
 
     if (wars.size() > 0)
     {
+        // Add neutral territories which lean the other way
+        if (currSide == SIDE_AXIS)
+            wars.push_back(ALLY_NEUTRAL);
+        else if (currSide == SIDE_ALLIES)
+            wars.push_back(AXIS_NEUTRAL);
+
         // Make a list
         listTerritory temp;
         for (int i = low; i <= high; i++)
