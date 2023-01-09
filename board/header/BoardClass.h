@@ -55,8 +55,8 @@ public:
 	void setMongoliaLean(int);
 	int  getNeutralLean();
 	int  getMongoliaLean();
-	bool attackNeutral(HWND);
-	bool attackMongolia(HWND);
+	bool attackNeutral(HWND, int&);
+	bool attackMongolia(HWND, int&);
 	bool attackJapan(HWND);
 	bool attackSoviet(HWND);
 	void occupyNeutral();

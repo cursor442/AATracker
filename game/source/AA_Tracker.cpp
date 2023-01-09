@@ -267,11 +267,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             case IDB_ATTACKNEUT:
             {
-                game->gameBoard->attackNeutral(hWnd);
-                game->nsSection |= PHASE_SECT | PURCH_SECT;
-                game->nsPhase = BUT_PHASE;
-                game->nsNeut = NEUT_UPD;
-                RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+                game->attackNeutralButtonHandler(hWnd);
                 break;
             }
             case IDB_OCCUPYNEUT:
@@ -282,11 +278,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             case IDB_ATTACKMONG:
             {
-                game->gameBoard->attackMongolia(hWnd);
-                game->nsSection |= PHASE_SECT | PURCH_SECT;
-                game->nsPhase = BUT_PHASE;
-                game->nsNeut = NEUT_UPD;
-                RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+                game->attackMongoliaButtonHandler(hWnd);
                 break;
             }
             case IDB_ATTACKJPN:

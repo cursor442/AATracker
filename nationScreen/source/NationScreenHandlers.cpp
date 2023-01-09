@@ -109,7 +109,7 @@ bool Game::nextTurnPhase(HWND& hWnd)
 	else if (phase == NC_PHASE)
 	{
 		// Japan attacks Soviet Union condition
-		if (nsNeut = NEUT_UPD)
+		if (nsNeut == NEUT_UPD)
 			nsSection |= PHASE_SECT;
 		nsPhase = ALL_PHASE;
 	}
@@ -245,6 +245,43 @@ void Game::purchaseButton(HWND& hWnd, int wmId)
 				undoPurchases(wmId);
 		}
 	}
+}
+
+void Game::attackNeutralButtonHandler(HWND& hWnd)
+{
+	int whichSide = SIDE_NEUTRAL;
+	if (gameBoard->attackNeutral(hWnd, whichSide))
+	{
+		if (whichSide == SIDE_AXIS)
+			gameLog->addLogText(gameBoard->getGameTurn(), V_NEUTRAL_AXIS, TURN_NON, TURN_NON);
+		else if (whichSide == SIDE_ALLIES)
+			gameLog->addLogText(gameBoard->getGameTurn(), V_NEUTRAL_ALLY, TURN_NON, TURN_NON);
+	}
+
+	nsSection |= PHASE_SECT | PURCH_SECT;
+	nsPhase = BUT_PHASE;
+	nsNeut = NEUT_UPD;
+	RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+}
+
+void Game::attackMongoliaButtonHandler(HWND& hWnd)
+{
+	int currLean = SIDE_NEUTRAL;
+	if (gameBoard->attackMongolia(hWnd, currLean))
+	{
+		if (currLean != SIDE_NEUTRAL) // Only Mongolia changes
+			gameLog->addLogText(gameBoard->getGameTurn(), V_MONGOLIA, TURN_NON, TURN_NON);
+		else // All neutral territories are becoming pro-Axis
+		{
+			gameLog->addLogText(gameBoard->getGameTurn(), V_NEUTRAL_AXIS, TURN_NON, TURN_NON);
+			gameLog->addLogText(gameBoard->getGameTurn(), V_MONGOLIA, TURN_NON, TURN_NON);
+		}
+	}
+
+	nsSection |= PHASE_SECT | PURCH_SECT;
+	nsPhase = BUT_PHASE;
+	nsNeut = NEUT_UPD;
+	RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
 }
 
 void Game::loadMiniSpreads()

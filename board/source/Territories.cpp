@@ -580,7 +580,7 @@ int Board::getMongoliaLean()
 	return mongoliaLean;
 }
 
-bool Board::attackNeutral(HWND hWnd)
+bool Board::attackNeutral(HWND hWnd, int& side)
 {
 	int msgboxID = MessageBox(hWnd, L"Attacking a strict neutral territory will\nturn all other strict neutrals against you!\nContinue?",
 		L"Attack Strict Neutral", MB_ICONEXCLAMATION | MB_YESNO);
@@ -591,7 +591,6 @@ bool Board::attackNeutral(HWND hWnd)
 	{
 		int currSide = whichSide(gameCurrNation);
 
-		int side = SIDE_NEUTRAL;
 		if (currSide == SIDE_AXIS)
 			side = SIDE_ALLIES;
 		else if (currSide == SIDE_ALLIES)
@@ -604,17 +603,19 @@ bool Board::attackNeutral(HWND hWnd)
 		return false;
 }
 
-bool Board::attackMongolia(HWND hWnd)
+bool Board::attackMongolia(HWND hWnd, int& currLean)
 {
+	currLean = getNeutralLean();
+
 	if (gameType == GLOBAL_GAME && gameCurrNation == TURN_SOV)
 	{
 		int msgboxID = IDNO;
-		if (getNeutralLean() == SIDE_NEUTRAL)
+		if (currLean == SIDE_NEUTRAL)
 		{
 			msgboxID = MessageBox(hWnd, L"Attacking Mongolia will turn all\nother strict neutrals against you!\n\nContinue?",
 				L"Attack Mongolia", MB_ICONEXCLAMATION | MB_YESNO);
 		}
-		else if (getNeutralLean() == SIDE_AXIS && getMongoliaLean() == SIDE_NEUTRAL)
+		else if (currLean == SIDE_AXIS && getMongoliaLean() == SIDE_NEUTRAL)
 		{
 			msgboxID = MessageBox(hWnd, L"Attacking Mongolia will\nturn it against you!\n\nContinue?",
 				L"Attack Mongolia", MB_ICONEXCLAMATION | MB_YESNO);

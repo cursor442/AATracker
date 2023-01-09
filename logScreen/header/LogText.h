@@ -1,14 +1,62 @@
 #ifndef LOG_TEXT
 #define LOG_TEXT
 
-//// Used by the name section class
+#include "../../board/header/Territories.h"
+
+///////////////////////////////////////////////////////////////////////////
+//// Name Section
+///////////////////////////////////////////////////////////////////////////
+
 const WCHAR natNames[10][15] = { L"Germany", L"Soviet Union", L"Japan",
 	L"United States", L"China", L"United Kingdom", L"United Kingdom",
 	L"Italy", L"ANZAC", L"France" };
 // Game types
 const WCHAR gameTypes[3][13] = { L"Europe 1940", L"Pacific 1940", L"Global 1940" };
 
-//// Used by the log class
+///////////////////////////////////////////////////////////////////////////
+//// Neutral Section
+///////////////////////////////////////////////////////////////////////////
+
+#define NEUTRAL_EUR_S   33
+#define NEUTRAL_PAC_S    6
+
+#define NEUTRAL_TEXTLEN 47
+#define NEUTRAL_NAMELEN 18
+
+const WCHAR strictNeutral[] = L"Strict Neutral territories have no lean.";
+const WCHAR axisNeutral[] = L"Strict Neutral territories are now Pro-Axis.";
+const WCHAR allyNeutral[] = L"Strict Neutral territories are now Pro-Allies.";
+const WCHAR mongNeutral[] = L"Mongolian Territories are now Pro-Axis.";
+
+const int strictNeutral_len = 41;
+const int axisNeutral_len = 45;
+const int allyNeutral_len = 47;
+const int mongNeutral_len = 40;
+
+// Europe neutrals
+const WCHAR eurNeutral[NEUTRAL_EUR_S][NEUTRAL_NAMELEN] = { L"Afghanistan", L"Angola", L"Argentina",
+	L"Bolivia", L"Brazil", L"Bulgaria", L"Chile", L"Colombia", L"Crete", L"Eastern Persia",
+	L"Ecuador", L"Eire", L"Finland", L"Greece", L"Iraq", L"Liberia", L"Mozambique",
+	L"Northwest Persia", L"Paraguay", L"Persia", L"Peru", L"Portugal", L"Portuguese Guinea",
+	L"Rio de Oro", L"Saudi Arabia", L"Sierra Leone", L"Spain", L"Sweden", L"Switzerland",
+	L"Turkey", L"Uruguay", L"Venezuela", L"Yugoslavia" };
+const int eurNeutralPos[NEUTRAL_EUR_S] = { TER_AFGHANISTAN, TER_ANGOLA, TER_ARGENTINA, TER_BOLIVIA, TER_BRAZIL,
+	TER_BULGARIA, TER_CHILE, TER_COLOMBIA, TER_CRETE, TER_EAST_PERSIA, TER_ECUADOR, TER_EIRE,
+	TER_FINLAND, TER_GREECE, TER_IRAQ, TER_LIBERIA, TER_MOZAMBIQUE, TER_NW_PERSIA, TER_PARAGUAY,
+	TER_PERSIA, TER_PERU, TER_PORTUGAL, TER_PORT_GUINEA, TER_RIO_DE_ORO, TER_SAUDI_ARABIA,
+	TER_SIERRA_LEONE, TER_SPAIN, TER_SWITZERLAND, TER_TURKEY, TER_URUGUAY, TER_VENEZUELA,
+	TER_YUGOSLAVIA };
+
+// Pacific neutrals
+const WCHAR pacNeutral[NEUTRAL_PAC_S][NEUTRAL_NAMELEN] = { L"Buyant-Uhaa", L"Central Mongolia", L"Dzavhan",
+	L"Olgiy",  L"Tsagaan-Olom", L"Ulaanbaatar",  };
+const int pacNeutralPos[NEUTRAL_PAC_S] = { TER_BUYANT_UHAA,  TER_CNT_MONGOLIA,  TER_DZAVHAN,  TER_OLGIY,
+	TER_TSAGAAN_OLOM, TER_ULAANBAATAR };
+
+///////////////////////////////////////////////////////////////////////////
+//// Log Screen
+///////////////////////////////////////////////////////////////////////////
+
 // Nouns
 const WCHAR nats[10][20] = { L"Germany ", L"Soviet Union ", L"Japan ",
 	L"United States ", L"China ", L"United Kingdom (E) ", L"United Kingdom (P) ",

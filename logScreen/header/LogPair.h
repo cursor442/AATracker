@@ -13,15 +13,19 @@
 #define TEXTWIDTH    650
 
 // Verbs
-#define V_BLANK     -1
-#define V_SETUP      0
-#define V_WAR        1
-#define V_CAPTURE    2
-#define V_LIBERATE   3
-#define V_RECLAIM    4
-#define V_OCCUPY     5
-#define V_RESEARCH   6
-#define V_CUSTOM     7
+#define V_BLANK         -1
+#define V_SETUP          0
+#define V_WAR            1
+#define V_CAPTURE        2
+#define V_LIBERATE       3
+#define V_RECLAIM        4
+#define V_OCCUPY         5
+#define V_RESEARCH       6
+#define V_NEUTRAL        7
+#define V_NEUTRAL_AXIS   8
+#define V_NEUTRAL_ALLY   9
+#define V_MONGOLIA      10
+#define V_CUSTOM        11
 
 // Text box adjustment codes
 #define C_NONE      -1

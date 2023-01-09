@@ -1,7 +1,7 @@
 #include "../header/LogClass.h"
 #include "../header/LogTerrs.h"
 
-Log::Log(uint16_t type, RECT logPane)
+Log::Log(int type, RECT logPane)
 {
 	pane = logPane;
 
@@ -23,28 +23,29 @@ Log::Log(uint16_t type, RECT logPane)
 	target.resize(0);
 
 	logBox[0][0][0]->setText(0, V_SETUP);
+	logBox[0][0][1]->setText(0, V_NEUTRAL);
 
 	if (type == EUROPE_GAME)
 	{
 		target.resize(2); target[0] = TURN_UKE; target[1] = TURN_FRA;
-		logBox[0][0][1]->setText(0, V_WAR, TURN_GER, &target);
-		logBox[0][0][2]->setText(0, V_WAR, TURN_ITA, &target);
-		currRow = 3;
+		logBox[0][0][2]->setText(0, V_WAR, TURN_GER, &target);
+		logBox[0][0][3]->setText(0, V_WAR, TURN_ITA, &target);
+		currRow = 4;
 	}
 	else if (type == PACIFIC_GAME)
 	{
 		target.resize(1); target[0] = TURN_CHN;
-		logBox[0][0][1]->setText(0, V_WAR, TURN_JPN, &target);
-		currRow = 2;
+		logBox[0][0][2]->setText(0, V_WAR, TURN_JPN, &target);
+		currRow = 3;
 	}
 	else
 	{
 		target.resize(3); target[0] = TURN_UKE; target[1] = TURN_ANZ; target[2] = TURN_FRA;
-		logBox[0][0][1]->setText(0, V_WAR, TURN_GER, &target);
-		logBox[0][0][2]->setText(0, V_WAR, TURN_ITA, &target);
+		logBox[0][0][2]->setText(0, V_WAR, TURN_GER, &target);
+		logBox[0][0][3]->setText(0, V_WAR, TURN_ITA, &target);
 		target.resize(1); target[0] = TURN_CHN;
-		logBox[0][0][3]->setText(0, V_WAR, TURN_JPN, &target);
-		currRow = 4;
+		logBox[0][0][4]->setText(0, V_WAR, TURN_JPN, &target);
+		currRow = 5;
 	}
 
 	target.resize(0);
@@ -256,6 +257,12 @@ void Log::addLogText(int turn, int verb, int nat, int tgt, int object, int indir
 			logBox[resPos.page][resPos.col][resPos.row]->setText(turn + 1, V_RESEARCH, nat, tgt);
 		}
 
+		break;
+	}
+	case V_NEUTRAL_AXIS: case V_NEUTRAL_ALLY: case V_MONGOLIA:
+	{
+		logBox[currPage][currCol][currRow]->setText(turn + 1, verb, TURN_NON, TURN_NON);
+		incCell();
 		break;
 	}
 	default: break;

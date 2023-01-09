@@ -272,6 +272,26 @@ void LogPair::drawPair(Graphics& graphics, Pen* pen, Font* turnFont, Font* textF
 		addText(graphics, end, end_len, textFont, *whichBox, bounds, sf1, brush, true);
 		break;
 	}
+	case V_NEUTRAL:
+	{
+		graphics.DrawString(strictNeutral, strictNeutral_len, textFont, *textBox0, sf1, brush);
+		break;
+	}
+	case V_NEUTRAL_AXIS:
+	{
+		graphics.DrawString(axisNeutral, axisNeutral_len, textFont, *textBox0, sf1, brush);
+		break;
+	}
+	case V_NEUTRAL_ALLY:
+	{
+		graphics.DrawString(allyNeutral, allyNeutral_len, textFont, *textBox0, sf1, brush);
+		break;
+	}
+	case V_MONGOLIA:
+	{
+		graphics.DrawString(mongNeutral, mongNeutral_len, textFont, *textBox0, sf1, brush);
+		break;
+	}
 	default:
 		break;
 	}
@@ -302,7 +322,9 @@ bool LogPair::setText(uint16_t t, int verb, int subject, int target, int object,
 	int i = 0; int j = 0;
 	
 	// Filter out start of game
-	if (verb == V_SETUP)
+	if (verb == V_SETUP || verb == V_NEUTRAL)
+		return true;
+	else if (verb == V_NEUTRAL_AXIS || verb == V_NEUTRAL_ALLY || verb == V_MONGOLIA) // Filter out neutral leaning changes
 		return true;
 	else if (verb == V_CUSTOM) // Filter out custom logs
 		return true;

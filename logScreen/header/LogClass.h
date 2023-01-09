@@ -17,7 +17,7 @@ struct idxLog {
 class Log
 {
 public:
-	Log(uint16_t, RECT);
+	Log(int, RECT);
 	~Log();
 
 	void addLogText(int, int, int, int, int = TURN_GER, int = TURN_GER);

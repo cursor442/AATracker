@@ -191,6 +191,8 @@ public:
 	void configSpread(Board&);
 	bool nextTurnPhase(HWND& hWnd);
 	void purchaseButton(HWND&, int);
+	void attackNeutralButtonHandler(HWND&);
+	void attackMongoliaButtonHandler(HWND&);
 	void loadMiniSpreads();
 	void toggleUKDisp();
 
