@@ -111,6 +111,8 @@ bool Game::nextTurnPhase(HWND& hWnd)
 		// Japan attacks Soviet Union condition
 		if (nsNeut == NEUT_UPD)
 			nsSection |= PHASE_SECT;
+		else
+			nsSection = PHASE_SECT;
 		nsPhase = ALL_PHASE;
 	}
 	else if (phase == CI_PHASE)
