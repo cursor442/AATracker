@@ -1,9 +1,4 @@
-﻿  BoardClass.cpp
-  BoardEconomies.cpp
-  Bonuses.cpp
-  Territories.cpp
-  Wars.cpp
-  AA_Tracker.cpp
+﻿  AA_Tracker.cpp
   AuxFunctions.cpp
   GameClass.cpp
 C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(599,10): warning C4267: 'argument': conversion from 'size_t' to 'uint16_t', possible loss of data
@@ -15,54 +10,6 @@ C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1917,53): war
 C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1918,42): warning C4244: '=': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
 C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1919,55): warning C4244: '=': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
   MenuCallbacks.cpp
-  GraphClass.cpp
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(170,16): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(206,49): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(207,56): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(208,83): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(208,60): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(209,60): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(210,60): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(211,60): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(212,77): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(212,60): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(213,77): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(213,60): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(214,60): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(215,77): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(215,60): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(216,62): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(217,62): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(218,62): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(219,62): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(256,32): warning C4267: 'initializing': conversion from 'size_t' to 'uint16_t', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(380,32): warning C4267: 'initializing': conversion from 'size_t' to 'uint16_t', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(504,32): warning C4267: 'initializing': conversion from 'size_t' to 'uint16_t', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(628,32): warning C4267: 'initializing': conversion from 'size_t' to 'uint16_t', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(746,34): warning C4267: 'initializing': conversion from 'size_t' to 'uint16_t', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(811,34): warning C4267: 'initializing': conversion from 'size_t' to 'uint16_t', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(855,34): warning C4267: 'initializing': conversion from 'size_t' to 'uint16_t', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(1191,20): warning C4244: 'initializing': conversion from 'LONG' to 'uint16_t', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(1192,21): warning C4244: 'initializing': conversion from 'LONG' to 'uint16_t', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(1193,19): warning C4244: 'initializing': conversion from 'LONG' to 'uint16_t', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(1196,30): warning C4244: '=': conversion from 'LONG' to 'uint16_t', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(1197,30): warning C4244: '=': conversion from 'LONG' to 'uint16_t', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(1199,22): warning C4244: 'initializing': conversion from 'LONG' to 'uint16_t', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(1225,47): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(1224,71): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(1230,47): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(1229,79): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(1262,48): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(1261,82): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(1278,95): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(1278,59): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(1278,29): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(1282,84): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(1282,47): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(1282,23): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(1284,81): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(1284,44): warning C4244: 'argument': conversion from 'double' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\graphScreen\source\GraphClass.cpp(1284,23): warning C4244: 'argument': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
   GraphScreen.cpp
   AAGraphics.cpp
   DebugGrid.cpp
@@ -74,7 +21,7 @@ C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\GraphicsHandlers.cpp(61
 C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\GraphicsHandlers.cpp(61,49): warning C4302: 'type cast': truncation from 'HWND' to 'int'
   Section.cpp
   LogClass.cpp
-C:\Users\Adam\Documents\GitHub\AATracker\logScreen\source\LogClass.cpp(1331,23): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\logScreen\source\LogClass.cpp(1352,23): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
   LogPair.cpp
 C:\Users\Adam\Documents\GitHub\AATracker\logScreen\source\LogPair.cpp(6,36): warning C4244: 'argument': conversion from 'int' to 'Gdiplus::REAL', possible loss of data
 C:\Users\Adam\Documents\GitHub\AATracker\logScreen\source\LogPair.cpp(6,22): warning C4244: 'argument': conversion from 'int' to 'Gdiplus::REAL', possible loss of data
@@ -85,12 +32,6 @@ C:\Users\Adam\Documents\GitHub\AATracker\logScreen\source\LogPair.cpp(622,18): w
   LogScreen.cpp
   MainScreen.cpp
 C:\Users\Adam\Documents\GitHub\AATracker\mainScreen\MainScreen.cpp(11,36): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  Generating Code...
-C:\Users\Adam\Documents\GitHub\AATracker\game\source\AuxFunctions.cpp(18): warning C4172: returning address of local variable or temporary: str
-C:\Users\Adam\Documents\GitHub\AATracker\game\source\AuxFunctions.cpp(70): warning C4172: returning address of local variable or temporary: str
-C:\Users\Adam\Documents\GitHub\AATracker\board\source\Territories.cpp(651): warning C4715: 'Board::attackJapan': not all control paths return a value
-C:\Users\Adam\Documents\GitHub\AATracker\board\source\Territories.cpp(666): warning C4715: 'Board::attackSoviet': not all control paths return a value
-  Compiling...
   BonusSection.cpp
 C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\BonusSection.cpp(868,4): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\BonusSection.cpp(887,4): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
@@ -104,6 +45,10 @@ C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\Neut
 C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\NeutralSection.cpp(187,3): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\NeutralSection.cpp(204,3): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   PhaseSection.cpp
+  Generating Code...
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\AuxFunctions.cpp(18): warning C4172: returning address of local variable or temporary: str
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\AuxFunctions.cpp(70): warning C4172: returning address of local variable or temporary: str
+  Compiling...
   PurchaseSection.cpp
 C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(561,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
 C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(576,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data

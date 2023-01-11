@@ -92,9 +92,9 @@ const int end_len = 1;
 const int com_len = 2;
 
 // Territories
-const WCHAR ters[201][33] = {
+const WCHAR ters[202][33] = {
 	L"Alberta, Saskatchewan, Manitoba ", L"Ontario ", L"Quebec ", L"Newfoundland & Labrador ",
-L"New Brunswick & Nova Scotia ", L"Central United States ", L"Eastern United States ",
+L"New Brunswick & Nova Scotia ", L"Greenland ", L"Central United States ", L"Eastern United States ",
 L"Southeast Mexico ", L"West Indies ", L"Central America ", L"Venezuela ", L"Colombia ",
 L"British Guiana ", L"Suriname ", L"French Guiana ", L"Ecuador ", L"Peru ", L"Bolivia ",
 L"Brazil ", L"Paraguay ", L"Uruguay ", L"Argentina ", L"Chile ", L"Iceland ", L"Scotland ",
@@ -131,7 +131,7 @@ L"Dutch New Guinea ", L"Caroline Islands ", L"Palau Island ", L"Philippines ", L
 L"Borneo ", L"Java ", L"Sumatra ", L"Hainan ", L"Alaska ", L"Aleutian Islands ", L"Western Canada ",
 L"Western United States ", L"Mexico "
 };
-const int ters_len[201] = { 32, 8, 7, 24, 28, 22, 22, 17, 12, 16, 10, 9, 15, 9, 14, 8, 5, 8, 7,
+const int ters_len[202] = { 32, 8, 7, 24, 28, 11, 22, 22, 17, 12, 16, 10, 9, 15, 9, 14, 8, 5, 8, 7,
 9, 8, 10, 6, 8, 9, 5, 15, 8, 18, 16, 7, 12, 20, 16, 6, 9, 10, 9, 7, 7, 8, 15, 15, 7, 8, 25, 7, 19,
 11, 8, 7, 6, 8, 9, 14, 15, 8, 7, 9, 8, 16, 11, 10, 9, 8, 8, 7, 9, 9, 8, 7, 7, 10, 6, 12, 7, 11, 13,
 8, 8, 8, 11, 18, 19, 22, 13, 8, 11, 8, 6, 6, 7, 11, 6, 25, 21, 9, 19, 19, 14, 6, 21, 7, 9, 11, 18,
@@ -141,9 +141,9 @@ const int ters_len[201] = { 32, 8, 7, 24, 28, 22, 22, 17, 12, 16, 10, 9, 15, 9, 
 8, 7, 5, 8, 7, 7, 17, 15, 22, 7
 };
 
-const WCHAR ters_com[201][34] = {
+const WCHAR ters_com[202][34] = {
 	L"Alberta, Saskatchewan, Manitoba, ", L"Ontario, ", L"Quebec, ", L"Newfoundland & Labrador, ",
-L"New Brunswick & Nova Scotia, ", L"Central United States, ", L"Eastern United States, ",
+L"New Brunswick & Nova Scotia, ", L"Greenland, ", L"Central United States, ", L"Eastern United States, ",
 L"Southeast Mexico, ", L"West Indies, ", L"Central America, ", L"Venezuela, ", L"Colombia, ",
 L"British Guiana, ", L"Suriname, ", L"French Guiana, ", L"Ecuador, ", L"Peru, ", L"Bolivia, ",
 L"Brazil, ", L"Paraguay, ", L"Uruguay, ", L"Argentina, ", L"Chile, ", L"Iceland, ", L"Scotland, ",
@@ -180,7 +180,7 @@ L"Dutch New Guinea, ", L"Caroline Islands, ", L"Palau Island, ", L"Philippines, 
 L"Borneo, ", L"Java, ", L"Sumatra, ", L"Hainan, ", L"Alaska, ", L"Aleutian Islands, ", L"Western Canada, ",
 L"Western United States, ", L"Mexico, "
 };
-const int ters_com_len[201] = { 33, 9, 8, 25, 29, 23, 23, 18, 13, 17, 11, 10, 16, 10, 15, 9, 6, 9,
+const int ters_com_len[202] = { 33, 9, 8, 25, 29, 12, 23, 23, 18, 13, 17, 11, 10, 16, 10, 15, 9, 6, 9,
 8, 10, 9, 11, 7, 9, 10, 6, 16, 9, 19, 17, 8, 13, 21, 17, 7, 10, 11, 10, 8, 8, 9, 16, 16, 8, 9, 26,
 8, 20, 12, 9, 8, 7, 9, 10, 15, 16, 9, 8, 10, 9, 17, 12, 11, 10, 9, 9, 8, 10, 10, 9, 8, 8, 11, 7,
 13, 8, 12, 14, 9, 9, 9, 12, 19, 20, 23, 14, 9, 12, 9, 7, 7, 8, 12, 7, 26, 22, 10, 20, 20, 15, 7, 22,

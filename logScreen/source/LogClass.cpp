@@ -135,7 +135,9 @@ void Log::addLogText(int turn, int verb, int nat, int tgt, int object, int indir
 		resPos.page = 0; resPos.col = 0; resPos.row = 0;
 	}
 
-	if (verb != V_RESEARCH)
+	if (verb == V_OCCUPY) // Friendly neutral
+		isOcc = true;
+	else if (verb != V_RESEARCH) // Non-friendly neutral
 		for (int i = 0; i < 44; i++)
 			if (tgt == neutrals[i])
 			{
@@ -237,6 +239,25 @@ void Log::addLogText(int turn, int verb, int nat, int tgt, int object, int indir
 				shiftCells(recPos[object].page, recPos[object].col, recPos[object].row, V_RECLAIM, object, indirect);
 				logBox[recPos[object].page][recPos[object].col][recPos[object].row]->setText(turn + 1, V_RECLAIM, nat, tgt, object);
 			}
+
+		break;
+	}
+	case V_OCCUPY:
+	{
+		if (!occEx)
+		{
+			occPos.page = currPage; occPos.col = currCol; occPos.row = currRow;
+			occEx = true;
+			incCell();
+		}
+
+		if (logBox[occPos.page][occPos.col][occPos.row]->isSpace(V_OCCUPY, tgt))
+			logBox[occPos.page][occPos.col][occPos.row]->setText(turn + 1, V_OCCUPY, nat, tgt);
+		else
+		{
+			shiftCells(occPos.page, occPos.col, occPos.row, V_OCCUPY, object, indirect);
+			logBox[occPos.page][occPos.col][occPos.row]->setText(turn + 1, V_OCCUPY, nat, tgt);
+		}
 
 		break;
 	}
