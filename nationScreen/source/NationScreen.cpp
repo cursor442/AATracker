@@ -80,17 +80,11 @@ bool Game::NationScreen(HDC& hdc, PAINTSTRUCT& ps)
         {
             if (purchaseTab == TAB_PURCH)
             {
-                if (nsNeut == NEUT_NONE)
-                {
-                    drawPurchaseFrameButtons();
-                }
+                drawPurchaseFrameButtons();
             }
             else if (purchaseTab == TAB_COMB)
             {
-                if (nsNeut == NEUT_NONE)
-                {
-                    hideNationScreenPurchButtons();
-                }
+                hideNationScreenPurchButtons();
             }
             else if (purchaseTab == TAB_NEUTRAL)
             {
@@ -117,17 +111,11 @@ bool Game::NationScreen(HDC& hdc, PAINTSTRUCT& ps)
         {
             if (purchaseTab == TAB_PURCH)
             {
-                if (nsNeut == NEUT_NONE)
-                {
-                    drawPurchaseFrame(hdc);
-                }
+                drawPurchaseFrame(hdc);
             }
             else if (purchaseTab == TAB_COMB)
             {
-                if (nsNeut == NEUT_NONE)
-                {
-                    drawCombinedArms(hdc);
-                }
+                drawCombinedArms(hdc);
             }
             else if (purchaseTab == TAB_NEUTRAL)
             {
