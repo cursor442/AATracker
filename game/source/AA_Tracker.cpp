@@ -164,7 +164,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
                 if (game->gameBoard->ready)
                 {
-                    int msgboxID = MessageBox(NULL, L"Creating a new game will delete\nthe current game without saving.\nContinue?",
+                    int msgboxID = MessageBox(hWnd, L"Creating a new game will delete\nthe current game without saving.\nContinue?",
                         L"Create New Game", MB_ICONEXCLAMATION | MB_YESNO);
 
                     if (msgboxID == IDNO)

@@ -300,6 +300,8 @@ void Game::resetGameControls()
 	nsTurn = SPREAD_ALL_ROWS;
 	nsCol = SPREAD_ALL_COLS;
 
+	purchaseTab = TAB_PURCH;
+
 	nsUKToggle = false;
 	warchestRotate = false;
 	nsWC = WC_ALL;
