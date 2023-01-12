@@ -104,7 +104,7 @@ void Board::transferTerritory(HWND hDlg, int ter, int& own, int& captureAmount, 
 	}
 	else if ((whichSide(own) == whichSide(orig))) // Liberating a territory
 	{
-		if (nations[orig]->getNationControlsCapital()) // Only liberate if nation has its own capital
+		if (orig != DUTCH_TER && nations[orig]->getNationControlsCapital()) // Only liberate if nation has its own capital
 		{
 			own = orig;
 			isLib = true;

@@ -16,114 +16,112 @@ void Game::drawPhaseFrame(HDC& hdc)
         phaseSection->drawPhaseBox(graphics, currPhase, gameBoard->getGameResearch(), dbg_boundbox, dbg_sections, dbg_layers);
     }
 
-    if (nsPhase != NON_PHASE)
-    {
-        drawPhaseFrameButtons();
-    }
-
     nsPhase = NON_PHASE;
 }
 
 void Game::drawPhaseFrameButtons()
 {
-    int gameType = gameBoard->getGameType();
-    int currPhase = gameBoard->getGameTurnPhase();
-    int currNat = gameBoard->getGameCurrNation();
-    
-    showButton(nextPhaseButton);
-    switch (currPhase)
+    if (nsPhase != NON_PHASE)
     {
-    case RS_PHASE:
-    {
-        hideButton(declareWarButton);
-        hideButton(captureTerritoryButton);
+        int gameType = gameBoard->getGameType();
+        int currPhase = gameBoard->getGameTurnPhase();
+        int currNat = gameBoard->getGameCurrNation();
 
-        if (gameBoard->getCount(currNat) != 12)
-            showButton(researchButton);
-        else
+        showButton(nextPhaseButton);
+        switch (currPhase)
+        {
+        case RS_PHASE:
+        {
+            hideButton(declareWarButton);
+            hideButton(captureTerritoryButton);
+
+            if (gameBoard->getCount(currNat) != 12)
+                showButton(researchButton);
+            else
+                hideButton(researchButton);
+        }
+        break;
+        case PR_PHASE:
+        {
             hideButton(researchButton);
-    }
-    break;
-    case PR_PHASE:
-    {
-        hideButton(researchButton);
-        hideButton(declareWarButton);
-    }
-    break;
-    case CM_PHASE:
-    {
-        hideButton(researchButton);
-        hideButton(captureTerritoryButton);
-
-        showButton(declareWarButton);
-
-        if (gameBoard->isAtWar(currNat))
-        {
-            if (gameBoard->getNeutralLean() == SIDE_NEUTRAL && currNat != TURN_CHN)
-                showButton(attackNeutralButton);
-            else
-                hideButton(attackNeutralButton);
+            hideButton(declareWarButton);
         }
-
-        if ((currNat == TURN_SOV) && (gameType == GLOBAL_GAME) &&
-            (gameBoard->getMongoliaLean() == SIDE_NEUTRAL) && (gameBoard->isAtWar(TURN_SOV)))
-        {
-            showButton(attackMongoliaButton);
-            
-            if (gameBoard->getAtWarWith(TURN_JPN, TURN_SOV) && gameBoard->getMongoliaLean() == SIDE_NEUTRAL &&
-                !gameBoard->getSOVAttackedJapan())
-                showButton(attackJapanButton);
-            else
-                hideButton(attackJapanButton);
-        }
-        else if ((currNat == TURN_JPN) && (gameType == GLOBAL_GAME) &&
-            (gameBoard->getMongoliaLean() != SIDE_AXIS) && (gameBoard->isAtWar(TURN_JPN)))
-        {
-            if (gameBoard->getAtWarWith(TURN_JPN, TURN_SOV) && !gameBoard->getJPNAttackedSovietFlag() &&
-                !gameBoard->getSOVAttackedJapan())
-                showButton(attackSovietButton);
-            else
-                hideButton(attackSovietButton);
-        }
-    }
-    break;
-    case CC_PHASE:
-    {
-        hideButton(declareWarButton);
-        hideButton(attackNeutralButton);
-
-        hideButton(attackMongoliaButton);
-        hideButton(attackJapanButton);
-        hideButton(attackSovietButton);
-
-        showButton(captureTerritoryButton);
-    }
-    break;
-    case NC_PHASE:
-    {
-        hideButton(captureTerritoryButton);
-
-        if (gameBoard->getNationIsAtWar(currNat))
-            showButton(occupyNeutralButton);
         break;
-    }
-    case MN_PHASE:
-    {
-        hideButton(occupyNeutralButton);
-        break;
-    }
-    case CI_PHASE:
-    {
-        if (gameBoard->getGameCurrNation() == TURN_USA && gameBoard->getGameTurn() == 2)
+        case CM_PHASE:
         {
             hideButton(researchButton);
             hideButton(captureTerritoryButton);
 
             showButton(declareWarButton);
+
+            if (gameBoard->isAtWar(currNat))
+            {
+                if (gameBoard->getNeutralLean() == SIDE_NEUTRAL && currNat != TURN_CHN)
+                    showButton(attackNeutralButton);
+                else
+                    hideButton(attackNeutralButton);
+            }
+
+            if ((currNat == TURN_SOV) && (gameType == GLOBAL_GAME) &&
+                (gameBoard->getMongoliaLean() == SIDE_NEUTRAL) && (gameBoard->isAtWar(TURN_SOV)))
+            {
+                showButton(attackMongoliaButton);
+
+                if (gameBoard->getAtWarWith(TURN_JPN, TURN_SOV) && gameBoard->getMongoliaLean() == SIDE_NEUTRAL &&
+                    !gameBoard->getSOVAttackedJapan())
+                    showButton(attackJapanButton);
+                else
+                    hideButton(attackJapanButton);
+            }
+            else if ((currNat == TURN_JPN) && (gameType == GLOBAL_GAME) &&
+                (gameBoard->getMongoliaLean() != SIDE_AXIS) && (gameBoard->isAtWar(TURN_JPN)))
+            {
+                if (gameBoard->getAtWarWith(TURN_JPN, TURN_SOV) && !gameBoard->getJPNAttackedSovietFlag() &&
+                    !gameBoard->getSOVAttackedJapan())
+                    showButton(attackSovietButton);
+                else
+                    hideButton(attackSovietButton);
+            }
         }
         break;
-    }
-    default: break;
+        case CC_PHASE:
+        {
+            hideButton(declareWarButton);
+            hideButton(attackNeutralButton);
+
+            hideButton(attackMongoliaButton);
+            hideButton(attackJapanButton);
+            hideButton(attackSovietButton);
+
+            showButton(captureTerritoryButton);
+        }
+        break;
+        case NC_PHASE:
+        {
+            hideButton(captureTerritoryButton);
+
+            if (gameBoard->getNationIsAtWar(currNat))
+                showButton(occupyNeutralButton);
+            break;
+        }
+        case MN_PHASE:
+        {
+            hideButton(occupyNeutralButton);
+            break;
+        }
+        case CI_PHASE:
+        {
+            if (gameBoard->getGameCurrNation() == TURN_USA && gameBoard->getGameTurn() == 2)
+            {
+                hideButton(researchButton);
+                hideButton(captureTerritoryButton);
+
+                showButton(declareWarButton);
+            }
+            break;
+        }
+        default: break;
+        }
     }
 }
 
@@ -215,6 +213,15 @@ void Game::drawPurchaseFrame(HDC& hdc)
         purchaseSection->updatePurchaseText(purchases, nsUnit);
         purchaseSection->drawPurchaseBox(graphics, nsUnit, dbg_boundbox, dbg_sections, dbg_layers);
         nsUnit = PURCH_TITLE;
+    }
+}
+
+void Game::drawPurchaseFrameButtons()
+{
+    if (nsUnit == PURCH_TITLE)
+    {
+        purchaseSection->drawPurchaseBox(graphics, dbg_boundbox, dbg_sections, dbg_layers);
+        ShowWindow(purchaseSectionTabs, SW_SHOW);
     }
 }
 

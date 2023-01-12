@@ -10,14 +10,23 @@ bool Game::NationScreen(HDC& hdc, PAINTSTRUCT& ps)
     }
     else if (nsSection == ALL_SECT) // Only run once per nation if at all
     {
+        // Buttons go first
+
+            // Turn phase indicators
+        drawPhaseFrameButtons();
+
+            // Purchases section
+        if (purchaseTab == TAB_PURCH)
+            drawPurchaseFrameButtons();
+
+            // Turn phase indicators
+        drawPhaseFrame(hdc);
+        
             // Name frame section
         drawNameFrame(hdc);
 
             // Status frame section
         drawStatusFrame(hdc);
-
-            // Turn phase indicators
-        drawPhaseFrame(hdc);
 
             // War with frame section
         drawWarFrame(hdc);
@@ -62,14 +71,41 @@ bool Game::NationScreen(HDC& hdc, PAINTSTRUCT& ps)
     }
     else
     {
+        // Buttons go first
+
+        if ((nsSection & PHASE_SECT) != 0)
+            drawPhaseFrameButtons();
+
+        if ((nsSection & PURCH_SECT) != 0)
+        {
+            if (purchaseTab == TAB_PURCH)
+            {
+                if (nsNeut == NEUT_NONE)
+                {
+                    drawPurchaseFrameButtons();
+                }
+            }
+            else if (purchaseTab == TAB_COMB)
+            {
+                if (nsNeut == NEUT_NONE)
+                {
+                    hideNationScreenPurchButtons();
+                }
+            }
+            else if (purchaseTab == TAB_NEUTRAL)
+            {
+                hideNationScreenPurchButtons();
+            }
+        }
+
+        if ((nsSection & PHASE_SECT) != 0)
+            drawPhaseFrame(hdc);
+        
         if ((nsSection & NAME_SECT) != 0)
             drawNameFrame(hdc);
 
         if ((nsSection & STAT_SECT) != 0)
             drawStatusFrame(hdc);
-
-        if ((nsSection & PHASE_SECT) != 0)
-            drawPhaseFrame(hdc);
 
         if ((nsSection & WAR_SECT) != 0)
             drawWarFrame(hdc);
@@ -90,13 +126,11 @@ bool Game::NationScreen(HDC& hdc, PAINTSTRUCT& ps)
             {
                 if (nsNeut == NEUT_NONE)
                 {
-                    hideNationScreenPurchButtons();
                     drawCombinedArms(hdc);
                 }
             }
             else if (purchaseTab == TAB_NEUTRAL)
             {
-                hideNationScreenPurchButtons();
                 drawNeutralBox(hdc);
             }
         }

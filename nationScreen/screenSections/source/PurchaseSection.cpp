@@ -1534,6 +1534,8 @@ void PurchaseSection::drawPurchaseBox(Graphics* graphics, bool dbg_boundbox, boo
 	}
 	else // Actual graphics
 	{
+		showPurchaseButtons();
+
 		purchTitleBox->drawFrame(graphics, pen, baseTitleFont, centerFormat, textBrush, tileBrushD, layers);
 
 		purchHeadBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushD, purchHeadText, layers);
@@ -1560,8 +1562,6 @@ void PurchaseSection::drawPurchaseBox(Graphics* graphics, bool dbg_boundbox, boo
 		totBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushD, totText, layers);
 
 		graphics->DrawLine(backPen, *titleP0, *titleP1);
-
-		showPurchaseButtons();
 
 		infQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, infQ, layers);
 		artQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, artQ, layers);
@@ -1809,6 +1809,14 @@ void PurchaseSection::drawPurchaseBox(Graphics* graphics, int type, bool dbg_bou
 		totQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, totQ, layers);
 		totCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, totC, layers);
 	}
+}
+
+void PurchaseSection::drawPurchaseBoxButtons(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, int layers)
+{
+	if (dbg_sections) // Show box names
+		hidePurchaseButtons();
+	else // Actual graphics
+		showPurchaseButtons();
 }
 
 void PurchaseSection::showPurchaseButtons()

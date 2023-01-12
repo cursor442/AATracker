@@ -1,54 +1,25 @@
 ﻿  AA_Tracker.cpp
   AuxFunctions.cpp
   GameClass.cpp
-C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(599,10): warning C4267: 'argument': conversion from 'size_t' to 'uint16_t', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(856,44): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
-C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1354,31): warning C4267: 'argument': conversion from 'size_t' to 'uint16_t', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1355,48): warning C4267: 'argument': conversion from 'size_t' to 'uint16_t', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1916,42): warning C4244: '=': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1917,53): warning C4244: '=': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(601,10): warning C4267: 'argument': conversion from 'size_t' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(858,44): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1356,31): warning C4267: 'argument': conversion from 'size_t' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1357,48): warning C4267: 'argument': conversion from 'size_t' to 'uint16_t', possible loss of data
 C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1918,42): warning C4244: '=': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1919,55): warning C4244: '=': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1919,53): warning C4244: '=': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1920,42): warning C4244: '=': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1921,55): warning C4244: '=': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
   MenuCallbacks.cpp
   GraphScreen.cpp
-  AAGraphics.cpp
-  DebugGrid.cpp
   DebugSwitches.cpp
   GraphicsHandlers.cpp
 C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\GraphicsHandlers.cpp(55,47): warning C4311: 'type cast': pointer truncation from 'HWND' to 'int'
 C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\GraphicsHandlers.cpp(55,47): warning C4302: 'type cast': truncation from 'HWND' to 'int'
 C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\GraphicsHandlers.cpp(61,49): warning C4311: 'type cast': pointer truncation from 'HWND' to 'int'
 C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\GraphicsHandlers.cpp(61,49): warning C4302: 'type cast': truncation from 'HWND' to 'int'
-  Section.cpp
-  LogClass.cpp
-C:\Users\Adam\Documents\GitHub\AATracker\logScreen\source\LogClass.cpp(1352,23): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-  LogPair.cpp
-C:\Users\Adam\Documents\GitHub\AATracker\logScreen\source\LogPair.cpp(6,36): warning C4244: 'argument': conversion from 'int' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\logScreen\source\LogPair.cpp(6,22): warning C4244: 'argument': conversion from 'int' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\logScreen\source\LogPair.cpp(7,48): warning C4244: 'argument': conversion from 'int' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\logScreen\source\LogPair.cpp(7,27): warning C4244: 'argument': conversion from 'int' to 'Gdiplus::REAL', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\logScreen\source\LogPair.cpp(601,21): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\logScreen\source\LogPair.cpp(622,18): warning C4244: 'return': conversion from 'WCHAR' to 'char', possible loss of data
   LogScreen.cpp
   MainScreen.cpp
 C:\Users\Adam\Documents\GitHub\AATracker\mainScreen\MainScreen.cpp(11,36): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  BonusSection.cpp
-C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\BonusSection.cpp(868,4): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\BonusSection.cpp(887,4): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  CitiesSection.cpp
-  MiniSpreadSection.cpp
-  NameSection.cpp
-  NeutralSection.cpp
-C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\NeutralSection.cpp(34,21): warning C4156: deletion of an array expression without using the array form of 'delete'; array form substituted
-C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\NeutralSection.cpp(34,21): warning C4154: deletion of an array expression; conversion to pointer supplied
-C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\NeutralSection.cpp(145,11): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\NeutralSection.cpp(187,3): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\NeutralSection.cpp(204,3): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  PhaseSection.cpp
-  Generating Code...
-C:\Users\Adam\Documents\GitHub\AATracker\game\source\AuxFunctions.cpp(18): warning C4172: returning address of local variable or temporary: str
-C:\Users\Adam\Documents\GitHub\AATracker\game\source\AuxFunctions.cpp(70): warning C4172: returning address of local variable or temporary: str
-  Compiling...
   PurchaseSection.cpp
 C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(561,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
 C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(576,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
@@ -90,9 +61,6 @@ C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\Purc
 C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(1134,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
 C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(1150,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
 C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(1165,1): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
-  StatusSection.cpp
-  WarSection.cpp
-  WarchestSection.cpp
   NatScreenPurchHelp.cpp
   NationScreen.cpp
   NationScreenAux.cpp
@@ -131,4 +99,6 @@ C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.
   ResearchScreen.cpp
   SpreadScreen.cpp
   Generating Code...
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\AuxFunctions.cpp(70): warning C4172: returning address of local variable or temporary: str
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\AuxFunctions.cpp(18): warning C4172: returning address of local variable or temporary: str
   AA Tracker.vcxproj -> C:\Users\Adam\Documents\GitHub\AATracker\x64\Debug\AA Tracker.exe

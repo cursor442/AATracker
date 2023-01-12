@@ -170,6 +170,7 @@ public:
 	void drawWarFrame(HDC&);
 	void drawCitiesFrame(HDC&);
 	void drawPurchaseFrame(HDC&);
+	void drawPurchaseFrameButtons();
 	void drawCombinedArms(HDC&); // Combined Arms reference
 	void drawNeutralBox(HDC&); // Neutral territories status
 	void drawPurchaseCostUpdate(HDC&);
