@@ -41,26 +41,26 @@ void Territories::setGameType(int type)
 		case PACIFIC_GAME:
 		{
 			configPacTerrs();
+			configPacDutch();
 			configPacCities();
 			configPacIslands();
 			configPacNeutrals();
-			configPacDutch();
 			configPacFacilities();
 			break;
 		}
 		case GLOBAL_GAME:
 		{
 			configEurTerrs();
+			configEurDutch();
 			configEurCities();
 			configEurIslands();
 			configEurNeutrals();
-			configEurDutch();
 			configEurFacilities();
 			configPacTerrs();
+			configPacDutch();
 			configPacCities();
 			configPacIslands();
 			configPacNeutrals();
-			configPacDutch();
 			configPacFacilities();
 			globalGameAdj();
 			break;
@@ -740,9 +740,24 @@ void Territories::setNeutralLean(int side, int nat, bool mongoliaCond)
 	}
 }
 
-void Territories::getNeutralTerrs(vector<territoryTransaction>& tmp)
+void Territories::getNeutralTerrs(vector<territoryTransaction>& terrs, bool incDutch)
 {
-	tmp = neutrals;
+	terrs.resize(0);
+
+	for (int i = 0; i < neutrals.size(); i++)
+	{
+		int owner = territories[neutrals[i].id]->getOwner();
+		int side = territories[neutrals[i].id]->getSide();
+		// Territory is a friendly neutral or UK/ANZAC can occupy Dutch territories
+		if ((!incDutch && owner != DUTCH_TER) || (incDutch))
+		{
+			territoryTransaction tmp;
+			tmp.id = neutrals[i].id;
+			tmp.side = side;
+			tmp.owner = owner;
+			terrs.push_back(tmp);
+		}
+	}
 }
 
 void Territories::getNeutralTerrs(vector<listTerritory>& terrs, int side, bool incDutch)

@@ -53,7 +53,7 @@ public:
 	void transferTerritory(int, int);
 
 	void setNeutralLean(int, int, bool = false);
-	void getNeutralTerrs(vector<territoryTransaction>&);
+	void getNeutralTerrs(vector<territoryTransaction>&, bool = false);
 	void getNeutralTerrs(vector<listTerritory>&, int, bool = false);
 	int  getNeutralTerrUpdateSize();
 	void getNeutralTerrUpdate(vector<territoryTransaction>&);
