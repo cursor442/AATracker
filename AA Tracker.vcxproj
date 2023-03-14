@@ -110,6 +110,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>comctl32.lib;UxTheme.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Manifest>
+      <EnableDpiAwareness>PerMonitorHighDPIAware</EnableDpiAwareness>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -148,7 +151,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AAButton.h" />
     <ClInclude Include="board\header\AirBaseClass.h" />
     <ClInclude Include="board\header\BoardClass.h" />
     <ClInclude Include="board\header\BonusClass.h" />
@@ -164,6 +166,7 @@
     <ClInclude Include="game\header\framework.h" />
     <ClInclude Include="game\header\Resource.h" />
     <ClInclude Include="game\header\targetver.h" />
+    <ClInclude Include="graphics\header\AAButton.h" />
     <ClInclude Include="graphics\header\AAButtons.h" />
     <ClInclude Include="graphics\header\AAGraphicsObject.h" />
     <ClInclude Include="graphics\header\AATooltip.h" />

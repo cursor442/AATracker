@@ -86,27 +86,36 @@ void AAButtons::updateCurrPoint(HWND& hWnd, LPARAM lParam, bool& activeButton, b
 	int xGrid = getGridIdx(currPoint.x, windowRect.GetRight());
 	int yGrid = getGridIdx(currPoint.y, windowRect.GetBottom());
 
-	// Identify the current Button the mouse is over
-	int ttIdx = isPointInButtonBox(xGrid, yGrid, currPoint.x, currPoint.y);
+	// Is the mouse even over the window?
+	bool inWind = true;
+	if (currPoint.x < windowRect.GetLeft() || currPoint.x > windowRect.GetRight() ||
+		currPoint.y < windowRect.GetTop() || currPoint.y > windowRect.GetBottom())
+		inWind = false;
 
-	// Has the current Button changed?
-	if (ttIdx != currButton)
+	if (inWind)
 	{
-		currButton = ttIdx;
+		// Identify the current Button the mouse is over
+		int ttIdx = isPointInButtonBox(xGrid, yGrid, currPoint.x, currPoint.y);
 
-		// Kill the current timer if it exists
-		KillTimer(hWnd, BB_HOVER_TIMER_ID);
-
-		// Erase the current Button if it is active
-		if (activeButton)
+		// Has the current Button changed?
+		if (ttIdx != currButton)
 		{
-			activeButton = false;
-			deactivateButton = true;
-		}
+			currButton = ttIdx;
 
-		// Start a hover timer if over an active Button
-		if (ttIdx != BB_ID_NULL)
-			SetTimer(hWnd, BB_HOVER_TIMER_ID, BB_HOVER_TIMEOUT, NULL);
+			// Kill the current timer if it exists
+			KillTimer(hWnd, BB_HOVER_TIMER_ID);
+
+			// Erase the current Button if it is active
+			if (activeButton)
+			{
+				activeButton = false;
+				deactivateButton = true;
+			}
+
+			// Start a hover timer if over an active Button
+			if (ttIdx != BB_ID_NULL)
+				SetTimer(hWnd, BB_HOVER_TIMER_ID, BB_HOVER_TIMEOUT, NULL);
+		}
 	}
 
 	// Reset the sample timer
