@@ -9,6 +9,9 @@
 #include "AATooltips.h"
 #include "AAButtons.h"
 
+#define MAX_RES_X      1920
+#define MAX_RES_Y      1080
+
 #define GRAY_MAX       256
 
 #define FONT12_S        12

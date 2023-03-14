@@ -39,6 +39,9 @@ public:
 	// Global Variables
 	///////////////////////////////////////////////////////////////////////////
 
+	int screenResX;                                 // The resolution of the current monitor
+	int screenResY;
+
 	WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 	WCHAR szWindowClass[MAX_LOADSTRING];            // The main window class name
 	HINSTANCE hInst;                                // Current instance

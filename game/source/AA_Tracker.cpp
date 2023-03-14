@@ -95,15 +95,27 @@ BOOL Game::InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // Store instance handle in our global variable
 
+   // Get size of monitor
+   screenResX = GetSystemMetrics(SM_CXSCREEN);
+   screenResY = GetSystemMetrics(SM_CYSCREEN);
+
+   // Cap at 1080p for now
+   if (screenResX > MAX_RES_X)
+       screenResX = MAX_RES_X;
+   if (screenResY > MAX_RES_Y)
+       screenResY = MAX_RES_Y;
+
    // Main Window
    main_Wnd = CreateWindowW(
        szWindowClass, 
        szTitle, 
-       WS_OVERLAPPEDWINDOW ^ WS_THICKFRAME,
+       //WS_OVERLAPPEDWINDOW ^ WS_THICKFRAME,
+       WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX,
        //CW_USEDEFAULT, 0,
        -7, 0, 
        //CW_USEDEFAULT, 0, 
-       GetSystemMetrics(SM_CXSCREEN) + 14, GetSystemMetrics(SM_CYSCREEN) - 33,
+       //GetSystemMetrics(SM_CXSCREEN) + 14, GetSystemMetrics(SM_CYSCREEN) - 33,
+       screenResX, screenResY,
        nullptr, 
        nullptr, 
        hInstance, 
@@ -116,7 +128,8 @@ BOOL Game::InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    SetClassLongPtr(main_Wnd, GCLP_HBRBACKGROUND, (LONG_PTR)backBrush0);
 
-   ShowWindow(main_Wnd, SW_MAXIMIZE);
+   //ShowWindow(main_Wnd, SW_MAXIMIZE);
+   ShowWindow(main_Wnd, SW_SHOW);
    UpdateWindow(main_Wnd);
    main_Menu = GetMenu(main_Wnd);
 
@@ -146,6 +159,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             CheckMenuItem(hMenu, IDM_DBG_GRID_OFF, MF_CHECKED);
             CheckMenuItem(hMenu, IDM_DBG_LAYERS_ALL, MF_CHECKED);
+        }
+        break;
+    case WM_GETMINMAXINFO:
+        {
+            LPMINMAXINFO lpMMI = (LPMINMAXINFO)lParam;
+            lpMMI->ptMaxTrackSize.x = game->screenResX;
+            lpMMI->ptMaxTrackSize.y = game->screenResY;
         }
         break;
     case WM_COMMAND:

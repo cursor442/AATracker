@@ -71,27 +71,36 @@ void AATooltips::updateCurrPoint(HWND& hWnd, LPARAM lParam, bool& activeTooltip,
 	int xGrid = getGridIdx(currPoint.x, windowRect.GetRight());
 	int yGrid = getGridIdx(currPoint.y, windowRect.GetBottom());
 
-	// Identify the current tooltip the mouse is over
-	int ttIdx = isPointInTooltipBox(xGrid, yGrid, currPoint.x, currPoint.y);
+	// Is the mouse even over the window?
+	bool inWind = true;
+	if (currPoint.x < windowRect.GetLeft() || currPoint.x > windowRect.GetRight() ||
+		currPoint.y < windowRect.GetTop() || currPoint.y > windowRect.GetBottom())
+		inWind = false;
 
-	// Has the current tooltip changed?
-	if (ttIdx != currTooltip)
+	if (inWind)
 	{
-		currTooltip = ttIdx;
+		// Identify the current tooltip the mouse is over
+		int ttIdx = isPointInTooltipBox(xGrid, yGrid, currPoint.x, currPoint.y);
 
-		// Kill the current timer if it exists
-		KillTimer(hWnd, TT_HOVER_TIMER_ID);
-
-		// Erase the current tooltip if it is active
-		if (activeTooltip)
+		// Has the current tooltip changed?
+		if (ttIdx != currTooltip)
 		{
-			activeTooltip = false;
-			deactivateTooltip = true;
-		}
+			currTooltip = ttIdx;
 
-		// Start a hover timer if over an active tooltip
-		if (ttIdx != TT_ID_NULL)
-			SetTimer(hWnd, TT_HOVER_TIMER_ID, TT_HOVER_TIMEOUT, NULL);
+			// Kill the current timer if it exists
+			KillTimer(hWnd, TT_HOVER_TIMER_ID);
+
+			// Erase the current tooltip if it is active
+			if (activeTooltip)
+			{
+				activeTooltip = false;
+				deactivateTooltip = true;
+			}
+
+			// Start a hover timer if over an active tooltip
+			if (ttIdx != TT_ID_NULL)
+				SetTimer(hWnd, TT_HOVER_TIMER_ID, TT_HOVER_TIMEOUT, NULL);
+		}
 	}
 
 	// Reset the sample timer
