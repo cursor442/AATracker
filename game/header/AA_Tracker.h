@@ -166,7 +166,7 @@ public:
 	void drawNameFrame(HDC&);
 	void drawStatusFrame(HDC&);
 	void drawPhaseFrame(HDC&);
-	void drawPhaseFrameButtons();
+	void drawPhaseFrameButtons(HDC&);
 	void drawWarFrame(HDC&);
 	void drawCitiesFrame(HDC&);
 	void drawPurchaseFrame(HDC&);

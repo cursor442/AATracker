@@ -82,6 +82,9 @@
     <Filter Include="Source Files\Board\Territories">
       <UniqueIdentifier>{9bfaa408-9ece-4d24-823e-ced112c1815f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Buttons">
+      <UniqueIdentifier>{787eeb1f-5c2d-414a-a963-aa3fc0896f1a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\header\DebugGrid.h">
@@ -232,6 +235,15 @@
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="graphics\header\GraphicsObjects.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="AAButton.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\header\AAGraphicsObject.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\header\AAButtons.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
@@ -422,6 +434,15 @@
     <ClCompile Include="graphics\source\GraphicsHandlers.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\source\AAButton.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\source\AAGraphicsObject.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\source\AAButtons.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="bitmaps\ANZACIcon.bmp">
@@ -459,6 +480,9 @@
     </Image>
     <Image Include="bitmaps\small.ico">
       <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="bitmaps\Buttons\unpressNextPhase.bmp">
+      <Filter>Resource Files\Buttons</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

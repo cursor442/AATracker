@@ -14,6 +14,45 @@
 #define BOX_WIDTH       4
 #define BOX_HEIGHT      5
 
+struct screenFrames {
+	vector<RectF> f;
+	vector<int> b;
+};
+
+struct framesList {
+	vector<screenFrames> s;
+};
+
+class AALine
+{
+public:
+	AALine();
+	~AALine();
+
+	void config(PointF, PointF, int);
+
+	void drawLine(Graphics*, Pen*, int);
+
+	PointF pt0, pt1;
+	int layer;
+
+};
+
+class AARect
+{
+public:
+	AARect();
+	~AARect();
+
+	void config(RectF, int);
+
+	void drawRect(Graphics*, Brush*, int);
+
+	RectF box;
+	int layer;
+
+};
+
 class AABox
 {
 public:
@@ -22,6 +61,8 @@ public:
 	~AABox();
 
 	void config(RectF, int);
+	void shrink(int);
+	void shrinkX(int);
 
 	void drawFrame(Graphics*, Pen*, Font*, StringFormat*, Brush*, Brush*, int);
 	void drawBox(Graphics*, Pen*, Font*, StringFormat*, Brush*, Brush*, const WCHAR*, int);

@@ -1922,6 +1922,7 @@ void Game::configGraphics(HDC& hdc)
 
 	gfx = new AAGraphics(main_Wnd, nationScreenWindow0);
 	gfx->config(hdc);
+	gfx->buttons->configScreenFrames(&screenFrames);
 	gfx->tooltips->configScreenFrames(&screenFrames);
 
 	// Fonts
@@ -1942,6 +1943,7 @@ void Game::configGameScreens()
 	configLogScreen();
 	configResearchScreen();
 
+	gfx->buttons->configScreenFrames(&screenFrames);
 	gfx->tooltips->configScreenFrames(&screenFrames);
 }
 

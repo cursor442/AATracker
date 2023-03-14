@@ -13,7 +13,7 @@ bool Game::NationScreen(HDC& hdc, PAINTSTRUCT& ps)
         // Buttons go first
 
             // Turn phase indicators
-        drawPhaseFrameButtons();
+        drawPhaseFrameButtons(hdc);
 
             // Purchases section
         if (purchaseTab == TAB_PURCH)
@@ -74,7 +74,7 @@ bool Game::NationScreen(HDC& hdc, PAINTSTRUCT& ps)
         // Buttons go first
 
         if ((nsSection & PHASE_SECT) != 0)
-            drawPhaseFrameButtons();
+            drawPhaseFrameButtons(hdc);
 
         if ((nsSection & PURCH_SECT) != 0)
         {

@@ -451,6 +451,10 @@ void Game::configNationScreen()
 
 			RectF rect = { buttonLeft, purchBoxTop, buttonWidth, purchBoxHeight };
 			gfx->tooltips->registerTooltip(graphics, (int)nextPhaseButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Proceed to the next phase");
+
+			
+			rect = { buttonLeft, ccBoxTop, buttonWidth, ccBoxHeight };
+			gfx->buttons->registerButton(graphics, (int)nextPhaseButton, NATION_SCREEN, rect, "Next Phase");
 		}
 
 		if (researchButton == NULL)

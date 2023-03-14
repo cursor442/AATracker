@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AAButton.h" />
     <ClInclude Include="board\header\AirBaseClass.h" />
     <ClInclude Include="board\header\BoardClass.h" />
     <ClInclude Include="board\header\BonusClass.h" />
@@ -163,6 +164,8 @@
     <ClInclude Include="game\header\framework.h" />
     <ClInclude Include="game\header\Resource.h" />
     <ClInclude Include="game\header\targetver.h" />
+    <ClInclude Include="graphics\header\AAButtons.h" />
+    <ClInclude Include="graphics\header\AAGraphicsObject.h" />
     <ClInclude Include="graphics\header\AATooltip.h" />
     <ClInclude Include="graphics\header\AATooltips.h" />
     <ClInclude Include="graphics\header\DebugGrid.h" />
@@ -217,7 +220,10 @@
     <ClCompile Include="game\source\AuxFunctions.cpp" />
     <ClCompile Include="game\source\GameClass.cpp" />
     <ClCompile Include="game\source\MenuCallbacks.cpp" />
+    <ClCompile Include="graphics\source\AAButton.cpp" />
+    <ClCompile Include="graphics\source\AAButtons.cpp" />
     <ClCompile Include="graphics\source\AAGraphics.cpp" />
+    <ClCompile Include="graphics\source\AAGraphicsObject.cpp" />
     <ClCompile Include="graphics\source\AATooltip.cpp" />
     <ClCompile Include="graphics\source\AATooltips.cpp" />
     <ClCompile Include="graphics\source\DebugGrid.cpp" />
@@ -269,6 +275,7 @@
   <ItemGroup>
     <Image Include="bitmaps\AA_Tracker.ico" />
     <Image Include="bitmaps\ANZACIcon.bmp" />
+    <Image Include="bitmaps\Buttons\unpressNextPhase.bmp" />
     <Image Include="bitmaps\ChinaIcon.bmp" />
     <Image Include="bitmaps\FranceIcon.bmp" />
     <Image Include="bitmaps\GermanyIcon.bmp" />

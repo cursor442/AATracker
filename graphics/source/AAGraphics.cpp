@@ -22,6 +22,10 @@ AAGraphics::AAGraphics(HWND hWnd, RectF rect)
 
 	neutColorB = NULL; neutColorH = NULL;
 
+	grayColors.resize(GRAY_MAX);
+	for (int i = 0; i < GRAY_MAX; i++)
+		grayColors[i] = NULL;
+
 	///////////////////////////////////////////////////////////////////////////
 	//// Pens
 	///////////////////////////////////////////////////////////////////////////
@@ -30,20 +34,25 @@ AAGraphics::AAGraphics(HWND hWnd, RectF rect)
 	blackPen1 = NULL; blackPen2 = NULL; blackPen4 = NULL;
 	backPen = NULL;
 
+	grayPens.resize(GRAY_MAX);
+	for (int i = 0; i < GRAY_MAX; i++)
+		grayPens[i] = NULL;
+
 	///////////////////////////////////////////////////////////////////////////
 	//// Fonts
 	///////////////////////////////////////////////////////////////////////////
 
 	calibriFamily = NULL;
+	calibriLightFamily = NULL;
 
 	logTextFormat = NULL; leftCenterFormat = NULL; centerFormat = NULL;
 	leftTopFormat = NULL; purchaseFormat = NULL;
 
 	font12 = NULL; font12_b = NULL;
 	font14 = NULL; font14_b = NULL;
-	font16 = NULL; font16_b = NULL;
+	font16 = NULL; font16_b = NULL; font16_bl = NULL;
 	font17 = NULL;
-	font18 = NULL; font18_b = NULL;
+	font18 = NULL; font18_b = NULL; font18_l = NULL;
 	font20 = NULL; font20_b = NULL;
 	font24 = NULL; font24_b = NULL;
 	font28 = NULL;
@@ -82,6 +91,16 @@ AAGraphics::AAGraphics(HWND hWnd, RectF rect)
 	// Neutral brushes
 	neutBrush = NULL; axisBrush = NULL; allyBrush = NULL;
 
+	grayBrushes.resize(GRAY_MAX);
+	for (int i = 0; i < GRAY_MAX; i++)
+		grayBrushes[i] = NULL;
+
+	///////////////////////////////////////////////////////////////////////////
+	//// Buttons
+	///////////////////////////////////////////////////////////////////////////
+
+	buttons = new AAButtons(hWnd, rect);
+
 	///////////////////////////////////////////////////////////////////////////
 	//// Tooltips
 	///////////////////////////////////////////////////////////////////////////
@@ -111,6 +130,9 @@ AAGraphics::~AAGraphics()
 
 	delete neutColorB; delete neutColorH;
 
+	for (int i = 0; i < GRAY_MAX; i++)
+		delete grayColors[i];
+
 	///////////////////////////////////////////////////////////////////////////
 	//// Pens
 	///////////////////////////////////////////////////////////////////////////
@@ -118,21 +140,25 @@ AAGraphics::~AAGraphics()
 	delete borderlessPen;
 	delete blackPen1; delete blackPen2; delete blackPen4;
 	delete backPen;
+
+	for (int i = 0; i < GRAY_MAX; i++)
+		delete grayPens[i];
 	
 	///////////////////////////////////////////////////////////////////////////
 	//// Fonts
 	///////////////////////////////////////////////////////////////////////////
 
 	delete calibriFamily;
+	delete calibriLightFamily;
 
 	delete logTextFormat; delete leftCenterFormat; delete centerFormat;
 	delete leftTopFormat; delete purchaseFormat;
 
 	delete font12; delete font12_b;
 	delete font14; delete font14_b;
-	delete font16; delete font16_b;
+	delete font16; delete font16_b; delete font16_bl;
 	delete font17;
-	delete font18; delete font18_b;
+	delete font18; delete font18_b; delete font18_l;
 	delete font20; delete font20_b;
 	delete font24; delete font24_b;
 	delete font28;
@@ -170,6 +196,15 @@ AAGraphics::~AAGraphics()
 
 	// Neutral brushes
 	delete neutBrush; delete axisBrush; delete allyBrush;
+
+	for (int i = 0; i < GRAY_MAX; i++)
+		delete grayBrushes[i];
+
+	///////////////////////////////////////////////////////////////////////////
+	//// Buttons
+	///////////////////////////////////////////////////////////////////////////
+
+	delete buttons;
 
 	///////////////////////////////////////////////////////////////////////////
 	//// Tooltips
@@ -222,6 +257,9 @@ void AAGraphics::config(HDC& hdc)
 	neutColorB = new Color(190, 160, 120); 
 	neutColorH = new Color(202, 176, 141);
 
+	for (int i = 0; i < GRAY_MAX; i++)
+		grayColors[i] = new Color(255, i, i, i);
+
 	///////////////////////////////////////////////////////////////////////////
 	//// Pens
 	///////////////////////////////////////////////////////////////////////////
@@ -232,6 +270,10 @@ void AAGraphics::config(HDC& hdc)
 	blackPen4     = new Pen(*blackColor, 4);
 	backPen       = new Pen(*backColor);
 
+	// Grayscale
+	for (int i = 0; i < GRAY_MAX; i++)
+		grayPens[i] = new Pen(*grayColors[i]);
+
 	///////////////////////////////////////////////////////////////////////////
 	//// Fonts
 	///////////////////////////////////////////////////////////////////////////
@@ -240,6 +282,7 @@ void AAGraphics::config(HDC& hdc)
 	REAL tabs1[] = {212.0f, 48.0f, 60.0f, 76.0f, 72.0f, 88.0f};
 
 	calibriFamily = new FontFamily(L"Calibri");
+	calibriLightFamily = new FontFamily(L"Calibri Light");
 
 	logTextFormat = new StringFormat();
 	logTextFormat->SetAlignment(StringAlignmentNear);
@@ -259,25 +302,31 @@ void AAGraphics::config(HDC& hdc)
 	purchaseFormat->SetLineAlignment(StringAlignmentCenter);
 	purchaseFormat->SetTabStops(0.0f, 6, tabs1);
 
+	HFONT* tmp_font16_bl = new HFONT(CreateFont(19, 0, 0, 0, 500, 0, 0, 0, 0, 0, 0, PROOF_QUALITY,
+		VARIABLE_PITCH, L"Calibri Light"));
 	HFONT* tmp_font17 = new HFONT(CreateFont(17, 0, 0, 0, FW_REGULAR, 0, 0, 0, 0, 0, 0, 2, 0, L"TMP_FONT17"));
 
-	font12   = new Font(calibriFamily, FONT12_S, FontStyleRegular, UnitPixel);
-	font12_b = new Font(calibriFamily, FONT12_S, FontStyleBold, UnitPixel);
-	font14   = new Font(calibriFamily, FONT14_S, FontStyleRegular, UnitPixel);
-	font14_b = new Font(calibriFamily, FONT14_S, FontStyleBold, UnitPixel);
-	font16   = new Font(calibriFamily, FONT16_S, FontStyleRegular, UnitPixel);
-	font16_b = new Font(calibriFamily, FONT16_S, FontStyleBold, UnitPixel);
-	font17   = new Font(hdc, *tmp_font17);
-	font18   = new Font(calibriFamily, FONT18_S, FontStyleRegular, UnitPixel);
-	font18_b = new Font(calibriFamily, FONT18_S, FontStyleBold, UnitPixel);
-	font20   = new Font(calibriFamily, FONT20_S, FontStyleRegular, UnitPixel);
-	font20_b = new Font(calibriFamily, FONT20_S, FontStyleBold, UnitPixel);
-	font24   = new Font(calibriFamily, FONT24_S, FontStyleRegular, UnitPixel);
-	font24_b = new Font(calibriFamily, FONT24_S, FontStyleBold, UnitPixel);
-	font28   = new Font(calibriFamily, FONT28_S, FontStyleRegular, UnitPixel);
-	font32   = new Font(calibriFamily, FONT32_S, FontStyleRegular, UnitPixel);
-	font64_b = new Font(calibriFamily, FONT64_S, FontStyleBold, UnitPixel);
+	font12    = new Font(calibriFamily, FONT12_S, FontStyleRegular, UnitPixel);
+	font12_b  = new Font(calibriFamily, FONT12_S, FontStyleBold, UnitPixel);
+	font14    = new Font(calibriFamily, FONT14_S, FontStyleRegular, UnitPixel);
+	font14_b  = new Font(calibriFamily, FONT14_S, FontStyleBold, UnitPixel);
+	font16    = new Font(calibriFamily, FONT16_S, FontStyleRegular, UnitPixel);
+	font16_b  = new Font(calibriFamily, FONT16_S, FontStyleBold, UnitPixel);
+	//font16_bl = new Font(calibriLightFamily, FONT16_S, FontStyleBold, UnitPixel);
+	font16_bl = new Font(hdc, *tmp_font16_bl);
+	font17    = new Font(hdc, *tmp_font17);
+	font18    = new Font(calibriFamily, FONT18_S, FontStyleRegular, UnitPixel);
+	font18_b  = new Font(calibriFamily, FONT18_S, FontStyleBold, UnitPixel);
+	font18_l  = new Font(calibriLightFamily, FONT16_S, FontStyleBold, UnitPixel);
+	font20    = new Font(calibriFamily, FONT20_S, FontStyleRegular, UnitPixel);
+	font20_b  = new Font(calibriFamily, FONT20_S, FontStyleBold, UnitPixel);
+	font24    = new Font(calibriFamily, FONT24_S, FontStyleRegular, UnitPixel);
+	font24_b  = new Font(calibriFamily, FONT24_S, FontStyleBold, UnitPixel);
+	font28    = new Font(calibriFamily, FONT28_S, FontStyleRegular, UnitPixel);
+	font32    = new Font(calibriFamily, FONT32_S, FontStyleRegular, UnitPixel);
+	font64_b  = new Font(calibriFamily, FONT64_S, FontStyleBold, UnitPixel);
 
+	//delete tmp_font16_bl;
 	delete tmp_font17;
 
 	///////////////////////////////////////////////////////////////////////////
@@ -342,6 +391,18 @@ void AAGraphics::config(HDC& hdc)
 	neutBrush = new HatchBrush(HatchStyleVertical, *neutColorH, *neutColorB);
 	axisBrush = new HatchBrush(HatchStyleBackwardDiagonal, *gerColorF, *gerColorS);
 	allyBrush = new HatchBrush(HatchStyleForwardDiagonal, *ukColorF, *usaColorS);
+
+	// Grayscale
+	for (int i = 0; i < GRAY_MAX; i++)
+		grayBrushes[i] = new SolidBrush(*grayColors[i]);
+
+	///////////////////////////////////////////////////////////////////////////
+	//// Buttons
+	///////////////////////////////////////////////////////////////////////////
+
+	buttons->configBaseDrawTools(blackPen1, borderlessPen, calibriFamily, leftCenterFormat, centerFormat,
+		font18_l, textBrush, backBrush);
+	buttons->configDrawTools(grayColors, grayBrushes, clearBrush, font16_bl);
 
 	///////////////////////////////////////////////////////////////////////////
 	//// Tooltips

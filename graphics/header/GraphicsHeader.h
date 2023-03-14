@@ -7,6 +7,9 @@
 #include "GraphicsObjects.h"
 #include "../../logScreen/header/LogText.h"
 #include "AATooltips.h"
+#include "AAButtons.h"
+
+#define GRAY_MAX       256
 
 #define FONT12_S        12
 #define FONT14_S        14
@@ -52,6 +55,8 @@ public:
 
 	Color* neutColorB, * neutColorH;
 
+	vector<Color*> grayColors;
+
 	///////////////////////////////////////////////////////////////////////////
 	//// Pens
 	///////////////////////////////////////////////////////////////////////////
@@ -60,11 +65,15 @@ public:
 	Pen* blackPen1, * blackPen2, * blackPen4;
 	Pen* backPen;
 
+	// Grayscale
+	vector<Pen*> grayPens;
+
 	///////////////////////////////////////////////////////////////////////////
 	//// Fonts
 	///////////////////////////////////////////////////////////////////////////
 
 	FontFamily* calibriFamily;
+	FontFamily* calibriLightFamily;
 
 	// Formats
 	StringFormat* logTextFormat, * leftCenterFormat, * centerFormat,
@@ -73,9 +82,9 @@ public:
 	// Fonts
 	Font* font12, * font12_b;
 	Font* font14, * font14_b;
-	Font* font16, * font16_b;
+	Font* font16, * font16_b, * font16_bl;
 	Font* font17;
-	Font* font18, * font18_b;
+	Font* font18, * font18_b, * font18_l;
 	Font* font20, * font20_b;
 	Font* font24, * font24_b;
 	Font* font28;
@@ -110,6 +119,15 @@ public:
 
 	// Neutral brushes
 	HatchBrush* neutBrush, * axisBrush, * allyBrush;
+
+	// Grayscale
+	vector<SolidBrush*> grayBrushes;
+
+	///////////////////////////////////////////////////////////////////////////
+	//// Buttons
+	///////////////////////////////////////////////////////////////////////////
+
+	AAButtons* buttons;
 
 	///////////////////////////////////////////////////////////////////////////
 	//// Tooltips

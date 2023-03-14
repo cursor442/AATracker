@@ -1,5 +1,55 @@
 #include "../header/GraphicsObjects.h"
 
+AALine::AALine()
+{
+	layer = 0;
+}
+
+AALine::~AALine()
+{
+
+}
+
+void AALine::config(PointF s, PointF e, int l)
+{
+	pt0 = s;
+	pt1 = e;
+	layer = l;
+}
+
+void AALine::drawLine(Graphics* graphics, Pen* p0, int layers)
+{
+	if (layer <= layers)
+	{
+		graphics->DrawLine(p0, pt0, pt1);
+	}
+}
+
+AARect::AARect()
+{
+	layer = 0;
+}
+
+AARect::~AARect()
+{
+
+}
+
+void AARect::config(RectF r, int l)
+{
+	box = r;
+	layer = l;
+}
+
+void AARect::drawRect(Graphics* graphics, Brush* b0, int layers)
+{
+	if (layer <= layers)
+	{
+		graphics->FillRectangle(b0, box);
+	}
+}
+
+
 AABox::AABox()
 {
 	layer = 0;
@@ -27,6 +77,20 @@ void AABox::config(RectF r, int l)
 {
 	box = r;
 	layer = l;
+}
+
+void AABox::shrink(int n)
+{
+	box.X += n;
+	box.Y += n;
+	box.Width -= 2 * n;
+	box.Height -= 2 * n;
+}
+
+void AABox::shrinkX(int n)
+{
+	box.X += n;
+	box.Width -= 2 * n;
 }
 
 void AABox::drawFrame(Graphics* graphics, Pen* pen, Font* font, StringFormat* sf, Brush* b0, Brush* b1, int layers)
