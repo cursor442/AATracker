@@ -75,7 +75,7 @@ void AAButtons::configScreenFrames(framesList* frames)
 	screenFrames = frames;
 }
 
-void AAButtons::updateCurrPoint(HWND& hWnd, LPARAM lParam, bool& clickButton)
+void AAButtons::checkForButton(HWND& hWnd, LPARAM lParam, bool& clickButton, bool& newButton, bool updateButton)
 {
 	GetCursorPos(&currPoint);
 	ScreenToClient(hWnd, &currPoint);
@@ -90,18 +90,30 @@ void AAButtons::updateCurrPoint(HWND& hWnd, LPARAM lParam, bool& clickButton)
 		inWind = false;
 
 	clickButton = false;
+	newButton = true;
 
 	if (inWind)
 	{
 		// Identify the current Button the mouse is over
-		int bbButton = isPointInButtonBox(xGrid, yGrid, currPoint.x, currPoint.y);
+		int bbButton = isPointInButtonBox(xGrid, yGrid, currPoint.x, currPoint.y, updateButton);
 
-		//// Has the current Button changed?
-		//if (bbButton != currButton)
-		 if (bbButton != BB_ID_NULL)
+		// Click event is over an active Button
+		if (bbButton != BB_ID_NULL)
 		{
-			currButton = bbButton;
 			clickButton = true;
+
+			if (bbButton != currButton) // The button is different compared to the last click event
+				newButton = true;
+			else
+				newButton = false;
+
+			if (updateButton)
+				currButton = bbButton;
+		}
+		else
+		{
+			if (updateButton)
+				currButton = BB_ID_NULL;
 		}
 	}
 }
@@ -197,8 +209,10 @@ bool AAButtons::deactivateButton(int id)
 	return false;
 }
 
-int AAButtons::isPointInButtonBox(int xGrid, int yGrid, int xPos, int yPos)
+int AAButtons::isPointInButtonBox(int xGrid, int yGrid, int xPos, int yPos, bool updateIdx)
 {
+	int tempIdx = BB_ID_NULL;
+
 	if (activeButtonGrid[xGrid][yGrid].size() > 0) // There are active Buttons in this sector
 	{
 		// Only search active Buttons
@@ -206,27 +220,32 @@ int AAButtons::isPointInButtonBox(int xGrid, int yGrid, int xPos, int yPos)
 		{
 			// Map id to check to an index in the active Button list
 			int currId = activeButtonGrid[xGrid][yGrid][i];
-			currIdx = BB_ID_NULL;
+			tempIdx = BB_ID_NULL;
 			for (int j = 0; j < activeButtons.size(); j++)
 				if (activeButtons[j]->getButtonId() == currId)
 				{
-					currIdx = j;
+					tempIdx = j;
 					break;
 				}
 
+			if (updateIdx)
+				currIdx = tempIdx;
+
 			// Active Buttons are not allowed to overlap
 			// Only identify the first Button containing the point
-			if (activeButtons[currIdx]->isPointInBox(xPos, yPos))
+			if (activeButtons[tempIdx]->isPointInBox(xPos, yPos))
 				return currId;
 		}
 
 		// Point is not on any active Button
-		currIdx = BB_ID_NULL;
+		if (updateIdx)
+			currIdx = BB_ID_NULL;
 		return BB_ID_NULL;
 	}
 	else // No active Buttons in this sector
 	{
-		currIdx = BB_ID_NULL;
+		if (updateIdx)
+			currIdx = BB_ID_NULL;
 		return BB_ID_NULL;
 	}
 }

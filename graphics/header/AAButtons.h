@@ -21,7 +21,7 @@ public:
 	void configDrawTools(vector<Color*>&, vector<SolidBrush*>&, SolidBrush*, Font*);
 	void configScreenFrames(framesList*);
 
-	void updateCurrPoint(HWND&, LPARAM, bool&);
+	void checkForButton(HWND&, LPARAM, bool&, bool&, bool = true);
 	void drawButton(int, Graphics*, HDC&, bool, bool, int);
 	void hideButton(HWND&, LPARAM, Graphics*, int&);
 
@@ -32,7 +32,7 @@ public:
 	bool activateButton(int);
 	bool deactivateButton(int);
 
-	int  isPointInButtonBox(int, int, int, int);
+	int  isPointInButtonBox(int, int, int, int, bool = true);
 	void updateButtonGrid(int, bool);
 
 private:

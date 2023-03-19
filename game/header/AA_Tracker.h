@@ -77,7 +77,11 @@ public:
 	bool whichUpdateNatGraph, doUpdateGraph;
 
 	// Buttons
-	bool clickButton;                // The mouse has clicked on an active button
+	bool buttonClick;                // The mouse has clicked on an active button
+	bool newButtonClick;             // The mouse has clicked on an active button that is different than the last button click
+	bool buttonClicked;              // The mouse is currently clicked and held on an active button
+	bool newButtonClicked;           // The mouse is currently clicked and held on an active button that is different from the initial click 
+	bool newButtonUnclicked;         // The mouse is currently held on an active button that is different from the initial click 
 	void showButton(HWND&);          // Draw the currently selected button
 	void hideButton(HWND&);          // Hide the currently selected button
 	

@@ -42,7 +42,11 @@ Game::Game()
 	logTextFont = NULL; logTurnFont = NULL;
 
 	// Buttons
-	clickButton = false;
+	buttonClick = false;
+	newButtonClick = false;
+	buttonClicked = false;
+	newButtonClicked = false;
+	newButtonUnclicked = false;
 
 	// Tooltips
 	activeTooltip = false;

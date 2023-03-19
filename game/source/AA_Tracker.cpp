@@ -625,12 +625,45 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             yNewPos = yCurrentScroll;*/
     }
         break;
+    case WM_MOUSEMOVE:
+    {
+        // Track if a button is clicked and held
+        if (game->buttonClicked)
+        {
+            game->gfx->buttons->checkForButton(hWnd, lParam, game->buttonClick, game->newButtonClicked, false);
+
+            if (game->newButtonClicked && !game->newButtonUnclicked)
+            {
+                game->newButtonUnclicked = true;
+
+                game->gfx->buttons->releaseButton();
+
+                game->nsSection |= PHASE_SECT;
+                game->nsPhase = PR_PHASE;
+                RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+            }
+            else if (game->buttonClick && !game->newButtonClicked && game->newButtonUnclicked)
+            {
+                game->newButtonUnclicked = false;
+
+                game->gfx->buttons->pressButton();
+
+                game->nsSection |= PHASE_SECT;
+                game->nsPhase = PR_PHASE;
+                RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+            }
+        }
+        break;
+    }
     case WM_LBUTTONDOWN:
     {
-        game->gfx->buttons->updateCurrPoint(hWnd, lParam, game->clickButton);
+        game->gfx->buttons->checkForButton(hWnd, lParam, game->buttonClick, game->newButtonClick);
 
-        if (game->clickButton && game->gfx->buttons->pressButton())
+        if (game->buttonClick && game->gfx->buttons->pressButton())
         {
+            game->buttonClicked = true;
+            game->newButtonUnclicked = false;
+
             game->nsSection |= PHASE_SECT;
             game->nsPhase = PR_PHASE;
             RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
@@ -639,10 +672,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     }
     case WM_LBUTTONUP:
     {
-        game->gfx->buttons->updateCurrPoint(hWnd, lParam, game->clickButton);
+        game->gfx->buttons->checkForButton(hWnd, lParam, game->buttonClick, game->newButtonClick);
 
-        if (game->clickButton && game->gfx->buttons->releaseButton())
+        if (game->buttonClick && !game->newButtonClick && game->gfx->buttons->releaseButton())
         {
+            game->buttonClicked = false;
+            game->newButtonUnclicked = false;
+
             game->nsSection |= PHASE_SECT;
             game->nsPhase = PR_PHASE;
             RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
