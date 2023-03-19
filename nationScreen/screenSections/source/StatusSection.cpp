@@ -104,10 +104,10 @@ void StatusSection::drawStatusBox(Graphics* graphics, int gameType, bool dbg_bou
 
 	if (dbg_sections) // Show box names
 	{
-		statusFrame->drawFrame(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
+		statusFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
 
-		axisBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		alliesBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		axisBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		alliesBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
 		
 	}
 	else // Actual graphics

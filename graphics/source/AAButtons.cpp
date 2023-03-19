@@ -16,9 +16,6 @@ AAButtons::AAButtons(HWND hWnd, RectF rect)
 
 	screenFrames = NULL;
 
-	// Start the mouse position sample timer
-	SetTimer(hWnd, BB_SAMPLE_TIMER_ID, BB_SAMPLE_TIMEOUT, NULL);
-
 	borderPen = NULL;
 	borderlessPen = NULL;
 	fontFamily = NULL;
@@ -78,7 +75,7 @@ void AAButtons::configScreenFrames(framesList* frames)
 	screenFrames = frames;
 }
 
-void AAButtons::updateCurrPoint(HWND& hWnd, LPARAM lParam, bool& activeButton, bool& deactivateButton)
+void AAButtons::updateCurrPoint(HWND& hWnd, LPARAM lParam, bool& clickButton)
 {
 	GetCursorPos(&currPoint);
 	ScreenToClient(hWnd, &currPoint);
@@ -92,34 +89,21 @@ void AAButtons::updateCurrPoint(HWND& hWnd, LPARAM lParam, bool& activeButton, b
 		currPoint.y < windowRect.GetTop() || currPoint.y > windowRect.GetBottom())
 		inWind = false;
 
+	clickButton = false;
+
 	if (inWind)
 	{
 		// Identify the current Button the mouse is over
-		int ttIdx = isPointInButtonBox(xGrid, yGrid, currPoint.x, currPoint.y);
+		int bbButton = isPointInButtonBox(xGrid, yGrid, currPoint.x, currPoint.y);
 
-		// Has the current Button changed?
-		if (ttIdx != currButton)
+		//// Has the current Button changed?
+		//if (bbButton != currButton)
+		 if (bbButton != BB_ID_NULL)
 		{
-			currButton = ttIdx;
-
-			// Kill the current timer if it exists
-			KillTimer(hWnd, BB_HOVER_TIMER_ID);
-
-			// Erase the current Button if it is active
-			if (activeButton)
-			{
-				activeButton = false;
-				deactivateButton = true;
-			}
-
-			// Start a hover timer if over an active Button
-			if (ttIdx != BB_ID_NULL)
-				SetTimer(hWnd, BB_HOVER_TIMER_ID, BB_HOVER_TIMEOUT, NULL);
+			currButton = bbButton;
+			clickButton = true;
 		}
 	}
-
-	// Reset the sample timer
-	SetTimer(hWnd, BB_SAMPLE_TIMER_ID, BB_SAMPLE_TIMEOUT, NULL);
 }
 
 void AAButtons::drawButton(int idx, Graphics* graphics, HDC& hdc, bool dbg_boundbox, bool dbg_sections, int layers)
@@ -137,6 +121,24 @@ void AAButtons::hideButton(HWND& hWnd, LPARAM lParam, Graphics* graphics, int& s
 {
 	if (lastIdx != BB_ID_NULL)
 		activeButtons[lastIdx]->hideButton(graphics, sect);
+}
+
+bool AAButtons::pressButton()
+{
+	if (currIdx != BB_ID_NULL)
+	{
+		lastIdx = currIdx;
+		return activeButtons[currIdx]->pressButton();
+	}
+}
+
+bool AAButtons::releaseButton()
+{
+	if (currIdx != BB_ID_NULL)
+	{
+		lastIdx = currIdx;
+		return activeButtons[currIdx]->releaseButton();
+	}
 }
 
 bool AAButtons::registerButton(Graphics* graphics, int id, int screen, RectF& rect, const char* text)

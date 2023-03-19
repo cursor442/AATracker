@@ -41,6 +41,9 @@ Game::Game()
 	calibriFamily = NULL;
 	logTextFont = NULL; logTurnFont = NULL;
 
+	// Buttons
+	clickButton = false;
+
 	// Tooltips
 	activeTooltip = false;
 	deactivateTooltip = false;

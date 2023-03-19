@@ -1,16 +1,12 @@
 #ifndef AA_TOOLTIPS
 #define AA_TOOLTIPS
 
+#include "AATimers.h"
+
 #define TT_ID_NULL        -1
 #define TT_GRID_SIZE       5
 #define TT_GRID_ADD        0
 #define TT_GRID_SUB        1
-
-#define TT_TIMER_NULL      0
-#define TT_SAMPLE_TIMER_ID 1
-#define TT_HOVER_TIMER_ID  2
-#define TT_SAMPLE_TIMEOUT  250
-#define TT_HOVER_TIMEOUT   1500
 
 #include "../../game/header/framework.h"
 #include "AATooltip.h"

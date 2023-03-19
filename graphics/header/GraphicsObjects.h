@@ -61,10 +61,15 @@ public:
 	~AABox();
 
 	void config(RectF, int);
+	void nudge(int, int);
 	void shrink(int);
 	void shrinkX(int);
+	void shrinkY(int);
+	void contract(int);
+	void contract(int, int);
 
-	void drawFrame(Graphics*, Pen*, Font*, StringFormat*, Brush*, Brush*, int);
+	void drawFrame(Graphics*, Pen*, Font*, StringFormat*, Brush*, int);
+	void drawFrameFill(Graphics*, Pen*, Font*, StringFormat*, Brush*, Brush*, int);
 	void drawBox(Graphics*, Pen*, Font*, StringFormat*, Brush*, Brush*, const WCHAR*, int);
 
 	RectF box;

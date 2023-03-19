@@ -77,8 +77,9 @@ public:
 	bool whichUpdateNatGraph, doUpdateGraph;
 
 	// Buttons
-	void showButton(HWND&);
-	void hideButton(HWND&);
+	bool clickButton;                // The mouse has clicked on an active button
+	void showButton(HWND&);          // Draw the currently selected button
+	void hideButton(HWND&);          // Hide the currently selected button
 	
 	// Tooltips
 	bool activeTooltip;              // The mouse has been hovering over a tooltip-enabled location for long enough

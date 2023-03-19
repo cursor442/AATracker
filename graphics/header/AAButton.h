@@ -4,10 +4,8 @@
 #define BB_UP false
 #define BB_DN true
 
-#define BB_TOP_LINES      3
-#define BB_LEFT_LINES     3
-#define BB_BOT_LINES      4
-#define BB_RIGHT_LINES    5
+#define BB_UP_LAYERS 5
+#define BB_DN_LAYERS 2
 
 #include "AAGraphicsObject.h"
 
@@ -32,26 +30,21 @@ private:
 
 	bool bbState;
 
-	AABox* bbTextBox;
+	AABox* bbUpBox[BB_UP_LAYERS];
+	AABox* bbDnBox[BB_DN_LAYERS];
+	AABox* bbUpTextBox;
+	AABox* bbDnTextBox;
 	AABox* bbBlankBox;
 
 	void config(Graphics*, const char*, framesList*);
-
-	HDC hdcCompat;
-	HBITMAP* tmpBitmap, * tmpBitmapMask;
-	Bitmap* bbBitmap;
 
 	SolidBrush* bbCenterBrush;
 	SolidBrush* clearBrush;
 
 	Font* buttonFont;
 
-	Color* bbTopColor[BB_TOP_LINES];
-	Color* bbBotColor[BB_BOT_LINES];
-	Color* bbLeftColor[BB_LEFT_LINES];
-	Color* bbRightColor[BB_RIGHT_LINES];
-
-	HBITMAP CreateBitmapMask(HBITMAP, COLORREF);
+	Pen* bbUpBorderPen[BB_UP_LAYERS];
+	Pen* bbDnBorderPen[BB_DN_LAYERS];
 
 };
 

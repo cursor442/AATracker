@@ -179,14 +179,14 @@ void MiniSpreadSection::drawMiniSpread(Graphics* graphics, Spreadsheet* spread, 
 
 	if (dbg_sections) // Show box names
 	{
-		miniSpreadFrame->drawFrame(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
+		miniSpreadFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
 
 		for (int i = 0; i < SPREAD_COLS; i++)
-			spreadHead[i]->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+			spreadHead[i]->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
 
 		for (int i = 0; i < SPREAD_ROWS; i++)
 			for (int j = 0; j < SPREAD_COLS; j++)
-				spreadBox[i][j]->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+				spreadBox[i][j]->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
 		
 	}
 	else // Actual graphics
@@ -195,7 +195,7 @@ void MiniSpreadSection::drawMiniSpread(Graphics* graphics, Spreadsheet* spread, 
 
 		spreadLineBrush = spreadBrushP;
 		for (int i = 0; i < SPREAD_COLS; i++)
-			spreadHead[i]->drawFrame(graphics, borderPen, headFont, centerFormat, textBrush, spreadLineBrush, layers);
+			spreadHead[i]->drawFrameFill(graphics, borderPen, headFont, centerFormat, textBrush, spreadLineBrush, layers);
 
 		for (int i = 0; i < SPREAD_ROWS; i++)
 		{
@@ -219,7 +219,7 @@ void MiniSpreadSection::drawMiniSpread(Graphics* graphics, Spreadsheet* spread, 
 
 	if (dbg_sections) // Show box names
 	{
-		spreadBox[turn - miniIdx][col]->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		spreadBox[turn - miniIdx][col]->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
 	}
 	else // Actual graphics
 	{

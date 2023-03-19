@@ -52,8 +52,8 @@ AAGraphics::AAGraphics(HWND hWnd, RectF rect)
 	font14 = NULL; font14_b = NULL;
 	font16 = NULL; font16_b = NULL; font16_bl = NULL;
 	font17 = NULL;
-	font18 = NULL; font18_b = NULL; font18_l = NULL;
-	font20 = NULL; font20_b = NULL;
+	font18 = NULL; font18_b = NULL; font18_l  = NULL;
+	font20 = NULL; font20_b = NULL; font20_bl = NULL;
 	font24 = NULL; font24_b = NULL;
 	font28 = NULL;
 	font32 = NULL;
@@ -159,7 +159,7 @@ AAGraphics::~AAGraphics()
 	delete font16; delete font16_b; delete font16_bl;
 	delete font17;
 	delete font18; delete font18_b; delete font18_l;
-	delete font20; delete font20_b;
+	delete font20; delete font20_b; delete font20_bl;
 	delete font24; delete font24_b;
 	delete font28;
 	delete font32;
@@ -320,6 +320,7 @@ void AAGraphics::config(HDC& hdc)
 	font18_l  = new Font(calibriLightFamily, FONT16_S, FontStyleBold, UnitPixel);
 	font20    = new Font(calibriFamily, FONT20_S, FontStyleRegular, UnitPixel);
 	font20_b  = new Font(calibriFamily, FONT20_S, FontStyleBold, UnitPixel);
+	font20_bl = new Font(calibriLightFamily, FONT20_S, FontStyleBold, UnitPixel);
 	font24    = new Font(calibriFamily, FONT24_S, FontStyleRegular, UnitPixel);
 	font24_b  = new Font(calibriFamily, FONT24_S, FontStyleBold, UnitPixel);
 	font28    = new Font(calibriFamily, FONT28_S, FontStyleRegular, UnitPixel);
@@ -402,7 +403,8 @@ void AAGraphics::config(HDC& hdc)
 
 	buttons->configBaseDrawTools(blackPen1, borderlessPen, calibriFamily, leftCenterFormat, centerFormat,
 		font18_l, textBrush, backBrush);
-	buttons->configDrawTools(grayColors, grayBrushes, clearBrush, font16_bl);
+	//buttons->configDrawTools(grayColors, grayBrushes, clearBrush, font16_bl);
+	buttons->configDrawTools(grayColors, grayBrushes, clearBrush, font20_bl);
 
 	///////////////////////////////////////////////////////////////////////////
 	//// Tooltips

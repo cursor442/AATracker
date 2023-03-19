@@ -103,28 +103,28 @@ void PhaseSection::drawPhaseBox(Graphics* graphics, int phase, bool res, bool db
 
 	if (dbg_sections) // Show box names
 	{
-		phaseFrame->drawFrame(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
+		phaseFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
 
-		resBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		purchBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		cmBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		ccBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		ncBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		mobBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		incBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		resBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		purchBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		cmBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		ccBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		ncBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		mobBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		incBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
 	}
 	else // Actual graphics
 	{
 		if (res)
-			resBox->drawFrame(graphics, pen, phaseFont, centerFormat, textBrush, (phase == RS_PHASE ? resBrushP : resBrushS), layers);
+			resBox->drawFrameFill(graphics, pen, phaseFont, centerFormat, textBrush, (phase == RS_PHASE ? resBrushP : resBrushS), layers);
 		else
 			resBox->drawBox(graphics, pen, phaseFont, centerFormat, textBrush, resBrushS, L"", layers);
-		purchBox->drawFrame(graphics, pen, phaseFont, centerFormat, textBrush, (phase == PR_PHASE ? purchBrushP : purchBrushS), layers);
-		cmBox->drawFrame(graphics, pen, phaseFont, centerFormat, textBrush, (phase == CM_PHASE ? cmBrushP : cmBrushS), layers);
-		ccBox->drawFrame(graphics, pen, phaseFont, centerFormat, textBrush, (phase == CC_PHASE ? ccBrushP : ccBrushS), layers);
-		ncBox->drawFrame(graphics, pen, phaseFont, centerFormat, textBrush, (phase == NC_PHASE ? ncBrushP : ncBrushS), layers);
-		mobBox->drawFrame(graphics, pen, phaseFont, centerFormat, textBrush, (phase == MN_PHASE ? mobBrushP : mobBrushS), layers);
-		incBox->drawFrame(graphics, pen, phaseFont, centerFormat, textBrush, (phase == CI_PHASE ? incBrushP : incBrushS), layers);
+		purchBox->drawFrameFill(graphics, pen, phaseFont, centerFormat, textBrush, (phase == PR_PHASE ? purchBrushP : purchBrushS), layers);
+		cmBox->drawFrameFill(graphics, pen, phaseFont, centerFormat, textBrush, (phase == CM_PHASE ? cmBrushP : cmBrushS), layers);
+		ccBox->drawFrameFill(graphics, pen, phaseFont, centerFormat, textBrush, (phase == CC_PHASE ? ccBrushP : ccBrushS), layers);
+		ncBox->drawFrameFill(graphics, pen, phaseFont, centerFormat, textBrush, (phase == NC_PHASE ? ncBrushP : ncBrushS), layers);
+		mobBox->drawFrameFill(graphics, pen, phaseFont, centerFormat, textBrush, (phase == MN_PHASE ? mobBrushP : mobBrushS), layers);
+		incBox->drawFrameFill(graphics, pen, phaseFont, centerFormat, textBrush, (phase == CI_PHASE ? incBrushP : incBrushS), layers);
 	}
 }
 

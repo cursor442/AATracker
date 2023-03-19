@@ -625,6 +625,30 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             yNewPos = yCurrentScroll;*/
     }
         break;
+    case WM_LBUTTONDOWN:
+    {
+        game->gfx->buttons->updateCurrPoint(hWnd, lParam, game->clickButton);
+
+        if (game->clickButton && game->gfx->buttons->pressButton())
+        {
+            game->nsSection |= PHASE_SECT;
+            game->nsPhase = PR_PHASE;
+            RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+        }
+        break;
+    }
+    case WM_LBUTTONUP:
+    {
+        game->gfx->buttons->updateCurrPoint(hWnd, lParam, game->clickButton);
+
+        if (game->clickButton && game->gfx->buttons->releaseButton())
+        {
+            game->nsSection |= PHASE_SECT;
+            game->nsPhase = PR_PHASE;
+            RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+        }
+        break;
+    }
     case WM_TIMER:
     {
         switch (wParam)
@@ -632,6 +656,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         case TT_SAMPLE_TIMER_ID:
         {
             game->gfx->tooltips->updateCurrPoint(hWnd, lParam, game->activeTooltip, game->deactivateTooltip);
+            
 
             if (game->deactivateTooltip)
                 RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);

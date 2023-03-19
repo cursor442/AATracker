@@ -237,13 +237,16 @@
     <ClInclude Include="graphics\header\GraphicsObjects.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="AAButton.h">
-      <Filter>Header Files\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\header\AAGraphicsObject.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="graphics\header\AAButtons.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\header\AAButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\header\AATimers.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>

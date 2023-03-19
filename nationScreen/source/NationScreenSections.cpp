@@ -28,6 +28,10 @@ void Game::drawPhaseFrameButtons(HDC& hdc)
         int currNat = gameBoard->getGameCurrNation();
 
         showButton(nextPhaseButton);
+
+        gfx->buttons->activateButton((int)nextPhaseButton);
+        gfx->buttons->drawButton(0, graphics, hdc, false, false, 99);
+
         switch (currPhase)
         {
         case RS_PHASE:
@@ -45,9 +49,6 @@ void Game::drawPhaseFrameButtons(HDC& hdc)
         {
             hideButton(researchButton);
             hideButton(declareWarButton);
-
-            gfx->buttons->activateButton((int)nextPhaseButton);
-            gfx->buttons->drawButton(0, graphics, hdc, false, false, 99);
         }
         break;
         case CM_PHASE:

@@ -36,8 +36,8 @@ void AATooltip::drawTooltip(Graphics* graphics, bool dbg_boundbox, bool dbg_sect
 
 	if (dbg_sections) // Show box names
 	{
-		ttTriBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		ttTextBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		ttTriBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		ttTextBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
 	}
 	else // Actual graphics
 	{

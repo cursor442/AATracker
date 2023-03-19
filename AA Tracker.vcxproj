@@ -169,6 +169,7 @@
     <ClInclude Include="graphics\header\AAButton.h" />
     <ClInclude Include="graphics\header\AAButtons.h" />
     <ClInclude Include="graphics\header\AAGraphicsObject.h" />
+    <ClInclude Include="graphics\header\AATimers.h" />
     <ClInclude Include="graphics\header\AATooltip.h" />
     <ClInclude Include="graphics\header\AATooltips.h" />
     <ClInclude Include="graphics\header\DebugGrid.h" />

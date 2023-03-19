@@ -79,6 +79,12 @@ void AABox::config(RectF r, int l)
 	layer = l;
 }
 
+void AABox::nudge(int x, int y)
+{
+	box.X += x;
+	box.Y += y;
+}
+
 void AABox::shrink(int n)
 {
 	box.X += n;
@@ -93,7 +99,34 @@ void AABox::shrinkX(int n)
 	box.Width -= 2 * n;
 }
 
-void AABox::drawFrame(Graphics* graphics, Pen* pen, Font* font, StringFormat* sf, Brush* b0, Brush* b1, int layers)
+void AABox::shrinkY(int n)
+{
+	box.Y += n;
+	box.Height -= 2 * n;
+}
+
+void AABox::contract(int n)
+{
+	box.Width -= n;
+	box.Height -= n;
+}
+
+void AABox::contract(int x, int y)
+{
+	box.Width -= x;
+	box.Height -= y;
+}
+
+void AABox::drawFrame(Graphics* graphics, Pen* pen, Font* font, StringFormat* sf, Brush* b0, int layers)
+{
+	if (layer <= layers)
+	{
+		graphics->DrawRectangle(pen, box);
+		graphics->DrawString(defaultText, -1, font, box, sf, b0);
+	}
+}
+
+void AABox::drawFrameFill(Graphics* graphics, Pen* pen, Font* font, StringFormat* sf, Brush* b0, Brush* b1, int layers)
 {
 	if (layer <= layers)
 	{

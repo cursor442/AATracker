@@ -831,28 +831,28 @@ void BonusSection::drawBonusBox(Graphics* graphics, bool dbg_boundbox, bool dbg_
 
 	if (dbg_sections) // Show box names
 	{
-		bonusFrame->drawFrame(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
+		bonusFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
 
 		for (int i = 0; i < BONS_COLS; i++)
-			bonusHead[i]->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+			bonusHead[i]->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
 
 		if (bonusSel == BONS_4)
 		{
 			for (int i = 0; i < 4; i++)
 				for (int j = 0; j < BONS_COLS; j++)
-					bonus4Box[i][j]->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+					bonus4Box[i][j]->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
 		}
 		else if (bonusSel == BONS_6)
 		{
 			for (int i = 0; i < 6; i++)
 				for (int j = 0; j < BONS_COLS; j++)
-					bonus6Box[i][j]->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+					bonus6Box[i][j]->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
 		}
 	}
 	else // Actual graphics
 	{
 		for (int i = 0; i < BONS_COLS; i++)
-			bonusHead[i]->drawFrame(graphics, borderPen, headFont, centerFormat, textBrush, bonusBrushP, layers);
+			bonusHead[i]->drawFrameFill(graphics, borderPen, headFont, centerFormat, textBrush, bonusBrushP, layers);
 
 		if (bonusSel == BONS_4)
 		{

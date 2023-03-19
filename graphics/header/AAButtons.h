@@ -1,16 +1,12 @@
 #ifndef AA_BUTTONS
 #define AA_BUTTONS
 
+#include "AATimers.h"
+
 #define BB_ID_NULL        -1
 #define BB_GRID_SIZE       5
 #define BB_GRID_ADD        0
 #define BB_GRID_SUB        1
-
-#define BB_TIMER_NULL      0
-#define BB_SAMPLE_TIMER_ID 1
-#define BB_HOVER_TIMER_ID  2
-#define BB_SAMPLE_TIMEOUT  250
-#define BB_HOVER_TIMEOUT   1500
 
 #include "../../game/header/framework.h"
 #include "AAButton.h"
@@ -25,9 +21,12 @@ public:
 	void configDrawTools(vector<Color*>&, vector<SolidBrush*>&, SolidBrush*, Font*);
 	void configScreenFrames(framesList*);
 
-	void updateCurrPoint(HWND&, LPARAM, bool&, bool&);
+	void updateCurrPoint(HWND&, LPARAM, bool&);
 	void drawButton(int, Graphics*, HDC&, bool, bool, int);
 	void hideButton(HWND&, LPARAM, Graphics*, int&);
+
+	bool pressButton();
+	bool releaseButton();
 
 	bool registerButton(Graphics* graphics, int, int, RectF&, const char*);
 	bool activateButton(int);

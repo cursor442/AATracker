@@ -68,11 +68,11 @@ void NameSection::drawNameBox(Graphics* graphics, bool dbg_boundbox, bool dbg_se
 
 	if (dbg_sections) // Show box names
 	{
-		nameFrame->drawFrame(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
+		nameFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
 
-		nameBox->drawFrame(graphics, borderPen, baseTitleFont, centerFormat, textBrush, backBrush, layers);
-		typeBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		turnBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		nameBox->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, backBrush, layers);
+		typeBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		turnBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
 	}
 	else // Actual graphics
 	{

@@ -174,7 +174,7 @@ void NeutralSection::drawNeutralBox(Graphics* graphics, bool dbg_boundbox, bool 
 
 	if (dbg_sections) // Show box names
 	{
-		neutralFrame->drawFrame(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
+		neutralFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
 
 		int idxC = 0, idxR = 0;
 		for (int i = 0; i < neutralBrush.size(); i++)
@@ -188,7 +188,7 @@ void NeutralSection::drawNeutralBox(Graphics* graphics, bool dbg_boundbox, bool 
 		{
 			idxC = i / NEUTRAL_ROWS;
 			idxR = i % NEUTRAL_ROWS;
-			neutralBox[idxC][idxR]->drawFrame(graphics, borderPen, baseTextFont, textFormat, textBrush, backBrush, layers);
+			neutralBox[idxC][idxR]->drawFrameFill(graphics, borderPen, baseTextFont, textFormat, textBrush, backBrush, layers);
 		}
 	}
 	else // Actual graphics

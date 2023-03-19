@@ -290,13 +290,13 @@ void WarchestSection::drawWarchestBox(Graphics* graphics, bool dbg_boundbox, boo
 
 	if (dbg_sections) // Show box names
 	{
-		warchestFrame->drawFrame(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
+		warchestFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
 
 		for (int i = 0; i < 3; i++)
 			for (int j = 0; j < 3; j++)
 			{
-				warchestBoxes[i][j]->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-				warchestValBoxes[i][j]->drawFrame(graphics, pen, baseTextFont, textFormat, textBrush, backBrush, layers);
+				warchestBoxes[i][j]->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+				warchestValBoxes[i][j]->drawFrameFill(graphics, pen, baseTextFont, textFormat, textBrush, backBrush, layers);
 			}
 
 		warchestCone->drawQuad(graphics, borderPen, paneBrush, layers);
