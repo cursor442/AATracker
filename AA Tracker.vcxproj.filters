@@ -446,6 +446,9 @@
     <ClCompile Include="graphics\source\AAButtons.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="game\source\MouseHandlers.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="bitmaps\ANZACIcon.bmp">

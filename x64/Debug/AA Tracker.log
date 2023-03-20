@@ -1,2 +1,68 @@
 ﻿  AA_Tracker.cpp
+  AuxFunctions.cpp
+  GameClass.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(608): warning C4267: 'argument': conversion from 'size_t' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(865,40): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1363,31): warning C4267: 'argument': conversion from 'size_t' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1364,48): warning C4267: 'argument': conversion from 'size_t' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1925,42): warning C4244: '=': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1926,53): warning C4244: '=': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1927,42): warning C4244: '=': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1928,55): warning C4244: '=': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+  MenuCallbacks.cpp
+  MouseHandlers.cpp
+  DebugSwitches.cpp
+  GraphicsHandlers.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\GraphicsHandlers.cpp(55,47): warning C4311: 'type cast': pointer truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\GraphicsHandlers.cpp(55,47): warning C4302: 'type cast': truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\GraphicsHandlers.cpp(61,49): warning C4311: 'type cast': pointer truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\GraphicsHandlers.cpp(61,49): warning C4302: 'type cast': truncation from 'HWND' to 'int'
+  GraphScreen.cpp
+  LogScreen.cpp
+  MainScreen.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\mainScreen\MainScreen.cpp(11,36): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  NationScreen.cpp
+  NationScreenAux.cpp
+  NationScreenConfig.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(243,25): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(328,19): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(439,22): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(453,65): warning C4311: 'type cast': pointer truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(453,65): warning C4302: 'type cast': truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(457,63): warning C4311: 'type cast': pointer truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(457,63): warning C4302: 'type cast': truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(462,21): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(476,64): warning C4311: 'type cast': pointer truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(476,64): warning C4302: 'type cast': truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(481,23): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(495,66): warning C4311: 'type cast': pointer truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(495,66): warning C4302: 'type cast': truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(500,29): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(514,72): warning C4311: 'type cast': pointer truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(514,72): warning C4302: 'type cast': truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(519,26): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(533,69): warning C4311: 'type cast': pointer truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(533,69): warning C4302: 'type cast': truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(538,26): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(552,69): warning C4311: 'type cast': pointer truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(552,69): warning C4302: 'type cast': truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(557,27): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(571,70): warning C4311: 'type cast': pointer truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(571,70): warning C4302: 'type cast': truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(576,24): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(590,67): warning C4311: 'type cast': pointer truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(590,67): warning C4302: 'type cast': truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(595,25): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(609,68): warning C4311: 'type cast': pointer truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(609,68): warning C4302: 'type cast': truncation from 'HWND' to 'int'
+  NationScreenHandlers.cpp
+  NationScreenSections.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenSections.cpp(32,58): warning C4311: 'type cast': pointer truncation from 'HWND' to 'int'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenSections.cpp(32,58): warning C4302: 'type cast': truncation from 'HWND' to 'int'
+  NatScreenPurchHelp.cpp
+  ResearchScreen.cpp
+  SpreadScreen.cpp
+  Generating Code...
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\AuxFunctions.cpp(70): warning C4172: returning address of local variable or temporary: str
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\AuxFunctions.cpp(18): warning C4172: returning address of local variable or temporary: str
   AA Tracker.vcxproj -> C:\Users\Adam\Documents\GitHub\AATracker\x64\Debug\AA Tracker.exe
