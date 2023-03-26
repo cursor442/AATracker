@@ -4,6 +4,7 @@ AAButton::AAButton(int id)
 	:AAGraphicsObject(id)
 {
 	bbState = BB_UP;
+	isDrawn = false;
 
 	for (int i = 0; i < BB_UP_LAYERS; i++)
 	{
@@ -24,7 +25,9 @@ AAButton::AAButton(int id)
 	bbCenterBrush = NULL;
 	clearBrush = NULL;
 
-	buttonFont = NULL;
+	bbFont = NULL;
+
+	bbFunction = NULL;
 }
 
 AAButton::~AAButton()
@@ -46,7 +49,7 @@ AAButton::~AAButton()
 	delete bbBlankBox;
 }
 
-void AAButton::configButton(Graphics* graphics, int screen, RectF& rect, const char* text, framesList* frames)
+void AAButton::configButton(Graphics* graphics, int screen, RectF& rect, const char* text, framesList* frames, void (*bbFunc)(HWND))
 {
 	configObject(graphics, screen, rect, text, frames);
 
@@ -59,6 +62,8 @@ void AAButton::configButton(Graphics* graphics, int screen, RectF& rect, const c
 	bbDnTextBox = new AABox("Button");
 
 	bbBlankBox = new AABox("");
+
+	bbFunction = bbFunc;
 
 	config(graphics, text, frames);
 }
@@ -78,10 +83,10 @@ void AAButton::configDrawTools(vector<Color*>& cGray, vector<SolidBrush*>& bGray
 
 	clearBrush = b0;
 
-	buttonFont = f0;
+	bbFont = f0;
 }
 
-void AAButton::drawButton(Graphics* graphics, HDC& hdc, bool dbg_boundbox, bool dbg_sections, int layers)
+void AAButton::drawButton(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, int layers)
 {
 	drawObject(graphics, dbg_boundbox, dbg_sections, layers);
 
@@ -91,30 +96,34 @@ void AAButton::drawButton(Graphics* graphics, HDC& hdc, bool dbg_boundbox, bool 
 	}
 	else // Actual graphics
 	{
-		if (bbState == BB_UP)
+		if (!isDrawn)
 		{
-			bbUpBox[0]->drawFrame(graphics, bbUpBorderPen[0], baseTextFont, centerFormat, textBrush, layers);
-			bbUpBox[1]->drawFrame(graphics, bbUpBorderPen[1], baseTextFont, centerFormat, textBrush, layers);
-			bbUpBox[2]->drawFrame(graphics, bbUpBorderPen[2], baseTextFont, centerFormat, textBrush, layers);
-			bbUpBox[3]->drawFrame(graphics, bbUpBorderPen[3], baseTextFont, centerFormat, textBrush, layers);
-			bbUpBox[4]->drawFrame(graphics, bbUpBorderPen[4], baseTextFont, centerFormat, textBrush, layers);
+			if (bbState == BB_UP)
+			{
+				bbUpBox[0]->drawFrame(graphics, bbUpBorderPen[0], baseTextFont, centerFormat, textBrush, layers);
+				bbUpBox[1]->drawFrame(graphics, bbUpBorderPen[1], baseTextFont, centerFormat, textBrush, layers);
+				bbUpBox[2]->drawFrame(graphics, bbUpBorderPen[2], baseTextFont, centerFormat, textBrush, layers);
+				bbUpBox[3]->drawFrame(graphics, bbUpBorderPen[3], baseTextFont, centerFormat, textBrush, layers);
+				bbUpBox[4]->drawFrame(graphics, bbUpBorderPen[4], baseTextFont, centerFormat, textBrush, layers);
 
-			bbUpTextBox->drawBox(graphics, borderlessPen, buttonFont, centerFormat, textBrush, bbCenterBrush, objText, layers);
-		}
-		else if (bbState == BB_DN)
-		{
-			bbDnBox[0]->drawFrame(graphics, bbDnBorderPen[0], baseTextFont, centerFormat, textBrush, layers);
-			bbDnBox[1]->drawFrame(graphics, bbDnBorderPen[1], baseTextFont, centerFormat, textBrush, layers);
+				bbUpTextBox->drawBox(graphics, borderlessPen, bbFont, centerFormat, textBrush, bbCenterBrush, objText, layers);
+			}
+			else if (bbState == BB_DN)
+			{
+				bbDnBox[0]->drawFrame(graphics, bbDnBorderPen[0], baseTextFont, centerFormat, textBrush, layers);
+				bbDnBox[1]->drawFrame(graphics, bbDnBorderPen[1], baseTextFont, centerFormat, textBrush, layers);
 
-			bbDnTextBox->drawBox(graphics, borderlessPen, buttonFont, centerFormat, textBrush, bbCenterBrush, objText, layers);
+				bbDnTextBox->drawBox(graphics, borderlessPen, bbFont, centerFormat, textBrush, bbCenterBrush, objText, layers);
+			}
+
+			isDrawn = true;
 		}
 	}
 }
 
-void AAButton::hideButton(Graphics* graphics, int& sect)
+void AAButton::hideButton(Graphics* graphics)
 {
-	hideObject(graphics, sect);
-
+	isDrawn = false;
 	bbBlankBox->drawBox(graphics, borderlessPen, baseTextFont, centerFormat, textBrush, backBrush, L"", 99);
 }
 
@@ -123,6 +132,7 @@ bool AAButton::pressButton()
 	if (bbState == BB_UP)
 	{
 		bbState = BB_DN;
+		isDrawn = false;
 		return true;
 	}
 	else
@@ -134,10 +144,16 @@ bool AAButton::releaseButton()
 	if (bbState == BB_DN)
 	{
 		bbState = BB_UP;
+		isDrawn = false;
 		return true;
 	}
 	else
 		return false;
+}
+
+void AAButton::executeButton(HWND hWnd)
+{
+	bbFunction(hWnd);
 }
 
 int AAButton::getButtonId()

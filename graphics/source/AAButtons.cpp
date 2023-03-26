@@ -3,7 +3,6 @@
 AAButtons::AAButtons(HWND hWnd, RectF rect)
 {
 	currPoint = { 0,0 };
-	currButton = BB_ID_NULL;
 
 	activeButtons.resize(0);
 	inactiveButtons.resize(0);
@@ -34,6 +33,11 @@ AAButtons::AAButtons(HWND hWnd, RectF rect)
 
 	currIdx = BB_ID_NULL;
 	lastIdx = BB_ID_NULL;
+
+	currId = BB_ID_NULL;
+	lastId = BB_ID_NULL;
+
+	nextButtonId = BB_ID_BASE;
 }
 
 AAButtons::~AAButtons()
@@ -75,7 +79,7 @@ void AAButtons::configScreenFrames(framesList* frames)
 	screenFrames = frames;
 }
 
-void AAButtons::checkForButton(HWND& hWnd, LPARAM lParam, bool& clickButton, bool& newButton, bool updateButton)
+int AAButtons::checkForButton(HWND& hWnd, LPARAM lParam, bool& clickButton, bool& newButton, int currButton, bool updateButtonId)
 {
 	GetCursorPos(&currPoint);
 	ScreenToClient(hWnd, &currPoint);
@@ -92,10 +96,12 @@ void AAButtons::checkForButton(HWND& hWnd, LPARAM lParam, bool& clickButton, boo
 	clickButton = false;
 	newButton = true;
 
+	int bbButton = BB_ID_NULL;
+
 	if (inWind)
 	{
 		// Identify the current Button the mouse is over
-		int bbButton = isPointInButtonBox(xGrid, yGrid, currPoint.x, currPoint.y, updateButton);
+		bbButton = isPointInButtonBox(xGrid, yGrid, currPoint.x, currPoint.y, updateButtonId);
 
 		// Click event is over an active Button
 		if (bbButton != BB_ID_NULL)
@@ -106,54 +112,56 @@ void AAButtons::checkForButton(HWND& hWnd, LPARAM lParam, bool& clickButton, boo
 				newButton = true;
 			else
 				newButton = false;
-
-			if (updateButton)
-				currButton = bbButton;
-		}
-		else
-		{
-			if (updateButton)
-				currButton = BB_ID_NULL;
 		}
 	}
+
+	return bbButton;
 }
 
-void AAButtons::drawButton(int idx, Graphics* graphics, HDC& hdc, bool dbg_boundbox, bool dbg_sections, int layers)
+void AAButtons::drawButton(int id, Graphics* graphics, bool dbg_boundbox, bool dbg_sections, int layers)
 {
-	currIdx = idx;
+	convIdToIdx(id);
 
 	if (currIdx != BB_ID_NULL)
-	{
-		activeButtons[currIdx]->drawButton(graphics, hdc, dbg_boundbox, dbg_sections, layers);
-		lastIdx = currIdx;
-	}
+		activeButtons[currIdx]->drawButton(graphics, dbg_boundbox, dbg_sections, layers);
 }
 
-void AAButtons::hideButton(HWND& hWnd, LPARAM lParam, Graphics* graphics, int& sect)
+void AAButtons::hideButton(int id, Graphics* graphics)
 {
-	if (lastIdx != BB_ID_NULL)
-		activeButtons[lastIdx]->hideButton(graphics, sect);
-}
+	convIdToIdx(id);
 
-bool AAButtons::pressButton()
-{
 	if (currIdx != BB_ID_NULL)
-	{
-		lastIdx = currIdx;
+		activeButtons[currIdx]->hideButton(graphics);
+}
+
+bool AAButtons::pressButton(int id)
+{
+	convIdToIdx(id);
+
+	if (currIdx != BB_ID_NULL)
 		return activeButtons[currIdx]->pressButton();
-	}
 }
 
-bool AAButtons::releaseButton()
+bool AAButtons::releaseButton(int id)
+{
+	convIdToIdx(id);
+
+	if (currIdx != BB_ID_NULL)
+		return activeButtons[currIdx]->releaseButton();
+}
+
+void AAButtons::executeButton(HWND hWnd)
 {
 	if (currIdx != BB_ID_NULL)
-	{
-		lastIdx = currIdx;
-		return activeButtons[currIdx]->releaseButton();
-	}
+		activeButtons[currIdx]->executeButton(hWnd);
 }
 
-bool AAButtons::registerButton(Graphics* graphics, int id, int screen, RectF& rect, const char* text)
+int AAButtons::createButtonId()
+{
+	return nextButtonId++;
+}
+
+bool AAButtons::registerButton(Graphics* graphics, int id, int screen, RectF& rect, const char* text, void (*bbFunc)(HWND))
 {
 	// Ensure that there is no duplicate id
 	for (int i = 0; i < activeButtons.size(); i++)
@@ -170,7 +178,7 @@ bool AAButtons::registerButton(Graphics* graphics, int id, int screen, RectF& re
 	inactiveButtons[inactiveButtons.size() - 1]->configBaseDrawTools(borderPen, borderlessPen, fontFamily,
 		textFormat, centerFormat, baseTextFont, textBrush, backBrush);
 	inactiveButtons[inactiveButtons.size() - 1]->configDrawTools(*grayColors, *grayBrushes, clearBrush, buttonFont);
-	inactiveButtons[inactiveButtons.size() - 1]->configButton(graphics, screen, rect, text, screenFrames);
+	inactiveButtons[inactiveButtons.size() - 1]->configButton(graphics, screen, rect, text, screenFrames, bbFunc);
 
 	return true;
 }
@@ -194,6 +202,11 @@ bool AAButtons::activateButton(int id)
 
 bool AAButtons::deactivateButton(int id)
 {
+	currId  = BB_ID_NULL;
+	currIdx = BB_ID_NULL;
+	lastId  = BB_ID_NULL;
+	lastIdx = BB_ID_NULL;
+
 	// Ensure id exists and is active
 	for (int i = 0; i < activeButtons.size(); i++)
 		if (activeButtons[i]->getButtonId() == id)
@@ -219,35 +232,26 @@ int AAButtons::isPointInButtonBox(int xGrid, int yGrid, int xPos, int yPos, bool
 		for (int i = 0; i < activeButtonGrid[xGrid][yGrid].size(); i++)
 		{
 			// Map id to check to an index in the active Button list
-			int currId = activeButtonGrid[xGrid][yGrid][i];
+			int tempId = activeButtonGrid[xGrid][yGrid][i];
 			tempIdx = BB_ID_NULL;
 			for (int j = 0; j < activeButtons.size(); j++)
-				if (activeButtons[j]->getButtonId() == currId)
+				if (activeButtons[j]->getButtonId() == tempId)
 				{
 					tempIdx = j;
 					break;
 				}
 
-			if (updateIdx)
-				currIdx = tempIdx;
-
 			// Active Buttons are not allowed to overlap
 			// Only identify the first Button containing the point
 			if (activeButtons[tempIdx]->isPointInBox(xPos, yPos))
-				return currId;
+				return tempId;
 		}
 
 		// Point is not on any active Button
-		if (updateIdx)
-			currIdx = BB_ID_NULL;
 		return BB_ID_NULL;
 	}
 	else // No active Buttons in this sector
-	{
-		if (updateIdx)
-			currIdx = BB_ID_NULL;
 		return BB_ID_NULL;
-	}
 }
 
 void AAButtons::updateButtonGrid(int id, bool dir)
@@ -291,6 +295,34 @@ void AAButtons::updateButtonGrid(int id, bool dir)
 					if (activeButtonGrid[i][j][k] == id)
 						activeButtonGrid[i][j].erase(activeButtonGrid[i][j].begin() + k);
 	}
+}
+
+void AAButtons::convIdToIdx(int id)
+{
+	int idx = BB_ID_NULL;
+
+	if (currId != id || (currIdx == BB_ID_NULL && id != BB_ID_NULL))
+	{
+		if (lastId != id || (lastIdx == BB_ID_NULL && id != BB_ID_NULL))
+		{
+			for (int i = 0; i < activeButtons.size(); i++)
+				if (activeButtons[i]->getButtonId() == id)
+				{
+					idx = i;
+					break;
+				}
+		}
+		else
+			idx = lastIdx;
+
+		lastId = currId;
+		lastIdx = currIdx;
+	}
+	else
+		idx = currIdx;
+
+	currId = id;
+	currIdx = idx;
 }
 
 // Over-engineering at its finest

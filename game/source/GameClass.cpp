@@ -1,176 +1,9 @@
 #include "../header/AA_Tracker.h"
+#include "../header/GameClass.h"
 
 Game::Game()
 {
-	gameBoard = new Board;
-	success = false;
-	nsSection = ALL_SECT;
-	nsPhase = ALL_PHASE;
-	nsUnit = PURCH_TITLE;
-	nsNeut = NEUT_ALL;
-	nsTurn = SPREAD_ALL_ROWS;
-	nsCol = SPREAD_ALL_COLS;
-	nsUKToggle = false;
-	warchestRotate = false;
-	nsWC = WC_ALL;
-	nsBonusRow = BONS_ALL;
-	lockPhase = false;
-
-	whichScreen = MAIN_SCREEN;
-	lastScreen = MAIN_SCREEN;
-
-	n = 0;
-	k = 0;
-	numResDice[0] = 0; numResDice[1] = 0; currResDie = 0;
-	captureAmount = 0;
-
-	saveNations[0].resize(6); // Europe
-	saveNations[0] = { TURN_GER, TURN_SOV, TURN_USA, TURN_UKE, TURN_ITA, TURN_FRA };
-	saveNations[1].resize(5); // Pacific
-	saveNations[1] = { TURN_JPN, TURN_USA, TURN_CHN, TURN_UKP, TURN_ANZ };
-	saveNations[2].resize(10); // Global
-	saveNations[2] = { TURN_GER, TURN_SOV, TURN_JPN, TURN_USA, TURN_CHN, 
-		               TURN_UKE, TURN_UKP, TURN_ITA, TURN_ANZ, TURN_FRA };
-
-	//// Graphics
-	gfx = NULL;
-
-	graphics = NULL;
-	debugGrid = NULL;
-	// Fonts
-	calibriFamily = NULL;
-	logTextFont = NULL; logTurnFont = NULL;
-
-	// Buttons
-	buttonClick = false;
-	newButtonClick = false;
-	buttonClicked = false;
-	newButtonClicked = false;
-	newButtonUnclicked = false;
-
-	// Tooltips
-	activeTooltip = false;
-	deactivateTooltip = false;
-	
-	// Debug
-	dbg_boundbox = false;
-	dbg_layers = 99;
-	dbg_sections = false;
-	dbg_grid = 0;
-
-	screenFrames.s.resize(0);
-
-	///////////////////////////////////////////////////////////////////////////
-	//// Nation Screen
-	///////////////////////////////////////////////////////////////////////////
-	
-	// Sections
-	nameSection = NULL;
-	phaseSection = NULL;
-	warSection = NULL;
-	citiesSection = NULL;
-	statusSection = NULL;
-	purchaseSection = NULL;
-	neutralSection = NULL;
-	miniSpreadSection = NULL;
-	warchestSection = NULL;
-	bonusSection = NULL;
-
-	// Buttons
-	nextPhaseButton = NULL;
-	researchButton = NULL;
-	declareWarButton = NULL;
-	captureTerritoryButton = NULL;
-	attackNeutralButton = NULL;
-	occupyNeutralButton = NULL;
-	attackMongoliaButton = NULL;
-	attackJapanButton = NULL;
-	attackSovietButton = NULL;
-
-	// Tabs
-	nationScreenTabs = NULL;
-	purchaseSectionTabs = NULL;
-	ukEconomyTabs = NULL;
-
-	currUKButton = false;  currUKButtonToggled = false;
-
-	captButtonUKE = false; captButtonUKP = false;
-
-	///////////////////////////////////////////////////////////////////////////
-	//// Spreadsheet Screen
-	///////////////////////////////////////////////////////////////////////////
-
-	for (int i = 0; i <= TURN_FRA; i++)
-		nationSpreads[i] = NULL;
-
-	spreadAxis = NULL; spreadAllies = NULL;
-
-	///////////////////////////////////////////////////////////////////////////
-	//// Graph Screen
-	///////////////////////////////////////////////////////////////////////////
-
-	graphConfigured = false;
 	setupGDI();
-	graphSelect = NULL; currGraph = BLNK_GRAPH; currGraphNats = GRAPH_NON;
-	gerGraph = NULL; sovGraph = NULL; jpnGraph = NULL; 
-	usaGraph = NULL; chnGraph = NULL; ukGraph = NULL;
-	itaGraph = NULL; anzGraph = NULL; fraGraph = NULL;
-	updateNatGraph = 10; whichUpdateNatGraph = false;
-	doUpdateGraph = false;
-
-	///////////////////////////////////////////////////////////////////////////
-	//// Log Screen
-	///////////////////////////////////////////////////////////////////////////
-
-	gameLog = NULL;
-	customLogButton = NULL;
-	nextPage = 2;
-
-	// Tabs
-	logScreenTabs = NULL;
-
-	researchWnd = NULL;
-
-	descrFont    = CreateFont(30, 0, 0, 0, FW_REGULAR, 0, 0, 0, 0, 0, 0, 2, 0, L"DESCR_FONT");
-	descrBFont   = CreateFont(30, 0, 0, 0, FW_BOLD,    0, 0, 0, 0, 0, 0, 2, 0, L"DESCRB_FONT");
-	normalFont   = CreateFont(20, 0, 0, 0, FW_REGULAR, 0, 0, 0, 0, 0, 0, 2, 0, L"NORM_FONT");
-	headerFont   = CreateFont(20, 0, 0, 0, FW_BOLD,    0, 0, 0, 0, 0, 0, 2, 0, L"HEAD_FONT");
-
-	currBrush = true;
-
-	gerBrushP = CreateSolidBrush(RGB(77,  93,  83));  // 95,  95,  95
-	gerBrushS = CreateSolidBrush(RGB(109, 122, 114)); // 124, 124, 124
-	gerBrushF = CreateSolidBrush(RGB(223, 226, 224)); // 226, 226, 226
-	sovBrushP = CreateSolidBrush(RGB(255, 26,  0));	  // 204, 51,  0
-	sovBrushS = CreateSolidBrush(RGB(255, 68, 46));	  // 213, 88, 46
-	sovBrushF = CreateSolidBrush(RGB(255, 213, 209)); // 246, 218, 209
-	jpnBrushP = CreateSolidBrush(RGB(188, 0,   45));  // 204, 102, 0
-	jpnBrushS = CreateSolidBrush(RGB(200, 46,  83));  // 213, 130, 46
-	jpnBrushF = CreateSolidBrush(RGB(243, 209, 217)); // 246, 227, 209
-	usaBrushP = CreateSolidBrush(RGB(107, 142, 35));  // 102, 153, 0
-	usaBrushS = CreateSolidBrush(RGB(134, 163, 75));  // 130, 172, 46)
-	usaBrushF = CreateSolidBrush(RGB(228, 234, 215)); // 227, 236, 209
-	chnBrushP = CreateSolidBrush(RGB(0,   0,  149));  // 255, 0,   0
-	chnBrushS = CreateSolidBrush(RGB(46,  46,  168)); // 255, 46,  46
-	chnBrushF = CreateSolidBrush(RGB(209, 209, 236)); // 255, 209, 209
-	ukBrushP  = CreateSolidBrush(RGB(240, 230, 140)); // 255, 204, 102
-	ukBrushS  = CreateSolidBrush(RGB(243, 235, 161)); // 255, 213, 130
-	ukBrushF  = CreateSolidBrush(RGB(252, 250, 234)); // 255, 246, 227
-	itaBrushP = CreateSolidBrush(RGB(0,   140, 69));  // 102, 255, 51
-	itaBrushS = CreateSolidBrush(RGB(46,  161, 103)); // 130, 255, 88
-	itaBrushF = CreateSolidBrush(RGB(209, 234, 221)); // 227, 255, 218
-	anzBrushP = CreateSolidBrush(RGB(47,  87,  21));  // 0,   153, 0
-	anzBrushS = CreateSolidBrush(RGB(85,  118, 64));  // 46,  172, 46
-	anzBrushF = CreateSolidBrush(RGB(217, 224, 212)); // 209, 236, 209
-	fraBrushP = CreateSolidBrush(RGB(0,   114, 187)); // 102, 204, 255
-	fraBrushS = CreateSolidBrush(RGB(46,  140, 199)); // 130, 213, 255
-	fraBrushF = CreateSolidBrush(RGB(209, 229, 243)); // 227, 246, 255
-
-	tileBrush  = CreateSolidBrush(RGB(234, 234, 234));
-	tileDBrush = CreateSolidBrush(RGB(191, 191, 191));
-
-	borderless = CreatePen(PS_NULL, 0, RGB(0, 0, 0));
-	bordered = CreatePen(PS_SOLID,  1, RGB(0, 0, 0));
 }
 
 Game::~Game()
@@ -230,9 +63,7 @@ Game::~Game()
 	DeleteObject(bonusSection);
 
 	// Buttons
-	DeleteObject(nextPhaseButton);
 	DeleteObject(researchButton);
-	DeleteObject(declareWarButton);
 	DeleteObject(captureTerritoryButton);
 	DeleteObject(attackNeutralButton);
 	DeleteObject(occupyNeutralButton);
@@ -306,6 +137,8 @@ void Game::resetGameControls()
 	nsNeut = NEUT_ALL;
 	nsTurn = SPREAD_ALL_ROWS;
 	nsCol = SPREAD_ALL_COLS;
+
+	currButton = BB_ID_NULL;
 
 	purchaseTab = TAB_PURCH;
 
@@ -1917,7 +1750,7 @@ void Game::hideScreen()
 void Game::configGraphics(HDC& hdc)
 {	
 	// Convert main window RECT to RectF for use with GDIplus
-	GetClientRect(main_Wnd, &this->nationScreenRect);
+	GetClientRect(main_Wnd, &nationScreenRect);
 
 	 nationScreenWindow = nationScreenRect;
 

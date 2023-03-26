@@ -4,6 +4,8 @@
 #include "AATimers.h"
 
 #define BB_ID_NULL        -1
+#define BB_ID_BASE       101
+
 #define BB_GRID_SIZE       5
 #define BB_GRID_ADD        0
 #define BB_GRID_SUB        1
@@ -21,14 +23,19 @@ public:
 	void configDrawTools(vector<Color*>&, vector<SolidBrush*>&, SolidBrush*, Font*);
 	void configScreenFrames(framesList*);
 
-	void checkForButton(HWND&, LPARAM, bool&, bool&, bool = true);
-	void drawButton(int, Graphics*, HDC&, bool, bool, int);
-	void hideButton(HWND&, LPARAM, Graphics*, int&);
+	int  checkForButton(HWND&, LPARAM, bool&, bool&, int = BB_ID_NULL, bool = true);
 
-	bool pressButton();
-	bool releaseButton();
+	void drawButton(int, Graphics*, bool, bool, int);
+	void hideButton(int, Graphics*);
 
-	bool registerButton(Graphics* graphics, int, int, RectF&, const char*);
+	bool pressButton(int);
+	bool releaseButton(int);
+
+	void executeButton(HWND);
+
+	int createButtonId();
+
+	bool registerButton(Graphics* graphics, int, int, RectF&, const char*, void (*bbFunc)(HWND));
 	bool activateButton(int);
 	bool deactivateButton(int);
 
@@ -36,12 +43,16 @@ public:
 	void updateButtonGrid(int, bool);
 
 private:
-	POINT    currPoint;   // The current mouse location
-	int      currButton; // The window the mouse is currently over
-	int      currIdx;     // Index of the active tooltip mouse is over
-	int      lastIdx;     // Index of the last active tooltip mouse was over
+	POINT    currPoint;  // The current mouse location
+	int      currIdx;    // Index of the active button mouse is over
+	int      lastIdx;    // Index of the last active button mouse was over
+	int      currId;     // ID of the active button mouse is over 
+	int      lastId;     // ID of the last active button mouse was over
 
-	// Active and inactive tooltips
+	int  nextButtonId; // The next unique ID to assign to a newly registered button
+	void convIdToIdx(int);
+
+	// Active and inactive buttons
 	vector<AAButton*> activeButtons;
 	vector<AAButton*> inactiveButtons;
 

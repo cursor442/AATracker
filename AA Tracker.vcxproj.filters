@@ -249,6 +249,12 @@
     <ClInclude Include="graphics\header\AATimers.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="nationScreen\header\NationScreenWrappers.h">
+      <Filter>Header Files\Nation Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="game\header\GameClass.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="nationScreen\screenSections\source\BonusSection.cpp">
@@ -447,6 +453,9 @@
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="game\source\MouseHandlers.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="game\source\ButtonHanders.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
   </ItemGroup>

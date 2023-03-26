@@ -3,7 +3,7 @@
 void Game::configSpreadScreen()
 {
 	int idx = gameBoard->getGameType();
-	if (idx < 3)
+	if (idx < 3 && idx != NULL_GAME)
 	{
 		for (int i = 0; i < saveNations[idx].size(); i++)
 		{

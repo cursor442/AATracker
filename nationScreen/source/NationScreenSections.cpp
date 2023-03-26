@@ -29,9 +29,6 @@ void Game::drawPhaseFrameButtons(HDC& hdc)
 
         showButton(nextPhaseButton);
 
-        gfx->buttons->activateButton((int)nextPhaseButton);
-        gfx->buttons->drawButton(0, graphics, hdc, false, false, 99);
-
         switch (currPhase)
         {
         case RS_PHASE:

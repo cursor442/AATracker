@@ -15,20 +15,23 @@ public:
 	AAButton(int);
 	~AAButton();
 
-	void configButton(Graphics* graphics, int, RectF&, const char*, framesList*);
+	void configButton(Graphics* graphics, int, RectF&, const char*, framesList*, void (*bbFunc)(HWND));
 	void configDrawTools(vector<Color*>&, vector<SolidBrush*>&, SolidBrush*, Font*);
 
-	void drawButton(Graphics*, HDC&, bool, bool, int);
-	void hideButton(Graphics*, int&);
+	void drawButton(Graphics*, bool, bool, int);
+	void hideButton(Graphics*);
 
 	bool pressButton();
 	bool releaseButton();
+
+	void executeButton(HWND);
 
 	int  getButtonId();
 
 private:
 
 	bool bbState;
+	bool isDrawn;
 
 	AABox* bbUpBox[BB_UP_LAYERS];
 	AABox* bbDnBox[BB_DN_LAYERS];
@@ -41,10 +44,12 @@ private:
 	SolidBrush* bbCenterBrush;
 	SolidBrush* clearBrush;
 
-	Font* buttonFont;
+	Font* bbFont;
 
 	Pen* bbUpBorderPen[BB_UP_LAYERS];
 	Pen* bbDnBorderPen[BB_DN_LAYERS];
+
+	void (*bbFunction)(HWND);
 
 };
 

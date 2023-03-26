@@ -2,16 +2,15 @@
 //
 
 #include "../header/AA_Tracker.h"
+#include "../../nationScreen/header/NationScreenWrappers.h"
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 INT_PTR CALLBACK NewGameWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
-INT_PTR CALLBACK DeclareWarWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 INT_PTR CALLBACK CaptureTerritoryWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 INT_PTR CALLBACK ResearchWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 INT_PTR CALLBACK ResearchResWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 INT_PTR CALLBACK ResearchUKWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
-INT_PTR CALLBACK WarBondWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 INT_PTR CALLBACK CustomLogWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 INT_PTR CALLBACK OccupyNeutralWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 
@@ -240,15 +239,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                     game->doSaveGame(hWnd, *game->gameBoard);
                 break;
             }
-            case IDB_NEXTPHASE:
-            {
-                game->nextTurnPhase(hWnd);
-                if (game->gameBoard->getGameTurnPhase() == CI_PHASE &&
-                    game->gameBoard->getResearch(game->gameBoard->getGameCurrNation(), RES_BONDS))
-                    DialogBox(game->hInst, MAKEINTRESOURCE(IDD_WARBONDBOX), hWnd, WarBondWrapper);
-                RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
-                break;
-            }
             case IDB_RESEARCH:
             {
                 if (game->gameBoard->getGameType() == GLOBAL_GAME && game->gameBoard->getGameCurrNation() == TURN_UKE)
@@ -268,12 +258,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 }
 
                 game->researchButtonCost(hWnd);
-                break;
-            }
-            case IDB_DECLAREWAR:
-            {
-                DialogBox(game->hInst, MAKEINTRESOURCE(IDD_DECLAREWARBOX), hWnd, DeclareWarWrapper);
-                RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
                 break;
             }
             case IDB_CAPTURETER:

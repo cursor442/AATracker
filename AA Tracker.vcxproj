@@ -164,6 +164,7 @@
     <ClInclude Include="board\header\WarMatrix.h" />
     <ClInclude Include="game\header\AA_Tracker.h" />
     <ClInclude Include="game\header\framework.h" />
+    <ClInclude Include="game\header\GameClass.h" />
     <ClInclude Include="game\header\Resource.h" />
     <ClInclude Include="game\header\targetver.h" />
     <ClInclude Include="graphics\header\AAButton.h" />
@@ -182,6 +183,7 @@
     <ClInclude Include="logScreen\header\LogPair.h" />
     <ClInclude Include="logScreen\header\LogTerrs.h" />
     <ClInclude Include="logScreen\header\LogText.h" />
+    <ClInclude Include="nationScreen\header\NationScreenWrappers.h" />
     <ClInclude Include="nationScreen\header\PurchaseClass.h" />
     <ClInclude Include="nationScreen\screenSections\header\BonusSection.h" />
     <ClInclude Include="nationScreen\screenSections\header\CitiesSection.h" />
@@ -222,6 +224,7 @@
     <ClCompile Include="board\source\Wars.cpp" />
     <ClCompile Include="game\source\AA_Tracker.cpp" />
     <ClCompile Include="game\source\AuxFunctions.cpp" />
+    <ClCompile Include="game\source\ButtonHanders.cpp" />
     <ClCompile Include="game\source\GameClass.cpp" />
     <ClCompile Include="game\source\MenuCallbacks.cpp" />
     <ClCompile Include="game\source\MouseHandlers.cpp" />

@@ -105,8 +105,6 @@
 ///////////////////////////////////////////////////////////////////////////
 
 // Nation screen (251-325)
-#define IDB_NEXTPHASE           251
-#define IDB_DECLAREWAR          252
 #define IDB_CAPTURETER          253
 #define IDB_RESEARCH            254
 #define IDB_RESEARCHGO          255
@@ -274,6 +272,10 @@
 //// Turn Phases
 ///////////////////////////////////////////////////////////////////////////
 
+#define NON_PHASE    -3
+#define BUT_PHASE    -2
+#define ALL_PHASE    -1
+
 #define RS_PHASE      0
 #define PR_PHASE      1
 #define CM_PHASE      2
@@ -281,10 +283,6 @@
 #define NC_PHASE      4
 #define MN_PHASE      5
 #define CI_PHASE      6
-
-#define NON_PHASE    -1
-#define ALL_PHASE     0
-#define BUT_PHASE     1
 
 ///////////////////////////////////////////////////////////////////////////
 //// Player Turns
