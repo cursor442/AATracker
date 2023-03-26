@@ -439,27 +439,17 @@ void Game::configNationScreen()
 			nextPhaseButton = gfx->buttons->createButtonId();
 
 			RectF rect = { buttonLeft, purchBoxTop, buttonWidth, purchBoxHeight };
-			gfx->buttons->registerButton(graphics, nextPhaseButton, NATION_SCREEN, rect, "Next Phase", nationScreenHandleNextPhase);		
+			gfx->buttons->registerButton(graphics, nextPhaseButton, NATION_SCREEN, rect, "Next Phase", nationScreenHandleNextPhase);
 			gfx->tooltips->registerTooltip(graphics, nextPhaseButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Proceed to the next phase");
 		}
 
-		if (researchButton == NULL)
+		if (researchButton == BB_ID_NULL)
 		{
-			researchButton = CreateWindow(
-				L"BUTTON",                                             // Predefined class; Unicode assumed 
-				L"Research Dice",                                      // Button text 
-				WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
-				buttonLeft,                                            // x position 
-				cmBoxTop,                                              // y position 
-				buttonWidth,                                           // Button width
-				cmBoxHeight,                                           // Button height
-				main_Wnd,                                              // Parent window
-				(HMENU)IDB_RESEARCH,                                   // Menu.
-				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
-				NULL);
-
+			researchButton = gfx->buttons->createButtonId();
+			
 			RectF rect = { buttonLeft, cmBoxTop, buttonWidth, cmBoxHeight };
-			gfx->tooltips->registerTooltip(graphics, (int)researchButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Enter results of research rolls");
+			gfx->buttons->registerButton(graphics, researchButton, NATION_SCREEN, rect, "Research Dice", nationScreenHandleResearch);
+			gfx->tooltips->registerTooltip(graphics, researchButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Enter results of research rolls");
 		}
 
 		if (declareWarButton == BB_ID_NULL)
@@ -471,41 +461,21 @@ void Game::configNationScreen()
 			gfx->tooltips->registerTooltip(graphics, declareWarButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Declare war on another player");
 		}
 		
-		if (captureTerritoryButton == NULL)
+		if (captureTerritoryButton == BB_ID_NULL)
 		{
-			captureTerritoryButton = CreateWindow(
-				L"BUTTON",                                             // Predefined class; Unicode assumed 
-				L"Capture Territory",                                  // Button text 
-				WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
-				buttonLeft,                                            // x position 
-				cmBoxTop,                                              // y position 
-				buttonWidth,                                           // Button width
-				cmBoxHeight,                                           // Button height
-				main_Wnd,                                              // Parent window
-				(HMENU)IDB_CAPTURETER,                                 // Menu.
-				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
-				NULL);
+			captureTerritoryButton = gfx->buttons->createButtonId();
 
 			RectF rect = { buttonLeft, cmBoxTop, buttonWidth, cmBoxHeight };
-			gfx->tooltips->registerTooltip(graphics, (int)captureTerritoryButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Territories captured during Conduct Combat phase");
+			gfx->buttons->registerButton(graphics, captureTerritoryButton, NATION_SCREEN, rect, "Capture Territory", nationScreenHandleCaptureTerritory, BB_SMALL_FONT);
+			gfx->tooltips->registerTooltip(graphics, captureTerritoryButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Territories captured during Conduct Combat phase");
 		}
 
-		if (attackNeutralButton == NULL)
+		if (attackNeutralButton == BB_ID_NULL)
 		{
-			attackNeutralButton = CreateWindow(
-				L"BUTTON",                                             // Predefined class; Unicode assumed 
-				L"Attack Neutral",                                     // Button text 
-				WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
-				buttonLeft,                                            // x position 
-				ccBoxTop,                                              // y position 
-				buttonWidth,                                           // Button width
-				ccBoxHeight,                                           // Button height
-				main_Wnd,                                              // Parent window
-				(HMENU)IDB_ATTACKNEUT,                                 // Menu.
-				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
-				NULL);
+			attackNeutralButton = gfx->buttons->createButtonId();
 
 			RectF rect = { buttonLeft, ccBoxTop, buttonWidth, ccBoxHeight };
+			gfx->buttons->registerButton(graphics, attackNeutralButton, NATION_SCREEN, rect, "Attack Neutral", nationScreenHandleAttackNeutral);
 			gfx->tooltips->registerTooltip(graphics, (int)attackNeutralButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Attack a strict neutral territory\nAll strict neutral territories will become unfriendly");
 		}
 

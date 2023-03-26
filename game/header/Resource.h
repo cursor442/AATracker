@@ -105,10 +105,7 @@
 ///////////////////////////////////////////////////////////////////////////
 
 // Nation screen (251-325)
-#define IDB_CAPTURETER          253
-#define IDB_RESEARCH            254
 #define IDB_RESEARCHGO          255
-#define IDB_ATTACKNEUT          256
 #define IDB_OCCUPYNEUT          257
 #define IDB_ATTACKMONG          258
 #define IDB_ATTACKJPN           259

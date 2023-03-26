@@ -228,7 +228,10 @@ public:
 	/////////////////////////////////////////////////////////////////////////
 
 	static void nationScreenHandleNextPhase(HWND);
+	static void nationScreenHandleResearch(HWND);
 	static void nationScreenHandleDeclareWar(HWND);
+	static void nationScreenHandleCaptureTerritory(HWND);
+	static void nationScreenHandleAttackNeutral(HWND);
 
 	///////////////////////////////////////////////////////////////////////////
 	//// Spreadsheet screen
@@ -368,9 +371,9 @@ private:
 	static RectF statusFrame;
 
 	// Turn phase buttons
-	static int nextPhaseButton, declareWarButton;
-	static HWND researchButton,
-		captureTerritoryButton, attackNeutralButton, occupyNeutralButton,
+	static int nextPhaseButton, researchButton, declareWarButton,
+		captureTerritoryButton, attackNeutralButton;
+	static HWND occupyNeutralButton,
 		attackMongoliaButton, attackJapanButton, attackSovietButton;
 
 	// Purchase section

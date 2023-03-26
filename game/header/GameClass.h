@@ -184,10 +184,10 @@ RectF Game::statusFrame;
 
 // Turn phase buttons
 int Game::nextPhaseButton = BB_ID_NULL;
-HWND Game::researchButton = NULL;
+int Game::researchButton = BB_ID_NULL;
 int Game::declareWarButton = BB_ID_NULL;
-HWND Game::captureTerritoryButton = NULL;
-HWND Game::attackNeutralButton = NULL;
+int Game::captureTerritoryButton = BB_ID_NULL;
+int Game::attackNeutralButton = BB_ID_NULL;
 HWND Game::occupyNeutralButton = NULL;
 HWND Game::attackMongoliaButton = NULL;
 HWND Game::attackJapanButton = NULL;

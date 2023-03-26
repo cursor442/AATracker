@@ -87,7 +87,7 @@ public:
 	Font* font14, * font14_b;
 	Font* font16, * font16_b, * font16_bl;
 	Font* font17;
-	Font* font18, * font18_b, * font18_l;
+	Font* font18, * font18_b, * font18_l,  * font18_bl;
 	Font* font20, * font20_b, * font20_bl;
 	Font* font24, * font24_b;
 	Font* font28;

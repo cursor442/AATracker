@@ -6,6 +6,8 @@
 #define BB_ID_NULL        -1
 #define BB_ID_BASE       101
 
+#define BB_SMALL_FONT  true
+
 #define BB_GRID_SIZE       5
 #define BB_GRID_ADD        0
 #define BB_GRID_SUB        1
@@ -20,7 +22,7 @@ public:
 	~AAButtons();
 
 	void configBaseDrawTools(Pen*, Pen*, FontFamily*, StringFormat*, StringFormat*, Font*, SolidBrush*, SolidBrush*);
-	void configDrawTools(vector<Color*>&, vector<SolidBrush*>&, SolidBrush*, Font*);
+	void configDrawTools(vector<Color*>&, vector<SolidBrush*>&, SolidBrush*, Font*, Font*);
 	void configScreenFrames(framesList*);
 
 	int  checkForButton(HWND&, LPARAM, bool&, bool&, int = BB_ID_NULL, bool = true);
@@ -35,7 +37,7 @@ public:
 
 	int createButtonId();
 
-	bool registerButton(Graphics* graphics, int, int, RectF&, const char*, void (*bbFunc)(HWND));
+	bool registerButton(Graphics* graphics, int, int, RectF&, const char*, void (*bbFunc)(HWND), bool = false);
 	bool activateButton(int);
 	bool deactivateButton(int);
 
@@ -73,6 +75,7 @@ private:
 	SolidBrush* clearBrush;
 
 	Font* buttonFont;
+	Font* buttonFont_s;
 
 	vector<Color*>* grayColors;
 	vector<SolidBrush*>* grayBrushes;

@@ -7,10 +7,6 @@
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 INT_PTR CALLBACK NewGameWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
-INT_PTR CALLBACK CaptureTerritoryWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
-INT_PTR CALLBACK ResearchWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
-INT_PTR CALLBACK ResearchResWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
-INT_PTR CALLBACK ResearchUKWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 INT_PTR CALLBACK CustomLogWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 INT_PTR CALLBACK OccupyNeutralWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 
@@ -237,41 +233,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
                 if (game->gameBoard->ready) // Can't save if there is no game
                     game->doSaveGame(hWnd, *game->gameBoard);
-                break;
-            }
-            case IDB_RESEARCH:
-            {
-                if (game->gameBoard->getGameType() == GLOBAL_GAME && game->gameBoard->getGameCurrNation() == TURN_UKE)
-                    DialogBox(game->hInst, MAKEINTRESOURCE(IDD_UKRESEARCHBOX), hWnd, ResearchUKWrapper);
-                else
-                    DialogBox(game->hInst, MAKEINTRESOURCE(IDD_RESEARCHBOX), hWnd, ResearchWrapper);
-
-                if (game->numResDice[0] == 0 && game->numResDice[1] == 0)
-                    break;
-                else
-                {
-                    for (int i = 0; i < game->numResDice[0] + game->numResDice[1]; i++)
-                    {
-                        game->currResDie = i;
-                        DialogBox(game->hInst, MAKEINTRESOURCE(IDD_RESEARCHRESBOX), hWnd, ResearchResWrapper);
-                    }
-                }
-
-                game->researchButtonCost(hWnd);
-                break;
-            }
-            case IDB_CAPTURETER:
-            {
-                if ((game->gameBoard->getGameType() != GLOBAL_GAME) || (game->gameBoard->getGameCurrNation() != TURN_UKE))
-                    DialogBox(game->hInst, MAKEINTRESOURCE(IDD_CAPTUREBOX), hWnd, CaptureTerritoryWrapper);
-                else // UK needs extra EUR/PAC selector in global game
-                    DialogBox(game->hInst, MAKEINTRESOURCE(IDD_UKCAPTUREBOX), hWnd, CaptureTerritoryWrapper);
-                RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
-                break;
-            }
-            case IDB_ATTACKNEUT:
-            {
-                game->attackNeutralButtonHandler(hWnd);
                 break;
             }
             case IDB_OCCUPYNEUT:

@@ -10,8 +10,43 @@ void Game::nationScreenHandleNextPhase(HWND hWnd)
     RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
 }
 
+void Game::nationScreenHandleResearch(HWND hWnd)
+{
+    if (gameBoard->getGameType() == GLOBAL_GAME && gameBoard->getGameCurrNation() == TURN_UKE)
+        DialogBox(hInst, MAKEINTRESOURCE(IDD_UKRESEARCHBOX), hWnd, ResearchUKWrapper);
+    else
+        DialogBox(hInst, MAKEINTRESOURCE(IDD_RESEARCHBOX), hWnd, ResearchWrapper);
+
+    if (numResDice[0] == 0 && numResDice[1] == 0)
+        return;
+    else
+    {
+        for (int i = 0; i < numResDice[0] + numResDice[1]; i++)
+        {
+            currResDie = i;
+            DialogBox(hInst, MAKEINTRESOURCE(IDD_RESEARCHRESBOX), hWnd, ResearchResWrapper);
+        }
+    }
+
+    researchButtonCost(hWnd);
+}
+
 void Game::nationScreenHandleDeclareWar(HWND hWnd)
 {
     DialogBox(hInst, MAKEINTRESOURCE(IDD_DECLAREWARBOX), hWnd, DeclareWarWrapper);
     RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+}
+
+void Game::nationScreenHandleCaptureTerritory(HWND hWnd)
+{
+    if ((gameBoard->getGameType() != GLOBAL_GAME) || (gameBoard->getGameCurrNation() != TURN_UKE))
+        DialogBox(hInst, MAKEINTRESOURCE(IDD_CAPTUREBOX), hWnd, CaptureTerritoryWrapper);
+    else // UK needs extra EUR/PAC selector in global game
+        DialogBox(hInst, MAKEINTRESOURCE(IDD_UKCAPTUREBOX), hWnd, CaptureTerritoryWrapper);
+    RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+}
+
+void Game::nationScreenHandleAttackNeutral(HWND hWnd)
+{
+    attackNeutralButtonHandler(hWnd);
 }

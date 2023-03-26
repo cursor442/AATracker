@@ -27,6 +27,7 @@ AAButtons::AAButtons(HWND hWnd, RectF rect)
 	clearBrush = NULL;
 
 	buttonFont = NULL;
+	buttonFont_s = NULL;
 
 	grayColors = NULL;
 	grayBrushes = NULL;
@@ -64,11 +65,12 @@ void AAButtons::configBaseDrawTools(Pen* p0, Pen* p1, FontFamily* ff, StringForm
 	backBrush = b1;
 }
 
-void AAButtons::configDrawTools(vector<Color*>& cGray, vector<SolidBrush*>& bGray, SolidBrush* b0, Font* f0)
+void AAButtons::configDrawTools(vector<Color*>& cGray, vector<SolidBrush*>& bGray, SolidBrush* b0, Font* f0, Font* f1)
 {
 	clearBrush = b0;
 
 	buttonFont = f0;
+	buttonFont_s = f1;
 
 	grayColors = &cGray;
 	grayBrushes = &bGray;
@@ -161,7 +163,7 @@ int AAButtons::createButtonId()
 	return nextButtonId++;
 }
 
-bool AAButtons::registerButton(Graphics* graphics, int id, int screen, RectF& rect, const char* text, void (*bbFunc)(HWND))
+bool AAButtons::registerButton(Graphics* graphics, int id, int screen, RectF& rect, const char* text, void (*bbFunc)(HWND), bool font_s)
 {
 	// Ensure that there is no duplicate id
 	for (int i = 0; i < activeButtons.size(); i++)
@@ -177,7 +179,10 @@ bool AAButtons::registerButton(Graphics* graphics, int id, int screen, RectF& re
 	inactiveButtons[inactiveButtons.size() - 1] = new AAButton(id);
 	inactiveButtons[inactiveButtons.size() - 1]->configBaseDrawTools(borderPen, borderlessPen, fontFamily,
 		textFormat, centerFormat, baseTextFont, textBrush, backBrush);
-	inactiveButtons[inactiveButtons.size() - 1]->configDrawTools(*grayColors, *grayBrushes, clearBrush, buttonFont);
+	if (!font_s)
+		inactiveButtons[inactiveButtons.size() - 1]->configDrawTools(*grayColors, *grayBrushes, clearBrush, buttonFont);
+	else
+		inactiveButtons[inactiveButtons.size() - 1]->configDrawTools(*grayColors, *grayBrushes, clearBrush, buttonFont_s);
 	inactiveButtons[inactiveButtons.size() - 1]->configButton(graphics, screen, rect, text, screenFrames, bbFunc);
 
 	return true;

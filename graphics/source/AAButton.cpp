@@ -180,6 +180,8 @@ void AAButton::config(Graphics* graphics, const char* text, framesList* frames)
 		}
 	}
 
+	bbBlankBox->config(objBox, 99);
+
 	// Up state graphics
 	bbUpBox[0]->config(objBox, 99);
 	bbUpBox[1]->config(objBox, 99);

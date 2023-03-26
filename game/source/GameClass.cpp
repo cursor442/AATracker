@@ -63,9 +63,6 @@ Game::~Game()
 	DeleteObject(bonusSection);
 
 	// Buttons
-	DeleteObject(researchButton);
-	DeleteObject(captureTerritoryButton);
-	DeleteObject(attackNeutralButton);
 	DeleteObject(occupyNeutralButton);
 	DeleteObject(attackMongoliaButton);
 	DeleteObject(attackJapanButton);
