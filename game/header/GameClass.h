@@ -188,10 +188,10 @@ int Game::researchButton = BB_ID_NULL;
 int Game::declareWarButton = BB_ID_NULL;
 int Game::captureTerritoryButton = BB_ID_NULL;
 int Game::attackNeutralButton = BB_ID_NULL;
-HWND Game::occupyNeutralButton = NULL;
-HWND Game::attackMongoliaButton = NULL;
-HWND Game::attackJapanButton = NULL;
-HWND Game::attackSovietButton = NULL;
+int Game::occupyNeutralButton = BB_ID_NULL;
+int Game::attackMongoliaButton = BB_ID_NULL;
+int Game::attackJapanButton = BB_ID_NULL;
+int Game::attackSovietButton = BB_ID_NULL;
 
 // Purchase section
 PurchaseSection* Game::purchaseSection = NULL;

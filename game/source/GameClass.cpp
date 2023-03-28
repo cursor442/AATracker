@@ -62,12 +62,6 @@ Game::~Game()
 	DeleteObject(warchestSection);
 	DeleteObject(bonusSection);
 
-	// Buttons
-	DeleteObject(occupyNeutralButton);
-	DeleteObject(attackMongoliaButton);
-	DeleteObject(attackJapanButton);
-	DeleteObject(attackSovietButton);
-
 	// Tabs
 	DeleteObject(nationScreenTabs);
 	DeleteObject(purchaseSectionTabs);

@@ -476,83 +476,43 @@ void Game::configNationScreen()
 
 			RectF rect = { buttonLeft, ccBoxTop, buttonWidth, ccBoxHeight };
 			gfx->buttons->registerButton(graphics, attackNeutralButton, NATION_SCREEN, rect, "Attack Neutral", nationScreenHandleAttackNeutral);
-			gfx->tooltips->registerTooltip(graphics, (int)attackNeutralButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Attack a strict neutral territory\nAll strict neutral territories will become unfriendly");
+			gfx->tooltips->registerTooltip(graphics, attackNeutralButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Attack a strict neutral territory\nAll strict neutral territories will become unfriendly");
 		}
 
-		if (occupyNeutralButton == NULL)
+		if (occupyNeutralButton == BB_ID_NULL)
 		{
-			occupyNeutralButton = CreateWindow(
-				L"BUTTON",                                             // Predefined class; Unicode assumed 
-				L"Occupy Neutral",                                     // Button text 
-				WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
-				buttonLeft,                                            // x position 
-				cmBoxTop,                                              // y position 
-				buttonWidth,                                           // Button width
-				cmBoxHeight,                                           // Button height
-				main_Wnd,                                              // Parent window
-				(HMENU)IDB_OCCUPYNEUT,                                 // Menu.
-				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
-				NULL);
+			occupyNeutralButton = gfx->buttons->createButtonId();
 
 			RectF rect = { buttonLeft, cmBoxTop, buttonWidth, cmBoxHeight };
-			gfx->tooltips->registerTooltip(graphics, (int)occupyNeutralButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Occupy a friendly neutral territory");
+			gfx->buttons->registerButton(graphics, occupyNeutralButton, NATION_SCREEN, rect, "Occupy Neutral", nationScreenHandleOccupyNeutral);
+			gfx->tooltips->registerTooltip(graphics, occupyNeutralButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Occupy a friendly neutral territory");
 		}
 
-		if (attackMongoliaButton == NULL)
+		if (attackMongoliaButton == BB_ID_NULL)
 		{
-			attackMongoliaButton = CreateWindow(
-				L"BUTTON",                                             // Predefined class; Unicode assumed 
-				L"Attack Mongolia",                                    // Button text 
-				WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
-				specialButtonLeft0,                                    // x position 
-				ncBoxTop,                                              // y position 
-				specialButtonWidth0,                                   // Button width
-				ncBoxHeight,                                           // Button height
-				main_Wnd,                                              // Parent window
-				(HMENU)IDB_ATTACKMONG,                                 // Menu.
-				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
-				NULL);
+			attackMongoliaButton = gfx->buttons->createButtonId();
 
 			RectF rect = { specialButtonLeft0, ncBoxTop, specialButtonWidth0, ncBoxHeight };
-			gfx->tooltips->registerTooltip(graphics, (int)attackMongoliaButton, NATION_SCREEN, rect, TT_DIR_LEFT, "You are attacking a Mongolian territory\nin your Combat Move phase");
+			gfx->buttons->registerButton(graphics, attackMongoliaButton, NATION_SCREEN, rect, "Attack Mongolia", nationScreenHandleAttackMongolia, BB_SMALL_FONT);
+			gfx->tooltips->registerTooltip(graphics, attackMongoliaButton, NATION_SCREEN, rect, TT_DIR_LEFT, "You are attacking a Mongolian territory\nin your Combat Move phase");
 		}
 
-		if (attackJapanButton == NULL)
+		if (attackJapanButton == BB_ID_NULL)
 		{
-			attackJapanButton = CreateWindow(
-				L"BUTTON",                                             // Predefined class; Unicode assumed 
-				L"Attack Japan",                                       // Button text 
-				WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
-				specialButtonLeft1,                                    // x position 
-				ncBoxTop,                                              // y position 
-				specialButtonWidth1,                                   // Button width
-				ncBoxHeight,                                           // Button height
-				main_Wnd,                                              // Parent window
-				(HMENU)IDB_ATTACKJPN,                                  // Menu.
-				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
-				NULL);
+			attackJapanButton = gfx->buttons->createButtonId();
 
 			RectF rect = { specialButtonLeft1, ncBoxTop, specialButtonWidth1, ncBoxHeight };
-			gfx->tooltips->registerTooltip(graphics, (int)attackJapanButton, NATION_SCREEN, rect, TT_DIR_RIGHT, "You are attacking Korea or any Mongolia-adjactent\nJapanese territory in your Combat Move phase");
+			gfx->buttons->registerButton(graphics, attackJapanButton, NATION_SCREEN, rect, "Attack Japan", nationScreenHandleAttackJapan);
+			gfx->tooltips->registerTooltip(graphics, attackJapanButton, NATION_SCREEN, rect, TT_DIR_RIGHT, "You are attacking Korea or any Mongolia-adjactent\nJapanese territory in your Combat Move phase");
 		}
 
-		if (attackSovietButton == NULL)
+		if (attackSovietButton == BB_ID_NULL)
 		{
-			attackSovietButton = CreateWindow(
-				L"BUTTON",                                             // Predefined class; Unicode assumed 
-				L"Attack Soviet Union",                                // Button text 
-				WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
-				buttonLeft - 24,                                       // x position 
-				ncBoxTop,                                              // y position 
-				buttonWidth + 24,                                      // Button width
-				ncBoxHeight,                                           // Button height
-				main_Wnd,                                              // Parent window
-				(HMENU)IDB_ATTACKSOV,                                  // Menu.
-				(HINSTANCE)GetWindowLongPtr(main_Wnd, GWLP_HINSTANCE),
-				NULL);
+			attackSovietButton = gfx->buttons->createButtonId();
 
 			RectF rect = { buttonLeft - 24, ncBoxTop, buttonWidth + 24, ncBoxHeight };
-			gfx->tooltips->registerTooltip(graphics, (int)attackSovietButton, NATION_SCREEN, rect, TT_DIR_LEFT, "You are attacking a Mongolia-adjactent\nSoviet territory in your Combat Move phase");
+			gfx->buttons->registerButton(graphics, attackSovietButton, NATION_SCREEN, rect, "Attack Soviet Union", nationScreenHandleAttackSoviet, BB_SMALL_FONT);
+			gfx->tooltips->registerTooltip(graphics, attackSovietButton, NATION_SCREEN, rect, TT_DIR_LEFT, "You are attacking a Mongolia-adjactent\nSoviet territory in your Combat Move phase");
 		}
 	}
 }

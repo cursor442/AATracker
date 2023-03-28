@@ -50,3 +50,32 @@ void Game::nationScreenHandleAttackNeutral(HWND hWnd)
 {
     attackNeutralButtonHandler(hWnd);
 }
+
+void Game::nationScreenHandleOccupyNeutral(HWND hWnd)
+{
+    DialogBox(hInst, MAKEINTRESOURCE(IDD_OCCUPYNEUTBOX), hWnd, OccupyNeutralWrapper);
+    RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+}
+
+void Game::nationScreenHandleAttackMongolia(HWND hWnd)
+{
+    attackMongoliaButtonHandler(hWnd);
+}
+
+void Game::nationScreenHandleAttackJapan(HWND hWnd)
+{
+    gameBoard->attackJapan(hWnd);
+    nsSection |= PHASE_SECT | PURCH_SECT;
+    nsPhase = BUT_PHASE;
+    nsNeut = NEUT_UPD;
+    RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+}
+
+void Game::nationScreenHandleAttackSoviet(HWND hWnd)
+{
+    gameBoard->attackSoviet(hWnd);
+    nsSection |= PHASE_SECT | PURCH_SECT;
+    nsPhase = BUT_PHASE;
+    nsNeut = NEUT_UPD;
+    RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+}

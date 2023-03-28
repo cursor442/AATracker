@@ -106,10 +106,6 @@
 
 // Nation screen (251-325)
 #define IDB_RESEARCHGO          255
-#define IDB_OCCUPYNEUT          257
-#define IDB_ATTACKMONG          258
-#define IDB_ATTACKJPN           259
-#define IDB_ATTACKSOV           260
 
 #define IDB_INFUP               270
 #define IDB_INFDN               271

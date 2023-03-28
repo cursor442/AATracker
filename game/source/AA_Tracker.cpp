@@ -8,7 +8,6 @@ LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 INT_PTR CALLBACK NewGameWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 INT_PTR CALLBACK CustomLogWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
-INT_PTR CALLBACK OccupyNeutralWrapper(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 
 Game* game = new Game;
 
@@ -233,35 +232,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
                 if (game->gameBoard->ready) // Can't save if there is no game
                     game->doSaveGame(hWnd, *game->gameBoard);
-                break;
-            }
-            case IDB_OCCUPYNEUT:
-            {
-                DialogBox(game->hInst, MAKEINTRESOURCE(IDD_OCCUPYNEUTBOX), hWnd, OccupyNeutralWrapper);
-                RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
-                break;
-            }
-            case IDB_ATTACKMONG:
-            {
-                game->attackMongoliaButtonHandler(hWnd);
-                break;
-            }
-            case IDB_ATTACKJPN:
-            {
-                game->gameBoard->attackJapan(hWnd);
-                game->nsSection |= PHASE_SECT | PURCH_SECT;
-                game->nsPhase = BUT_PHASE;
-                game->nsNeut = NEUT_UPD;
-                RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
-                break;
-            }
-            case IDB_ATTACKSOV:
-            {
-                game->gameBoard->attackSoviet(hWnd);
-                game->nsSection |= PHASE_SECT | PURCH_SECT;
-                game->nsPhase = BUT_PHASE;
-                game->nsNeut = NEUT_UPD;
-                RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
                 break;
             }
             case IDB_INFUP:    case IDB_INFDN:    case IDB_ARTUP:  case IDB_ARTDN:  case IDB_MECHUP:  case IDB_MECHDN:  case IDB_TANKUP:  case IDB_TANKDN:  case IDB_AAAUP:case IDB_AAADN:case IDB_FIGHTUP:case IDB_FIGHTDN: case IDB_TACTUP: case IDB_TACTDN: case IDB_STRATUP:case IDB_STRATDN:
