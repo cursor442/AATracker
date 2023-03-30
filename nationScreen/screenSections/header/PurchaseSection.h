@@ -3,6 +3,7 @@
 
 #include "../../../graphics/header/Section.h"
 #include "../../../nationScreen/header/PurchaseClass.h"
+#include "../../graphics/header/GraphicsHeader.h"
 
 #define PURCH_BUTTON_D_OFFSET 488
 #define PURCH_BUTTON_U_OFFSET 548
@@ -13,8 +14,9 @@ public:
 	PurchaseSection(Pen*, Pen*, FontFamily*, StringFormat*, StringFormat*, Font*, Font*, SolidBrush*, SolidBrush*, SolidBrush*);
 	~PurchaseSection();
 
-	void configurePurchaseBox(HWND&, RectF&, int);
-	void configPurchaseButtons();
+	void configurePurchaseBox(Graphics*, HWND&, RectF&, AAButtons*, void (*purchaseButton)(HWND&, int), int);
+	void configPurchaseButtons(Graphics*, AAButtons*, void (*purchaseButton)(HWND&, int));
+	void configPurchaseBoxFunctions(void (*showButton)(int, bool), void (*hideButton)(int, bool));
 	void configDrawTools(Pen*, StringFormat*, Font*, Font*, SolidBrush*, SolidBrush*, SolidBrush*);
 
 	void resetPurchaseText();
@@ -51,7 +53,10 @@ private:
 
 	// Section buttons
 	HWND* main_Wnd;
-	HWND infDButton, infUButton;
+	AAButtons* buttons;
+	void (*showButton)(int, bool);
+	void (*hideButton)(int, bool);
+	int infDButton, infUButton;
 	HWND artDButton, artUButton;
 	HWND mechDButton, mechUButton;
 	HWND tankDButton, tankUButton;

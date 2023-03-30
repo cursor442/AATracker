@@ -77,16 +77,16 @@ public:
 	static bool whichUpdateNatGraph, doUpdateGraph;
 
 	// Buttons
-	static bool buttonClick;                // The mouse has clicked on an active button
-	static bool newButtonClick;             // The mouse has clicked on an active button that is different than the last button click
-	static bool buttonClicked;              // The mouse is currently clicked and held on an active button
-	static bool newButtonClicked;           // The mouse is currently clicked and held on an active button that is different from the initial click 
-	static bool newButtonUnclicked;         // The mouse is currently held on an active button that is different from the initial click
-	static int  currButton;                 // The ID of the current button selected
-	static void showButton(HWND&);          // Draw the currently selected button
-	static void showButton(int);            // Draw the currently selected button
-	static void hideButton(HWND&);          // Hide the currently selected button
-	static void hideButton(int);            // Hide the currently selected button
+	static bool buttonClick;                  // The mouse has clicked on an active button
+	static bool newButtonClick;               // The mouse has clicked on an active button that is different than the last button click
+	static bool buttonClicked;                // The mouse is currently clicked and held on an active button
+	static bool newButtonClicked;             // The mouse is currently clicked and held on an active button that is different from the initial click 
+	static bool newButtonUnclicked;           // The mouse is currently held on an active button that is different from the initial click
+	static int  currButton;                   // The ID of the current button selected
+	static void showButton(HWND&);            // Draw the currently selected button
+	static void showButton(int, bool = true); // Draw the currently selected button
+	static void hideButton(HWND&);            // Hide the currently selected button
+	static void hideButton(int, bool = true); // Hide the currently selected button
 	
 	// Tooltips
 	static bool activeTooltip;              // The mouse has been hovering over a tooltip-enabled location for long enough
@@ -227,15 +227,15 @@ public:
 	// Nation screen button handlers
 	/////////////////////////////////////////////////////////////////////////
 
-	static void nationScreenHandleNextPhase(HWND);
-	static void nationScreenHandleResearch(HWND);
-	static void nationScreenHandleDeclareWar(HWND);
-	static void nationScreenHandleCaptureTerritory(HWND);
-	static void nationScreenHandleAttackNeutral(HWND);
-	static void nationScreenHandleOccupyNeutral(HWND);
-	static void nationScreenHandleAttackMongolia(HWND);
-	static void nationScreenHandleAttackJapan(HWND);
-	static void nationScreenHandleAttackSoviet(HWND);
+	static void nationScreenHandleNextPhase(HWND&);
+	static void nationScreenHandleResearch(HWND&);
+	static void nationScreenHandleDeclareWar(HWND&);
+	static void nationScreenHandleCaptureTerritory(HWND&);
+	static void nationScreenHandleAttackNeutral(HWND&);
+	static void nationScreenHandleOccupyNeutral(HWND&);
+	static void nationScreenHandleAttackMongolia(HWND&);
+	static void nationScreenHandleAttackJapan(HWND&);
+	static void nationScreenHandleAttackSoviet(HWND&);
 
 	///////////////////////////////////////////////////////////////////////////
 	//// Spreadsheet screen

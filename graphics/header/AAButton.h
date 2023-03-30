@@ -15,8 +15,11 @@ public:
 	AAButton(int);
 	~AAButton();
 
-	void configButton(Graphics* graphics, int, RectF&, const char*, framesList*, void (*bbFunc)(HWND));
+	void configButton(Graphics*, int, RectF&, const char*, framesList*);
+	void configButton(Graphics*, int, RectF&, const char*, framesList*, void (*bbFunc)(HWND&));
+	void configButton(Graphics*, int, RectF&, const char*, framesList*, void (*bbFunc)(HWND&, int));
 	void configDrawTools(vector<Color*>&, vector<SolidBrush*>&, SolidBrush*, Font*);
+	void setButtonFuncId(int);
 
 	void drawButton(Graphics*, bool, bool, int);
 	void hideButton(Graphics*);
@@ -25,6 +28,7 @@ public:
 	bool releaseButton();
 
 	void executeButton(HWND);
+	void executeButton(HWND, int);
 
 	int  getButtonId();
 
@@ -39,7 +43,7 @@ private:
 	AABox* bbDnTextBox;
 	AABox* bbBlankBox;
 
-	void config(Graphics*, const char*, framesList*);
+	void config(const char*, framesList*);
 
 	SolidBrush* bbCenterBrush;
 	SolidBrush* clearBrush;
@@ -49,7 +53,10 @@ private:
 	Pen* bbUpBorderPen[BB_UP_LAYERS];
 	Pen* bbDnBorderPen[BB_DN_LAYERS];
 
-	void (*bbFunction)(HWND);
+	int  bbFuncId;
+	bool hasFuncId;
+	void (*bbFunction0)(HWND&);
+	void (*bbFunction1)(HWND&, int);
 
 };
 

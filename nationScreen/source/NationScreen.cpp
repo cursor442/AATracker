@@ -16,8 +16,8 @@ bool Game::NationScreen(HDC& hdc, PAINTSTRUCT& ps)
         drawPhaseFrameButtons(hdc);
 
             // Purchases section
-        if (purchaseTab == TAB_PURCH)
-            drawPurchaseFrameButtons();
+        //if (purchaseTab == TAB_PURCH)
+            //drawPurchaseFrameButtons();
 
             // Turn phase indicators
         drawPhaseFrame(hdc);
@@ -80,7 +80,7 @@ bool Game::NationScreen(HDC& hdc, PAINTSTRUCT& ps)
         {
             if (purchaseTab == TAB_PURCH)
             {
-                drawPurchaseFrameButtons();
+                //drawPurchaseFrameButtons();
             }
             else if (purchaseTab == TAB_COMB)
             {

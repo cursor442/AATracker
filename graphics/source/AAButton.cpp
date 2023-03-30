@@ -27,7 +27,10 @@ AAButton::AAButton(int id)
 
 	bbFont = NULL;
 
-	bbFunction = NULL;
+	bbFuncId = NULL;
+	hasFuncId = false;
+	bbFunction0 = NULL;
+	bbFunction1 = NULL;
 }
 
 AAButton::~AAButton()
@@ -49,7 +52,7 @@ AAButton::~AAButton()
 	delete bbBlankBox;
 }
 
-void AAButton::configButton(Graphics* graphics, int screen, RectF& rect, const char* text, framesList* frames, void (*bbFunc)(HWND))
+void AAButton::configButton(Graphics* graphics, int screen, RectF& rect, const char* text, framesList* frames)
 {
 	configObject(graphics, screen, rect, text, frames);
 
@@ -63,9 +66,25 @@ void AAButton::configButton(Graphics* graphics, int screen, RectF& rect, const c
 
 	bbBlankBox = new AABox("");
 
-	bbFunction = bbFunc;
+	config(text, frames);
+}
 
-	config(graphics, text, frames);
+void AAButton::configButton(Graphics* graphics, int screen, RectF& rect, const char* text, framesList* frames, void (*bbFunc)(HWND&))
+{
+	configObject(graphics, screen, rect, text, frames);
+
+	configButton(graphics, screen, rect, text, frames);
+
+	bbFunction0 = bbFunc;
+}
+
+void AAButton::configButton(Graphics* graphics, int screen, RectF& rect, const char* text, framesList* frames, void (*bbFunc)(HWND&, int))
+{
+	configObject(graphics, screen, rect, text, frames);
+
+	configButton(graphics, screen, rect, text, frames);
+
+	bbFunction1 = bbFunc;
 }
 
 void AAButton::configDrawTools(vector<Color*>& cGray, vector<SolidBrush*>& bGray, SolidBrush* b0, Font* f0)
@@ -84,6 +103,12 @@ void AAButton::configDrawTools(vector<Color*>& cGray, vector<SolidBrush*>& bGray
 	clearBrush = b0;
 
 	bbFont = f0;
+}
+
+void AAButton::setButtonFuncId(int val)
+{
+	bbFuncId = val;
+	hasFuncId = true;
 }
 
 void AAButton::drawButton(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, int layers)
@@ -153,7 +178,15 @@ bool AAButton::releaseButton()
 
 void AAButton::executeButton(HWND hWnd)
 {
-	bbFunction(hWnd);
+	if (!hasFuncId)
+		bbFunction0(hWnd);
+	else
+		bbFunction1(hWnd, bbFuncId);
+}
+
+void AAButton::executeButton(HWND hWnd, int val)
+{
+	bbFunction1(hWnd, val);
 }
 
 int AAButton::getButtonId()
@@ -161,8 +194,7 @@ int AAButton::getButtonId()
 	return getObjectId();
 }
 
-
-void AAButton::config(Graphics* graphics, const char* text, framesList* frames)
+void AAButton::config(const char* text, framesList* frames)
 {
 	for (int i = 0; i < GRAPHICS_TEXTLEN; i++)
 	{

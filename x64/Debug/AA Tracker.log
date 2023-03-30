@@ -1,4 +1,42 @@
-﻿  NationScreenConfig.cpp
-C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(243,25): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
-C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\source\NationScreenConfig.cpp(328,19): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+﻿  PurchaseSection.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(614,16): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(629,16): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(645,17): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(660,17): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(676,17): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(691,17): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(707,16): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(722,16): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(738,18): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(753,18): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(769,17): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(784,17): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(800,18): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(815,18): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(831,19): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(846,19): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(862,18): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(877,18): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(893,19): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(908,19): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(924,18): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(939,18): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(955,16): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(970,16): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(986,18): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(1001,18): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(1017,18): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(1032,18): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(1048,18): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(1063,18): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(1079,20): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(1094,20): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(1110,17): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(1125,17): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(1141,17): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(1156,17): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(1172,19): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(1187,19): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+  NationScreen.cpp
+  Generating Code...
   AA Tracker.vcxproj -> C:\Users\Adam\Documents\GitHub\AATracker\x64\Debug\AA Tracker.exe

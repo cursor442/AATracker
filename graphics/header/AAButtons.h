@@ -35,9 +35,12 @@ public:
 
 	void executeButton(HWND);
 
-	int createButtonId();
+	int  createButtonId();
+	void setButtonFuncId(int, int);
 
-	bool registerButton(Graphics* graphics, int, int, RectF&, const char*, void (*bbFunc)(HWND), bool = false);
+	bool registerButton(Graphics*, int, int, RectF&, const char*, bool);
+	bool registerButton(Graphics*, int, int, RectF&, const char*, void (*bbFunc)(HWND&), bool = false);
+	bool registerButton(Graphics*, int, int, RectF&, const char*, void (*bbFunc)(HWND&, int), bool = false);
 	bool activateButton(int);
 	bool deactivateButton(int);
 

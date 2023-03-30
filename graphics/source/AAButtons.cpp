@@ -163,7 +163,15 @@ int AAButtons::createButtonId()
 	return nextButtonId++;
 }
 
-bool AAButtons::registerButton(Graphics* graphics, int id, int screen, RectF& rect, const char* text, void (*bbFunc)(HWND), bool font_s)
+void AAButtons::setButtonFuncId(int id, int bbId)
+{
+	convIdToIdx(id);
+
+	if (currIdx != BB_ID_NULL)
+		return activeButtons[currIdx]->setButtonFuncId(bbId);
+}
+
+bool AAButtons::registerButton(Graphics* graphics, int id, int screen, RectF& rect, const char* text, bool font_s)
 {
 	// Ensure that there is no duplicate id
 	for (int i = 0; i < activeButtons.size(); i++)
@@ -183,9 +191,30 @@ bool AAButtons::registerButton(Graphics* graphics, int id, int screen, RectF& re
 		inactiveButtons[inactiveButtons.size() - 1]->configDrawTools(*grayColors, *grayBrushes, clearBrush, buttonFont);
 	else
 		inactiveButtons[inactiveButtons.size() - 1]->configDrawTools(*grayColors, *grayBrushes, clearBrush, buttonFont_s);
-	inactiveButtons[inactiveButtons.size() - 1]->configButton(graphics, screen, rect, text, screenFrames, bbFunc);
 
 	return true;
+}
+
+bool AAButtons::registerButton(Graphics* graphics, int id, int screen, RectF& rect, const char* text, void (*bbFunc)(HWND&), bool font_s)
+{
+	if (registerButton(graphics, id, screen, rect, text, font_s))
+	{
+		inactiveButtons[inactiveButtons.size() - 1]->configButton(graphics, screen, rect, text, screenFrames, bbFunc);
+		return true;
+	}
+	else
+		return false;
+}
+
+bool AAButtons::registerButton(Graphics* graphics, int id, int screen, RectF& rect, const char* text, void (*bbFunc)(HWND&, int), bool font_s)
+{
+	if (registerButton(graphics, id, screen, rect, text, font_s))
+	{
+		inactiveButtons[inactiveButtons.size() - 1]->configButton(graphics, screen, rect, text, screenFrames, bbFunc);
+		return true;
+	}
+	else
+		return false;
 }
 
 bool AAButtons::activateButton(int id)

@@ -1,7 +1,7 @@
 #include "../header/AA_Tracker.h"
 #include "../../nationScreen/header/NationScreenWrappers.h"
 
-void Game::nationScreenHandleNextPhase(HWND hWnd)
+void Game::nationScreenHandleNextPhase(HWND& hWnd)
 {
     nextTurnPhase(hWnd);
     if (gameBoard->getGameTurnPhase() == CI_PHASE &&
@@ -10,7 +10,7 @@ void Game::nationScreenHandleNextPhase(HWND hWnd)
     RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
 }
 
-void Game::nationScreenHandleResearch(HWND hWnd)
+void Game::nationScreenHandleResearch(HWND& hWnd)
 {
     if (gameBoard->getGameType() == GLOBAL_GAME && gameBoard->getGameCurrNation() == TURN_UKE)
         DialogBox(hInst, MAKEINTRESOURCE(IDD_UKRESEARCHBOX), hWnd, ResearchUKWrapper);
@@ -31,13 +31,13 @@ void Game::nationScreenHandleResearch(HWND hWnd)
     researchButtonCost(hWnd);
 }
 
-void Game::nationScreenHandleDeclareWar(HWND hWnd)
+void Game::nationScreenHandleDeclareWar(HWND& hWnd)
 {
     DialogBox(hInst, MAKEINTRESOURCE(IDD_DECLAREWARBOX), hWnd, DeclareWarWrapper);
     RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
 }
 
-void Game::nationScreenHandleCaptureTerritory(HWND hWnd)
+void Game::nationScreenHandleCaptureTerritory(HWND& hWnd)
 {
     if ((gameBoard->getGameType() != GLOBAL_GAME) || (gameBoard->getGameCurrNation() != TURN_UKE))
         DialogBox(hInst, MAKEINTRESOURCE(IDD_CAPTUREBOX), hWnd, CaptureTerritoryWrapper);
@@ -46,23 +46,23 @@ void Game::nationScreenHandleCaptureTerritory(HWND hWnd)
     RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
 }
 
-void Game::nationScreenHandleAttackNeutral(HWND hWnd)
+void Game::nationScreenHandleAttackNeutral(HWND& hWnd)
 {
     attackNeutralButtonHandler(hWnd);
 }
 
-void Game::nationScreenHandleOccupyNeutral(HWND hWnd)
+void Game::nationScreenHandleOccupyNeutral(HWND& hWnd)
 {
     DialogBox(hInst, MAKEINTRESOURCE(IDD_OCCUPYNEUTBOX), hWnd, OccupyNeutralWrapper);
     RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
 }
 
-void Game::nationScreenHandleAttackMongolia(HWND hWnd)
+void Game::nationScreenHandleAttackMongolia(HWND& hWnd)
 {
     attackMongoliaButtonHandler(hWnd);
 }
 
-void Game::nationScreenHandleAttackJapan(HWND hWnd)
+void Game::nationScreenHandleAttackJapan(HWND& hWnd)
 {
     gameBoard->attackJapan(hWnd);
     nsSection |= PHASE_SECT | PURCH_SECT;
@@ -71,7 +71,7 @@ void Game::nationScreenHandleAttackJapan(HWND hWnd)
     RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
 }
 
-void Game::nationScreenHandleAttackSoviet(HWND hWnd)
+void Game::nationScreenHandleAttackSoviet(HWND& hWnd)
 {
     gameBoard->attackSoviet(hWnd);
     nsSection |= PHASE_SECT | PURCH_SECT;

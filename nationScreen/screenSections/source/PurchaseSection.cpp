@@ -84,7 +84,12 @@ PurchaseSection::PurchaseSection(Pen* p0, Pen* p1, FontFamily* ff, StringFormat*
 	titleP0 = NULL; titleP1 = NULL;
 
 	main_Wnd = NULL;
-	infDButton = NULL;     infUButton = NULL;
+
+	buttons = NULL;
+	showButton = NULL;
+	hideButton = NULL;
+
+	infDButton = BB_ID_NULL;     infUButton = BB_ID_NULL;
 	artDButton = NULL;     artUButton = NULL;
 	mechDButton = NULL;    mechUButton = NULL;
 	tankDButton = NULL;    tankUButton = NULL;
@@ -289,7 +294,6 @@ PurchaseSection::~PurchaseSection()
 
 	delete titleP0; delete titleP1;
 
-	delete infDButton;     delete infUButton;
 	delete artDButton;     delete artUButton;
 	delete mechDButton;    delete mechUButton;
 	delete tankDButton;    delete tankUButton;
@@ -311,7 +315,7 @@ PurchaseSection::~PurchaseSection()
 	delete repairDButton;  delete repairUButton;
 }
 
-void PurchaseSection::configurePurchaseBox(HWND& hWnd, RectF& frame, int layer)
+void PurchaseSection::configurePurchaseBox(Graphics* graphics, HWND& hWnd, RectF& frame, AAButtons* buttons, void (*purchaseButton)(HWND&, int), int layer)
 {
 	main_Wnd = &hWnd;
 	
@@ -391,7 +395,7 @@ void PurchaseSection::configurePurchaseBox(HWND& hWnd, RectF& frame, int layer)
 	totBox->box.Y = repBox->box.GetBottom();
 	totBox->box.Height = frame.GetBottom() - totBox->box.Y;
 
-	configPurchaseButtons();
+	configPurchaseButtons(graphics, buttons, purchaseButton);
 
 	infQBox->config(infBox->box, layer + 2);
 	infQBox->box.X = PURCH_BUTTON_D_OFFSET + infBox->box.Height + 1;
@@ -554,37 +558,55 @@ void PurchaseSection::configurePurchaseBox(HWND& hWnd, RectF& frame, int layer)
 	transBoxU->box.Width = tabStops[1];
 }
 
-void PurchaseSection::configPurchaseButtons()
+void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns, void (*purchaseButton)(HWND&, int))
 {
-	if (infDButton == NULL)
+	buttons = btns;
+
+	if (infDButton == BB_ID_NULL)
 	{
-		infDButton = CreateWindow(
-			L"BUTTON",                                             // Predefined class; Unicode assumed 
-			L"-",                                                  // Button text 
-			WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
-			PURCH_BUTTON_D_OFFSET,                                 // x position 
-			infBox->box.Y,                                         // y position 
-			infBox->box.Height,                                    // Button width
-			infBox->box.Height,                                    // Button height
-			*main_Wnd,                                             // Parent window
-			(HMENU)IDB_INFDN,                                      // Menu
-			(HINSTANCE)GetWindowLongPtr(*main_Wnd, GWLP_HINSTANCE),
-			NULL);
+		infDButton = buttons->createButtonId();
+
+		RectF rect = { PURCH_BUTTON_D_OFFSET, infBox->box.Y, infBox->box.Height, infBox->box.Height };
+		buttons->registerButton(graphics, infDButton, NATION_SCREEN, rect, "-", purchaseButton);
+		buttons->activateButton(infDButton);
+		buttons->setButtonFuncId(infDButton, IDB_INFDN);
+		buttons->deactivateButton(infDButton);
+
+		//infDButton = CreateWindow(
+		//	L"BUTTON",                                             // Predefined class; Unicode assumed 
+		//	L"-",                                                  // Button text 
+		//	WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
+		//	PURCH_BUTTON_D_OFFSET,                                 // x position 
+		//	infBox->box.Y,                                         // y position 
+		//	infBox->box.Height,                                    // Button width
+		//	infBox->box.Height,                                    // Button height
+		//	*main_Wnd,                                             // Parent window
+		//	(HMENU)IDB_INFDN,                                      // Menu
+		//	(HINSTANCE)GetWindowLongPtr(*main_Wnd, GWLP_HINSTANCE),
+		//	NULL);
 	}
-	if (infUButton == NULL)
+	if (infUButton == BB_ID_NULL)
 	{
-		infUButton = CreateWindow(
-			L"BUTTON",                                             // Predefined class; Unicode assumed 
-			L"+",                                                  // Button text 
-			WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
-			PURCH_BUTTON_U_OFFSET,                                 // x position 
-			infBox->box.Y,                                         // y position 
-			infBox->box.Height,                                    // Button width
-			infBox->box.Height,                                    // Button height
-			*main_Wnd,                                             // Parent window
-			(HMENU)IDB_INFUP,                                      // Menu
-			(HINSTANCE)GetWindowLongPtr(*main_Wnd, GWLP_HINSTANCE),
-			NULL);
+		infUButton = buttons->createButtonId();
+
+		RectF rect = { PURCH_BUTTON_U_OFFSET, infBox->box.Y, infBox->box.Height, infBox->box.Height };
+		buttons->registerButton(graphics, infUButton, NATION_SCREEN, rect, "+", purchaseButton);
+		buttons->activateButton(infUButton);
+		buttons->setButtonFuncId(infUButton, IDB_INFUP);
+		buttons->deactivateButton(infUButton);
+
+		//infUButton = CreateWindow(
+		//	L"BUTTON",                                             // Predefined class; Unicode assumed 
+		//	L"+",                                                  // Button text 
+		//	WS_TABSTOP | WS_CHILD | BS_DEFPUSHBUTTON,              // Styles 
+		//	PURCH_BUTTON_U_OFFSET,                                 // x position 
+		//	infBox->box.Y,                                         // y position 
+		//	infBox->box.Height,                                    // Button width
+		//	infBox->box.Height,                                    // Button height
+		//	*main_Wnd,                                             // Parent window
+		//	(HMENU)IDB_INFUP,                                      // Menu
+		//	(HINSTANCE)GetWindowLongPtr(*main_Wnd, GWLP_HINSTANCE),
+		//	NULL);
 	}
 
 	if (artDButton == NULL)
@@ -1177,6 +1199,12 @@ void PurchaseSection::configPurchaseButtons()
 	}
 }
 
+void PurchaseSection::configPurchaseBoxFunctions(void (*func0)(int, bool), void (*func1)(int, bool))
+{
+	showButton = func0;
+	hideButton = func1;
+}
+
 void PurchaseSection::configDrawTools(Pen* p0, StringFormat* sf0, Font* f0, Font* f1, SolidBrush* b0, SolidBrush* b1, SolidBrush* b2)
 {
 	backPen = p0;
@@ -1458,8 +1486,6 @@ void PurchaseSection::drawPurchaseBox(Graphics* graphics, bool dbg_boundbox, boo
 
 	if (dbg_sections) // Show box names
 	{
-		hidePurchaseButtons();
-
 		purchaseFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
 
 		purchTitleBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
@@ -1530,12 +1556,11 @@ void PurchaseSection::drawPurchaseBox(Graphics* graphics, bool dbg_boundbox, boo
 		navbCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
 		repCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
 		totCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		
+
+		hidePurchaseButtons();		
 	}
 	else // Actual graphics
 	{
-		showPurchaseButtons();
-
 		purchTitleBox->drawFrameFill(graphics, pen, baseTitleFont, centerFormat, textBrush, tileBrushD, layers);
 
 		purchHeadBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushD, purchHeadText, layers);
@@ -1606,6 +1631,8 @@ void PurchaseSection::drawPurchaseBox(Graphics* graphics, bool dbg_boundbox, boo
 		navbCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, navbC, layers);
 		repCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, repC, layers);
 		totCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, totC, layers);
+
+		showPurchaseButtons();
 	}
 }
 
@@ -1821,7 +1848,7 @@ void PurchaseSection::drawPurchaseBoxButtons(Graphics* graphics, bool dbg_boundb
 
 void PurchaseSection::showPurchaseButtons()
 {
-	ShowWindow(infDButton,     SW_SHOW); ShowWindow(infUButton,     SW_SHOW);
+	showButton(infDButton, false); showButton(infUButton, false);
 	ShowWindow(artDButton,     SW_SHOW); ShowWindow(artUButton,     SW_SHOW);
 	ShowWindow(mechDButton,    SW_SHOW); ShowWindow(mechUButton,    SW_SHOW);
 	ShowWindow(tankDButton,    SW_SHOW); ShowWindow(tankUButton,    SW_SHOW);
@@ -1845,7 +1872,7 @@ void PurchaseSection::showPurchaseButtons()
 
 void PurchaseSection::hidePurchaseButtons()
 {
-	ShowWindow(infDButton,     SW_HIDE); ShowWindow(infUButton,     SW_HIDE);
+	hideButton(infDButton, false); hideButton(infUButton, false);
 	ShowWindow(artDButton,     SW_HIDE); ShowWindow(artUButton,     SW_HIDE);
 	ShowWindow(mechDButton,    SW_HIDE); ShowWindow(mechUButton,    SW_HIDE);
 	ShowWindow(tankDButton,    SW_HIDE); ShowWindow(tankUButton,    SW_HIDE);

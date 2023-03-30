@@ -55,11 +55,13 @@ void Game::showButton(HWND& button)
     gfx->tooltips->activateTooltip((int)button);
 }
 
-void Game::showButton(int button)
+void Game::showButton(int button, bool tt)
 {
     gfx->buttons->activateButton(button);
     gfx->buttons->drawButton(button, graphics, dbg_boundbox, dbg_sections, dbg_layers);
-    gfx->tooltips->activateTooltip(button);
+
+    if (tt)
+        gfx->tooltips->activateTooltip(button);
 }
 
 void Game::hideButton(HWND& button)
@@ -68,9 +70,11 @@ void Game::hideButton(HWND& button)
     gfx->tooltips->deactivateTooltip((int)button);
 }
 
-void Game::hideButton(int button)
+void Game::hideButton(int button, bool tt)
 {
     gfx->buttons->hideButton(button, graphics);
     gfx->buttons->deactivateButton(button);
-    gfx->tooltips->deactivateTooltip(button);
+
+    if (tt)
+        gfx->tooltips->deactivateTooltip(button);
 }
