@@ -4,6 +4,7 @@ AAGraphicsObject::AAGraphicsObject(int id)
 {
 	objId = id;
 	objScr = SCREEN_NONE;
+	objSect = NO_SECT;
 	objBox = { 0, 0, 0, 0 };
 
 	borderPen = NULL;
@@ -45,9 +46,10 @@ void AAGraphicsObject::configBaseDrawTools(Pen* p0, Pen* p1, FontFamily* ff, Str
 	popupBrush = b2;
 }
 
-void AAGraphicsObject::configObject(Graphics* graphics, int screen, RectF& rect, const char* text, framesList* frames)
+void AAGraphicsObject::configObject(Graphics* graphics, int screen, int sect, RectF& rect, const char* text, framesList* frames)
 {
 	objScr = screen;
+	objSect = sect;
 	objBox = rect;
 }
 
@@ -67,6 +69,16 @@ void AAGraphicsObject::hideObject(Graphics* graphics, int& sect)
 int AAGraphicsObject::getObjectId()
 {
 	return objId;
+}
+
+int AAGraphicsObject::getObjectScreen()
+{
+	return objScr;
+}
+
+int AAGraphicsObject::getObjectSection()
+{
+	return objSect;
 }
 
 

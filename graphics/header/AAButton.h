@@ -7,6 +7,7 @@
 #define BB_UP_LAYERS 5
 #define BB_DN_LAYERS 2
 
+#include "../../game/header/Resource.h"
 #include "AAGraphicsObject.h"
 
 class AAButton : public AAGraphicsObject
@@ -15,9 +16,9 @@ public:
 	AAButton(int);
 	~AAButton();
 
-	void configButton(Graphics*, int, RectF&, const char*, framesList*);
-	void configButton(Graphics*, int, RectF&, const char*, framesList*, void (*bbFunc)(HWND&));
-	void configButton(Graphics*, int, RectF&, const char*, framesList*, void (*bbFunc)(HWND&, int));
+	void configButton(Graphics*, int, int, RectF&, const char*, framesList*);
+	void configButton(Graphics*, int, int, RectF&, const char*, framesList*, void (*bbFunc)(HWND&));
+	void configButton(Graphics*, int, int, RectF&, const char*, framesList*, void (*bbFunc)(HWND&, int));
 	void configDrawTools(vector<Color*>&, vector<SolidBrush*>&, SolidBrush*, Font*);
 	void setButtonFuncId(int);
 
@@ -29,6 +30,9 @@ public:
 
 	void executeButton(HWND);
 	void executeButton(HWND, int);
+
+	void setButtonValInt(int);
+	int  getButtonValInt();
 
 	int  getButtonId();
 
@@ -57,6 +61,8 @@ private:
 	bool hasFuncId;
 	void (*bbFunction0)(HWND&);
 	void (*bbFunction1)(HWND&, int);
+
+	int bbValInt;
 
 };
 

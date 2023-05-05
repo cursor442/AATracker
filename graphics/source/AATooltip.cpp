@@ -17,9 +17,9 @@ AATooltip::~AATooltip()
 	delete ttBlankBox;
 }
 
-void AATooltip::configTooltip(Graphics* graphics, int screen, RectF& rect, int dir, const char* text, framesList* frames)
+void AATooltip::configTooltip(Graphics* graphics, int screen, int sect, RectF& rect, int dir, const char* text, framesList* frames)
 {
-	configObject(graphics, screen, rect, text, frames);
+	configObject(graphics, screen, sect, rect, text, frames);
 
 	ttDir = dir;
 

@@ -19,12 +19,14 @@ public:
 	virtual ~AAGraphicsObject();
 
 	virtual void configBaseDrawTools(Pen*, Pen*, FontFamily*, StringFormat*, StringFormat*, Font*, SolidBrush*, SolidBrush*, SolidBrush* = NULL);
-	virtual void configObject(Graphics* graphics, int, RectF&, const char*, framesList*);
+	virtual void configObject(Graphics* graphics, int, int, RectF&, const char*, framesList*);
 
 	virtual void drawObject(Graphics*, bool, bool, int);
 	virtual void hideObject(Graphics*, int&);
 
 	virtual int getObjectId();
+	virtual int getObjectScreen();
+	virtual int getObjectSection();
 
 	virtual bool   isPointInBox(int, int);
 	virtual PointF getRectCorner(int);
@@ -33,6 +35,7 @@ protected:
 
 	int   objId;
 	int   objScr;
+	int   objSect;
 	RectF objBox;
 
 	WCHAR objText[GRAPHICS_TEXTLEN];

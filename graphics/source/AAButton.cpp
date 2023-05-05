@@ -31,6 +31,8 @@ AAButton::AAButton(int id)
 	hasFuncId = false;
 	bbFunction0 = NULL;
 	bbFunction1 = NULL;
+
+	bbValInt = 0;
 }
 
 AAButton::~AAButton()
@@ -52,9 +54,9 @@ AAButton::~AAButton()
 	delete bbBlankBox;
 }
 
-void AAButton::configButton(Graphics* graphics, int screen, RectF& rect, const char* text, framesList* frames)
+void AAButton::configButton(Graphics* graphics, int screen, int sect, RectF& rect, const char* text, framesList* frames)
 {
-	configObject(graphics, screen, rect, text, frames);
+	configObject(graphics, screen, sect, rect, text, frames);
 
 	for (int i = 0; i < BB_UP_LAYERS; i++)
 		bbUpBox[i] = new AABox("");
@@ -69,20 +71,20 @@ void AAButton::configButton(Graphics* graphics, int screen, RectF& rect, const c
 	config(text, frames);
 }
 
-void AAButton::configButton(Graphics* graphics, int screen, RectF& rect, const char* text, framesList* frames, void (*bbFunc)(HWND&))
+void AAButton::configButton(Graphics* graphics, int screen, int sect, RectF& rect, const char* text, framesList* frames, void (*bbFunc)(HWND&))
 {
-	configObject(graphics, screen, rect, text, frames);
+	configObject(graphics, screen, sect, rect, text, frames);
 
-	configButton(graphics, screen, rect, text, frames);
+	configButton(graphics, screen, sect, rect, text, frames);
 
 	bbFunction0 = bbFunc;
 }
 
-void AAButton::configButton(Graphics* graphics, int screen, RectF& rect, const char* text, framesList* frames, void (*bbFunc)(HWND&, int))
+void AAButton::configButton(Graphics* graphics, int screen, int sect, RectF& rect, const char* text, framesList* frames, void (*bbFunc)(HWND&, int))
 {
-	configObject(graphics, screen, rect, text, frames);
+	configObject(graphics, screen, sect, rect, text, frames);
 
-	configButton(graphics, screen, rect, text, frames);
+	configButton(graphics, screen, sect, rect, text, frames);
 
 	bbFunction1 = bbFunc;
 }
@@ -187,6 +189,16 @@ void AAButton::executeButton(HWND hWnd)
 void AAButton::executeButton(HWND hWnd, int val)
 {
 	bbFunction1(hWnd, val);
+}
+
+void AAButton::setButtonValInt(int val)
+{
+	bbValInt = val;
+}
+
+int AAButton::getButtonValInt()
+{
+	return bbValInt;
 }
 
 int AAButton::getButtonId()

@@ -440,8 +440,8 @@ void Game::configNationScreen()
 			nextPhaseButton = gfx->buttons->createButtonId();
 
 			RectF rect = { buttonLeft, purchBoxTop, buttonWidth, purchBoxHeight };
-			gfx->buttons->registerButton(graphics, nextPhaseButton, NATION_SCREEN, rect, "Next Phase", nationScreenHandleNextPhase);
-			gfx->tooltips->registerTooltip(graphics, nextPhaseButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Proceed to the next phase");
+			gfx->buttons->registerButton(graphics, nextPhaseButton, NATION_SCREEN, PHASE_SECT, rect, "Next Phase", nationScreenHandleNextPhase);
+			gfx->tooltips->registerTooltip(graphics, nextPhaseButton, NATION_SCREEN, PHASE_SECT, rect, TT_DIR_LEFT, "Proceed to the next phase");
 		}
 
 		if (researchButton == BB_ID_NULL)
@@ -449,8 +449,8 @@ void Game::configNationScreen()
 			researchButton = gfx->buttons->createButtonId();
 			
 			RectF rect = { buttonLeft, cmBoxTop, buttonWidth, cmBoxHeight };
-			gfx->buttons->registerButton(graphics, researchButton, NATION_SCREEN, rect, "Research Dice", nationScreenHandleResearch);
-			gfx->tooltips->registerTooltip(graphics, researchButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Enter results of research rolls");
+			gfx->buttons->registerButton(graphics, researchButton, NATION_SCREEN, PHASE_SECT, rect, "Research Dice", nationScreenHandleResearch);
+			gfx->tooltips->registerTooltip(graphics, researchButton, NATION_SCREEN, PHASE_SECT, rect, TT_DIR_LEFT, "Enter results of research rolls");
 		}
 
 		if (declareWarButton == BB_ID_NULL)
@@ -458,8 +458,8 @@ void Game::configNationScreen()
 			declareWarButton = gfx->buttons->createButtonId();
 
 			RectF rect = { buttonLeft, cmBoxTop, buttonWidth, cmBoxHeight };
-			gfx->buttons->registerButton(graphics, declareWarButton, NATION_SCREEN, rect, "Declare War", nationScreenHandleDeclareWar);
-			gfx->tooltips->registerTooltip(graphics, declareWarButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Declare war on another player");
+			gfx->buttons->registerButton(graphics, declareWarButton, NATION_SCREEN, PHASE_SECT, rect, "Declare War", nationScreenHandleDeclareWar);
+			gfx->tooltips->registerTooltip(graphics, declareWarButton, NATION_SCREEN, PHASE_SECT, rect, TT_DIR_LEFT, "Declare war on another player");
 		}
 		
 		if (captureTerritoryButton == BB_ID_NULL)
@@ -467,8 +467,8 @@ void Game::configNationScreen()
 			captureTerritoryButton = gfx->buttons->createButtonId();
 
 			RectF rect = { buttonLeft, cmBoxTop, buttonWidth, cmBoxHeight };
-			gfx->buttons->registerButton(graphics, captureTerritoryButton, NATION_SCREEN, rect, "Capture Territory", nationScreenHandleCaptureTerritory, BB_SMALL_FONT);
-			gfx->tooltips->registerTooltip(graphics, captureTerritoryButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Territories captured during Conduct Combat phase");
+			gfx->buttons->registerButton(graphics, captureTerritoryButton, NATION_SCREEN, PHASE_SECT, rect, "Capture Territory", nationScreenHandleCaptureTerritory, BB_SMALL_FONT);
+			gfx->tooltips->registerTooltip(graphics, captureTerritoryButton, NATION_SCREEN, PHASE_SECT, rect, TT_DIR_LEFT, "Territories captured during Conduct Combat phase");
 		}
 
 		if (attackNeutralButton == BB_ID_NULL)
@@ -476,8 +476,8 @@ void Game::configNationScreen()
 			attackNeutralButton = gfx->buttons->createButtonId();
 
 			RectF rect = { buttonLeft, ccBoxTop, buttonWidth, ccBoxHeight };
-			gfx->buttons->registerButton(graphics, attackNeutralButton, NATION_SCREEN, rect, "Attack Neutral", nationScreenHandleAttackNeutral);
-			gfx->tooltips->registerTooltip(graphics, attackNeutralButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Attack a strict neutral territory\nAll strict neutral territories will become unfriendly");
+			gfx->buttons->registerButton(graphics, attackNeutralButton, NATION_SCREEN, PHASE_SECT, rect, "Attack Neutral", nationScreenHandleAttackNeutral);
+			gfx->tooltips->registerTooltip(graphics, attackNeutralButton, NATION_SCREEN, PHASE_SECT, rect, TT_DIR_LEFT, "Attack a strict neutral territory\nAll strict neutral territories will become unfriendly");
 		}
 
 		if (occupyNeutralButton == BB_ID_NULL)
@@ -485,8 +485,8 @@ void Game::configNationScreen()
 			occupyNeutralButton = gfx->buttons->createButtonId();
 
 			RectF rect = { buttonLeft, cmBoxTop, buttonWidth, cmBoxHeight };
-			gfx->buttons->registerButton(graphics, occupyNeutralButton, NATION_SCREEN, rect, "Occupy Neutral", nationScreenHandleOccupyNeutral);
-			gfx->tooltips->registerTooltip(graphics, occupyNeutralButton, NATION_SCREEN, rect, TT_DIR_LEFT, "Occupy a friendly neutral territory");
+			gfx->buttons->registerButton(graphics, occupyNeutralButton, NATION_SCREEN, PHASE_SECT, rect, "Occupy Neutral", nationScreenHandleOccupyNeutral);
+			gfx->tooltips->registerTooltip(graphics, occupyNeutralButton, NATION_SCREEN, PHASE_SECT, rect, TT_DIR_LEFT, "Occupy a friendly neutral territory");
 		}
 
 		if (attackMongoliaButton == BB_ID_NULL)
@@ -494,8 +494,8 @@ void Game::configNationScreen()
 			attackMongoliaButton = gfx->buttons->createButtonId();
 
 			RectF rect = { specialButtonLeft0, ncBoxTop, specialButtonWidth0, ncBoxHeight };
-			gfx->buttons->registerButton(graphics, attackMongoliaButton, NATION_SCREEN, rect, "Attack Mongolia", nationScreenHandleAttackMongolia, BB_SMALL_FONT);
-			gfx->tooltips->registerTooltip(graphics, attackMongoliaButton, NATION_SCREEN, rect, TT_DIR_LEFT, "You are attacking a Mongolian territory\nin your Combat Move phase");
+			gfx->buttons->registerButton(graphics, attackMongoliaButton, NATION_SCREEN, PHASE_SECT, rect, "Attack Mongolia", nationScreenHandleAttackMongolia, BB_SMALL_FONT);
+			gfx->tooltips->registerTooltip(graphics, attackMongoliaButton, NATION_SCREEN, PHASE_SECT, rect, TT_DIR_LEFT, "You are attacking a Mongolian territory\nin your Combat Move phase");
 		}
 
 		if (attackJapanButton == BB_ID_NULL)
@@ -503,8 +503,8 @@ void Game::configNationScreen()
 			attackJapanButton = gfx->buttons->createButtonId();
 
 			RectF rect = { specialButtonLeft1, ncBoxTop, specialButtonWidth1, ncBoxHeight };
-			gfx->buttons->registerButton(graphics, attackJapanButton, NATION_SCREEN, rect, "Attack Japan", nationScreenHandleAttackJapan);
-			gfx->tooltips->registerTooltip(graphics, attackJapanButton, NATION_SCREEN, rect, TT_DIR_RIGHT, "You are attacking Korea or any Mongolia-adjactent\nJapanese territory in your Combat Move phase");
+			gfx->buttons->registerButton(graphics, attackJapanButton, NATION_SCREEN, PHASE_SECT, rect, "Attack Japan", nationScreenHandleAttackJapan);
+			gfx->tooltips->registerTooltip(graphics, attackJapanButton, NATION_SCREEN, PHASE_SECT, rect, TT_DIR_RIGHT, "You are attacking Korea or any Mongolia-adjactent\nJapanese territory in your Combat Move phase");
 		}
 
 		if (attackSovietButton == BB_ID_NULL)
@@ -512,8 +512,8 @@ void Game::configNationScreen()
 			attackSovietButton = gfx->buttons->createButtonId();
 
 			RectF rect = { buttonLeft - 24, ncBoxTop, buttonWidth + 24, ncBoxHeight };
-			gfx->buttons->registerButton(graphics, attackSovietButton, NATION_SCREEN, rect, "Attack Soviet Union", nationScreenHandleAttackSoviet, BB_SMALL_FONT);
-			gfx->tooltips->registerTooltip(graphics, attackSovietButton, NATION_SCREEN, rect, TT_DIR_LEFT, "You are attacking a Mongolia-adjactent\nSoviet territory in your Combat Move phase");
+			gfx->buttons->registerButton(graphics, attackSovietButton, NATION_SCREEN, PHASE_SECT, rect, "Attack Soviet Union", nationScreenHandleAttackSoviet, BB_SMALL_FONT);
+			gfx->tooltips->registerTooltip(graphics, attackSovietButton, NATION_SCREEN, PHASE_SECT, rect, TT_DIR_LEFT, "You are attacking a Mongolia-adjactent\nSoviet territory in your Combat Move phase");
 		}
 	}
 }

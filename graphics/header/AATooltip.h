@@ -22,7 +22,7 @@ public:
 	AATooltip(int);
 	~AATooltip();
 
-	void configTooltip(Graphics* graphics, int, RectF&, int, const char*, framesList*);
+	void configTooltip(Graphics* graphics, int, int, RectF&, int, const char*, framesList*);
 
 	void drawTooltip(Graphics*, bool, bool, int);
 	void hideTooltip(Graphics*, int&);

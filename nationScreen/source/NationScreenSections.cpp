@@ -224,6 +224,10 @@ void Game::drawPurchaseFrameButtons()
         purchaseSection->drawPurchaseBox(graphics, dbg_boundbox, dbg_sections, dbg_layers);
         ShowWindow(purchaseSectionTabs, SW_SHOW);
     }
+    else
+    {
+        purchaseSection->showPurchaseButtons(nsUnit);
+    }
 }
 
 void Game::drawPurchaseCostUpdate(HDC& hdc)

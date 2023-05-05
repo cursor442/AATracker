@@ -122,7 +122,7 @@ void AATooltips::hideTooltip(HWND& hWnd, LPARAM lParam, Graphics* graphics, int&
 		activeTooltips[lastIdx]->hideTooltip(graphics, sect);
 }
 
-bool AATooltips::registerTooltip(Graphics* graphics, int id, int screen, RectF& rect, int dir, const char* text)
+bool AATooltips::registerTooltip(Graphics* graphics, int id, int screen, int sect, RectF& rect, int dir, const char* text)
 {
 	// Ensure that there is no duplicate id
 	for (int i = 0; i < activeTooltips.size(); i++)
@@ -138,7 +138,7 @@ bool AATooltips::registerTooltip(Graphics* graphics, int id, int screen, RectF& 
 	inactiveTooltips[inactiveTooltips.size() - 1] = new AATooltip(id);
 	inactiveTooltips[inactiveTooltips.size() - 1]->configBaseDrawTools(borderPen, borderlessPen, fontFamily,
 		textFormat, centerFormat, baseTextFont, textBrush, backBrush, popupBrush);
-	inactiveTooltips[inactiveTooltips.size() - 1]->configTooltip(graphics, screen, rect, dir, text, screenFrames);
+	inactiveTooltips[inactiveTooltips.size() - 1]->configTooltip(graphics, screen, sect, rect, dir, text, screenFrames);
 
 	return true;
 }

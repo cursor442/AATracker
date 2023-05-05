@@ -158,6 +158,22 @@ void AAButtons::executeButton(HWND hWnd)
 		activeButtons[currIdx]->executeButton(hWnd);
 }
 
+void AAButtons::setButtonValInt(int id, int val)
+{
+	convIdToIdx(id);
+
+	if (currIdx != BB_ID_NULL)
+		activeButtons[currIdx]->setButtonValInt(val);
+}
+
+int AAButtons::getButtonValInt(int id)
+{
+	convIdToIdx(id);
+
+	if (currIdx != BB_ID_NULL)
+		return activeButtons[currIdx]->getButtonValInt();
+}
+
 int AAButtons::createButtonId()
 {
 	return nextButtonId++;
@@ -171,8 +187,26 @@ void AAButtons::setButtonFuncId(int id, int bbId)
 		return activeButtons[currIdx]->setButtonFuncId(bbId);
 }
 
-bool AAButtons::registerButton(Graphics* graphics, int id, int screen, RectF& rect, const char* text, bool font_s)
+int AAButtons::getButtonScreen(int id)
 {
+	convIdToIdx(id);
+
+	if (currIdx != BB_ID_NULL)
+		return activeButtons[currIdx]->getObjectScreen();
+}
+
+int AAButtons::getButtonSection(int id)
+{
+	convIdToIdx(id);
+
+	if (currIdx != BB_ID_NULL)
+		return activeButtons[currIdx]->getObjectSection();
+}
+
+bool AAButtons::registerButton(Graphics* graphics, int id, int screen, RectF& rect, const char* text, bool font_s, bool unique)
+{
+	// Extra bool is only there because apparently function pointer parameters can be matched against the first bool
+
 	// Ensure that there is no duplicate id
 	for (int i = 0; i < activeButtons.size(); i++)
 		if (activeButtons[i]->getButtonId() == id)
@@ -195,22 +229,22 @@ bool AAButtons::registerButton(Graphics* graphics, int id, int screen, RectF& re
 	return true;
 }
 
-bool AAButtons::registerButton(Graphics* graphics, int id, int screen, RectF& rect, const char* text, void (*bbFunc)(HWND&), bool font_s)
+bool AAButtons::registerButton(Graphics* graphics, int id, int screen, int sect, RectF& rect, const char* text, void (*bbFunc)(HWND&), bool font_s)
 {
-	if (registerButton(graphics, id, screen, rect, text, font_s))
+	if (registerButton(graphics, id, screen, rect, text, font_s, true))
 	{
-		inactiveButtons[inactiveButtons.size() - 1]->configButton(graphics, screen, rect, text, screenFrames, bbFunc);
+		inactiveButtons[inactiveButtons.size() - 1]->configButton(graphics, screen, sect, rect, text, screenFrames, bbFunc);
 		return true;
 	}
 	else
 		return false;
 }
 
-bool AAButtons::registerButton(Graphics* graphics, int id, int screen, RectF& rect, const char* text, void (*bbFunc)(HWND&, int), bool font_s)
+bool AAButtons::registerButton(Graphics* graphics, int id, int screen, int sect, RectF& rect, const char* text, void (*bbFunc)(HWND&, int), bool font_s)
 {
-	if (registerButton(graphics, id, screen, rect, text, font_s))
+	if (registerButton(graphics, id, screen, rect, text, font_s, true))
 	{
-		inactiveButtons[inactiveButtons.size() - 1]->configButton(graphics, screen, rect, text, screenFrames, bbFunc);
+		inactiveButtons[inactiveButtons.size() - 1]->configButton(graphics, screen, sect, rect, text, screenFrames, bbFunc);
 		return true;
 	}
 	else

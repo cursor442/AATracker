@@ -80,7 +80,7 @@ bool Game::NationScreen(HDC& hdc, PAINTSTRUCT& ps)
         {
             if (purchaseTab == TAB_PURCH)
             {
-                //drawPurchaseFrameButtons();
+                drawPurchaseFrameButtons();
             }
             else if (purchaseTab == TAB_COMB)
             {

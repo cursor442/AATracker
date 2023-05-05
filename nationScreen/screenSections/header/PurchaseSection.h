@@ -31,6 +31,7 @@ public:
 	void drawPurchaseBoxButtons(Graphics*, bool, bool, int);
 
 	void showPurchaseButtons();
+	void showPurchaseButtons(int);
 	void hidePurchaseButtons();
 
 	REAL getBoxEdge(int, int);
@@ -57,25 +58,25 @@ private:
 	void (*showButton)(int, bool);
 	void (*hideButton)(int, bool);
 	int infDButton, infUButton;
-	HWND artDButton, artUButton;
-	HWND mechDButton, mechUButton;
-	HWND tankDButton, tankUButton;
-	HWND aaaDButton, aaaUButton;
-	HWND fightDButton, fightUButton;
-	HWND tactDButton, tactUButton;
-	HWND stratDButton, stratUButton;
-	HWND battleDButton, battleUButton;
-	HWND airccDButton, airccUButton;
-	HWND cruiseDButton, cruiseUButton;
-	HWND destrDButton, destrUButton;
-	HWND subDButton, subUButton;
-	HWND transDButton, transUButton;
-	HWND majorDButton, majorUButton;
-	HWND minorDButton, minorUButton;
-	HWND minorUpDButton, minorUpUButton;
-	HWND airbDButton, airbUButton;
-	HWND navbDButton, navbUButton;
-	HWND repairDButton, repairUButton;
+	int artDButton, artUButton;
+	int mechDButton, mechUButton;
+	int tankDButton, tankUButton;
+	int aaaDButton, aaaUButton;
+	int fightDButton, fightUButton;
+	int tactDButton, tactUButton;
+	int stratDButton, stratUButton;
+	int battleDButton, battleUButton;
+	int airccDButton, airccUButton;
+	int cruiseDButton, cruiseUButton;
+	int destrDButton, destrUButton;
+	int subDButton, subUButton;
+	int transDButton, transUButton;
+	int majorDButton, majorUButton;
+	int minorDButton, minorUButton;
+	int minorUpDButton, minorUpUButton;
+	int airbDButton, airbUButton;
+	int navbDButton, navbUButton;
+	int repairDButton, repairUButton;
 
 	AABox* infQBox, * artQBox, * mechQBox, * tankQBox,
 		* aaaQBox, * fightQBox, * tactQBox, * stratQBox,

@@ -9,9 +9,7 @@ void Game::handleMouseLeftDown(HWND& hWnd, LPARAM lParam)
         buttonClicked = true;
         newButtonUnclicked = false;
 
-        nsSection |= PHASE_SECT;
-        if (nsPhase == NON_PHASE)
-            nsPhase = BUT_PHASE;
+        handleMouseGraphicsSwitches(currButton);
         RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
     }
 }
@@ -27,9 +25,7 @@ void Game::handleMouseLeftUp(HWND& hWnd, LPARAM lParam)
 
         gfx->buttons->executeButton(hWnd);
 
-        nsSection |= PHASE_SECT;
-        if (nsPhase == NON_PHASE)
-            nsPhase = BUT_PHASE;
+        handleMouseGraphicsSwitches(currButton);
         RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
     }
     else if (buttonClicked)
@@ -51,9 +47,7 @@ void Game::handleMouseMove(HWND& hWnd, LPARAM lParam)
 
             gfx->buttons->releaseButton(currButton);
 
-            nsSection |= PHASE_SECT;
-            if (nsPhase == NON_PHASE)
-                nsPhase = BUT_PHASE;
+            handleMouseGraphicsSwitches(currButton);
             RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
         }
         else if (buttonClick && !newButtonClicked && newButtonUnclicked)
@@ -62,10 +56,33 @@ void Game::handleMouseMove(HWND& hWnd, LPARAM lParam)
 
             gfx->buttons->pressButton(currButton);
 
-            nsSection |= PHASE_SECT;
+            handleMouseGraphicsSwitches(currButton);
+            RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+        }
+    }
+}
+
+void Game::handleMouseGraphicsSwitches(int button)
+{
+    int bbScreen = gfx->buttons->getButtonScreen(button);
+    int bbSection = gfx->buttons->getButtonSection(button);
+
+    if (whichScreen == bbScreen)
+    {
+        switch (whichScreen)
+        {
+        case NATION_SCREEN:
+        {
+            nsSection |= bbSection;
             if (nsPhase == NON_PHASE)
                 nsPhase = BUT_PHASE;
-            RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+
+            if (bbSection == PURCH_SECT)
+                nsUnit = gfx->buttons->getButtonValInt(button);
+            break;
+        }
+        default:
+            break;
         }
     }
 }

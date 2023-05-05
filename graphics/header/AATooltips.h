@@ -24,7 +24,7 @@ public:
 	void drawTooltip(HWND&, LPARAM, Graphics*, bool, bool, int);
 	void hideTooltip(HWND&, LPARAM, Graphics*, int&);
 
-	bool registerTooltip(Graphics* graphics, int, int, RectF&, int, const char*);
+	bool registerTooltip(Graphics* graphics, int, int, int, RectF&, int, const char*);
 	bool activateTooltip(int);
 	bool deactivateTooltip(int);
 
