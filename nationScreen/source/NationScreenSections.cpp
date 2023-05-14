@@ -16,12 +16,12 @@ void Game::drawPhaseFrame(HDC& hdc)
         phaseSection->drawPhaseBox(graphics, currPhase, gameBoard->getGameResearch(), dbg_boundbox, dbg_sections, dbg_layers);
     }
 
-    nsPhase = NON_PHASE;
+    //nsPhase = NON_PHASE;
 }
 
-void Game::drawPhaseFrameButtons(HDC& hdc)
+void Game::drawPhaseFrameButtons(HDC& hdc, bool force)
 {
-    if (nsPhase != NON_PHASE)
+    if (nsPhase != NON_PHASE || force)
     {
         int gameType = gameBoard->getGameType();
         int currPhase = gameBoard->getGameTurnPhase();
@@ -124,6 +124,8 @@ void Game::drawPhaseFrameButtons(HDC& hdc)
         default: break;
         }
     }
+
+    nsPhase = NON_PHASE;
 }
 
 void Game::drawWarFrame(HDC& hdc)
@@ -201,7 +203,6 @@ void Game::drawPurchaseFrame(HDC& hdc)
     {
         purchaseSection->updatePurchaseText(purchases, currUKButton);
         purchaseSection->drawPurchaseBox(graphics, PURCH_ALL, dbg_boundbox, dbg_sections, dbg_layers);
-        nsUnit = PURCH_TITLE;
     }
     else if (nsUnit == PURCH_TITLE)
     {
@@ -213,20 +214,24 @@ void Game::drawPurchaseFrame(HDC& hdc)
     {
         purchaseSection->updatePurchaseText(purchases, nsUnit);
         purchaseSection->drawPurchaseBox(graphics, nsUnit, dbg_boundbox, dbg_sections, dbg_layers);
-        nsUnit = PURCH_TITLE;
     }
 }
 
-void Game::drawPurchaseFrameButtons()
+void Game::drawPurchaseFrameButtons(bool force)
 {
-    if (nsUnit == PURCH_TITLE)
+    if (nsUnit == PURCH_ALL)
     {
-        purchaseSection->drawPurchaseBox(graphics, dbg_boundbox, dbg_sections, dbg_layers);
+        nsUnit = PURCH_TITLE;
+    }
+    else if (nsUnit == PURCH_TITLE || force)
+    {
+        purchaseSection->showPurchaseButtons();
         ShowWindow(purchaseSectionTabs, SW_SHOW);
     }
     else
     {
         purchaseSection->showPurchaseButtons(nsUnit);
+        nsUnit = PURCH_TITLE;
     }
 }
 

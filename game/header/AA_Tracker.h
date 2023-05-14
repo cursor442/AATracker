@@ -188,11 +188,11 @@ public:
 	static void drawNameFrame(HDC&);
 	static void drawStatusFrame(HDC&);
 	static void drawPhaseFrame(HDC&);
-	static void drawPhaseFrameButtons(HDC&);
+	static void drawPhaseFrameButtons(HDC&, bool = false);
 	static void drawWarFrame(HDC&);
 	static void drawCitiesFrame(HDC&);
 	static void drawPurchaseFrame(HDC&);
-	static void drawPurchaseFrameButtons();
+	static void drawPurchaseFrameButtons(bool = false);
 	static void drawCombinedArms(HDC&); // Combined Arms reference
 	static void drawNeutralBox(HDC&); // Neutral territories status
 	static void drawPurchaseCostUpdate(HDC&);

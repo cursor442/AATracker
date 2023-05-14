@@ -1435,8 +1435,6 @@ void PurchaseSection::drawPurchaseBox(Graphics* graphics, bool dbg_boundbox, boo
 		navbCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, navbC, layers);
 		repCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, repC, layers);
 		totCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, totC, layers);
-
-		showPurchaseButtons();
 	}
 }
 
