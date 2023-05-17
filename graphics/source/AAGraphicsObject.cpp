@@ -46,11 +46,21 @@ void AAGraphicsObject::configBaseDrawTools(Pen* p0, Pen* p1, FontFamily* ff, Str
 	popupBrush = b2;
 }
 
-void AAGraphicsObject::configObject(Graphics* graphics, int screen, int sect, RectF& rect, const char* text, framesList* frames)
+void AAGraphicsObject::configObject(Graphics* graphics, int screen, int sect, RectF& rect)
 {
 	objScr = screen;
 	objSect = sect;
 	objBox = rect;
+}
+
+void AAGraphicsObject::configObject(Graphics* graphics, int screen, int sect, RectF& rect, const char* text)
+{
+	configObject(graphics, screen, sect, rect);
+}
+
+void AAGraphicsObject::configObject(Graphics* graphics, int screen, int sect, RectF& rect, const char* text, framesList* frames)
+{
+	configObject(graphics, screen, sect, rect, text);
 }
 
 void AAGraphicsObject::drawObject(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, int layers)

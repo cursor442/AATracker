@@ -170,6 +170,9 @@
     <ClInclude Include="graphics\header\AAButton.h" />
     <ClInclude Include="graphics\header\AAButtons.h" />
     <ClInclude Include="graphics\header\AAGraphicsObject.h" />
+    <ClInclude Include="graphics\header\AATab.h" />
+    <ClInclude Include="graphics\header\AATabBar.h" />
+    <ClInclude Include="graphics\header\AATabs.h" />
     <ClInclude Include="graphics\header\AATimers.h" />
     <ClInclude Include="graphics\header\AATooltip.h" />
     <ClInclude Include="graphics\header\AATooltips.h" />
@@ -232,6 +235,9 @@
     <ClCompile Include="graphics\source\AAButtons.cpp" />
     <ClCompile Include="graphics\source\AAGraphics.cpp" />
     <ClCompile Include="graphics\source\AAGraphicsObject.cpp" />
+    <ClCompile Include="graphics\source\AATab.cpp" />
+    <ClCompile Include="graphics\source\AATabBar.cpp" />
+    <ClCompile Include="graphics\source\AATabs.cpp" />
     <ClCompile Include="graphics\source\AATooltip.cpp" />
     <ClCompile Include="graphics\source\AATooltips.cpp" />
     <ClCompile Include="graphics\source\DebugGrid.cpp" />

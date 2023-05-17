@@ -243,9 +243,6 @@
     <ClInclude Include="graphics\header\AAButtons.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\header\AAButton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\header\AATimers.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
@@ -254,6 +251,18 @@
     </ClInclude>
     <ClInclude Include="game\header\GameClass.h">
       <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\header\AAButton.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\header\AATabs.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\header\AATab.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\header\AATabBar.h">
+      <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -457,6 +466,15 @@
     </ClCompile>
     <ClCompile Include="game\source\ButtonHanders.cpp">
       <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\source\AATabs.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\source\AATab.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\source\AATabBar.cpp">
+      <Filter>Source Files\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

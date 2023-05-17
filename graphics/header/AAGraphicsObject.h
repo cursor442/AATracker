@@ -19,6 +19,8 @@ public:
 	virtual ~AAGraphicsObject();
 
 	virtual void configBaseDrawTools(Pen*, Pen*, FontFamily*, StringFormat*, StringFormat*, Font*, SolidBrush*, SolidBrush*, SolidBrush* = NULL);
+	virtual void configObject(Graphics* graphics, int, int, RectF&);
+	virtual void configObject(Graphics* graphics, int, int, RectF&, const char*);
 	virtual void configObject(Graphics* graphics, int, int, RectF&, const char*, framesList*);
 
 	virtual void drawObject(Graphics*, bool, bool, int);
