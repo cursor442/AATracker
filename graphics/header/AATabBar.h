@@ -1,12 +1,15 @@
 #ifndef AA_TAB_BAR
 #define AA_TAB_BAR
 
+#define TB_CFG_LEFT  0
+#define TB_CFG_FILL  1
+
 #include "AATab.h"
 
 class AATabBar : public AAGraphicsObject
 {
 public:
-	AATabBar(int);
+	AATabBar(int, int);
 	~AATabBar();
 
 	void configTabBar(Graphics*, int, RectF&);
@@ -24,6 +27,7 @@ public:
 
 private:
 
+	int  tbConfig;
 	int  tbTabCnt;
 	int  tbTabIdx;
 	int  tbState;

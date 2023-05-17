@@ -182,7 +182,7 @@ bool AATabs::registerTab(Graphics* graphics, int id, int screen, RectF& rect, co
 
 	// New Tabs should be inactive by default
 	inactiveTabs.resize(inactiveTabs.size() + 1);
-	inactiveTabs[inactiveTabs.size() - 1] = new AATabBar(id);
+	inactiveTabs[inactiveTabs.size() - 1] = new AATabBar(id, TB_CFG_LEFT);
 	inactiveTabs[inactiveTabs.size() - 1]->configBaseDrawTools(borderPen, borderlessPen, fontFamily,
 		textFormat, centerFormat, baseTextFont, textBrush, backBrush);
 	if (!font_s)

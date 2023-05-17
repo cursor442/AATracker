@@ -1,8 +1,9 @@
 #include "../header/AATabBar.h"
 
-AATabBar::AATabBar(int id)
+AATabBar::AATabBar(int id, int cfg)
 	:AAGraphicsObject(id)
 {
+	tbConfig = cfg;
 	tbTabCnt = 0;
 	tbTabIdx = -1;
 	tbState = 0;
