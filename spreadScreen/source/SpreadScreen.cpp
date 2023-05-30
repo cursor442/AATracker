@@ -16,6 +16,8 @@ bool Game::SpreadScreen(HWND& hWnd, HDC& hdc, PAINTSTRUCT& ps, bool side)
 {
 	hideScreen();
 
+
+
 	if (side == SIDE_AXIS)
 	{
 		if (spreadAxis == NULL)

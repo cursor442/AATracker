@@ -30,11 +30,18 @@ public:
 	~AALine();
 
 	void config(PointF, PointF, int);
+	void nudge(REAL);
+	void shrink(REAL);
+	void contract(REAL, REAL);
 
 	void drawLine(Graphics*, Pen*, int);
 
 	PointF pt0, pt1;
 	int layer;
+
+private:
+	bool vert, horz;
+	bool dot;
 
 };
 
@@ -67,6 +74,7 @@ public:
 	void shrinkY(int);
 	void contract(int);
 	void contract(int, int);
+	void expand(int, int);
 
 	void drawFrame(Graphics*, Pen*, Font*, StringFormat*, Brush*, int);
 	void drawFrameFill(Graphics*, Pen*, Font*, StringFormat*, Brush*, Brush*, int);

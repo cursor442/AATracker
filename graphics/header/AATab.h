@@ -4,8 +4,10 @@
 #define TB_UP false
 #define TB_DN true
 
-#define TB_UP_LAYERS 5
-#define TB_DN_LAYERS 2
+#define TB_TOP_LAYERS   8
+#define TB_BOT_LAYERS   2
+#define TB_LEFT_LAYERS  2
+#define TB_RIGHT_LAYERS 2
 
 #include "../../game/header/Resource.h"
 #include "AAGraphicsObject.h"
@@ -18,8 +20,10 @@ public:
 
 	void configTab(Graphics*, int, RectF&, const char*);
 	void configTab(Graphics*, int, RectF&, const char*, void (*tbFunc)(HWND&));
+	void reconfigTab(RectF&);
 	void configDrawTools(vector<Color*>&, vector<SolidBrush*>&, SolidBrush*, Font*);
 	void setTabFuncId(int);
+	void setTabState(bool);
 
 	void drawTab(Graphics*, bool, bool, int);
 	void hideTab(Graphics*);
@@ -36,13 +40,20 @@ private:
 
 	vector<WCHAR> tbText[GRAPHICS_TEXTLEN];
 
-	AABox* tbUpBox[TB_UP_LAYERS];
-	AABox* tbDnBox[TB_DN_LAYERS];
+	AALine* tbUpTopLine[TB_TOP_LAYERS];
+	AALine* tbUpBotLine[TB_BOT_LAYERS];
+	AALine* tbUpLeftLine[TB_LEFT_LAYERS];
+	AALine* tbUpRightLine[TB_RIGHT_LAYERS];
+	AALine* tbDnTopLine[TB_TOP_LAYERS];
+	AALine* tbDnBotLine[TB_BOT_LAYERS];
+	AALine* tbDnLeftLine[TB_LEFT_LAYERS];
+	AALine* tbDnRightLine[TB_RIGHT_LAYERS];
 	AABox* tbUpTextBox;
 	AABox* tbDnTextBox;
 	AABox* tbBlankBox;
 
 	void config(const char*);
+	void configGraphics();
 	void executeTab(HWND);
 
 	SolidBrush* tbCenterBrush;
@@ -50,8 +61,10 @@ private:
 
 	Font* tbFont;
 
-	Pen* tbUpBorderPen[TB_UP_LAYERS];
-	Pen* tbDnBorderPen[TB_DN_LAYERS];
+	Pen* tbTopPen[TB_TOP_LAYERS];
+	Pen* tbBotPen[TB_BOT_LAYERS];
+	Pen* tbLeftPen[TB_LEFT_LAYERS];
+	Pen* tbRightPen[TB_RIGHT_LAYERS];
 
 	int  tbFuncId;
 	bool hasFuncId;

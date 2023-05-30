@@ -636,6 +636,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             break;
         }
 
+        // Draw nation screen tabs
+        if (game->whichScreen != MAIN_SCREEN)
+            game->showTabBar(game->nationScreenTabsTmp);
+
         // Draw tooltip if active
         game->drawTooltip(hWnd, lParam);
 

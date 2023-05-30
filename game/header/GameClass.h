@@ -44,6 +44,11 @@ int Game::updateNatGraph = 10;
 bool Game::whichUpdateNatGraph = false;
 bool Game::doUpdateGraph = false;
 
+// Tabs
+bool Game::tabClick = false;
+int Game::currTab = TB_ID_NULL;
+int Game::currTabIdx = TB_ID_NULL;
+
 // Buttons
 bool Game::buttonClick = false;
 bool Game::newButtonClick = false;
@@ -64,6 +69,7 @@ int  Game::dbg_grid = 0;
 
 // Tabs
 HWND Game::nationScreenTabs = NULL;
+int  Game::nationScreenTabsTmp = NULL;
 HWND Game::purchaseSectionTabs = NULL;
 HWND Game::ukEconomyTabs = NULL;
 HWND Game::logScreenTabs = NULL;

@@ -3,18 +3,24 @@
 
 #define TB_CFG_LEFT  0
 #define TB_CFG_FILL  1
+#define TB_CFG_EVEN  2
+
+#define TB_ORT_UP    0
+#define TB_ORT_DN    1
+#define TB_ORT_LEFT  2
+#define TB_ORT_RIGHT 3
 
 #include "AATab.h"
 
 class AATabBar : public AAGraphicsObject
 {
 public:
-	AATabBar(int, int);
+	AATabBar(int, int, int);
 	~AATabBar();
 
 	void configTabBar(Graphics*, int, RectF&);
 	void configDrawTools(vector<Color*>*, vector<SolidBrush*>*, SolidBrush*, Font*);
-	void addTab(Graphics*, int, RectF&, const char*, void (*tbFunc)(HWND&));
+	void addTab(Graphics*, const char*, void (*tbFunc)(HWND&));
 	void setTabFuncId(int, int);
 
 	void drawTab(Graphics*, bool, bool, int);
@@ -24,10 +30,12 @@ public:
 	bool releaseTab(int);
 
 	int  getTabId();
+	int  whichTabContainsPoint(int, int);
 
 private:
 
 	int  tbConfig;
+	int  tbOrient;
 	int  tbTabCnt;
 	int  tbTabIdx;
 	int  tbState;
@@ -45,6 +53,9 @@ private:
 	Font* tbFont;
 
 	void configTabDrawTools(int);
+
+	RectF calcTabWidth(const char* = nullptr);
+	void  updateTabWidths(REAL);
 };
 
 #endif

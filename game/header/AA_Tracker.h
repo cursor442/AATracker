@@ -76,6 +76,13 @@ public:
 
 	static bool whichUpdateNatGraph, doUpdateGraph;
 
+	// Tabs
+	static bool tabClick;                     // The mouse has clicked on an active tab
+	static int  currTab;                      // The ID of the current tab selected
+	static int  currTabIdx;                   // The selected index of the current tab
+	static void showTabBar(int);              // Draw the currently selected tab bar 
+	static void hideTabBar(int);              // Draw the currently selected tab bar 
+	
 	// Buttons
 	static bool buttonClick;                  // The mouse has clicked on an active button
 	static bool newButtonClick;               // The mouse has clicked on an active button that is different than the last button click
@@ -102,6 +109,7 @@ public:
 
 	// Tabs
 	static HWND nationScreenTabs;
+	static int  nationScreenTabsTmp;
 	static HWND purchaseSectionTabs;
 	static HWND ukEconomyTabs;
 	static HWND logScreenTabs;
@@ -224,6 +232,18 @@ public:
 	static void updatePurchases(uint16_t);
 	static void undoPurchases(uint16_t);
 	static bool calcPrice();
+
+	/////////////////////////////////////////////////////////////////////////
+    // Nation screen tab handlers
+	/////////////////////////////////////////////////////////////////////////
+
+	static void nationScreenHandleMainScreenTab(HWND&);
+	static void nationScreenHandleAxisSpreadScreenTab(HWND&);
+	static void nationScreenHandleAlliesSpreadScreenTab(HWND&);
+	static void nationScreenHandleGraphScreenTab(HWND&);
+	static void nationScreenHandleLogScreenTab(HWND&);
+	static void nationScreenHandleResearchScreenTab(HWND&);
+	static void nationScreenHandleReferenceScreenTab(HWND&);
 
 	/////////////////////////////////////////////////////////////////////////
 	// Nation screen button handlers

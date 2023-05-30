@@ -76,6 +76,24 @@ void Game::configNationScreen()
 		if (TabCtrl_InsertItem(nationScreenTabs, TAB_REFERENCE, &tie) == -1)
 			DestroyWindow(nationScreenTabs);
 	}
+
+	if (nationScreenTabsTmp == NULL)
+	{
+		nationScreenTabsTmp = gfx->tabs->createTabId();
+		
+		RectF rect = { 550, 0, 700, 23 };
+		gfx->tabs->registerTab(graphics, nationScreenTabsTmp, NATION_SCREEN, TB_CFG_EVEN, TB_ORT_UP, rect, "Nation Screen Tabs", true, false);
+
+		gfx->tabs->activateTab(nationScreenTabsTmp);
+		gfx->tabs->addTab(graphics, nationScreenTabsTmp, "Main", nationScreenHandleMainScreenTab);
+		gfx->tabs->addTab(graphics, nationScreenTabsTmp, "Axis Spread", nationScreenHandleAxisSpreadScreenTab);
+		gfx->tabs->addTab(graphics, nationScreenTabsTmp, "Allies Spread", nationScreenHandleAlliesSpreadScreenTab);
+		gfx->tabs->addTab(graphics, nationScreenTabsTmp, "Graphs", nationScreenHandleGraphScreenTab);
+		gfx->tabs->addTab(graphics, nationScreenTabsTmp, "Game Log", nationScreenHandleLogScreenTab);
+		gfx->tabs->addTab(graphics, nationScreenTabsTmp, "Research", nationScreenHandleResearchScreenTab);
+		gfx->tabs->addTab(graphics, nationScreenTabsTmp, "Reference", nationScreenHandleReferenceScreenTab);
+		gfx->tabs->deactivateTab(nationScreenTabsTmp);
+	}
 	
 	// Name section
 	if (nameSection == NULL)

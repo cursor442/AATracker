@@ -3,6 +3,10 @@
 AALine::AALine()
 {
 	layer = 0;
+
+	vert = false;
+	horz = false;
+	dot  = false;
 }
 
 AALine::~AALine()
@@ -15,7 +19,60 @@ void AALine::config(PointF s, PointF e, int l)
 	pt0 = s;
 	pt1 = e;
 	layer = l;
+
+	if (s.X == e.X)
+		vert = true;
+	if (s.Y == e.Y)
+		horz = true;
+	if (vert && horz)
+		dot = true;
 }
+
+void AALine::nudge(REAL n)
+{
+	if (vert)
+	{
+		pt0.Y += n;
+		pt1.Y += n;
+	}
+
+	if (horz)
+	{
+		pt0.X += n;
+		pt1.X += n;
+	}
+}
+
+void AALine::shrink(REAL n)
+{
+	if (vert)
+	{
+		pt0.Y += n;
+		pt1.Y -= n;
+	}
+
+	if (horz)
+	{
+		pt0.X += n;
+		pt1.X -= n;
+	}
+}
+
+void AALine::contract(REAL n0, REAL n1)
+{
+	if (vert)
+	{
+		pt0.Y -= n0;
+		pt1.Y -= n1;
+	}
+
+	if (horz)
+	{
+		pt0.X -= n0;
+		pt1.X -= n1;
+	}
+}
+
 
 void AALine::drawLine(Graphics* graphics, Pen* p0, int layers)
 {
@@ -115,6 +172,12 @@ void AABox::contract(int x, int y)
 {
 	box.Width -= x;
 	box.Height -= y;
+}
+
+void AABox::expand(int x, int y)
+{
+	box.Width += x;
+	box.Height += y;
 }
 
 void AABox::drawFrame(Graphics* graphics, Pen* pen, Font* font, StringFormat* sf, Brush* b0, int layers)

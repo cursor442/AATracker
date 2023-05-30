@@ -231,6 +231,7 @@
     <ClCompile Include="game\source\GameClass.cpp" />
     <ClCompile Include="game\source\MenuCallbacks.cpp" />
     <ClCompile Include="game\source\MouseHandlers.cpp" />
+    <ClCompile Include="game\source\TabHandlers.cpp" />
     <ClCompile Include="graphics\source\AAButton.cpp" />
     <ClCompile Include="graphics\source\AAButtons.cpp" />
     <ClCompile Include="graphics\source\AAGraphics.cpp" />

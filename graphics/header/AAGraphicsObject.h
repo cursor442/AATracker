@@ -26,9 +26,12 @@ public:
 	virtual void drawObject(Graphics*, bool, bool, int);
 	virtual void hideObject(Graphics*, int&);
 
-	virtual int getObjectId();
-	virtual int getObjectScreen();
-	virtual int getObjectSection();
+	virtual void  setObjectBox(RectF&);
+
+	virtual int   getObjectId();
+	virtual int   getObjectScreen();
+	virtual int   getObjectSection();
+	virtual RectF getObjectBox();
 
 	virtual bool   isPointInBox(int, int);
 	virtual PointF getRectCorner(int);

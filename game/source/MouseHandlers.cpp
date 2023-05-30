@@ -11,6 +11,14 @@ void Game::handleMouseLeftDown(HWND& hWnd, LPARAM lParam)
 
         handleMouseGraphicsSwitches(currButton);
         RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+        return;
+    }
+
+    currTab = gfx->tabs->checkForTab(hWnd, lParam, tabClick, currTabIdx);
+
+    if (tabClick && gfx->tabs->pressTab(hWnd, currTab, currTabIdx))
+    {
+
     }
 }
 

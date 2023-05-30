@@ -46,7 +46,7 @@ AAGraphics::AAGraphics(HWND hWnd, RectF rect)
 	calibriLightFamily = NULL;
 
 	logTextFormat = NULL; leftCenterFormat = NULL; centerFormat = NULL;
-	leftTopFormat = NULL; purchaseFormat = NULL;
+	leftTopFormat = NULL; leftBottomFormat = NULL; purchaseFormat = NULL;
 
 	font12 = NULL; font12_b = NULL;
 	font14 = NULL; font14_b = NULL;
@@ -158,7 +158,7 @@ AAGraphics::~AAGraphics()
 	delete calibriLightFamily;
 
 	delete logTextFormat; delete leftCenterFormat; delete centerFormat;
-	delete leftTopFormat; delete purchaseFormat;
+	delete leftTopFormat; delete leftBottomFormat; delete purchaseFormat;
 
 	delete font12; delete font12_b;
 	delete font14; delete font14_b;
@@ -302,6 +302,9 @@ void AAGraphics::config(HDC& hdc)
 	leftCenterFormat = new StringFormat();
 	leftCenterFormat->SetAlignment(StringAlignmentNear);
 	leftCenterFormat->SetLineAlignment(StringAlignmentCenter);
+	leftBottomFormat = new StringFormat();
+	leftBottomFormat->SetAlignment(StringAlignmentNear);
+	leftBottomFormat->SetLineAlignment(StringAlignmentFar);
 	centerFormat = new StringFormat();
 	centerFormat->SetAlignment(StringAlignmentCenter);
 	centerFormat->SetLineAlignment(StringAlignmentCenter);
@@ -414,9 +417,9 @@ void AAGraphics::config(HDC& hdc)
 	//// Tabs
 	///////////////////////////////////////////////////////////////////////////
 
-	tabs->configBaseDrawTools(blackPen1, borderlessPen, calibriFamily, leftCenterFormat, centerFormat,
+	tabs->configBaseDrawTools(blackPen1, borderlessPen, calibriFamily, leftBottomFormat, centerFormat,
 		font18_l, textBrush, backBrush);
-	tabs->configDrawTools(grayColors, grayBrushes, clearBrush, font20_bl, font18_bl);
+	tabs->configDrawTools(grayColors, grayBrushes, clearBrush, font18_bl, font16_bl);
 
 	///////////////////////////////////////////////////////////////////////////
 	//// Buttons

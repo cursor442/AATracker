@@ -76,6 +76,11 @@ void AAGraphicsObject::hideObject(Graphics* graphics, int& sect)
 	sect = intersections;
 }
 
+void AAGraphicsObject::setObjectBox(RectF& rect)
+{
+	objBox = rect;
+}
+
 int AAGraphicsObject::getObjectId()
 {
 	return objId;
@@ -89,6 +94,11 @@ int AAGraphicsObject::getObjectScreen()
 int AAGraphicsObject::getObjectSection()
 {
 	return objSect;
+}
+
+RectF AAGraphicsObject::getObjectBox()
+{
+	return objBox;
 }
 
 

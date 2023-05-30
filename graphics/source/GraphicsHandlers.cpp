@@ -49,6 +49,18 @@ void Game::hideTooltip(HWND& hWnd, LPARAM lParam)
     }
 }
 
+void Game::showTabBar(int tab)
+{
+    gfx->tabs->activateTab(tab);
+    gfx->tabs->drawTab(tab, graphics, dbg_boundbox, dbg_sections, dbg_layers);
+}
+
+void Game::hideTabBar(int tab)
+{
+    gfx->tabs->hideTab(tab, graphics);
+    gfx->tabs->deactivateTab(tab);
+}
+
 void Game::showButton(HWND& button)
 {
     ShowWindow(button, SW_SHOW);

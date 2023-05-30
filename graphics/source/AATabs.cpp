@@ -70,7 +70,15 @@ void AATabs::configDrawTools(vector<Color*>& cGray, vector<SolidBrush*>& bGray, 
 	grayBrushes = &bGray;
 }
 
-int AATabs::checkForTab(HWND& hWnd, LPARAM lParam, bool& clickTab, bool& newTab, int currTab, bool updateTabId)
+void AATabs::addTab(Graphics* graphics, int id, const char* text, void (*tbFunc)(HWND&))
+{
+	convIdToIdx(id);
+
+	if (currIdx != TB_ID_NULL)
+		activeTabs[currIdx]->addTab(graphics, text, tbFunc);
+}
+
+int AATabs::checkForTab(HWND& hWnd, LPARAM lParam, bool& clickTab, int& tbTabIdx)
 {
 	GetCursorPos(&currPoint);
 	ScreenToClient(hWnd, &currPoint);
@@ -82,24 +90,20 @@ int AATabs::checkForTab(HWND& hWnd, LPARAM lParam, bool& clickTab, bool& newTab,
 		inWind = false;
 
 	clickTab = false;
-	newTab = true;
 
 	int tbTab = TB_ID_NULL;
+	tbTabIdx = TB_ID_NULL;
 
 	if (inWind)
 	{
 		// Identify the current Tab the mouse is over
-		tbTab = isPointInTabBox(currPoint.x, currPoint.y, updateTabId);
+		tbTab = isPointInTabBox(currPoint.x, currPoint.y);
 
 		// Click event is over an active Tab
 		if (tbTab != TB_ID_NULL)
 		{
 			clickTab = true;
-
-			if (tbTab != currTab) // The tab is different compared to the last click event
-				newTab = true;
-			else
-				newTab = false;
+			tbTabIdx = whichTabBox(tbTab, currPoint.x, currPoint.y);
 		}
 	}
 
@@ -122,12 +126,20 @@ void AATabs::hideTab(int id, Graphics* graphics)
 		activeTabs[currIdx]->hideTab(graphics);
 }
 
+void AATabs::hideAllTabs(Graphics* graphics)
+{
+	for (int i = 0; i < activeTabs.size(); i++)
+		activeTabs[i]->hideTab(graphics);
+}
+
 bool AATabs::pressTab(HWND hWnd, int barId, int tabId)
 {
 	convIdToIdx(barId);
 
 	if (currIdx != TB_ID_NULL)
 		return activeTabs[currIdx]->pressTab(hWnd, tabId);
+
+	return false;
 }
 
 bool AATabs::releaseTab(int barId, int tabId)
@@ -136,6 +148,8 @@ bool AATabs::releaseTab(int barId, int tabId)
 
 	if (currIdx != TB_ID_NULL)
 		return activeTabs[currIdx]->releaseTab(tabId);
+
+	return false;
 }
 
 int AATabs::createTabId()
@@ -157,6 +171,8 @@ int AATabs::getTabScreen(int id)
 
 	if (currIdx != TB_ID_NULL)
 		return activeTabs[currIdx]->getObjectScreen();
+
+	return NULL;
 }
 
 int AATabs::getTabSection(int id)
@@ -165,9 +181,11 @@ int AATabs::getTabSection(int id)
 
 	if (currIdx != TB_ID_NULL)
 		return activeTabs[currIdx]->getObjectSection();
+
+	return NULL;
 }
 
-bool AATabs::registerTab(Graphics* graphics, int id, int screen, RectF& rect, const char* text, bool font_s, bool unique)
+bool AATabs::registerTab(Graphics* graphics, int id, int screen, int cfg, int ort, RectF& rect, const char* text, bool font_s, bool unique)
 {
 	// Extra bool is only there because apparently function pointer parameters can be matched against the first bool
 
@@ -182,20 +200,21 @@ bool AATabs::registerTab(Graphics* graphics, int id, int screen, RectF& rect, co
 
 	// New Tabs should be inactive by default
 	inactiveTabs.resize(inactiveTabs.size() + 1);
-	inactiveTabs[inactiveTabs.size() - 1] = new AATabBar(id, TB_CFG_LEFT);
+	inactiveTabs[inactiveTabs.size() - 1] = new AATabBar(id, cfg, ort);
 	inactiveTabs[inactiveTabs.size() - 1]->configBaseDrawTools(borderPen, borderlessPen, fontFamily,
 		textFormat, centerFormat, baseTextFont, textBrush, backBrush);
 	if (!font_s)
 		inactiveTabs[inactiveTabs.size() - 1]->configDrawTools(grayColors, grayBrushes, clearBrush, tabFont);
 	else
 		inactiveTabs[inactiveTabs.size() - 1]->configDrawTools(grayColors, grayBrushes, clearBrush, tabFont_s);
+	inactiveTabs[inactiveTabs.size() - 1]->configTabBar(graphics, screen, rect);
 
 	return true;
 }
 
-bool AATabs::registerTab(Graphics* graphics, int id, int screen, int sect, RectF& rect, const char* text, void (*bbFunc)(HWND&), bool font_s)
+bool AATabs::registerTab(Graphics* graphics, int id, int screen, int cfg, int ort, RectF& rect, const char* text, void (*bbFunc)(HWND&), bool font_s)
 {
-	if (registerTab(graphics, id, screen, rect, text, font_s, true))
+	if (registerTab(graphics, id, screen, cfg, ort, rect, text, font_s, true))
 	{
 		inactiveTabs[inactiveTabs.size() - 1]->configTabBar(graphics, screen, rect);
 		return true;
@@ -235,14 +254,13 @@ bool AATabs::deactivateTab(int id)
 			inactiveTabs[inactiveTabs.size() - 1] = activeTabs[i];
 
 			activeTabs.erase(activeTabs.begin() + i);
-			activeTabs.erase(activeTabs.begin() + i);
 			return true;
 		}
 
 	return false;
 }
 
-int AATabs::isPointInTabBox(int xPos, int yPos, bool updateIdx)
+int AATabs::isPointInTabBox(int xPos, int yPos)
 {
 	int tempIdx = TB_ID_NULL;
 
@@ -262,6 +280,15 @@ int AATabs::isPointInTabBox(int xPos, int yPos, bool updateIdx)
 	}
 	else // No active Tabs in this sector
 		return TB_ID_NULL;
+}
+
+int AATabs::whichTabBox(int id, int xPos, int yPos)
+{
+	convIdToIdx(id);
+
+	int tbTabIdx = activeTabs[currIdx]->whichTabContainsPoint(xPos, yPos);
+
+	return tbTabIdx;
 }
 
 void AATabs::convIdToIdx(int id)

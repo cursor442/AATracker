@@ -17,11 +17,13 @@ public:
 
 	void configBaseDrawTools(Pen*, Pen*, FontFamily*, StringFormat*, StringFormat*, Font*, SolidBrush*, SolidBrush*);
 	void configDrawTools(vector<Color*>&, vector<SolidBrush*>&, SolidBrush*, Font*, Font*);
+	void addTab(Graphics*, int, const char*, void (*tbFunc)(HWND&));
 
-	int  checkForTab(HWND&, LPARAM, bool&, bool&, int = TB_ID_NULL, bool = true);
+	int  checkForTab(HWND&, LPARAM, bool&, int&);
 
 	void drawTab(int, Graphics*, bool, bool, int);
 	void hideTab(int, Graphics*);
+	void hideAllTabs(Graphics*);
 
 	bool pressTab(HWND, int, int);
 	bool releaseTab(int, int);
@@ -32,12 +34,13 @@ public:
 	int getTabScreen(int);
 	int getTabSection(int);
 
-	bool registerTab(Graphics*, int, int, RectF&, const char*, bool, bool);
-	bool registerTab(Graphics*, int, int, int, RectF&, const char*, void (*bbFunc)(HWND&), bool = false);
+	bool registerTab(Graphics*, int, int, int, int, RectF&, const char*, bool, bool);
+	bool registerTab(Graphics*, int, int, int, int, RectF&, const char*, void (*bbFunc)(HWND&), bool = false);
 	bool activateTab(int);
 	bool deactivateTab(int);
 
-	int  isPointInTabBox(int, int, bool = true);
+	int  isPointInTabBox(int, int);
+	int  whichTabBox(int, int, int);
 
 private:
 	POINT    currPoint;  // The current mouse location

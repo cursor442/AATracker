@@ -476,6 +476,9 @@
     <ClCompile Include="graphics\source\AATabBar.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="game\source\TabHandlers.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="bitmaps\ANZACIcon.bmp">

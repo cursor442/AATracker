@@ -1729,10 +1729,15 @@ void Game::hideScreen()
 		}
 
 		lastScreen = whichScreen;
+
+		gfx->tabs->hideAllTabs(graphics);
 	}
 
 	if (whichScreen == MAIN_SCREEN)
-		ShowWindow(nationScreenTabs, SW_HIDE);	
+	{
+		ShowWindow(nationScreenTabs, SW_HIDE);
+		hideTabBar(nationScreenTabsTmp);
+	}
 
 	if (whichScreen != LOG_SCREEN)
 		ShowWindow(logScreenTabs, SW_HIDE);
