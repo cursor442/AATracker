@@ -279,6 +279,7 @@
     <ClCompile Include="nations\source\SovietClass.cpp" />
     <ClCompile Include="nations\source\UnitedKingdomClass.cpp" />
     <ClCompile Include="nations\source\UnitedStatesClass.cpp" />
+    <ClCompile Include="referenceScreen\source\ReferenceScreen.cpp" />
     <ClCompile Include="researchScreen\source\ResearchClass.cpp" />
     <ClCompile Include="researchScreen\source\ResearchScreen.cpp" />
     <ClCompile Include="spreadScreen\source\SpreadScreen.cpp" />

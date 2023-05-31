@@ -1722,7 +1722,8 @@ void Game::hideScreen()
 			hideResearchScreen();
 			break;
 		case REF_SCREEN:
-
+			hideReferenceScreen();
+			break;
 		default:
 			hideNationScreen();
 			break;

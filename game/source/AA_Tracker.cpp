@@ -629,7 +629,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             game->ResearchScreen(hWnd, hdc, ps);
             break;
         case REF_SCREEN:
-
+            game->ReferenceScreen(hWnd, hdc, ps);
+            break;
             break;
         default:
             game->MainScreen(hdc, ps, *game->gameBoard);

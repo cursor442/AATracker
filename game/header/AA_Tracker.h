@@ -318,6 +318,18 @@ public:
 	static HBITMAP CreateBitmapMask(HBITMAP, COLORREF);
 	static void    selectBitmap(uint16_t, bool);
 
+	///////////////////////////////////////////////////////////////////////////
+	//// Reference screen
+	///////////////////////////////////////////////////////////////////////////
+	
+	// Configure reference screen
+	static void configReferenceScreen();
+
+	// Draw reference screen
+	static bool ReferenceScreen(HWND&, HDC&, PAINTSTRUCT&);
+	static void hideReferenceScreen();
+
+
 private:
 	// Main window
 	static HWND   main_Wnd;
