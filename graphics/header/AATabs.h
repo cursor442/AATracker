@@ -25,6 +25,7 @@ public:
 	void hideTab(int, Graphics*);
 	void hideAllTabs(Graphics*);
 
+	bool pressTab(int, int);
 	bool pressTab(HWND, int, int);
 	bool releaseTab(int, int);
 
@@ -41,6 +42,7 @@ public:
 
 	int  isPointInTabBox(int, int);
 	int  whichTabBox(int, int, int);
+	int  getTabState(int);
 
 private:
 	POINT    currPoint;  // The current mouse location

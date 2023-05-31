@@ -28,6 +28,7 @@ public:
 	void drawTab(Graphics*, bool, bool, int);
 	void hideTab(Graphics*);
 
+	bool pressTab();
 	bool pressTab(HWND);
 	bool releaseTab();
 

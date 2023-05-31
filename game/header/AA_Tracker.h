@@ -108,8 +108,7 @@ public:
 	static int  dbg_grid;
 
 	// Tabs
-	static HWND nationScreenTabs;
-	static int  nationScreenTabsTmp;
+	static int  nationScreenTabs;
 	static HWND purchaseSectionTabs;
 	static HWND ukEconomyTabs;
 	static HWND logScreenTabs;

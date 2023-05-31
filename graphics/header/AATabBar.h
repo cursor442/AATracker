@@ -26,11 +26,13 @@ public:
 	void drawTab(Graphics*, bool, bool, int);
 	void hideTab(Graphics*);
 
+	bool pressTab(int);
 	bool pressTab(HWND, int);
 	bool releaseTab(int);
 
 	int  getTabId();
 	int  whichTabContainsPoint(int, int);
+	int  getTabState();
 
 private:
 

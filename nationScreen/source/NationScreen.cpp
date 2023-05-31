@@ -59,7 +59,7 @@ bool Game::NationScreen(HDC& hdc, PAINTSTRUCT& ps)
             // Bonus section
         drawBonusFrame(hdc);
 
-        ShowWindow(nationScreenTabs, SW_SHOW);
+        showTabBar(nationScreenTabs);
         ShowWindow(purchaseSectionTabs, SW_SHOW);
     }
     else

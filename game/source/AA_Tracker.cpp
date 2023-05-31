@@ -432,12 +432,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             case TCN_SELCHANGE:
             {
-                int tab = TabCtrl_GetCurSel(game->nationScreenTabs);
+                //int tab = TabCtrl_GetCurSel(game->nationScreenTabs);
                 int pur = TabCtrl_GetCurSel(game->purchaseSectionTabs);
                 int uks = TabCtrl_GetCurSel(game->ukEconomyTabs);
                 int log = TabCtrl_GetCurSel(game->logScreenTabs);
 
-                switch (tab)
+                switch (game->gfx->tabs->getTabState(game->nationScreenTabs))
                 {
                 case TAB_MAIN:
                 {
@@ -639,7 +639,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
         // Draw nation screen tabs
         if (game->whichScreen != MAIN_SCREEN)
-            game->showTabBar(game->nationScreenTabsTmp);
+            game->showTabBar(game->nationScreenTabs);
 
         // Draw tooltip if active
         game->drawTooltip(hWnd, lParam);

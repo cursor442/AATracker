@@ -132,6 +132,16 @@ void AATabs::hideAllTabs(Graphics* graphics)
 		activeTabs[i]->hideTab(graphics);
 }
 
+bool AATabs::pressTab(int barId, int tabId)
+{
+	convIdToIdx(barId);
+
+	if (currIdx != TB_ID_NULL)
+		return activeTabs[currIdx]->pressTab(tabId);
+
+	return false;
+}
+
 bool AATabs::pressTab(HWND hWnd, int barId, int tabId)
 {
 	convIdToIdx(barId);
@@ -289,6 +299,13 @@ int AATabs::whichTabBox(int id, int xPos, int yPos)
 	int tbTabIdx = activeTabs[currIdx]->whichTabContainsPoint(xPos, yPos);
 
 	return tbTabIdx;
+}
+
+int AATabs::getTabState(int id)
+{
+	convIdToIdx(id);
+
+	return activeTabs[currIdx]->getTabState();
 }
 
 void AATabs::convIdToIdx(int id)

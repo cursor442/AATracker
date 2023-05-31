@@ -63,7 +63,6 @@ Game::~Game()
 	DeleteObject(bonusSection);
 
 	// Tabs
-	DeleteObject(nationScreenTabs);
 	DeleteObject(purchaseSectionTabs);
 	DeleteObject(ukEconomyTabs);
 
@@ -173,7 +172,7 @@ void Game::deleteBoard()
 
 	whichScreen = MAIN_SCREEN;
 	lastScreen = MAIN_SCREEN;
-	TabCtrl_SetCurSel(nationScreenTabs, TAB_MAIN);
+	gfx->tabs->pressTab(nationScreenTabs, TAB_MAIN);
 	TabCtrl_SetCurSel(purchaseSectionTabs, TAB_PURCH);
 	TabCtrl_SetCurSel(logScreenTabs, 0);
 
@@ -1736,8 +1735,7 @@ void Game::hideScreen()
 
 	if (whichScreen == MAIN_SCREEN)
 	{
-		ShowWindow(nationScreenTabs, SW_HIDE);
-		hideTabBar(nationScreenTabsTmp);
+		hideTabBar(nationScreenTabs);
 	}
 
 	if (whichScreen != LOG_SCREEN)

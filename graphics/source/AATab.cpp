@@ -227,6 +227,18 @@ void AATab::hideTab(Graphics* graphics)
 	tbBlankBox->drawBox(graphics, borderlessPen, baseTextFont, centerFormat, textBrush, backBrush, L"", 99);
 }
 
+bool AATab::pressTab()
+{
+	if (tbState == TB_DN)
+	{
+		tbState = TB_UP;
+		isDrawn = false;
+		return true;
+	}
+	else
+		return false;
+}
+
 bool AATab::pressTab(HWND hWnd)
 {
 	if (tbState == TB_DN)

@@ -11,88 +11,23 @@ void Game::configNationScreen()
 		screenFrames.s.resize((NATION_SCREEN + 1));
 	
 	// Tabs section
-	if (nationScreenTabs == NULL)
+
+	if (nationScreenTabs == TB_ID_NULL)
 	{
-		nationScreenTabs = CreateWindow(
-			WC_TABCONTROL,
-			L"",
-			WS_CHILD | WS_CLIPSIBLINGS,
-			0,
-			0,
-			534,
-			23,
-			main_Wnd,
-			NULL,
-			hInst,
-			NULL);
-
-		TCITEM tie;
-		TCHAR achTemp[14];
-		achTemp[0] = '\0';
-
-		tie.mask = TCIF_TEXT | TCIF_IMAGE;
-		tie.iImage = -1;
-		tie.pszText = achTemp;
-
-		// Main tab
-		wcsncpy_s(achTemp, L"Main", 5);
-		tie.pszText = achTemp;
-		if (TabCtrl_InsertItem(nationScreenTabs, TAB_MAIN, &tie) == -1)
-			DestroyWindow(nationScreenTabs);
-
-		// Axis spreadsheet tab
-		wcsncpy_s(achTemp, L"Axis Spread", 11);
-		tie.pszText = achTemp;
-		if (TabCtrl_InsertItem(nationScreenTabs, TAB_SPREAD_AXIS, &tie) == -1)
-			DestroyWindow(nationScreenTabs);
-
-		// Allies spreadsheet tab
-		wcsncpy_s(achTemp, L"Allies Spread", 14);
-		tie.pszText = achTemp;
-		if (TabCtrl_InsertItem(nationScreenTabs, TAB_SPREAD_ALLIES, &tie) == -1)
-			DestroyWindow(nationScreenTabs);
-
-		// Graphs tab
-		wcsncpy_s(achTemp, L"Graphs", 6);
-		tie.pszText = achTemp;
-		if (TabCtrl_InsertItem(nationScreenTabs, TAB_GRAPH, &tie) == -1)
-			DestroyWindow(nationScreenTabs);
-
-		// Game log tab
-		wcsncpy_s(achTemp, L"Game Log", 8);
-		tie.pszText = achTemp;
-		if (TabCtrl_InsertItem(nationScreenTabs, TAB_LOG, &tie) == -1)
-			DestroyWindow(nationScreenTabs);
-
-		// Research tab
-		wcsncpy_s(achTemp, L"Research", 8);
-		tie.pszText = achTemp;
-		if (TabCtrl_InsertItem(nationScreenTabs, TAB_RESEARCH, &tie) == -1)
-			DestroyWindow(nationScreenTabs);
-
-		// Reference tab
-		wcsncpy_s(achTemp, L"Reference", 9);
-		tie.pszText = achTemp;
-		if (TabCtrl_InsertItem(nationScreenTabs, TAB_REFERENCE, &tie) == -1)
-			DestroyWindow(nationScreenTabs);
-	}
-
-	if (nationScreenTabsTmp == NULL)
-	{
-		nationScreenTabsTmp = gfx->tabs->createTabId();
+		nationScreenTabs = gfx->tabs->createTabId();
 		
-		RectF rect = { 550, 0, 700, 23 };
-		gfx->tabs->registerTab(graphics, nationScreenTabsTmp, NATION_SCREEN, TB_CFG_EVEN, TB_ORT_UP, rect, "Nation Screen Tabs", true, false);
+		RectF rect = { 0, 0, 700, 23 };
+		gfx->tabs->registerTab(graphics, nationScreenTabs, NATION_SCREEN, TB_CFG_EVEN, TB_ORT_UP, rect, "Nation Screen Tabs", true, false);
 
-		gfx->tabs->activateTab(nationScreenTabsTmp);
-		gfx->tabs->addTab(graphics, nationScreenTabsTmp, "Main", nationScreenHandleMainScreenTab);
-		gfx->tabs->addTab(graphics, nationScreenTabsTmp, "Axis Spread", nationScreenHandleAxisSpreadScreenTab);
-		gfx->tabs->addTab(graphics, nationScreenTabsTmp, "Allies Spread", nationScreenHandleAlliesSpreadScreenTab);
-		gfx->tabs->addTab(graphics, nationScreenTabsTmp, "Graphs", nationScreenHandleGraphScreenTab);
-		gfx->tabs->addTab(graphics, nationScreenTabsTmp, "Game Log", nationScreenHandleLogScreenTab);
-		gfx->tabs->addTab(graphics, nationScreenTabsTmp, "Research", nationScreenHandleResearchScreenTab);
-		gfx->tabs->addTab(graphics, nationScreenTabsTmp, "Reference", nationScreenHandleReferenceScreenTab);
-		gfx->tabs->deactivateTab(nationScreenTabsTmp);
+		gfx->tabs->activateTab(nationScreenTabs);
+		gfx->tabs->addTab(graphics, nationScreenTabs, "Main", nationScreenHandleMainScreenTab);
+		gfx->tabs->addTab(graphics, nationScreenTabs, "Axis Spread", nationScreenHandleAxisSpreadScreenTab);
+		gfx->tabs->addTab(graphics, nationScreenTabs, "Allies Spread", nationScreenHandleAlliesSpreadScreenTab);
+		gfx->tabs->addTab(graphics, nationScreenTabs, "Graphs", nationScreenHandleGraphScreenTab);
+		gfx->tabs->addTab(graphics, nationScreenTabs, "Game Log", nationScreenHandleLogScreenTab);
+		gfx->tabs->addTab(graphics, nationScreenTabs, "Research", nationScreenHandleResearchScreenTab);
+		gfx->tabs->addTab(graphics, nationScreenTabs, "Reference", nationScreenHandleReferenceScreenTab);
+		gfx->tabs->deactivateTab(nationScreenTabs);
 	}
 	
 	// Name section

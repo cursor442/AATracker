@@ -101,6 +101,19 @@ void AATabBar::hideTab(Graphics* graphics)
 		tbTabs[i]->hideTab(graphics);
 }
 
+bool AATabBar::pressTab(int idx)
+{
+	if (idx < tbTabCnt)
+	{
+		tbState = idx;
+		for (int i = 0; i < tbTabCnt; i++)
+			if (i != tbState)
+				tbTabs[i]->releaseTab();
+
+		return tbTabs[idx]->pressTab();
+	}
+}
+
 bool AATabBar::pressTab(HWND hWnd, int idx)
 {
 	if (idx < tbTabCnt)
@@ -139,6 +152,11 @@ int AATabBar::whichTabContainsPoint(int xPos, int yPos)
 	}
 
 	return -1;
+}
+
+int AATabBar::getTabState()
+{
+	return tbState;
 }
 
 void AATabBar::configTabDrawTools(int idx)
