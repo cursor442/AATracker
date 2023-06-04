@@ -11,13 +11,12 @@ void Game::configNationScreen()
 		screenFrames.s.resize((NATION_SCREEN + 1));
 	
 	// Tabs section
-
 	if (nationScreenTabs == TB_ID_NULL)
 	{
 		nationScreenTabs = gfx->tabs->createTabId();
 		
 		RectF rect = { 0, 0, 700, 23 };
-		gfx->tabs->registerTab(graphics, nationScreenTabs, NATION_SCREEN, TB_CFG_EVEN, TB_ORT_UP, rect, "Nation Screen Tabs", true, false);
+		gfx->tabs->registerTab(graphics, nationScreenTabs, NATION_SCREEN, TB_CFG_LEFT, TB_ORT_UP, rect, "Nation Screen Tabs", true, false);
 
 		gfx->tabs->activateTab(nationScreenTabs);
 		gfx->tabs->addTab(graphics, nationScreenTabs, "Main", nationScreenHandleMainScreenTab);

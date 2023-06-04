@@ -1,6 +1,11 @@
 #ifndef AA_TAB
 #define AA_TAB
 
+#define TB_ORT_UP    0
+#define TB_ORT_DN    1
+#define TB_ORT_LEFT  2
+#define TB_ORT_RIGHT 3
+
 #define TB_UP false
 #define TB_DN true
 
@@ -15,7 +20,7 @@
 class AATab : public AAGraphicsObject
 {
 public:
-	AATab(int);
+	AATab(int, int);
 	~AATab();
 
 	void configTab(Graphics*, int, RectF&, const char*);
@@ -36,6 +41,7 @@ public:
 
 private:
 
+	int  tbOrient;
 	int  tbState;
 	bool isDrawn;
 
@@ -55,6 +61,10 @@ private:
 
 	void config(const char*);
 	void configGraphics();
+	void configGraphicsUp();
+	void configGraphicsDown();
+	void configGraphicsLeft();
+	void configGraphicsRight();
 	void executeTab(HWND);
 
 	SolidBrush* tbCenterBrush;

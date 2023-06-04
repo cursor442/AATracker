@@ -5,11 +5,6 @@
 #define TB_CFG_FILL  1
 #define TB_CFG_EVEN  2
 
-#define TB_ORT_UP    0
-#define TB_ORT_DN    1
-#define TB_ORT_LEFT  2
-#define TB_ORT_RIGHT 3
-
 #include "AATab.h"
 
 class AATabBar : public AAGraphicsObject
@@ -45,6 +40,10 @@ private:
 
 	vector<AATab*> tbTabs;
 
+	vector<REAL> tbTabWidths;
+	vector<REAL> tbTabWeights;
+	vector<REAL> tbTabStarts;
+
 	AABox* tbBlankBox;
 
 	vector<Color*>*      grayColor;
@@ -56,8 +55,9 @@ private:
 
 	void configTabDrawTools(int);
 
-	RectF calcTabWidth(const char* = nullptr);
-	void  updateTabWidths(REAL);
+	RectF calcTabWidth(Graphics&, const char* = nullptr);
+	RectF* calcTextWidth(Graphics&, const char* = nullptr);
+	void  updateTabWidths(REAL = 0);
 };
 
 #endif

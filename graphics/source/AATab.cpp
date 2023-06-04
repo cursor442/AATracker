@@ -1,8 +1,9 @@
 #include "../header/AATab.h"
 
-AATab::AATab(int id)
+AATab::AATab(int id, int ort)
 	:AAGraphicsObject(id)
 {
+	tbOrient = ort;
 	tbState = TB_DN;
 	isDrawn = false;
 
@@ -291,6 +292,27 @@ void AATab::configGraphics()
 {
 	tbBlankBox->config(objBox, 99);
 
+	switch (tbOrient)
+	{
+	case TB_ORT_UP:
+		configGraphicsUp();
+		break;
+	case TB_ORT_DN:
+		configGraphicsDown();
+		break;
+	case TB_ORT_LEFT:
+		configGraphicsLeft();
+		break;
+	case TB_ORT_RIGHT:
+		configGraphicsRight();
+		break;
+	default:
+		break;
+	}
+}
+
+void AATab::configGraphicsUp()
+{
 	// Up state graphics
 	tbUpTextBox->config(objBox, 99);
 	tbUpTextBox->shrink(2);
@@ -343,7 +365,7 @@ void AATab::configGraphics()
 	tbDnTopLine[2]->config({ objBox.X, objBox.Y + 3 }, { objBox.X + 1, objBox.Y + 3 }, 99);
 	tbDnTopLine[3]->config({ objBox.GetRight() - 1, objBox.Y + 3 }, { objBox.GetRight(), objBox.Y + 3 }, 99);
 	tbDnTopLine[4]->config({ objBox.X, objBox.Y + 2 }, { objBox.X, objBox.Y + 3 }, 99);
-	tbDnTopLine[5]->config({ objBox.GetRight(), objBox.Y + 2}, {objBox.GetRight(), objBox.Y + 3}, 99);
+	tbDnTopLine[5]->config({ objBox.GetRight(), objBox.Y + 2 }, { objBox.GetRight(), objBox.Y + 3 }, 99);
 	tbDnTopLine[6]->config({ objBox.X, objBox.Y + 2 }, { objBox.X + 1, objBox.Y + 2 }, 99);
 	tbDnTopLine[7]->config({ objBox.GetRight() - 1, objBox.Y + 2 }, { objBox.GetRight(), objBox.Y + 2 }, 99);
 
@@ -365,4 +387,19 @@ void AATab::configGraphics()
 	tbDnRightLine[1]->config({ objBox.GetRight(), objBox.Y + 2 }, { objBox.GetRight(), objBox.GetBottom() - 1 }, 99);
 	tbDnRightLine[1]->shrink(1);
 	tbDnRightLine[1]->nudge(1);
+}
+
+void AATab::configGraphicsDown()
+{
+
+}
+
+void AATab::configGraphicsLeft()
+{
+
+}
+
+void AATab::configGraphicsRight()
+{
+
 }

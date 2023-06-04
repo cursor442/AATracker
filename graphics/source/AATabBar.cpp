@@ -11,6 +11,9 @@ AATabBar::AATabBar(int id, int cfg, int ort)
 	isDrawn = false;
 
 	tbTabs.resize(0);
+	tbTabWidths.resize(0);
+	tbTabWeights.resize(0);
+	tbTabStarts.resize(0);
 
 	tbBlankBox = NULL;
 
@@ -52,10 +55,10 @@ void AATabBar::addTab(Graphics* graphics, const char* text, void (*tbFunc)(HWND&
 	tbTabIdx++;
 	tbTabCnt++;
 	tbTabs.resize(tbTabCnt);
-	tbTabs[tbTabIdx] = new AATab(tbTabIdx);
+	tbTabs[tbTabIdx] = new AATab(tbTabIdx, tbOrient);
 
 	// Configure new tab width
-	RectF rect = calcTabWidth(text);
+	RectF rect = calcTabWidth(*graphics, text);
 
 	tbTabs[tbTabIdx]->configTab(graphics, objScr, rect, text, tbFunc);
 	configTabDrawTools(tbTabIdx);
@@ -166,7 +169,7 @@ void AATabBar::configTabDrawTools(int idx)
 	tbTabs[idx]->configDrawTools(*grayColor, *grayBrush, clearBrush, tbFont);
 }
 
-RectF AATabBar::calcTabWidth(const char* text)
+RectF AATabBar::calcTabWidth(Graphics& graphics, const char* text)
 {
 	RectF tmpRect;
 
@@ -174,11 +177,48 @@ RectF AATabBar::calcTabWidth(const char* text)
 	{
 	case TB_CFG_LEFT:
 	{
+		// Calculate minimum width required
+		RectF* bounds = calcTextWidth(graphics, text);
 
+		// Configure tab bounds
+		tmpRect.X = bounds->X;
+		tmpRect.Y = objBox.Y;
+		tmpRect.Width = bounds->Width + 10;
+		tmpRect.Height = objBox.Height;
 		break;
 	}
 	case TB_CFG_FILL:
 	{
+		// Calculate minimum width required
+		RectF* bounds = calcTextWidth(graphics, text);
+
+		if (tbTabWidths.size() < tbTabCnt)
+		{
+			tbTabWidths.resize(tbTabCnt);
+			tbTabWeights.resize(tbTabCnt);
+			tbTabStarts.resize(tbTabCnt);
+		}
+
+		tbTabWidths[tbTabIdx] = bounds->Width;
+
+		// Fill provided tab bar area weighted by text length
+		REAL accum = 0;
+		for (int i = 0; i < tbTabCnt; i++)
+			accum += tbTabWidths[i];
+
+		for (int i = 0; i < tbTabCnt; i++)
+			tbTabWeights[i] = tbTabWidths[i] / accum;
+
+		tbTabStarts[0] = objBox.X;
+		for (int i = 1; i < tbTabCnt; i++)
+			tbTabStarts[i] = floor(tbTabStarts[i - 1] + (objBox.Width * tbTabWeights[i - 1]));
+
+		tmpRect.X = tbTabStarts[tbTabIdx];
+		tmpRect.Y = objBox.Y;
+		tmpRect.Width = objBox.GetRight() - tmpRect.X;
+		tmpRect.Height = objBox.Height;
+
+		updateTabWidths();
 
 		break;
 	}
@@ -199,25 +239,63 @@ RectF AATabBar::calcTabWidth(const char* text)
 	return tmpRect;
 }
 
+RectF* AATabBar::calcTextWidth(Graphics& graphics, const char* text)
+{
+	RectF tmpRect;
+
+	// Calculate minimum width required
+	std::wstring w;
+	std::copy(text, text + strlen(text), std::back_inserter(w));
+	const WCHAR* wtext = w.c_str();
+
+	int len = strlen(text);
+
+	RectF* origin;
+	if (tbTabCnt == 1)
+	{
+		origin = new RectF(objBox);
+	}
+	else
+	{
+		REAL tmpX = tbTabs[tbTabIdx - 1]->getObjectBox().GetRight() + 1;
+		origin = new RectF(tmpX, objBox.Y, objBox.GetRight() - tmpX, objBox.Height);
+	}
+
+	RectF* bounds = new RectF(0, 0, 0, 0);
+
+	graphics.MeasureString(wtext, len, tbFont, *origin, bounds);
+	delete origin;
+
+	return bounds;
+}
+
 void AATabBar::updateTabWidths(REAL lastX)
 {
 	RectF tmpRect;
 
-	for (int i = tbTabIdx - 1; i >= 0; i--)
+	switch (tbConfig)
 	{
-		switch (tbConfig)
+	case TB_CFG_LEFT:
+	{
+		// Adding new tabs does not affect existing ones
+		break;
+	}
+	case TB_CFG_FILL:
+	{
+		for (int i = 0; i < tbTabCnt - 1; i++)
 		{
-		case TB_CFG_LEFT:
-		{
+			tmpRect.X = tbTabStarts[i];
+			tmpRect.Y = objBox.Y;
+			tmpRect.Width = tbTabStarts[i + 1] - tmpRect.X;
+			tmpRect.Height = objBox.Height;
 
-			break;
+			tbTabs[i]->reconfigTab(tmpRect);
 		}
-		case TB_CFG_FILL:
-		{
-
-			break;
-		}
-		case TB_CFG_EVEN:
+		break;
+	}
+	case TB_CFG_EVEN:
+	{
+		for (int i = tbTabIdx - 1; i >= 0; i--)
 		{
 			tmpRect.Width = objBox.Width / tbTabCnt;
 			tmpRect.Height = objBox.Height;
@@ -226,11 +304,11 @@ void AATabBar::updateTabWidths(REAL lastX)
 
 			lastX = tmpRect.X;
 			tbTabs[i]->reconfigTab(tmpRect);
-			break;
 		}
-		default:
-			break;
-		}
+		break;
+	}
+	default:
+		break;
 	}
 }
 

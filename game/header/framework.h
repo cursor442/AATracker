@@ -20,6 +20,7 @@
 #include <Commdlg.h>
 #include <CommCtrl.h>
 #include <stdint.h>
+#include <iterator>
 #include <vector>
 #include <cmath>
 #include <algorithm>
