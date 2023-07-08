@@ -58,6 +58,10 @@ protected:
 
 	Pen* pen;
 
+	bool  isTransposed;
+	void  transposeObjBox();
+	void  translateObjBox(int, int);
+
 };
 
 #endif

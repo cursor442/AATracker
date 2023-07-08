@@ -37,12 +37,17 @@ public:
 	bool pressTab(HWND);
 	bool releaseTab();
 
+	void setTabLast(bool);
+	void setIsDrawn(bool);
+
 	int  getTabId();
+	int  getTabOrient();
 
 private:
 
 	int  tbOrient;
-	int  tbState;
+	bool tbState;
+	bool tbLast;
 	bool isDrawn;
 
 	vector<WCHAR> tbText[GRAPHICS_TEXTLEN];
@@ -80,6 +85,8 @@ private:
 	int  tbFuncId;
 	bool hasFuncId;
 	void (*tbFunction0)(HWND&);
+
+	bool  tbOrientVert;
 
 };
 

@@ -20,6 +20,9 @@ AATabs::AATabs(HWND hWnd, RectF rect)
 
 	clearBrush = NULL;
 
+	leftFormat = NULL;
+	rightFormat = NULL;
+
 	tabFont = NULL;
 	tabFont_s = NULL;
 
@@ -59,9 +62,12 @@ void AATabs::configBaseDrawTools(Pen* p0, Pen* p1, FontFamily* ff, StringFormat*
 	backBrush = b1;
 }
 
-void AATabs::configDrawTools(vector<Color*>& cGray, vector<SolidBrush*>& bGray, SolidBrush* b0, Font* f0, Font* f1)
+void AATabs::configDrawTools(vector<Color*>& cGray, vector<SolidBrush*>& bGray, SolidBrush* b0, StringFormat* sf0, StringFormat* sf1, Font* f0, Font* f1)
 {
 	clearBrush = b0;
+
+	leftFormat = sf0;
+	rightFormat = sf1;
 
 	tabFont = f0;
 	tabFont_s = f1;
@@ -208,15 +214,40 @@ bool AATabs::registerTab(Graphics* graphics, int id, int screen, int cfg, int or
 		if (inactiveTabs[i]->getTabId() == id)
 			return false;
 
+	StringFormat* sf = NULL;
+	switch (ort)
+	{
+	case TB_ORT_UP:
+		sf = centerFormat;
+		break;
+	case TB_ORT_DN:
+		sf = centerFormat;
+		break;
+	case TB_ORT_LEFT:
+		sf = leftFormat;
+		break;
+	case TB_ORT_RIGHT:
+		sf = rightFormat;
+		break;
+	default:
+		break;
+	}
+
 	// New Tabs should be inactive by default
 	inactiveTabs.resize(inactiveTabs.size() + 1);
 	inactiveTabs[inactiveTabs.size() - 1] = new AATabBar(id, cfg, ort);
 	inactiveTabs[inactiveTabs.size() - 1]->configBaseDrawTools(borderPen, borderlessPen, fontFamily,
-		textFormat, centerFormat, baseTextFont, textBrush, backBrush);
+		textFormat, sf, baseTextFont, textBrush, backBrush);
 	if (!font_s)
 		inactiveTabs[inactiveTabs.size() - 1]->configDrawTools(grayColors, grayBrushes, clearBrush, tabFont);
 	else
 		inactiveTabs[inactiveTabs.size() - 1]->configDrawTools(grayColors, grayBrushes, clearBrush, tabFont_s);
+
+	// Round box off for convenience
+	rect.X = round(rect.X);
+	rect.Y = round(rect.Y);
+	rect.Width = round(rect.Width);
+	rect.Height = round(rect.Height);
 	inactiveTabs[inactiveTabs.size() - 1]->configTabBar(graphics, screen, rect);
 
 	return true;

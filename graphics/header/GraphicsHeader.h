@@ -81,7 +81,8 @@ public:
 
 	// Formats
 	StringFormat* logTextFormat, * leftCenterFormat, * centerFormat,
-		* leftTopFormat, * leftBottomFormat, * purchaseFormat;
+		* leftTopFormat, * leftBottomFormat, * purchaseFormat,
+		* vertLeftCenterFormat, * vertRightCenterFormat;
 
 	// Fonts
 	Font* font12, * font12_b;

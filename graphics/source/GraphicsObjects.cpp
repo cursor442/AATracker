@@ -14,18 +14,31 @@ AALine::~AALine()
 
 }
 
+void AALine::config()
+{
+	if (pt0.X == pt1.X)
+		vert = true;
+	else
+		vert = false;
+
+	if (pt0.Y == pt1.Y)
+		horz = true;
+	else
+		horz = false;
+
+	if (vert && horz)
+		dot = true;
+	else
+		dot = false;
+}
+
 void AALine::config(PointF s, PointF e, int l)
 {
 	pt0 = s;
 	pt1 = e;
 	layer = l;
 
-	if (s.X == e.X)
-		vert = true;
-	if (s.Y == e.Y)
-		horz = true;
-	if (vert && horz)
-		dot = true;
+	config();
 }
 
 void AALine::nudge(REAL n)
@@ -71,6 +84,35 @@ void AALine::contract(REAL n0, REAL n1)
 		pt0.X -= n0;
 		pt1.X -= n1;
 	}
+}
+
+void AALine::rotateClock90(PointF ref)
+{
+	REAL angle = 90;
+	REAL theta = 2 * M_PI * angle / 360;
+
+	REAL s = sin(theta);
+	REAL c = cos(theta);
+
+	pt0.X -= ref.X;
+	pt0.Y -= ref.Y;
+
+	REAL xNew = pt0.X * c - pt0.Y * s;
+	REAL yNew = pt0.X * s + pt0.Y * c;
+
+	pt0.X = xNew + ref.X;
+	pt0.Y = yNew + ref.Y;
+
+	pt1.X -= ref.X;
+	pt1.Y -= ref.Y;
+
+	xNew = pt1.X * c - pt1.Y * s;
+	yNew = pt1.X * s + pt1.Y * c;
+
+	pt1.X = xNew + ref.X;
+	pt1.Y = yNew + ref.Y;
+
+	config();
 }
 
 
@@ -178,6 +220,41 @@ void AABox::expand(int x, int y)
 {
 	box.Width += x;
 	box.Height += y;
+}
+
+void AABox::transpose()
+{
+	REAL w = box.Width;
+	REAL h = box.Height;
+
+	box.Width = h;
+	box.Height = w;
+}
+
+void AABox::rotateClock90(PointF ref)
+{
+	REAL angle = 90;
+	REAL theta = 2 * M_PI * angle / 360;
+
+	REAL s = sin(theta);
+	REAL c = cos(theta);
+
+	box.X -= ref.X;
+	box.Y -= ref.Y;
+
+	REAL xNew = box.X * c - box.Y * s;
+	REAL yNew = box.X * s + box.Y * c;
+
+	box.X = xNew + ref.X;
+	box.Y = yNew + ref.Y;
+
+	REAL w = box.Width;
+	REAL h = box.Height;
+
+	box.Width = h;
+	box.Height = w;
+
+	box.X -= box.Width;
 }
 
 void AABox::drawFrame(Graphics* graphics, Pen* pen, Font* font, StringFormat* sf, Brush* b0, int layers)

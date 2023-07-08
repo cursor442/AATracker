@@ -109,7 +109,7 @@ public:
 
 	// Tabs
 	static int  nationScreenTabs;
-	static HWND purchaseSectionTabs;
+	static int  purchaseSectionTabs;
 	static HWND ukEconomyTabs;
 	static HWND logScreenTabs;
 
@@ -243,6 +243,10 @@ public:
 	static void nationScreenHandleLogScreenTab(HWND&);
 	static void nationScreenHandleResearchScreenTab(HWND&);
 	static void nationScreenHandleReferenceScreenTab(HWND&);
+
+	static void nationScreenHandlePurchaseSectionTab(HWND&);
+	static void nationScreenHandleNeutralSectionTab(HWND&);
+	static void nationScreenHandleCombinedArmsSectionTab(HWND&);
 
 	/////////////////////////////////////////////////////////////////////////
 	// Nation screen button handlers

@@ -60,7 +60,7 @@ bool Game::NationScreen(HDC& hdc, PAINTSTRUCT& ps)
         drawBonusFrame(hdc);
 
         showTabBar(nationScreenTabs);
-        ShowWindow(purchaseSectionTabs, SW_SHOW);
+        showTabBar(purchaseSectionTabs);
     }
     else
     {
@@ -99,6 +99,7 @@ bool Game::NationScreen(HDC& hdc, PAINTSTRUCT& ps)
                 hideNationScreenPurchButtons();
                 drawNeutralBox(hdc);
             }
+            showTabBar(purchaseSectionTabs);
         }
 
         if ((nsSection & PURCHT_SECT) != 0)
@@ -138,7 +139,7 @@ void Game::hideNationScreen()
 
     hideNationScreenPurchButtons();
 
-    hideButton(purchaseSectionTabs);
+    hideTabBar(purchaseSectionTabs);
     hideButton(ukEconomyTabs);
 }
 

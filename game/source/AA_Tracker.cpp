@@ -433,7 +433,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             case TCN_SELCHANGE:
             {
                 //int tab = TabCtrl_GetCurSel(game->nationScreenTabs);
-                int pur = TabCtrl_GetCurSel(game->purchaseSectionTabs);
+                //int pur = TabCtrl_GetCurSel(game->purchaseSectionTabs);
                 int uks = TabCtrl_GetCurSel(game->ukEconomyTabs);
                 int log = TabCtrl_GetCurSel(game->logScreenTabs);
 
@@ -451,9 +451,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                     }
                     else
                     {
-                        if (game->purchaseTab != pur) // Purchase section tab has changed
+                        if (game->purchaseTab != game->gfx->tabs->getTabState(game->purchaseSectionTabs)) // Purchase section tab has changed
                         {
-                            game->purchaseTab = pur;
+                            game->purchaseTab = game->gfx->tabs->getTabState(game->purchaseSectionTabs);
                             game->nsSection = PURCH_SECT; // Only update this section
 
                             if (game->purchaseTab == TAB_NEUTRAL)

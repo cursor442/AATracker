@@ -208,7 +208,7 @@ void Game::drawPurchaseFrame(HDC& hdc)
     {
         purchaseSection->updatePurchaseText(resShips);
         purchaseSection->drawPurchaseBox(graphics, dbg_boundbox, dbg_sections, dbg_layers);
-        ShowWindow(purchaseSectionTabs, SW_SHOW);
+        showButton(purchaseSectionTabs);
     }
     else
     {
@@ -226,7 +226,7 @@ void Game::drawPurchaseFrameButtons(bool force)
     else if (nsUnit == PURCH_TITLE || force)
     {
         purchaseSection->showPurchaseButtons();
-        ShowWindow(purchaseSectionTabs, SW_SHOW);
+        showButton(purchaseSectionTabs);
     }
     else
     {

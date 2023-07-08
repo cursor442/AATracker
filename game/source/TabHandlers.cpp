@@ -66,3 +66,35 @@ void Game::nationScreenHandleReferenceScreenTab(HWND& hWnd)
         RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
     }
 }
+
+void Game::nationScreenHandlePurchaseSectionTab(HWND& hWnd)
+{
+    if (purchaseTab != TAB_PURCH)
+    {
+        purchaseTab = TAB_PURCH;
+        nsSection = PURCH_SECT;
+        nsNeut = NEUT_ALL;
+        RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+    }
+}
+
+void Game::nationScreenHandleNeutralSectionTab(HWND& hWnd)
+{
+    if (purchaseTab != TAB_NEUTRAL)
+    {
+        purchaseTab = TAB_NEUTRAL;
+        nsSection = PURCH_SECT;
+        RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+    }
+}
+
+void Game::nationScreenHandleCombinedArmsSectionTab(HWND& hWnd)
+{
+    if (purchaseTab != TAB_COMB)
+    {
+        purchaseTab = TAB_COMB;
+        nsSection = PURCH_SECT;
+        nsNeut = NEUT_ALL;
+        RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+    }
+}

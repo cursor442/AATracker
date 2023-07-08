@@ -5,6 +5,7 @@ AATab::AATab(int id, int ort)
 {
 	tbOrient = ort;
 	tbState = TB_DN;
+	tbLast = false;
 	isDrawn = false;
 
 	tbText->resize(0);
@@ -47,6 +48,8 @@ AATab::AATab(int id, int ort)
 	tbFuncId = NULL;
 	hasFuncId = false;
 	tbFunction0 = NULL;
+
+	tbOrientVert = (tbOrient == TB_ORT_LEFT || tbOrient == TB_ORT_RIGHT);
 }
 
 AATab::~AATab()
@@ -85,7 +88,10 @@ AATab::~AATab()
 void AATab::configTab(Graphics* graphics, int screen, RectF& rect, const char* text)
 {
 	// Prevent overlap between tabs
-	rect.Width -= 1;
+	if (!tbOrientVert)
+		rect.Width = round(rect.Width);
+	else
+		rect.Height = round(rect.Height);
 
 	configObject(graphics, screen, NULL, rect);
 
@@ -128,7 +134,10 @@ void AATab::configTab(Graphics* graphics, int screen, RectF& rect, const char* t
 void AATab::reconfigTab(RectF& rect)
 {
 	// Prevent overlap between tabs
-	rect.Width -= 1;
+	if (!tbOrientVert)
+		rect.Width = round(rect.Width);
+	else
+		rect.Height = round(rect.Height);
 	
 	setObjectBox(rect);
 	configGraphics();
@@ -138,23 +147,55 @@ void AATab::configDrawTools(vector<Color*>& cGray, vector<SolidBrush*>& bGray, S
 {
 	tbCenterBrush = bGray[240];
 
-	tbTopPen[0] = new Pen(bGray[255], 1);
-	tbTopPen[1] = new Pen(bGray[227], 1);
-	tbTopPen[2] = new Pen(bGray[255], 1);
-	tbTopPen[3] = new Pen(bGray[105], 1);
-	tbTopPen[4] = new Pen(bGray[240], 1);
-	tbTopPen[5] = new Pen(bGray[240], 1);
-	tbTopPen[6] = new Pen(bGray[240], 1);
-	tbTopPen[7] = new Pen(bGray[240], 1);
+	switch (tbOrient)
+	{
+	case TB_ORT_UP:
+		tbTopPen[0] = new Pen(bGray[255], 1);
+		tbTopPen[1] = new Pen(bGray[227], 1);
+		tbTopPen[2] = new Pen(bGray[255], 1);
+		tbTopPen[3] = new Pen(bGray[105], 1);
+		tbTopPen[4] = new Pen(bGray[240], 1);
+		tbTopPen[5] = new Pen(bGray[240], 1);
+		tbTopPen[6] = new Pen(bGray[240], 1);
+		tbTopPen[7] = new Pen(bGray[240], 1);
 
-	tbBotPen[0] = new Pen(bGray[160], 1);
-	tbBotPen[1] = new Pen(bGray[105], 1);
+		tbBotPen[0] = new Pen(bGray[160], 1);
+		tbBotPen[1] = new Pen(bGray[105], 1);
 
-	tbLeftPen[0] = new Pen(bGray[255], 1);
-	tbLeftPen[1] = new Pen(bGray[227], 1);
+		tbLeftPen[0] = new Pen(bGray[255], 1);
+		tbLeftPen[1] = new Pen(bGray[227], 1);
 
-	tbRightPen[0] = new Pen(bGray[160], 1);
-	tbRightPen[1] = new Pen(bGray[105], 1);
+		tbRightPen[0] = new Pen(bGray[160], 1);
+		tbRightPen[1] = new Pen(bGray[105], 1);
+		break;
+	case TB_ORT_DN:
+
+		break;
+	case TB_ORT_LEFT:
+
+		break;
+	case TB_ORT_RIGHT:
+		tbTopPen[0] = new Pen(bGray[105], 1);
+		tbTopPen[1] = new Pen(bGray[160], 1);
+		tbTopPen[2] = new Pen(bGray[255], 1);
+		tbTopPen[3] = new Pen(bGray[105], 1);
+		tbTopPen[4] = new Pen(bGray[240], 1);
+		tbTopPen[5] = new Pen(bGray[240], 1);
+		tbTopPen[6] = new Pen(bGray[240], 1);
+		tbTopPen[7] = new Pen(bGray[240], 1);
+
+		tbBotPen[0] = new Pen(bGray[160], 1);
+		tbBotPen[1] = new Pen(bGray[105], 1);
+
+		tbLeftPen[0] = new Pen(bGray[255], 1);
+		tbLeftPen[1] = new Pen(bGray[227], 1);
+
+		tbRightPen[0] = new Pen(bGray[160], 1);
+		tbRightPen[1] = new Pen(bGray[105], 1);
+		break;
+	default:
+		break;
+	}
 
 	clearBrush = b0;
 
@@ -186,6 +227,8 @@ void AATab::drawTab(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, in
 		{
 			if (tbState == TB_UP)
 			{
+				tbUpTextBox->drawBox(graphics, borderlessPen, tbFont, centerFormat, textBrush, tbCenterBrush, objText, layers);
+
 				for (int i = 0; i < TB_TOP_LAYERS; i++)
 					tbUpTopLine[i]->drawLine(graphics, tbTopPen[i], layers);
 				
@@ -197,11 +240,13 @@ void AATab::drawTab(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, in
 				
 				for (int i = 0; i < TB_RIGHT_LAYERS; i++)
 					tbUpRightLine[i]->drawLine(graphics, tbRightPen[i], layers);
-
-				tbUpTextBox->drawBox(graphics, borderlessPen, tbFont, centerFormat, textBrush, tbCenterBrush, objText, layers);
 			}
 			else if (tbState == TB_DN)
 			{
+				hideTab(graphics);
+
+				tbDnTextBox->drawBox(graphics, borderlessPen, tbFont, centerFormat, textBrush, tbCenterBrush, objText, layers);
+
 				for (int i = 0; i < TB_TOP_LAYERS; i++)
 					tbDnTopLine[i]->drawLine(graphics, tbTopPen[i], layers);
 
@@ -213,8 +258,6 @@ void AATab::drawTab(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, in
 
 				for (int i = 0; i < TB_RIGHT_LAYERS; i++)
 					tbDnRightLine[i]->drawLine(graphics, tbRightPen[i], layers);
-
-				tbDnTextBox->drawBox(graphics, borderlessPen, tbFont, centerFormat, textBrush, tbCenterBrush, objText, layers);
 			}
 
 			isDrawn = true;
@@ -225,7 +268,50 @@ void AATab::drawTab(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, in
 void AATab::hideTab(Graphics* graphics)
 {
 	isDrawn = false;
+
+	if (tbLast)
+	{
+		switch (tbOrient)
+		{
+		case TB_ORT_UP:
+			tbBlankBox->expand(2, 0);
+			break;
+		case TB_ORT_DN:
+
+			break;
+		case TB_ORT_LEFT:
+
+			break;
+		case TB_ORT_RIGHT:
+			tbBlankBox->expand(0, 2);
+			break;
+		default:
+			break;
+		}
+	}
+
 	tbBlankBox->drawBox(graphics, borderlessPen, baseTextFont, centerFormat, textBrush, backBrush, L"", 99);
+
+	if (tbLast)
+	{
+		switch (tbOrient)
+		{
+		case TB_ORT_UP:
+			tbBlankBox->expand(-2, 0);
+			break;
+		case TB_ORT_DN:
+
+			break;
+		case TB_ORT_LEFT:
+
+			break;
+		case TB_ORT_RIGHT:
+			tbBlankBox->expand(0, -2);
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 bool AATab::pressTab()
@@ -265,6 +351,16 @@ bool AATab::releaseTab()
 		return false;
 }
 
+void AATab::setTabLast(bool val)
+{
+	tbLast = val;
+}
+
+void AATab::setIsDrawn(bool val)
+{
+	isDrawn = val;
+}
+
 void AATab::executeTab(HWND hWnd)
 {
 	if (!hasFuncId)
@@ -274,6 +370,11 @@ void AATab::executeTab(HWND hWnd)
 int AATab::getTabId()
 {
 	return getObjectId();
+}
+
+int AATab::getTabOrient()
+{
+	return tbOrient;
 }
 
 void AATab::config(const char* text)
@@ -291,7 +392,7 @@ void AATab::config(const char* text)
 void AATab::configGraphics()
 {
 	tbBlankBox->config(objBox, 99);
-
+	
 	switch (tbOrient)
 	{
 	case TB_ORT_UP:
@@ -316,7 +417,7 @@ void AATab::configGraphicsUp()
 	// Up state graphics
 	tbUpTextBox->config(objBox, 99);
 	tbUpTextBox->shrink(2);
-	tbUpTextBox->expand(2, -2);
+	tbUpTextBox->expand(3, -2);
 
 	tbUpTopLine[0]->config({ objBox.X, objBox.Y }, { objBox.GetRight() + 2, objBox.Y }, 99);
 	tbUpTopLine[0]->shrink(2);
@@ -401,5 +502,81 @@ void AATab::configGraphicsLeft()
 
 void AATab::configGraphicsRight()
 {
+	tbBlankBox->expand(0, 1);
+	tbBlankBox->nudge(1, 0);
 
+	// Up state graphics
+	tbUpTextBox->config(objBox, 99);
+	tbUpTextBox->shrink(2);
+	tbUpTextBox->expand(2, 4);
+	tbUpTextBox->nudge(-1, 0);
+
+	tbUpTopLine[0]->config({ objBox.GetRight(), objBox.Y }, { objBox.GetRight(), objBox.GetBottom() + 2 }, 99);
+	tbUpTopLine[0]->shrink(2);
+	tbUpTopLine[1]->config({ objBox.GetRight() - 1, objBox.Y }, { objBox.GetRight() - 1, objBox.GetBottom() + 2 }, 99);
+	tbUpTopLine[1]->shrink(2);
+	tbUpTopLine[2]->config({ objBox.GetRight() - 1, objBox.Y }, { objBox.GetRight() - 1, objBox.Y + 1 }, 99);
+	tbUpTopLine[3]->config({ objBox.GetRight() - 1, objBox.GetBottom() + 1 }, { objBox.GetRight() - 1, objBox.GetBottom() + 2 }, 99);
+	tbUpTopLine[4]->config({ objBox.GetRight() - 1, objBox.Y }, { objBox.GetRight(), objBox.Y }, 99);
+	tbUpTopLine[5]->config({ objBox.GetRight() - 1, objBox.GetBottom() + 2 }, { objBox.GetRight(), objBox.GetBottom() + 2 }, 99);
+	tbUpTopLine[6]->config({ objBox.GetRight(), objBox.Y }, { objBox.GetRight(), objBox.Y + 1 }, 99);
+	tbUpTopLine[7]->config({ objBox.GetRight(), objBox.GetBottom() + 1 }, { objBox.GetRight(), objBox.GetBottom() + 2 }, 99);
+
+	tbUpBotLine[0]->config({ objBox.X + 1, objBox.Y }, { objBox.X + 1, objBox.GetBottom() + 2 }, 99);
+	tbUpBotLine[0]->shrink(2);
+	tbUpBotLine[1]->config({ objBox.X, objBox.Y }, { objBox.X, objBox.GetBottom() + 2 }, 99);
+	tbUpBotLine[1]->shrink(2);
+
+	tbUpLeftLine[0]->config({ objBox.X, objBox.Y }, { objBox.GetRight(), objBox.Y }, 99);
+	tbUpLeftLine[0]->shrink(1);
+	tbUpLeftLine[0]->nudge(-1);
+	tbUpLeftLine[0]->contract(-1, 0);
+	tbUpLeftLine[1]->config({ objBox.X, objBox.Y + 1 }, { objBox.GetRight(), objBox.Y + 1 }, 99);
+	tbUpLeftLine[1]->shrink(1);
+	tbUpLeftLine[1]->nudge(-1);
+	tbUpLeftLine[1]->contract(-1, 0);
+
+	tbUpRightLine[0]->config({ objBox.X, objBox.GetBottom() + 1 }, { objBox.GetRight(), objBox.GetBottom() + 1 }, 99);
+	tbUpRightLine[0]->shrink(1);
+	tbUpRightLine[0]->nudge(-1);
+	tbUpRightLine[0]->contract(-1, 0);
+	tbUpRightLine[1]->config({ objBox.X, objBox.GetBottom() + 2 }, { objBox.GetRight(), objBox.GetBottom() + 2 }, 99);
+	tbUpRightLine[1]->shrink(1);
+	tbUpRightLine[1]->nudge(-1);
+	tbUpRightLine[1]->contract(-1, 0);
+
+	// Down state graphics
+	tbDnTextBox->config(objBox, 99);
+	tbDnTextBox->shrink(2);
+	tbDnTextBox->contract(2, -1);
+
+	tbDnTopLine[0]->config({ objBox.GetRight() - 2, objBox.Y }, { objBox.GetRight() - 2, objBox.GetBottom() }, 99);
+	tbDnTopLine[0]->shrink(2);
+	tbDnTopLine[1]->config({ objBox.GetRight() - 3, objBox.Y }, { objBox.GetRight() - 3, objBox.GetBottom() }, 99);
+	tbDnTopLine[1]->shrink(2);
+	tbDnTopLine[2]->config({ objBox.GetRight() - 3, objBox.Y }, { objBox.GetRight() - 3, objBox.Y + 1 }, 99);
+	tbDnTopLine[3]->config({ objBox.GetRight() - 3, objBox.GetBottom() - 1 }, { objBox.GetRight() - 3, objBox.GetBottom() }, 99);
+	tbDnTopLine[4]->config({ objBox.GetRight() - 3, objBox.Y }, { objBox.GetRight() - 2, objBox.Y }, 99);
+	tbDnTopLine[5]->config({ objBox.GetRight() - 3, objBox.GetBottom() }, { objBox.GetRight() - 2, objBox.GetBottom() }, 99);
+	tbDnTopLine[6]->config({ objBox.GetRight() - 2, objBox.Y }, { objBox.GetRight() - 2, objBox.Y + 1 }, 99);
+	tbDnTopLine[7]->config({ objBox.GetRight() - 2, objBox.GetBottom() - 1 }, { objBox.GetRight() - 2, objBox.GetBottom() }, 99);
+
+	tbDnBotLine[0]->config({ objBox.X + 2, objBox.Y }, { objBox.X + 2, objBox.GetBottom() }, 99);
+	tbDnBotLine[0]->shrink(2);
+	tbDnBotLine[1]->config({ objBox.X + 1, objBox.Y }, { objBox.X + 1, objBox.GetBottom() }, 99);
+	tbDnBotLine[1]->shrink(2);
+
+	tbDnLeftLine[0]->config({ objBox.X + 1, objBox.Y }, { objBox.GetRight() - 2, objBox.Y }, 99);
+	tbDnLeftLine[0]->shrink(1);
+	tbDnLeftLine[0]->nudge(-1);
+	tbDnLeftLine[1]->config({ objBox.X + 1, objBox.Y + 1 }, { objBox.GetRight() - 2, objBox.Y + 1 }, 99);
+	tbDnLeftLine[1]->shrink(1);
+	tbDnLeftLine[1]->nudge(-1);
+
+	tbDnRightLine[0]->config({ objBox.X + 1, objBox.GetBottom() - 1 }, { objBox.GetRight() - 2, objBox.GetBottom() - 1 }, 99);
+	tbDnRightLine[0]->shrink(1);
+	tbDnRightLine[0]->nudge(-1);
+	tbDnRightLine[1]->config({ objBox.X + 1, objBox.GetBottom() }, { objBox.GetRight() - 2, objBox.GetBottom() }, 99);
+	tbDnRightLine[1]->shrink(1);
+	tbDnRightLine[1]->nudge(-1);
 }

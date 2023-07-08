@@ -58,6 +58,11 @@ private:
 	RectF calcTabWidth(Graphics&, const char* = nullptr);
 	RectF* calcTextWidth(Graphics&, const char* = nullptr);
 	void  updateTabWidths(REAL = 0);
+
+	bool  tbOrientVert;
+	bool  isTransposed;
+	void  transposeObjBox();
+	void  transposeTabBox(RectF&);
 };
 
 #endif

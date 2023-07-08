@@ -69,7 +69,7 @@ int  Game::dbg_grid = 0;
 
 // Tabs
 int  Game::nationScreenTabs = TB_ID_NULL;
-HWND Game::purchaseSectionTabs = NULL;
+int  Game::purchaseSectionTabs = TB_ID_NULL;
 HWND Game::ukEconomyTabs = NULL;
 HWND Game::logScreenTabs = NULL;
 

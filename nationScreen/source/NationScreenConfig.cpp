@@ -10,25 +10,6 @@ void Game::configNationScreen()
 	if (screenFrames.s.size() < (NATION_SCREEN + 1))
 		screenFrames.s.resize((NATION_SCREEN + 1));
 	
-	// Tabs section
-	if (nationScreenTabs == TB_ID_NULL)
-	{
-		nationScreenTabs = gfx->tabs->createTabId();
-		
-		RectF rect = { 0, 0, 700, 23 };
-		gfx->tabs->registerTab(graphics, nationScreenTabs, NATION_SCREEN, TB_CFG_LEFT, TB_ORT_UP, rect, "Nation Screen Tabs", true, false);
-
-		gfx->tabs->activateTab(nationScreenTabs);
-		gfx->tabs->addTab(graphics, nationScreenTabs, "Main", nationScreenHandleMainScreenTab);
-		gfx->tabs->addTab(graphics, nationScreenTabs, "Axis Spread", nationScreenHandleAxisSpreadScreenTab);
-		gfx->tabs->addTab(graphics, nationScreenTabs, "Allies Spread", nationScreenHandleAlliesSpreadScreenTab);
-		gfx->tabs->addTab(graphics, nationScreenTabs, "Graphs", nationScreenHandleGraphScreenTab);
-		gfx->tabs->addTab(graphics, nationScreenTabs, "Game Log", nationScreenHandleLogScreenTab);
-		gfx->tabs->addTab(graphics, nationScreenTabs, "Research", nationScreenHandleResearchScreenTab);
-		gfx->tabs->addTab(graphics, nationScreenTabs, "Reference", nationScreenHandleReferenceScreenTab);
-		gfx->tabs->deactivateTab(nationScreenTabs);
-	}
-	
 	// Name section
 	if (nameSection == NULL)
 	{
@@ -190,50 +171,6 @@ void Game::configNationScreen()
 		screenFrames.s[NATION_SCREEN].b[PURCH_SECT_IDX] = PURCH_SECT;
 	}
 
-	// Purchase section tabs
-	if (purchaseSectionTabs == NULL)
-	{
-		purchaseSectionTabs = CreateWindow(
-			WC_TABCONTROL,
-			L"",
-			WS_CHILD | WS_CLIPSIBLINGS | TCS_FLATBUTTONS | TCS_RAGGEDRIGHT |
-			TCS_MULTILINE | TCS_RIGHT | TCS_VERTICAL,
-			purchaseFrame.GetRight() + 1,
-			purchaseFrame.Y + 12,
-			24,
-			purchaseSection->getBoxEdge(PURCH_MINOR, BOX_BOTTOM) - (purchaseFrame.Y + 12),
-			main_Wnd,
-			NULL,
-			hInst,
-			NULL);
-
-		TCITEM tie;
-		TCHAR achTemp[20];
-		achTemp[0] = '\0';
-
-		tie.mask = TCIF_TEXT | TCIF_IMAGE;
-		tie.iImage = -1;
-		tie.pszText = achTemp;
-
-		// Purchase tab
-		wcsncpy_s(achTemp, L"Purchase", 9);
-		tie.pszText = achTemp;
-		if (TabCtrl_InsertItem(purchaseSectionTabs, TAB_PURCH, &tie) == -1)
-			DestroyWindow(purchaseSectionTabs);
-
-		// Combined Arms
-		wcsncpy_s(achTemp, L"Combined Arms", 14);
-		tie.pszText = achTemp;
-		if (TabCtrl_InsertItem(purchaseSectionTabs, TAB_COMB, &tie) == -1)
-			DestroyWindow(purchaseSectionTabs);
-
-		// Neutral territories
-		wcsncpy_s(achTemp, L"Neutral Territories", 20);
-		tie.pszText = achTemp;
-		if (TabCtrl_InsertItem(purchaseSectionTabs, TAB_NEUTRAL, &tie) == -1)
-			DestroyWindow(purchaseSectionTabs);
-	}
-
 	// Neutral territories section
 	if (neutralSection == NULL)
 	{
@@ -366,6 +303,45 @@ void Game::configNationScreen()
 		}
 		screenFrames.s[NATION_SCREEN].f[BONUS_SECT_IDX] = bonusFrame;
 		screenFrames.s[NATION_SCREEN].b[BONUS_SECT_IDX] = BONUS_SECT;
+	}
+
+	// Tabs section
+	{
+		// Nation screen tabs
+		// Not actually just for the nation screen so probably should be renamed and moved later
+		if (nationScreenTabs == TB_ID_NULL)
+		{
+			nationScreenTabs = gfx->tabs->createTabId();
+
+			RectF rect = { 0, 0, 700, 23 };
+			gfx->tabs->registerTab(graphics, nationScreenTabs, NATION_SCREEN, TB_CFG_LEFT, TB_ORT_UP, rect, "Nation Screen Tabs", true, false);
+
+			gfx->tabs->activateTab(nationScreenTabs);
+			gfx->tabs->addTab(graphics, nationScreenTabs, "Main", nationScreenHandleMainScreenTab);
+			gfx->tabs->addTab(graphics, nationScreenTabs, "Axis Spread", nationScreenHandleAxisSpreadScreenTab);
+			gfx->tabs->addTab(graphics, nationScreenTabs, "Allies Spread", nationScreenHandleAlliesSpreadScreenTab);
+			gfx->tabs->addTab(graphics, nationScreenTabs, "Graphs", nationScreenHandleGraphScreenTab);
+			gfx->tabs->addTab(graphics, nationScreenTabs, "Game Log", nationScreenHandleLogScreenTab);
+			gfx->tabs->addTab(graphics, nationScreenTabs, "Research", nationScreenHandleResearchScreenTab);
+			gfx->tabs->addTab(graphics, nationScreenTabs, "Reference", nationScreenHandleReferenceScreenTab);
+			gfx->tabs->deactivateTab(nationScreenTabs);
+		}
+
+		// Purchase section tabs
+		if (purchaseSectionTabs == TB_ID_NULL)
+		{
+			purchaseSectionTabs = gfx->tabs->createTabId();
+
+			RectF rect = { purchaseFrame.GetRight() - 1, purchaseFrame.Y + 12, 
+				28, purchaseSection->getBoxEdge(PURCH_REP, BOX_BOTTOM) - (purchaseFrame.Y + 12) };
+
+			gfx->tabs->registerTab(graphics, purchaseSectionTabs, NATION_SCREEN, TB_CFG_EVEN, TB_ORT_RIGHT, rect, "Purchase Section Tabs", false, false);
+			gfx->tabs->activateTab(purchaseSectionTabs);
+			gfx->tabs->addTab(graphics, purchaseSectionTabs, "Purchase", nationScreenHandlePurchaseSectionTab);
+			gfx->tabs->addTab(graphics, purchaseSectionTabs, "Combined Arms", nationScreenHandleNeutralSectionTab);
+			gfx->tabs->addTab(graphics, purchaseSectionTabs, "Neutral Territories", nationScreenHandleCombinedArmsSectionTab);
+			gfx->tabs->deactivateTab(purchaseSectionTabs);
+		}
 	}
 	
 	// Buttons section 

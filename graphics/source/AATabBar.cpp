@@ -23,6 +23,9 @@ AATabBar::AATabBar(int id, int cfg, int ort)
 	clearBrush = NULL;
 
 	tbFont = NULL;
+
+	tbOrientVert = (tbOrient == TB_ORT_LEFT || tbOrient == TB_ORT_RIGHT);
+	isTransposed = false;
 }
 
 AATabBar::~AATabBar()
@@ -67,6 +70,11 @@ void AATabBar::addTab(Graphics* graphics, const char* text, void (*tbFunc)(HWND&
 	// Only valid when creating the first tab
 	if (tbTabIdx == 0)
 		tbTabs[tbTabIdx]->setTabState(TB_UP);
+	else
+		tbTabs[tbTabIdx - 1]->setTabLast(false);
+
+	// Tabs are always last when they are added
+	tbTabs[tbTabIdx]->setTabLast(true);
 }
 
 void AATabBar::setTabFuncId(int idx, int val)
@@ -111,7 +119,12 @@ bool AATabBar::pressTab(int idx)
 		tbState = idx;
 		for (int i = 0; i < tbTabCnt; i++)
 			if (i != tbState)
+			{
+				isDrawn = false;
 				tbTabs[i]->releaseTab();
+				if (i != tbTabIdx)
+					tbTabs[i + 1]->setIsDrawn(false);
+			}
 
 		return tbTabs[idx]->pressTab();
 	}
@@ -124,7 +137,12 @@ bool AATabBar::pressTab(HWND hWnd, int idx)
 		tbState = idx;
 		for (int i = 0; i < tbTabCnt; i++)
 			if (i != tbState)
+			{
+				isDrawn = false;
 				tbTabs[i]->releaseTab();
+				if (i != tbTabIdx)
+					tbTabs[i + 1]->setIsDrawn(false);
+			}
 
 		return tbTabs[idx]->pressTab(hWnd);
 	}
@@ -133,7 +151,11 @@ bool AATabBar::pressTab(HWND hWnd, int idx)
 bool AATabBar::releaseTab(int idx)
 {
 	if (idx < tbTabCnt)
+	{
+		if (idx != tbTabIdx)
+			tbTabs[idx + 1]->setIsDrawn(false);
 		return tbTabs[idx]->releaseTab();
+	}
 }
 
 int AATabBar::getTabId()
@@ -164,6 +186,7 @@ int AATabBar::getTabState()
 
 void AATabBar::configTabDrawTools(int idx)
 {
+
 	tbTabs[idx]->configBaseDrawTools(borderPen, borderlessPen, fontFamily, textFormat, centerFormat, baseTextFont,
 		textBrush, backBrush, popupBrush);
 	tbTabs[idx]->configDrawTools(*grayColor, *grayBrush, clearBrush, tbFont);
@@ -172,6 +195,10 @@ void AATabBar::configTabDrawTools(int idx)
 RectF AATabBar::calcTabWidth(Graphics& graphics, const char* text)
 {
 	RectF tmpRect;
+
+	// Transpose object box if tab bar is vertical
+	if (tbOrientVert)
+		transposeObjBox();
 
 	switch (tbConfig)
 	{
@@ -225,6 +252,7 @@ RectF AATabBar::calcTabWidth(Graphics& graphics, const char* text)
 	case TB_CFG_EVEN:
 	{
 		tmpRect.Width = objBox.Width / tbTabCnt;
+		tmpRect.Width = round(tmpRect.Width);
 		tmpRect.Height = objBox.Height;
 		tmpRect.X = objBox.GetRight() - tmpRect.Width;
 		tmpRect.Y = objBox.Y;
@@ -234,6 +262,14 @@ RectF AATabBar::calcTabWidth(Graphics& graphics, const char* text)
 	}
 	default:
 		break;
+	}
+
+	// Transpose object box if tab bar is vertical
+	// Also transpose tab box
+	if (tbOrientVert)
+	{
+		transposeObjBox();
+		transposeTabBox(tmpRect);
 	}
 
 	return tmpRect;
@@ -266,6 +302,9 @@ RectF* AATabBar::calcTextWidth(Graphics& graphics, const char* text)
 	graphics.MeasureString(wtext, len, tbFont, *origin, bounds);
 	delete origin;
 
+	// Integer widths only
+	bounds->Width = ceil(bounds->Width);
+
 	return bounds;
 }
 
@@ -289,6 +328,12 @@ void AATabBar::updateTabWidths(REAL lastX)
 			tmpRect.Width = tbTabStarts[i + 1] - tmpRect.X;
 			tmpRect.Height = objBox.Height;
 
+			// Transpose tab box if tab bar is vertical
+			if (tbOrientVert)
+			{
+				transposeTabBox(tmpRect);
+			}
+
 			tbTabs[i]->reconfigTab(tmpRect);
 		}
 		break;
@@ -296,13 +341,31 @@ void AATabBar::updateTabWidths(REAL lastX)
 	case TB_CFG_EVEN:
 	{
 		for (int i = tbTabIdx - 1; i >= 0; i--)
-		{
-			tmpRect.Width = objBox.Width / tbTabCnt;
+		{			
+			if (i == 0)
+			{
+				tmpRect.X = objBox.X;
+				tmpRect.Width = lastX - objBox.X - 1;
+			}
+			else
+			{
+				tmpRect.Width = objBox.Width / tbTabCnt;
+				tmpRect.Width = round(tmpRect.Width);
+				tmpRect.X = lastX - tmpRect.Width - 1;
+			}
 			tmpRect.Height = objBox.Height;
-			tmpRect.X = lastX - tmpRect.Width;
 			tmpRect.Y = objBox.Y;
 
 			lastX = tmpRect.X;
+
+			// Transpose tab box if tab bar is vertical
+			if (tbOrientVert)
+			{
+				transposeObjBox();
+				transposeTabBox(tmpRect);
+				transposeObjBox();
+			}
+
 			tbTabs[i]->reconfigTab(tmpRect);
 		}
 		break;
@@ -312,3 +375,23 @@ void AATabBar::updateTabWidths(REAL lastX)
 	}
 }
 
+void AATabBar::transposeObjBox()
+{
+	REAL w = objBox.Width;
+	REAL h = objBox.Height;
+
+	objBox.Width = h;
+	objBox.Height = w;
+
+	isTransposed = !isTransposed;
+}
+
+void AATabBar::transposeTabBox(RectF& box)
+{
+	RectF tmpBox = box;
+
+	box.X = objBox.X;
+	box.Y = objBox.Y + (tmpBox.X - objBox.X);
+	box.Width = objBox.Width;
+	box.Height = tmpBox.Width;
+}

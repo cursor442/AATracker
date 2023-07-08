@@ -47,6 +47,7 @@ AAGraphics::AAGraphics(HWND hWnd, RectF rect)
 
 	logTextFormat = NULL; leftCenterFormat = NULL; centerFormat = NULL;
 	leftTopFormat = NULL; leftBottomFormat = NULL; purchaseFormat = NULL;
+	vertLeftCenterFormat = NULL; vertRightCenterFormat = NULL;
 
 	font12 = NULL; font12_b = NULL;
 	font14 = NULL; font14_b = NULL;
@@ -159,6 +160,7 @@ AAGraphics::~AAGraphics()
 
 	delete logTextFormat; delete leftCenterFormat; delete centerFormat;
 	delete leftTopFormat; delete leftBottomFormat; delete purchaseFormat;
+	delete vertLeftCenterFormat; delete vertRightCenterFormat;
 
 	delete font12; delete font12_b;
 	delete font14; delete font14_b;
@@ -317,6 +319,15 @@ void AAGraphics::config(HDC& hdc)
 	purchaseFormat->SetLineAlignment(StringAlignmentCenter);
 	purchaseFormat->SetTabStops(0.0f, 6, tabs1);
 
+	vertLeftCenterFormat = new StringFormat();
+	vertLeftCenterFormat->SetAlignment(StringAlignmentNear);
+	vertLeftCenterFormat->SetLineAlignment(StringAlignmentCenter);
+	vertLeftCenterFormat->SetFormatFlags(StringFormatFlagsDirectionVertical);
+	vertRightCenterFormat = new StringFormat();
+	vertRightCenterFormat->SetAlignment(StringAlignmentCenter);
+	vertRightCenterFormat->SetLineAlignment(StringAlignmentNear);
+	vertRightCenterFormat->SetFormatFlags(StringFormatFlagsDirectionVertical);
+
 	HFONT* tmp_font16_bl = new HFONT(CreateFont(19, 0, 0, 0, 500, 0, 0, 0, 0, 0, 0, PROOF_QUALITY,
 		VARIABLE_PITCH, L"Calibri Light"));
 	HFONT* tmp_font17 = new HFONT(CreateFont(17, 0, 0, 0, FW_REGULAR, 0, 0, 0, 0, 0, 0, 2, 0, L"TMP_FONT17"));
@@ -419,7 +430,7 @@ void AAGraphics::config(HDC& hdc)
 
 	tabs->configBaseDrawTools(blackPen1, borderlessPen, calibriFamily, leftBottomFormat, centerFormat,
 		font18_l, textBrush, backBrush);
-	tabs->configDrawTools(grayColors, grayBrushes, clearBrush, font18_bl, font16_bl);
+	tabs->configDrawTools(grayColors, grayBrushes, clearBrush, vertLeftCenterFormat, vertRightCenterFormat, font18_bl, font16_bl);
 
 	///////////////////////////////////////////////////////////////////////////
 	//// Buttons

@@ -16,7 +16,7 @@ public:
 	~AATabs();
 
 	void configBaseDrawTools(Pen*, Pen*, FontFamily*, StringFormat*, StringFormat*, Font*, SolidBrush*, SolidBrush*);
-	void configDrawTools(vector<Color*>&, vector<SolidBrush*>&, SolidBrush*, Font*, Font*);
+	void configDrawTools(vector<Color*>&, vector<SolidBrush*>&, SolidBrush*, StringFormat*, StringFormat*, Font*, Font*);
 	void addTab(Graphics*, int, const char*, void (*tbFunc)(HWND&));
 
 	int  checkForTab(HWND&, LPARAM, bool&, int&);
@@ -69,6 +69,8 @@ private:
 	SolidBrush* backBrush;
 
 	SolidBrush* clearBrush;
+
+	StringFormat* leftFormat, * rightFormat;
 
 	Font* tabFont;
 	Font* tabFont_s;

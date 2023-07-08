@@ -23,6 +23,8 @@ AAGraphicsObject::AAGraphicsObject(int id)
 		objText[i] = '\0';
 
 	intersections = NO_SECT;
+
+	isTransposed = false;
 }
 
 AAGraphicsObject::~AAGraphicsObject()
@@ -132,4 +134,21 @@ PointF AAGraphicsObject::getRectCorner(int corner)
 		return { 0, 0 };
 
 	}
+}
+
+void AAGraphicsObject::transposeObjBox()
+{
+	REAL w = objBox.Width;
+	REAL h = objBox.Height;
+
+	objBox.Width = h;
+	objBox.Height = w;
+
+	isTransposed = !isTransposed;
+}
+
+void AAGraphicsObject::translateObjBox(int x, int y)
+{
+	objBox.X += x;
+	objBox.Y += y;
 }

@@ -29,10 +29,13 @@ public:
 	AALine();
 	~AALine();
 
+	void config();
 	void config(PointF, PointF, int);
 	void nudge(REAL);
 	void shrink(REAL);
 	void contract(REAL, REAL);
+
+	void rotateClock90(PointF);
 
 	void drawLine(Graphics*, Pen*, int);
 
@@ -75,6 +78,9 @@ public:
 	void contract(int);
 	void contract(int, int);
 	void expand(int, int);
+
+	void transpose();
+	void rotateClock90(PointF);
 
 	void drawFrame(Graphics*, Pen*, Font*, StringFormat*, Brush*, int);
 	void drawFrameFill(Graphics*, Pen*, Font*, StringFormat*, Brush*, Brush*, int);
