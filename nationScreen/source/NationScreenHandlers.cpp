@@ -73,7 +73,7 @@ bool Game::nextTurnPhase(HWND& hWnd)
 
 		nsPhase = ALL_PHASE;
 		currUKButton = false; currUKButtonToggled = false;
-		nsUnit = PURCH_ALL;
+		nsUnit = PURCH_TITLE;
 
 		nsTurn = SPREAD_ALL_ROWS;
 		nsCol = SPREAD_ALL_COLS;
