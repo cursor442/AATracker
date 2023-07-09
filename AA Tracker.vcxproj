@@ -184,6 +184,7 @@
     <ClInclude Include="graphScreen\header\GraphClass.h" />
     <ClInclude Include="logScreen\header\LogClass.h" />
     <ClInclude Include="logScreen\header\LogPair.h" />
+    <ClInclude Include="logScreen\header\LogScreenWrappers.h" />
     <ClInclude Include="logScreen\header\LogTerrs.h" />
     <ClInclude Include="logScreen\header\LogText.h" />
     <ClInclude Include="nationScreen\header\NationScreenWrappers.h" />

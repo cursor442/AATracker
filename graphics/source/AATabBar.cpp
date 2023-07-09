@@ -77,6 +77,30 @@ void AATabBar::addTab(Graphics* graphics, const char* text, void (*tbFunc)(HWND&
 	tbTabs[tbTabIdx]->setTabLast(true);
 }
 
+void AATabBar::addTab(Graphics* graphics, const char* text, void (*tbFunc)(HWND&, int))
+{
+	tbTabIdx++;
+	tbTabCnt++;
+	tbTabs.resize(tbTabCnt);
+	tbTabs[tbTabIdx] = new AATab(tbTabIdx, tbOrient);
+
+	// Configure new tab width
+	RectF rect = calcTabWidth(*graphics, text);
+
+	tbTabs[tbTabIdx]->configTab(graphics, objScr, rect, text, tbFunc);
+	configTabDrawTools(tbTabIdx);
+
+	// Set tab state of the first tab
+	// Only valid when creating the first tab
+	if (tbTabIdx == 0)
+		tbTabs[tbTabIdx]->setTabState(TB_UP);
+	else
+		tbTabs[tbTabIdx - 1]->setTabLast(false);
+
+	// Tabs are always last when they are added
+	tbTabs[tbTabIdx]->setTabLast(true);
+}
+
 void AATabBar::setTabFuncId(int idx, int val)
 {
 	if (idx < tbTabCnt)

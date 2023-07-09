@@ -25,6 +25,7 @@ public:
 
 	void configTab(Graphics*, int, RectF&, const char*);
 	void configTab(Graphics*, int, RectF&, const char*, void (*tbFunc)(HWND&));
+	void configTab(Graphics*, int, RectF&, const char*, void (*tbFunc)(HWND&, int));
 	void reconfigTab(RectF&);
 	void configDrawTools(vector<Color*>&, vector<SolidBrush*>&, SolidBrush*, Font*);
 	void setTabFuncId(int);
@@ -85,6 +86,7 @@ private:
 	int  tbFuncId;
 	bool hasFuncId;
 	void (*tbFunction0)(HWND&);
+	void (*tbFunction1)(HWND&, int);
 
 	bool  tbOrientVert;
 

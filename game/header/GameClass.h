@@ -10,8 +10,7 @@ ULONG_PTR Game::gdiplusToken;
 
 int  Game::whichScreen = MAIN_SCREEN;
 int  Game::purchaseTab;
-int  Game::ukTab;
-int  Game::whichTab;                       
+int  Game::ukTab;                     
 int  Game::lastScreen = MAIN_SCREEN;
 bool Game::success = false;
 int  Game::price;
@@ -44,6 +43,9 @@ int Game::updateNatGraph = 10;
 bool Game::whichUpdateNatGraph = false;
 bool Game::doUpdateGraph = false;
 
+// Log screen graphics switches
+int  Game::whichLogTab;
+
 // Tabs
 bool Game::tabClick = false;
 int Game::currTab = TB_ID_NULL;
@@ -71,7 +73,7 @@ int  Game::dbg_grid = 0;
 int  Game::nationScreenTabs = TB_ID_NULL;
 int  Game::purchaseSectionTabs = TB_ID_NULL;
 int  Game::ukEconomyTabs = TB_ID_NULL;
-HWND Game::logScreenTabs = NULL;
+int  Game::logScreenTabs = TB_ID_NULL;
 
 // Gameboard
 Board* Game::gameBoard = new Board;
@@ -270,11 +272,15 @@ RECT Game::checkNations[9];
 ///////////////////////////////////////////////////////////////////////////
 //// Log Screen
 ///////////////////////////////////////////////////////////////////////////
+
 Log* Game::gameLog = NULL;
-HWND Game::customLogButton = NULL;
+int  Game::customLogButton = BB_ID_NULL;
 int  Game::nextPage = 2;
 
-//// Research screen
+///////////////////////////////////////////////////////////////////////////
+//// Research Screen
+///////////////////////////////////////////////////////////////////////////
+
 HWND Game::researchWnd = NULL;
 HDC  Game::hdcCompat;
 

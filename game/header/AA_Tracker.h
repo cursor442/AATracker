@@ -47,7 +47,6 @@ public:
 	static HINSTANCE hInst;                                // Current instance
 	static ULONG_PTR gdiplusToken;
 	static int  whichScreen, purchaseTab, ukTab;           // The current screen, purchase, UK tabs
-	static int  whichTab;                                  // Current log tab
 	static int  lastScreen;                                // For clearing buttons
 	static bool success;
 	static int price;
@@ -75,6 +74,9 @@ public:
 	static int updateNatGraph;
 
 	static bool whichUpdateNatGraph, doUpdateGraph;
+
+	// Log screen graphics switches
+	static int  whichLogTab; // Current log tab
 
 	// Tabs
 	static bool tabClick;                     // The mouse has clicked on an active tab
@@ -111,7 +113,7 @@ public:
 	static int  nationScreenTabs;
 	static int  purchaseSectionTabs;
 	static int  ukEconomyTabs;
-	static HWND logScreenTabs;
+	static int  logScreenTabs;
 
 	// Gameboard
 	static Board* gameBoard;
@@ -306,6 +308,18 @@ public:
 	static void     hideLogScreen();
 	static void     destroyLogScreen();
 
+	/////////////////////////////////////////////////////////////////////////
+	// Log screen tab handlers
+	/////////////////////////////////////////////////////////////////////////
+
+	static void logScreenHandlePageTab(HWND&, int);
+
+	/////////////////////////////////////////////////////////////////////////
+	// Log screen button handlers
+	/////////////////////////////////////////////////////////////////////////
+
+	static void logScreenHandleCustomEntry(HWND&);
+
 	///////////////////////////////////////////////////////////////////////////
 	//// Research screen
 	///////////////////////////////////////////////////////////////////////////
@@ -474,12 +488,18 @@ private:
 		ukGraph, itaGraph, anzGraph, fraGraph;
 	static RECT checkLines[9], checkNations[9];
 
-	//// Log screen
+	///////////////////////////////////////////////////////////////////////////
+	//// Log Screen
+	///////////////////////////////////////////////////////////////////////////
+
 	static Log* gameLog;
-	static HWND customLogButton;
+	static int  customLogButton;
 	static int nextPage;
 
-	//// Research screen
+	///////////////////////////////////////////////////////////////////////////
+	//// Research Screen
+	///////////////////////////////////////////////////////////////////////////
+
 	static HWND researchWnd;
 	static HDC hdcCompat;
 

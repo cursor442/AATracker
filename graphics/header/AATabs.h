@@ -18,6 +18,7 @@ public:
 	void configBaseDrawTools(Pen*, Pen*, FontFamily*, StringFormat*, StringFormat*, Font*, SolidBrush*, SolidBrush*);
 	void configDrawTools(vector<Color*>&, vector<SolidBrush*>&, SolidBrush*, StringFormat*, StringFormat*, Font*, Font*);
 	void addTab(Graphics*, int, const char*, void (*tbFunc)(HWND&));
+	void addTab(Graphics*, int, const char*, void (*tbFunc)(HWND&, int));
 
 	int  checkForTab(HWND&, LPARAM, bool&, int&);
 
@@ -53,6 +54,7 @@ private:
 
 	int  nextTabId; // The next unique ID to assign to a newly registered tab
 	void convIdToIdx(int);
+	void convIdToIdxInactive(int);
 
 	// Active and inactive tabs
 	vector<AATabBar*> activeTabs;

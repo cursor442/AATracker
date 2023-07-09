@@ -1,5 +1,6 @@
 #include "../header/AA_Tracker.h"
 
+// Nation Screen
 void Game::nationScreenHandleMainScreenTab(HWND& hWnd)
 {
     if (whichScreen != NATION_SCREEN)
@@ -44,7 +45,7 @@ void Game::nationScreenHandleLogScreenTab(HWND& hWnd)
     if (whichScreen != LOG_SCREEN)
     {
         whichScreen = LOG_SCREEN;
-        whichTab = TabCtrl_GetCurSel(logScreenTabs);
+        whichLogTab = gfx->tabs->getTabState(logScreenTabs);
         RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
     }
 }
@@ -111,4 +112,11 @@ void Game::nationScreenHandleUKEconomyPacificTab(HWND& hWnd)
     ukTab = TAB_UKP;
     toggleUKDisp();
     RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+}
+
+// Log Screen
+void Game::logScreenHandlePageTab(HWND& hWnd, int page)
+{
+    whichLogTab = page;
+    RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
 }

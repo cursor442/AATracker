@@ -432,31 +432,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             case TCN_SELCHANGE:
             {
-                int log = TabCtrl_GetCurSel(game->logScreenTabs);
-
-                switch (game->gfx->tabs->getTabState(game->nationScreenTabs))
-                {
-                case TAB_MAIN:
-                {
-                    break;
-                }
-                case TAB_SPREAD_AXIS:
-                    break;
-                case TAB_SPREAD_ALLIES:
-                    break;
-                case TAB_GRAPH:
-                    break;
-                case TAB_LOG:
-                    game->whichScreen = LOG_SCREEN;
-                    game->whichTab = log;
-                    RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
-                    break;
-                case TAB_RESEARCH:
-                    break;
-                case TAB_REFERENCE:
-                    break;
-                }
-                break;
+                // Replaced with custom tab class
             }
         }
         break;
@@ -581,7 +557,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             break;
         case LOG_SCREEN:
             game->configLogScreen();
-            game->LogScreen(hdc, game->whichTab);
+            game->LogScreen(hdc, game->whichLogTab);
             break;
         case RES_SCREEN:
             game->ResearchScreen(hWnd, hdc, ps);

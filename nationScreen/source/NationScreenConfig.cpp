@@ -300,8 +300,8 @@ void Game::configNationScreen()
 			gfx->tabs->registerTab(graphics, purchaseSectionTabs, NATION_SCREEN, TB_CFG_EVEN, TB_ORT_RIGHT, rect, "Purchase Section Tabs", false, false);
 			gfx->tabs->activateTab(purchaseSectionTabs);
 			gfx->tabs->addTab(graphics, purchaseSectionTabs, "Purchase", nationScreenHandlePurchaseSectionTab);
-			gfx->tabs->addTab(graphics, purchaseSectionTabs, "Combined Arms", nationScreenHandleNeutralSectionTab);
-			gfx->tabs->addTab(graphics, purchaseSectionTabs, "Neutral Territories", nationScreenHandleCombinedArmsSectionTab);
+			gfx->tabs->addTab(graphics, purchaseSectionTabs, "Neutral Territories", nationScreenHandleNeutralSectionTab);
+			gfx->tabs->addTab(graphics, purchaseSectionTabs, "Combined Arms", nationScreenHandleCombinedArmsSectionTab);
 			gfx->tabs->deactivateTab(purchaseSectionTabs);
 		}
 

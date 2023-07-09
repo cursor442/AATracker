@@ -1,6 +1,8 @@
 #include "../header/AA_Tracker.h"
 #include "../../nationScreen/header/NationScreenWrappers.h"
+#include "../../logScreen/header/LogScreenWrappers.h"
 
+// Nation Screen
 void Game::nationScreenHandleNextPhase(HWND& hWnd)
 {
     nextTurnPhase(hWnd);
@@ -77,5 +79,12 @@ void Game::nationScreenHandleAttackSoviet(HWND& hWnd)
     nsSection |= PHASE_SECT | PURCH_SECT;
     nsPhase = BUT_PHASE;
     nsNeut = NEUT_UPD;
+    RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+}
+
+// Log Screen
+void Game::logScreenHandleCustomEntry(HWND& hWnd)
+{
+    DialogBox(hInst, MAKEINTRESOURCE(IDD_CUSTLOGBOX), hWnd, CustomLogWrapper);
     RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
 }

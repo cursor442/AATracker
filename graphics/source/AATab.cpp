@@ -48,6 +48,7 @@ AATab::AATab(int id, int ort)
 	tbFuncId = NULL;
 	hasFuncId = false;
 	tbFunction0 = NULL;
+	tbFunction1 = NULL;
 
 	tbOrientVert = (tbOrient == TB_ORT_LEFT || tbOrient == TB_ORT_RIGHT);
 }
@@ -129,6 +130,13 @@ void AATab::configTab(Graphics* graphics, int screen, RectF& rect, const char* t
 	configTab(graphics, screen, rect, text);
 
 	tbFunction0 = tbFunc;
+}
+
+void AATab::configTab(Graphics* graphics, int screen, RectF& rect, const char* text, void (*tbFunc)(HWND&, int))
+{
+	configTab(graphics, screen, rect, text);
+
+	tbFunction1 = tbFunc;
 }
 
 void AATab::reconfigTab(RectF& rect)
@@ -385,6 +393,8 @@ void AATab::executeTab(HWND hWnd)
 {
 	if (!hasFuncId)
 		tbFunction0(hWnd);
+	else
+		tbFunction1(hWnd, tbFuncId);
 }
 
 int AATab::getTabId()

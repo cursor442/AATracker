@@ -85,11 +85,6 @@ Game::~Game()
 	//// Log Screen
 	///////////////////////////////////////////////////////////////////////////
 
-	if (logScreenTabs != NULL)
-	{
-		DeleteObject(logScreenTabs);
-		DeleteObject(customLogButton);
-	}
 
 	///////////////////////////////////////////////////////////////////////////
 	//// Research Screen
@@ -169,8 +164,9 @@ void Game::deleteBoard()
 	whichScreen = MAIN_SCREEN;
 	lastScreen = MAIN_SCREEN;
 	gfx->tabs->pressTab(nationScreenTabs, TAB_MAIN);
-	gfx->tabs->pressTab(nationScreenTabs, TAB_PURCH);
-	TabCtrl_SetCurSel(logScreenTabs, 0);
+	gfx->tabs->pressTab(purchaseSectionTabs, TAB_PURCH);
+	gfx->tabs->pressTab(ukEconomyTabs, TAB_UKE);
+	gfx->tabs->pressTab(logScreenTabs, 0);
 
 	n = 0;
 	k = 0;
@@ -1730,12 +1726,10 @@ void Game::hideScreen()
 	}
 
 	if (whichScreen == MAIN_SCREEN)
-	{
 		hideTabBar(nationScreenTabs);
-	}
 
 	if (whichScreen != LOG_SCREEN)
-		ShowWindow(logScreenTabs, SW_HIDE);
+		hideTabBar(logScreenTabs);
 }
 
 void Game::configGraphics(HDC& hdc)

@@ -16,6 +16,7 @@ public:
 	void configTabBar(Graphics*, int, RectF&);
 	void configDrawTools(vector<Color*>*, vector<SolidBrush*>*, SolidBrush*, Font*);
 	void addTab(Graphics*, const char*, void (*tbFunc)(HWND&));
+	void addTab(Graphics*, const char*, void (*tbFunc)(HWND&, int));
 	void setTabFuncId(int, int);
 
 	void drawTab(Graphics*, bool, bool, int);

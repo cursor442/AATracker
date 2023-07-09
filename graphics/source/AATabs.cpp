@@ -84,6 +84,14 @@ void AATabs::addTab(Graphics* graphics, int id, const char* text, void (*tbFunc)
 		activeTabs[currIdx]->addTab(graphics, text, tbFunc);
 }
 
+void AATabs::addTab(Graphics* graphics, int id, const char* text, void (*tbFunc)(HWND&, int))
+{
+	convIdToIdx(id);
+
+	if (currIdx != TB_ID_NULL)
+		activeTabs[currIdx]->addTab(graphics, text, tbFunc);
+}
+
 int AATabs::checkForTab(HWND& hWnd, LPARAM lParam, bool& clickTab, int& tbTabIdx)
 {
 	GetCursorPos(&currPoint);
@@ -152,7 +160,7 @@ bool AATabs::pressTab(HWND hWnd, int barId, int tabId)
 {
 	convIdToIdx(barId);
 
-	if (currIdx != TB_ID_NULL)
+	if (currIdx != TB_ID_NULL && tabId != TB_ID_NULL)
 		return activeTabs[currIdx]->pressTab(hWnd, tabId);
 
 	return false;
@@ -336,7 +344,17 @@ int AATabs::getTabState(int id)
 {
 	convIdToIdx(id);
 
-	return activeTabs[currIdx]->getTabState();
+	if (currIdx != TB_ID_NULL)
+		return activeTabs[currIdx]->getTabState();
+	else
+	{
+		convIdToIdxInactive(id);
+
+		if (currIdx != TB_ID_NULL)
+			return inactiveTabs[currIdx]->getTabState();
+		else
+			return TB_ID_NULL;
+	}
 }
 
 void AATabs::convIdToIdx(int id)
@@ -349,6 +367,34 @@ void AATabs::convIdToIdx(int id)
 		{
 			for (int i = 0; i < activeTabs.size(); i++)
 				if (activeTabs[i]->getTabId() == id)
+				{
+					idx = i;
+					break;
+				}
+		}
+		else
+			idx = lastIdx;
+
+		lastId = currId;
+		lastIdx = currIdx;
+	}
+	else
+		idx = currIdx;
+
+	currId = id;
+	currIdx = idx;
+}
+
+void AATabs::convIdToIdxInactive(int id)
+{
+	int idx = TB_ID_NULL;
+
+	if (currId != id || (currIdx == TB_ID_NULL && id != TB_ID_NULL))
+	{
+		if (lastId != id || (lastIdx == TB_ID_NULL && id != TB_ID_NULL))
+		{
+			for (int i = 0; i < inactiveTabs.size(); i++)
+				if (inactiveTabs[i]->getTabId() == id)
 				{
 					idx = i;
 					break;

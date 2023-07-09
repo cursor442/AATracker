@@ -689,7 +689,7 @@ void Log::incCell()
 			currPage++;
 		}
 	}
-	else if (currRow == ROWS - 5) // Set up nex page/col
+	else if (currRow > ROWS - 5) // Set up nex page/col
 		addCol();
 }
 
