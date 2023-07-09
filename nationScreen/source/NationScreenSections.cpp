@@ -311,9 +311,9 @@ void Game::drawMiniSpread(HDC& hdc)
 void Game::drawUKEconTabs(bool show)
 {
     if (show)
-        ShowWindow(ukEconomyTabs, SW_SHOW);
+        showTabBar(ukEconomyTabs);
     else
-        ShowWindow(ukEconomyTabs, SW_HIDE);
+        hideTabBar(ukEconomyTabs);
 }
 
 void Game::drawWarchestFrame(HDC& hdc)

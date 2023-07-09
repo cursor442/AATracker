@@ -276,13 +276,35 @@ void AABox::drawFrameFill(Graphics* graphics, Pen* pen, Font* font, StringFormat
 	}
 }
 
-void AABox::drawBox(Graphics* graphics, Pen* pen, Font* font, StringFormat* sf, Brush* b0, Brush* b1, const WCHAR* str, int layers)
+void AABox::drawBox(Graphics* graphics, Pen* pen, Font* font, StringFormat* sf, Brush* b0, Brush* b1, const WCHAR* str, int layers, int angle)
 {
 	if (layer <= layers)
 	{
 		graphics->FillRectangle(b1, box);
 		graphics->DrawRectangle(pen, box);
-		graphics->DrawString(str, -1, font, box, sf, b0);
+
+		if (angle != 0)
+		{
+			RectF tmpBox = box;
+
+			//Offset the coordinate system so that point (0, 0) is at the center of the desired area.
+			graphics->TranslateTransform(box.X + box.Width / 2, box.Y + box.Height / 2);
+
+			//Rotate the Graphics object.
+			graphics->RotateTransform(angle);
+
+			//Offset the Drawstring method so that the center of the string matches the center.
+			box.X = -box.Width / 2;
+			box.Y = -box.Height / 2;
+			graphics->DrawString(str, -1, font, box, sf, b0);
+
+			//Reset the graphics object Transformations.
+			graphics->ResetTransform();
+
+			box = tmpBox;
+		}
+		else
+			graphics->DrawString(str, -1, font, box, sf, b0);
 	}
 }
 

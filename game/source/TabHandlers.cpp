@@ -98,3 +98,17 @@ void Game::nationScreenHandleCombinedArmsSectionTab(HWND& hWnd)
         RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
     }
 }
+
+void Game::nationScreenHandleUKEconomyEuropeTab(HWND& hWnd)
+{
+    ukTab = TAB_UKE;
+    toggleUKDisp();
+    RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+}
+
+void Game::nationScreenHandleUKEconomyPacificTab(HWND& hWnd)
+{
+    ukTab = TAB_UKP;
+    toggleUKDisp();
+    RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
+}

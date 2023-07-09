@@ -84,7 +84,7 @@ public:
 
 	void drawFrame(Graphics*, Pen*, Font*, StringFormat*, Brush*, int);
 	void drawFrameFill(Graphics*, Pen*, Font*, StringFormat*, Brush*, Brush*, int);
-	void drawBox(Graphics*, Pen*, Font*, StringFormat*, Brush*, Brush*, const WCHAR*, int);
+	void drawBox(Graphics*, Pen*, Font*, StringFormat*, Brush*, Brush*, const WCHAR*, int, int = 0);
 
 	RectF box;
 	int layer;

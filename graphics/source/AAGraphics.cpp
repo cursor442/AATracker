@@ -320,12 +320,12 @@ void AAGraphics::config(HDC& hdc)
 	purchaseFormat->SetTabStops(0.0f, 6, tabs1);
 
 	vertLeftCenterFormat = new StringFormat();
-	vertLeftCenterFormat->SetAlignment(StringAlignmentNear);
-	vertLeftCenterFormat->SetLineAlignment(StringAlignmentCenter);
+	vertLeftCenterFormat->SetAlignment(StringAlignmentCenter);
+	vertLeftCenterFormat->SetLineAlignment(StringAlignmentFar);
 	vertLeftCenterFormat->SetFormatFlags(StringFormatFlagsDirectionVertical);
 	vertRightCenterFormat = new StringFormat();
 	vertRightCenterFormat->SetAlignment(StringAlignmentCenter);
-	vertRightCenterFormat->SetLineAlignment(StringAlignmentNear);
+	vertRightCenterFormat->SetLineAlignment(StringAlignmentFar);
 	vertRightCenterFormat->SetFormatFlags(StringFormatFlagsDirectionVertical);
 
 	HFONT* tmp_font16_bl = new HFONT(CreateFont(19, 0, 0, 0, 500, 0, 0, 0, 0, 0, 0, PROOF_QUALITY,

@@ -8,11 +8,11 @@ WCHAR     Game::szWindowClass[MAX_LOADSTRING];
 HINSTANCE Game::hInst;                     
 ULONG_PTR Game::gdiplusToken;
 
-UINT Game::whichScreen = MAIN_SCREEN;
-UINT Game::purchaseTab;
-UINT Game::ukTab;
-UINT Game::whichTab;                       
-UINT Game::lastScreen = MAIN_SCREEN;
+int  Game::whichScreen = MAIN_SCREEN;
+int  Game::purchaseTab;
+int  Game::ukTab;
+int  Game::whichTab;                       
+int  Game::lastScreen = MAIN_SCREEN;
 bool Game::success = false;
 int  Game::price;
 int  Game::captureAmount = 0;
@@ -70,7 +70,7 @@ int  Game::dbg_grid = 0;
 // Tabs
 int  Game::nationScreenTabs = TB_ID_NULL;
 int  Game::purchaseSectionTabs = TB_ID_NULL;
-HWND Game::ukEconomyTabs = NULL;
+int  Game::ukEconomyTabs = TB_ID_NULL;
 HWND Game::logScreenTabs = NULL;
 
 // Gameboard

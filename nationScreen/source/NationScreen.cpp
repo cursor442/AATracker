@@ -140,7 +140,7 @@ void Game::hideNationScreen()
     hideNationScreenPurchButtons();
 
     hideTabBar(purchaseSectionTabs);
-    hideButton(ukEconomyTabs);
+    hideTabBar(ukEconomyTabs);
 }
 
 void Game::hideNationScreenPurchButtons()

@@ -23,6 +23,8 @@ public:
 	void drawMiniSpread(Graphics*, Spreadsheet*, bool, bool, int);
 	void drawMiniSpread(Graphics*, Spreadsheet*, int, int, bool, bool, int);
 
+	REAL getBoxEdge(int, int, int);
+
 private:
 
 	void valConv(WCHAR*, int);

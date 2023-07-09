@@ -46,9 +46,9 @@ public:
 	static WCHAR szWindowClass[MAX_LOADSTRING];            // The main window class name
 	static HINSTANCE hInst;                                // Current instance
 	static ULONG_PTR gdiplusToken;
-	static UINT whichScreen, purchaseTab, ukTab;           // The current screen, purchase, UK tabs
-	static UINT whichTab;                                  // Current log tab
-	static UINT lastScreen;                                // For clearing buttons
+	static int  whichScreen, purchaseTab, ukTab;           // The current screen, purchase, UK tabs
+	static int  whichTab;                                  // Current log tab
+	static int  lastScreen;                                // For clearing buttons
 	static bool success;
 	static int price;
 	static int captureAmount;
@@ -110,7 +110,7 @@ public:
 	// Tabs
 	static int  nationScreenTabs;
 	static int  purchaseSectionTabs;
-	static HWND ukEconomyTabs;
+	static int  ukEconomyTabs;
 	static HWND logScreenTabs;
 
 	// Gameboard
@@ -247,6 +247,9 @@ public:
 	static void nationScreenHandlePurchaseSectionTab(HWND&);
 	static void nationScreenHandleNeutralSectionTab(HWND&);
 	static void nationScreenHandleCombinedArmsSectionTab(HWND&);
+
+	static void nationScreenHandleUKEconomyEuropeTab(HWND&);
+	static void nationScreenHandleUKEconomyPacificTab(HWND&);
 
 	/////////////////////////////////////////////////////////////////////////
 	// Nation screen button handlers

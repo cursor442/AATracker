@@ -229,6 +229,39 @@ void MiniSpreadSection::drawMiniSpread(Graphics* graphics, Spreadsheet* spread, 
 	}
 }
 
+REAL MiniSpreadSection::getBoxEdge(int whichRow, int whichCol, int edge)
+{
+	AABox* tmp = miniSpreadFrame;
+
+	if (whichRow < SPREAD_ROWS && whichCol < SPREAD_COLS)
+		tmp = spreadBox[whichRow][whichCol];
+
+	switch (edge)
+	{
+	case BOX_LEFT:
+		return tmp->box.GetLeft();
+		break;
+	case BOX_RIGHT:
+		return tmp->box.GetRight();
+		break;
+	case BOX_TOP:
+		return tmp->box.GetTop();
+		break;
+	case BOX_BOTTOM:
+		return tmp->box.GetBottom();
+		break;
+	case BOX_WIDTH:
+		return tmp->box.Width;
+		break;
+	case BOX_HEIGHT:
+		return tmp->box.Height;
+		break;
+	default:
+		return 0;
+		break;
+	}
+}
+
 void MiniSpreadSection::valConv(WCHAR* c, int val)
 {
 	if (val > 99)

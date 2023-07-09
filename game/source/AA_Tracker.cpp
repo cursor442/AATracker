@@ -432,57 +432,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             case TCN_SELCHANGE:
             {
-                //int tab = TabCtrl_GetCurSel(game->nationScreenTabs);
-                //int pur = TabCtrl_GetCurSel(game->purchaseSectionTabs);
-                int uks = TabCtrl_GetCurSel(game->ukEconomyTabs);
                 int log = TabCtrl_GetCurSel(game->logScreenTabs);
 
                 switch (game->gfx->tabs->getTabState(game->nationScreenTabs))
                 {
                 case TAB_MAIN:
                 {
-                    if (game->whichScreen != NATION_SCREEN)
-                    {
-                        game->whichScreen = NATION_SCREEN;
-                        game->nsSection = ALL_SECT;
-                        game->nsPhase = ALL_PHASE;
-                        game->nsNeut = NEUT_ALL;
-                        RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
-                    }
-                    else
-                    {
-                        if (game->purchaseTab != game->gfx->tabs->getTabState(game->purchaseSectionTabs)) // Purchase section tab has changed
-                        {
-                            game->purchaseTab = game->gfx->tabs->getTabState(game->purchaseSectionTabs);
-                            game->nsSection = PURCH_SECT; // Only update this section
-
-                            if (game->purchaseTab == TAB_NEUTRAL)
-                                game->nsNeut = NEUT_ALL;
-
-                            RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
-                        }
-                        else if (game->ukTab != uks)
-                        {
-                            game->ukTab = uks;
-                            game->toggleUKDisp();
-                            RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
-                        }
-                        else
-                            RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
-                    }
                     break;
                 }
                 case TAB_SPREAD_AXIS:
-                    game->whichScreen = SPREAD0_SCREEN;
-                    RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
                     break;
                 case TAB_SPREAD_ALLIES:
-                    game->whichScreen = SPREAD1_SCREEN;
-                    RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
                     break;
                 case TAB_GRAPH:
-                    game->whichScreen = GRAPH_SCREEN;
-                    RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
                     break;
                 case TAB_LOG:
                     game->whichScreen = LOG_SCREEN;
@@ -490,12 +452,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                     RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
                     break;
                 case TAB_RESEARCH:
-                    game->whichScreen = RES_SCREEN;
-                    RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
                     break;
                 case TAB_REFERENCE:
-                    game->whichScreen = REF_SCREEN;
-                    RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
                     break;
                 }
                 break;

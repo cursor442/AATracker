@@ -212,44 +212,6 @@ void Game::configNationScreen()
 		screenFrames.s[NATION_SCREEN].b[SPREAD_SECT_IDX] = SPREAD_SECT;
 	}
 
-	// UK Global economy tabs
-	if (ukEconomyTabs == NULL)
-	{
-		ukEconomyTabs = CreateWindow(
-			WC_TABCONTROL,
-			L"",
-			WS_CHILD | WS_CLIPSIBLINGS | TCS_FLATBUTTONS |
-			TCS_MULTILINE | TCS_VERTICAL | TCS_TABS,
-			miniSpreadFrame.X - 20,
-			miniSpreadFrame.Y + 2,
-			20,
-			miniSpreadFrame.Height - 5,
-			main_Wnd,
-			NULL,
-			hInst,
-			NULL);
-
-		TCITEM tie;
-		TCHAR achTemp[22];
-		achTemp[0] = '\0';
-
-		tie.mask = TCIF_TEXT | TCIF_IMAGE;
-		tie.iImage = -1;
-		tie.pszText = achTemp;
-
-		// Europe tab
-		wcsncpy_s(achTemp, L"      Europe      ", 19);
-		tie.pszText = achTemp;
-		if (TabCtrl_InsertItem(ukEconomyTabs, TAB_UKE, &tie) == -1)
-			DestroyWindow(ukEconomyTabs);
-
-		// Pacific tab
-		wcsncpy_s(achTemp, L"       Pacific      ", 21);
-		tie.pszText = achTemp;
-		if (TabCtrl_InsertItem(ukEconomyTabs, TAB_UKP, &tie) == -1)
-			DestroyWindow(ukEconomyTabs);
-	}
-
 	// Warchest section
 	if (warchestSection == NULL)
 	{
@@ -341,6 +303,21 @@ void Game::configNationScreen()
 			gfx->tabs->addTab(graphics, purchaseSectionTabs, "Combined Arms", nationScreenHandleNeutralSectionTab);
 			gfx->tabs->addTab(graphics, purchaseSectionTabs, "Neutral Territories", nationScreenHandleCombinedArmsSectionTab);
 			gfx->tabs->deactivateTab(purchaseSectionTabs);
+		}
+
+		// UK Global economy tabs
+		if (ukEconomyTabs == TB_ID_NULL)
+		{
+			ukEconomyTabs = gfx->tabs->createTabId();
+
+			RectF rect = { miniSpreadFrame.X - 22, miniSpreadSection->getBoxEdge(0, TURN_POS, BOX_TOP),
+				22, miniSpreadSection->getBoxEdge(SPREAD_ROWS - 1, TURN_POS, BOX_BOTTOM) - miniSpreadSection->getBoxEdge(0, TURN_POS, BOX_TOP) };
+
+			gfx->tabs->registerTab(graphics, ukEconomyTabs, NATION_SCREEN, TB_CFG_EVEN, TB_ORT_LEFT, rect, "UK Economy Tabs", true, false);
+			gfx->tabs->activateTab(ukEconomyTabs);
+			gfx->tabs->addTab(graphics, ukEconomyTabs, "Europe", nationScreenHandleUKEconomyEuropeTab);
+			gfx->tabs->addTab(graphics, ukEconomyTabs, "Pacific", nationScreenHandleUKEconomyPacificTab);
+			gfx->tabs->deactivateTab(ukEconomyTabs);
 		}
 	}
 	
