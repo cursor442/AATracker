@@ -31,6 +31,8 @@ public:
 	void executeButton(HWND);
 	void executeButton(HWND, int);
 
+	void setIsDrawn(bool);
+
 	void setButtonValInt(int);
 	int  getButtonValInt();
 

@@ -7,7 +7,6 @@ void Game::nationScreenHandleMainScreenTab(HWND& hWnd)
     {
         whichScreen = NATION_SCREEN;
         nsSection = ALL_SECT;
-        nsPhase = ALL_PHASE;
         nsNeut = NEUT_ALL;
         RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
     }
@@ -74,7 +73,7 @@ void Game::nationScreenHandlePurchaseSectionTab(HWND& hWnd)
     {
         purchaseTab = TAB_PURCH;
         nsSection = PURCH_SECT;
-        nsNeut = NEUT_ALL;
+        hideNeutralBox();
         RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
     }
 }
@@ -95,7 +94,7 @@ void Game::nationScreenHandleCombinedArmsSectionTab(HWND& hWnd)
     {
         purchaseTab = TAB_COMB;
         nsSection = PURCH_SECT;
-        nsNeut = NEUT_ALL;
+        hideNeutralBox();
         RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
     }
 }

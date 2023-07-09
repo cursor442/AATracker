@@ -6,6 +6,23 @@ void Game::drawNameFrame(HDC& hdc)
     nameSection->drawNameBox(graphics, dbg_boundbox, dbg_sections, dbg_layers);
 }
 
+void Game::drawStatusFrame(HDC& hdc)
+{
+    int gameType = gameBoard->getGameType();
+    int axisCap = gameBoard->getNumCapCities(SIDE_AXIS);
+    int axisEur = 0;
+    int axisPac = 0;
+    if (gameType == GLOBAL_GAME)
+    {
+        axisEur = gameBoard->getNumVicCities(VIC_AXIS_EUR);
+        axisPac = gameBoard->getNumVicCities(VIC_AXIS_PAC);
+    }
+    int allyCap = gameBoard->getNumCapCities(SIDE_ALLIES);
+
+    statusSection->updateStatusText(axisCap, axisEur, axisPac, allyCap, gameType);
+    statusSection->drawStatusBox(graphics, gameType, dbg_boundbox, dbg_sections, dbg_layers);
+}
+
 void Game::drawPhaseFrame(HDC& hdc)
 {
     if (nsPhase == ALL_PHASE)
@@ -160,23 +177,6 @@ void Game::drawCitiesFrame(HDC& hdc)
     citiesSection->drawCityBox(graphics, gameType, dbg_boundbox, dbg_sections, dbg_layers);
 }
 
-void Game::drawStatusFrame(HDC& hdc)
-{
-    int gameType = gameBoard->getGameType();
-    int axisCap = gameBoard->getNumCapCities(SIDE_AXIS);
-    int axisEur = 0;
-    int axisPac = 0;
-    if (gameType == GLOBAL_GAME)
-    {
-        axisEur = gameBoard->getNumVicCities(VIC_AXIS_EUR);
-        axisPac = gameBoard->getNumVicCities(VIC_AXIS_PAC);
-    }
-    int allyCap = gameBoard->getNumCapCities(SIDE_ALLIES);
-
-    statusSection->updateStatusText(axisCap, axisEur, axisPac, allyCap, gameType);
-    statusSection->drawStatusBox(graphics, gameType, dbg_boundbox, dbg_sections, dbg_layers);
-}
-
 void Game::drawPurchaseFrame(HDC& hdc)
 {
     int currNat = gameBoard->getGameCurrNation();
@@ -239,15 +239,6 @@ void Game::drawPurchaseCostUpdate(HDC& hdc)
     purchaseSection->drawPurchaseBox(graphics, true, dbg_boundbox, dbg_sections, dbg_layers);
 }
 
-void Game::drawCombinedArms(HDC& hdc)
-{
-    //hFont = (HFONT)SelectObject(hdc, normalFont);
-    //hBrush = (HBRUSH)SelectObject(hdc, tileBrush);
-
-    //Rectangle(hdc, purchaseFrame.left, purchaseFrame.top, purchaseFrame.right, purchaseFrame.bottom);
-
-}
-
 void Game::drawNeutralBox(HDC& hdc)
 {
     int gameType = gameBoard->getGameType();
@@ -281,6 +272,15 @@ void Game::drawNeutralBox(HDC& hdc)
     }
 
     nsNeut = NEUT_NONE;
+}
+
+void Game::drawCombinedArms(HDC& hdc)
+{
+    //hFont = (HFONT)SelectObject(hdc, normalFont);
+    //hBrush = (HBRUSH)SelectObject(hdc, tileBrush);
+
+    //Rectangle(hdc, purchaseFrame.left, purchaseFrame.top, purchaseFrame.right, purchaseFrame.bottom);
+
 }
 
 void Game::drawMiniSpread(HDC& hdc)
@@ -541,5 +541,80 @@ void Game::drawBonusFrame(HDC& hdc)
         bonusSection->drawBonusBox(graphics, true, dbg_boundbox, dbg_sections, dbg_layers);
     }
 
+    nsBonusRow = BONS_ALL;
+}
+
+
+void Game::hideNameFrame(bool clear)
+{
+
+}
+
+void Game::hideStatusFrame(bool clear)
+{
+
+}
+
+void Game::hidePhaseFrame(bool clear)
+{
+    nsPhase = ALL_PHASE;
+}
+
+void Game::hidePhaseFrameButtons()
+{
+    hideButton(nextPhaseButton);
+    hideButton(researchButton);
+    hideButton(declareWarButton);
+    hideButton(captureTerritoryButton);
+    hideButton(attackNeutralButton);
+    hideButton(occupyNeutralButton);
+    hideButton(attackMongoliaButton);
+    hideButton(attackSovietButton);
+    hideButton(attackJapanButton);
+}
+
+void Game::hideWarFrame(bool clear)
+{
+
+}
+
+void Game::hideCitiesFrame(bool clear)
+{
+
+}
+
+void Game::hidePurchaseFrame(bool clear)
+{
+    nsUnit = PURCH_TITLE;
+}
+
+void Game::hidePurchaseFrameButtons()
+{
+    purchaseSection->hidePurchaseButtons();
+}
+
+void Game::hideNeutralBox(bool clear)
+{
+    nsNeut = NEUT_ALL;
+}
+
+void Game::hideCombinedArms(bool clear)
+{
+
+}
+
+void Game::hideMiniSpread(bool clear)
+{
+    nsTurn = SPREAD_ALL_ROWS;
+    nsCol = SPREAD_ALL_COLS;
+}
+
+void Game::hideWarchestFrame(bool clear)
+{
+    nsWC = WC_ALL;
+}
+
+void Game::hideBonusFrame(bool clear)
+{
     nsBonusRow = BONS_ALL;
 }

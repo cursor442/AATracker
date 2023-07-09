@@ -1003,10 +1003,11 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	}
 }
 
-void PurchaseSection::configPurchaseBoxFunctions(void (*func0)(int, bool), void (*func1)(int, bool))
+void PurchaseSection::configPurchaseBoxFunctions(void (*func0)(int, bool), void (*func1)(int, bool), void (*func2)(int))
 {
 	showButton = func0;
 	hideButton = func1;
+	hideButtonNoDraw = func2;
 }
 
 void PurchaseSection::configDrawTools(Pen* p0, StringFormat* sf0, Font* f0, Font* f1, SolidBrush* b0, SolidBrush* b1, SolidBrush* b2)
@@ -1741,28 +1742,54 @@ void PurchaseSection::showPurchaseButtons(int id)
 	}
 }
 
-void PurchaseSection::hidePurchaseButtons()
+void PurchaseSection::hidePurchaseButtons(bool draw)
 {
-	hideButton(infDButton,     false); hideButton(infUButton,     false);
-	hideButton(artDButton,     false); hideButton(artUButton,     false);
-	hideButton(mechDButton,    false); hideButton(mechUButton,    false);
-	hideButton(tankDButton,    false); hideButton(tankUButton,    false);
-	hideButton(aaaDButton,     false); hideButton(aaaUButton,     false);
-	hideButton(fightDButton,   false); hideButton(fightUButton,   false);
-	hideButton(tactDButton,    false); hideButton(tactUButton,    false);
-	hideButton(stratDButton,   false); hideButton(stratUButton,   false);
-	hideButton(battleDButton,  false); hideButton(battleUButton,  false);
-	hideButton(airccDButton,   false); hideButton(airccUButton,   false);
-	hideButton(cruiseDButton,  false); hideButton(cruiseUButton,  false);
-	hideButton(destrDButton,   false); hideButton(destrUButton,   false);
-	hideButton(subDButton,     false); hideButton(subUButton,     false);
-	hideButton(transDButton,   false); hideButton(transUButton,   false);
-	hideButton(majorDButton,   false); hideButton(majorUButton,   false);
-	hideButton(minorDButton,   false); hideButton(minorUButton,   false);
-	hideButton(minorUpDButton, false); hideButton(minorUpUButton, false);
-	hideButton(airbDButton,    false); hideButton(airbUButton,    false);
-	hideButton(navbDButton,    false); hideButton(navbUButton,    false);
-	hideButton(repairDButton,  false); hideButton(repairUButton,  false);
+	if (draw)
+	{
+		hideButton(infDButton,     false); hideButton(infUButton,     false);
+		hideButton(artDButton,     false); hideButton(artUButton,     false);
+		hideButton(mechDButton,    false); hideButton(mechUButton,    false);
+		hideButton(tankDButton,    false); hideButton(tankUButton,    false);
+		hideButton(aaaDButton,     false); hideButton(aaaUButton,     false);
+		hideButton(fightDButton,   false); hideButton(fightUButton,   false);
+		hideButton(tactDButton,    false); hideButton(tactUButton,    false);
+		hideButton(stratDButton,   false); hideButton(stratUButton,   false);
+		hideButton(battleDButton,  false); hideButton(battleUButton,  false);
+		hideButton(airccDButton,   false); hideButton(airccUButton,   false);
+		hideButton(cruiseDButton,  false); hideButton(cruiseUButton,  false);
+		hideButton(destrDButton,   false); hideButton(destrUButton,   false);
+		hideButton(subDButton,     false); hideButton(subUButton,     false);
+		hideButton(transDButton,   false); hideButton(transUButton,   false);
+		hideButton(majorDButton,   false); hideButton(majorUButton,   false);
+		hideButton(minorDButton,   false); hideButton(minorUButton,   false);
+		hideButton(minorUpDButton, false); hideButton(minorUpUButton, false);
+		hideButton(airbDButton,    false); hideButton(airbUButton,    false);
+		hideButton(navbDButton,    false); hideButton(navbUButton,    false);
+		hideButton(repairDButton,  false); hideButton(repairUButton,  false);
+	}
+	else
+	{
+		hideButtonNoDraw(infDButton    ); hideButtonNoDraw(infUButton    );
+		hideButtonNoDraw(artDButton    ); hideButtonNoDraw(artUButton    );
+		hideButtonNoDraw(mechDButton   ); hideButtonNoDraw(mechUButton   );
+		hideButtonNoDraw(tankDButton   ); hideButtonNoDraw(tankUButton   );
+		hideButtonNoDraw(aaaDButton    ); hideButtonNoDraw(aaaUButton    );
+		hideButtonNoDraw(fightDButton  ); hideButtonNoDraw(fightUButton  );
+		hideButtonNoDraw(tactDButton   ); hideButtonNoDraw(tactUButton   );
+		hideButtonNoDraw(stratDButton  ); hideButtonNoDraw(stratUButton  );
+		hideButtonNoDraw(battleDButton ); hideButtonNoDraw(battleUButton );
+		hideButtonNoDraw(airccDButton  ); hideButtonNoDraw(airccUButton  );
+		hideButtonNoDraw(cruiseDButton ); hideButtonNoDraw(cruiseUButton );
+		hideButtonNoDraw(destrDButton  ); hideButtonNoDraw(destrUButton  );
+		hideButtonNoDraw(subDButton    ); hideButtonNoDraw(subUButton    );
+		hideButtonNoDraw(transDButton  ); hideButtonNoDraw(transUButton  );
+		hideButtonNoDraw(majorDButton  ); hideButtonNoDraw(majorUButton  );
+		hideButtonNoDraw(minorDButton  ); hideButtonNoDraw(minorUButton  );
+		hideButtonNoDraw(minorUpDButton); hideButtonNoDraw(minorUpUButton);
+		hideButtonNoDraw(airbDButton   ); hideButtonNoDraw(airbUButton   );
+		hideButtonNoDraw(navbDButton   ); hideButtonNoDraw(navbUButton   );
+		hideButtonNoDraw(repairDButton ); hideButtonNoDraw(repairUButton );
+	}
 }
 
 REAL PurchaseSection::getBoxEdge(int whichBox, int edge)

@@ -33,15 +33,15 @@ bool Game::NationScreen(HDC& hdc, PAINTSTRUCT& ps)
                 drawPurchaseFrame(hdc);
                 drawPurchaseFrameButtons(true);
             }
-            else if (purchaseTab == TAB_COMB)
-            {
-                hideNationScreenPurchButtons();
-                drawCombinedArms(hdc);
-            }
             else if (purchaseTab == TAB_NEUTRAL)
             {
-                hideNationScreenPurchButtons();
+                //hidePurchaseFrameButtons();
                 drawNeutralBox(hdc);
+            }
+            else if (purchaseTab == TAB_COMB)
+            {
+                //hidePurchaseFrameButtons();
+                drawCombinedArms(hdc);
             }
         }
 
@@ -89,15 +89,15 @@ bool Game::NationScreen(HDC& hdc, PAINTSTRUCT& ps)
                 drawPurchaseFrame(hdc);
                 drawPurchaseFrameButtons();
             }
-            else if (purchaseTab == TAB_COMB)
-            {
-                hideNationScreenPurchButtons();
-                drawCombinedArms(hdc);
-            }
             else if (purchaseTab == TAB_NEUTRAL)
             {
-                hideNationScreenPurchButtons();
+                hidePurchaseFrameButtons();
                 drawNeutralBox(hdc);
+            }
+            else if (purchaseTab == TAB_COMB)
+            {
+                hidePurchaseFrameButtons();
+                drawCombinedArms(hdc);
             }
             showTabBar(purchaseSectionTabs);
         }
@@ -127,23 +127,26 @@ bool Game::NationScreen(HDC& hdc, PAINTSTRUCT& ps)
 
 void Game::hideNationScreen()
 {
-    hideButton(nextPhaseButton);
-    hideButton(researchButton);
-    hideButton(declareWarButton);
-    hideButton(captureTerritoryButton);
-    hideButton(attackNeutralButton);
-    hideButton(occupyNeutralButton);
-    hideButton(attackMongoliaButton);
-    hideButton(attackSovietButton);
-    hideButton(attackJapanButton);
+    hideNameFrame();
+    hideStatusFrame();
+    hidePhaseFrame();
+    hidePhaseFrameButtons();
+    hideWarFrame();
+    hideCitiesFrame();
 
-    hideNationScreenPurchButtons();
-
+    if (purchaseTab == TAB_PURCH)
+    {
+        hidePurchaseFrame();
+        hidePurchaseFrameButtons();
+    }
+    else if (purchaseTab == TAB_NEUTRAL)
+        hideNeutralBox();
+    else if (purchaseTab == TAB_COMB)
+        hideCombinedArms();
     hideTabBar(purchaseSectionTabs);
+    
+    hideMiniSpread();
     hideTabBar(ukEconomyTabs);
-}
-
-void Game::hideNationScreenPurchButtons()
-{
-    purchaseSection->hidePurchaseButtons();
+    hideWarchestFrame();
+    hideBonusFrame();
 }

@@ -61,12 +61,6 @@ void Game::hideTabBar(int tab)
     gfx->tabs->deactivateTab(tab);
 }
 
-void Game::showButton(HWND& button)
-{
-    ShowWindow(button, SW_SHOW);
-    gfx->tooltips->activateTooltip((int)button);
-}
-
 void Game::showButton(int button, bool tt)
 {
     gfx->buttons->activateButton(button);
@@ -76,12 +70,6 @@ void Game::showButton(int button, bool tt)
         gfx->tooltips->activateTooltip(button);
 }
 
-void Game::hideButton(HWND& button)
-{
-    ShowWindow(button, SW_HIDE);
-    gfx->tooltips->deactivateTooltip((int)button);
-}
-
 void Game::hideButton(int button, bool tt)
 {
     gfx->buttons->hideButton(button, graphics);
@@ -89,4 +77,11 @@ void Game::hideButton(int button, bool tt)
 
     if (tt)
         gfx->tooltips->deactivateTooltip(button);
+}
+
+void Game::hideButtonNoDraw(int button)
+{
+    gfx->buttons->hideButton(button);
+    gfx->buttons->deactivateButton(button);
+    gfx->tooltips->deactivateTooltip(button);
 }

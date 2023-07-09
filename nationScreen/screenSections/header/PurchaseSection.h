@@ -16,7 +16,7 @@ public:
 
 	void configurePurchaseBox(Graphics*, HWND&, RectF&, AAButtons*, void (*purchaseButton)(HWND&, int), int);
 	void configPurchaseButtons(Graphics*, AAButtons*, void (*purchaseButton)(HWND&, int));
-	void configPurchaseBoxFunctions(void (*showButton)(int, bool), void (*hideButton)(int, bool));
+	void configPurchaseBoxFunctions(void (*showButton)(int, bool), void (*hideButton)(int, bool), void (*hideButtonNoDraw)(int));
 	void configDrawTools(Pen*, StringFormat*, Font*, Font*, SolidBrush*, SolidBrush*, SolidBrush*);
 
 	void resetPurchaseText();
@@ -32,7 +32,7 @@ public:
 
 	void showPurchaseButtons();
 	void showPurchaseButtons(int);
-	void hidePurchaseButtons();
+	void hidePurchaseButtons(bool = false);
 
 	REAL getBoxEdge(int, int);
 
@@ -57,6 +57,7 @@ private:
 	AAButtons* buttons;
 	void (*showButton)(int, bool);
 	void (*hideButton)(int, bool);
+	void (*hideButtonNoDraw)(int);
 	int infDButton, infUButton;
 	int artDButton, artUButton;
 	int mechDButton, mechUButton;

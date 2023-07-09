@@ -191,6 +191,11 @@ void AAButton::executeButton(HWND hWnd, int val)
 	bbFunction1(hWnd, val);
 }
 
+void AAButton::setIsDrawn(bool val)
+{
+	isDrawn = val;
+}
+
 void AAButton::setButtonValInt(int val)
 {
 	bbValInt = val;

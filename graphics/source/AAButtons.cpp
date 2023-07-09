@@ -136,6 +136,14 @@ void AAButtons::hideButton(int id, Graphics* graphics)
 		activeButtons[currIdx]->hideButton(graphics);
 }
 
+void AAButtons::hideButton(int id)
+{
+	convIdToIdx(id);
+
+	if (currIdx != BB_ID_NULL)
+		activeButtons[currIdx]->setIsDrawn(false);
+}
+
 bool AAButtons::pressButton(int id)
 {
 	convIdToIdx(id);

@@ -29,6 +29,7 @@ public:
 
 	void drawButton(int, Graphics*, bool, bool, int);
 	void hideButton(int, Graphics*);
+	void hideButton(int);
 
 	bool pressButton(int);
 	bool releaseButton(int);

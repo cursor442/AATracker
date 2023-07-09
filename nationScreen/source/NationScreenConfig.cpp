@@ -160,7 +160,7 @@ void Game::configNationScreen()
 		purchaseFrame.Height = nationScreenWindow0.GetBottom() - purchaseFrame.Y;
 		purchaseFrame.Inflate(-24, -24);
 		purchaseSection->configurePurchaseBox(graphics, main_Wnd, purchaseFrame, gfx->buttons, purchaseButton, 1);
-		purchaseSection->configPurchaseBoxFunctions(showButton, hideButton);
+		purchaseSection->configPurchaseBoxFunctions(showButton, hideButton, hideButtonNoDraw);
 
 		if (screenFrames.s[NATION_SCREEN].f.size() < (PURCH_SECT_IDX + 1))
 		{

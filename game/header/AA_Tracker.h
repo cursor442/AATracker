@@ -92,10 +92,9 @@ public:
 	static bool newButtonClicked;             // The mouse is currently clicked and held on an active button that is different from the initial click 
 	static bool newButtonUnclicked;           // The mouse is currently held on an active button that is different from the initial click
 	static int  currButton;                   // The ID of the current button selected
-	static void showButton(HWND&);            // Draw the currently selected button
 	static void showButton(int, bool = true); // Draw the currently selected button
-	static void hideButton(HWND&);            // Hide the currently selected button
 	static void hideButton(int, bool = true); // Hide the currently selected button
+	static void hideButtonNoDraw(int);        // Hide the currently selected button without drawing over it
 	
 	// Tooltips
 	static bool activeTooltip;              // The mouse has been hovering over a tooltip-enabled location for long enough
@@ -191,7 +190,6 @@ public:
 	// Nation screen draw
 	static bool NationScreen(HDC&, PAINTSTRUCT&);
 	static void hideNationScreen();
-	static void hideNationScreenPurchButtons();
 	
 	// Nation screen section updates
 	static void drawNameFrame(HDC&);
@@ -202,13 +200,27 @@ public:
 	static void drawCitiesFrame(HDC&);
 	static void drawPurchaseFrame(HDC&);
 	static void drawPurchaseFrameButtons(bool = false);
-	static void drawCombinedArms(HDC&); // Combined Arms reference
-	static void drawNeutralBox(HDC&); // Neutral territories status
 	static void drawPurchaseCostUpdate(HDC&);
+	static void drawNeutralBox(HDC&); // Neutral territories status
+	static void drawCombinedArms(HDC&); // Combined Arms reference
 	static void drawMiniSpread(HDC&);
 	static void drawUKEconTabs(bool);
 	static void drawWarchestFrame(HDC&);
 	static void drawBonusFrame(HDC&);
+
+	static void hideNameFrame(bool = false);
+	static void hideStatusFrame(bool = false);
+	static void hidePhaseFrame(bool = false);
+	static void hidePhaseFrameButtons();
+	static void hideWarFrame(bool = false);
+	static void hideCitiesFrame(bool = false);
+	static void hidePurchaseFrame(bool = false);
+	static void hidePurchaseFrameButtons();
+	static void hideNeutralBox(bool = false);
+	static void hideCombinedArms(bool = false);
+	static void hideMiniSpread(bool = false);
+	static void hideWarchestFrame(bool = false);
+	static void hideBonusFrame(bool = false);
 
 	// Nation screen auxiliary functions
 	static void valConv(HDC&, RECT&, uint16_t);
