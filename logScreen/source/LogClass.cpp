@@ -156,7 +156,7 @@ void Log::addLogText(int turn, int verb, int nat, int tgt, int object, int indir
 			incCell();
 		}
 
-		logBox[tgtPos.page][tgtPos.col][tgtPos.row]->setText(turn + 1, verb, nat, tgt);
+		logBox[tgtPos.page][tgtPos.col][tgtPos.row]->setText(turn, verb, nat, tgt);
 
 		break;
 	}
@@ -172,11 +172,11 @@ void Log::addLogText(int turn, int verb, int nat, int tgt, int object, int indir
 			}
 
 			if (logBox[capPos[object].page][capPos[object].col][capPos[object].row]->isSpace(V_CAPTURE, tgt))
-				logBox[capPos[object].page][capPos[object].col][capPos[object].row]->setText(turn + 1, V_CAPTURE, nat, tgt, object);
+				logBox[capPos[object].page][capPos[object].col][capPos[object].row]->setText(turn, V_CAPTURE, nat, tgt, object);
 			else
 			{
 				shiftCells(capPos[object].page, capPos[object].col, capPos[object].row, V_CAPTURE, object, indirect);
-				logBox[capPos[object].page][capPos[object].col][capPos[object].row]->setText(turn + 1, V_CAPTURE, nat, tgt, object);
+				logBox[capPos[object].page][capPos[object].col][capPos[object].row]->setText(turn, V_CAPTURE, nat, tgt, object);
 			}
 		}
 		else // Occupy
@@ -189,11 +189,11 @@ void Log::addLogText(int turn, int verb, int nat, int tgt, int object, int indir
 			}
 
 			if (logBox[occPos.page][occPos.col][occPos.row]->isSpace(V_CAPTURE, tgt))
-				logBox[occPos.page][occPos.col][occPos.row]->setText(turn + 1, V_OCCUPY, nat, tgt);
+				logBox[occPos.page][occPos.col][occPos.row]->setText(turn, V_OCCUPY, nat, tgt);
 			else
 			{
 				shiftCells(occPos.page, occPos.col, occPos.row, V_CAPTURE, object, indirect);
-				logBox[occPos.page][occPos.col][occPos.row]->setText(turn + 1, V_OCCUPY, nat, tgt);
+				logBox[occPos.page][occPos.col][occPos.row]->setText(turn, V_OCCUPY, nat, tgt);
 			}
 		}
 
@@ -214,11 +214,11 @@ void Log::addLogText(int turn, int verb, int nat, int tgt, int object, int indir
 		int ind = indirect;
 
 		if (logBox[libPos[obj][ind].page][libPos[obj][ind].col][libPos[obj][ind].row]->isSpace(V_LIBERATE, tgt))
-			logBox[libPos[obj][ind].page][libPos[obj][ind].col][libPos[obj][ind].row]->setText(turn + 1, V_LIBERATE, nat, tgt, object, indirect);
+			logBox[libPos[obj][ind].page][libPos[obj][ind].col][libPos[obj][ind].row]->setText(turn, V_LIBERATE, nat, tgt, object, indirect);
 		else
 		{
 			shiftCells(libPos[obj][ind].page, libPos[obj][ind].col, libPos[obj][ind].row, V_LIBERATE, object, indirect);
-			logBox[libPos[obj][ind].page][libPos[obj][ind].col][libPos[obj][ind].row]->setText(turn + 1, V_LIBERATE, nat, tgt, object, indirect);
+			logBox[libPos[obj][ind].page][libPos[obj][ind].col][libPos[obj][ind].row]->setText(turn, V_LIBERATE, nat, tgt, object, indirect);
 		}
 
 		break;
@@ -233,11 +233,11 @@ void Log::addLogText(int turn, int verb, int nat, int tgt, int object, int indir
 			}
 
 			if (logBox[recPos[object].page][recPos[object].col][recPos[object].row]->isSpace(V_RECLAIM, tgt))
-				logBox[recPos[object].page][recPos[object].col][recPos[object].row]->setText(turn + 1, V_RECLAIM, nat, tgt, object);
+				logBox[recPos[object].page][recPos[object].col][recPos[object].row]->setText(turn, V_RECLAIM, nat, tgt, object);
 			else
 			{
 				shiftCells(recPos[object].page, recPos[object].col, recPos[object].row, V_RECLAIM, object, indirect);
-				logBox[recPos[object].page][recPos[object].col][recPos[object].row]->setText(turn + 1, V_RECLAIM, nat, tgt, object);
+				logBox[recPos[object].page][recPos[object].col][recPos[object].row]->setText(turn, V_RECLAIM, nat, tgt, object);
 			}
 
 		break;
@@ -252,11 +252,11 @@ void Log::addLogText(int turn, int verb, int nat, int tgt, int object, int indir
 		}
 
 		if (logBox[occPos.page][occPos.col][occPos.row]->isSpace(V_OCCUPY, tgt))
-			logBox[occPos.page][occPos.col][occPos.row]->setText(turn + 1, V_OCCUPY, nat, tgt);
+			logBox[occPos.page][occPos.col][occPos.row]->setText(turn, V_OCCUPY, nat, tgt);
 		else
 		{
 			shiftCells(occPos.page, occPos.col, occPos.row, V_OCCUPY, object, indirect);
-			logBox[occPos.page][occPos.col][occPos.row]->setText(turn + 1, V_OCCUPY, nat, tgt);
+			logBox[occPos.page][occPos.col][occPos.row]->setText(turn, V_OCCUPY, nat, tgt);
 		}
 
 		break;
@@ -271,18 +271,18 @@ void Log::addLogText(int turn, int verb, int nat, int tgt, int object, int indir
 		}
 
 		if (logBox[resPos.page][resPos.col][resPos.row]->isSpace(V_RESEARCH, tgt))
-			logBox[resPos.page][resPos.col][resPos.row]->setText(turn + 1, V_RESEARCH, nat, tgt);
+			logBox[resPos.page][resPos.col][resPos.row]->setText(turn, V_RESEARCH, nat, tgt);
 		else
 		{
 			shiftCells(resPos.page, resPos.col, resPos.row, V_RESEARCH, object, indirect);
-			logBox[resPos.page][resPos.col][resPos.row]->setText(turn + 1, V_RESEARCH, nat, tgt);
+			logBox[resPos.page][resPos.col][resPos.row]->setText(turn, V_RESEARCH, nat, tgt);
 		}
 
 		break;
 	}
 	case V_NEUTRAL_AXIS: case V_NEUTRAL_ALLY: case V_MONGOLIA:
 	{
-		logBox[currPage][currCol][currRow]->setText(turn + 1, verb, TURN_NON, TURN_NON);
+		logBox[currPage][currCol][currRow]->setText(turn, verb, TURN_NON, TURN_NON);
 		incCell();
 		break;
 	}
@@ -301,18 +301,18 @@ void Log::addLogText(int nat, vector<int>& targets, int object)
 	for (int i = 0; i < targets.size(); i++)
 	{
 		if (logBox[currPage][currCol][currRow]->isSpace(V_RECLAIM, targets[i]))
-			logBox[currPage][currCol][currRow]->setText(currTurn + 1, V_RECLAIM, nat, targets[i], object);
+			logBox[currPage][currCol][currRow]->setText(currTurn, V_RECLAIM, nat, targets[i], object);
 		else
 		{
 			incCell();
-			logBox[currPage][currCol][currRow]->setText(currTurn + 1, V_RECLAIM, nat, targets[i], object);
+			logBox[currPage][currCol][currRow]->setText(currTurn, V_RECLAIM, nat, targets[i], object);
 		}
 	}
 }
 
 void Log::addLogText(uint16_t t, WCHAR* cust)
 {
-	logBox[currPage][currCol][currRow]->setText(t + 1, cust);
+	logBox[currPage][currCol][currRow]->setText(t, cust);
 
 	incCell();
 }
@@ -1218,7 +1218,7 @@ void Log::adjustLog(int currOwn, int origOwn, vector<int> &targets)
 					for (int j = 0; j < size; j++)
 					{
 						int trgt = logBox[p][c][r]->getTrgt(j);
-						int turn = logBox[p][c][r]->getTurn() - 1;
+						int turn = logBox[p][c][r]->getTurn();
 
 						if (isInList(targets, trgt))
 						{

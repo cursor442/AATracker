@@ -1,1 +1,5 @@
-﻿  AA Tracker.vcxproj -> C:\Users\Adam\Documents\GitHub\AATracker\x64\Debug\AA Tracker.exe
+﻿  LogClass.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\logScreen\source\LogClass.cpp(1352,23): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  NationScreenSections.cpp
+  Generating Code...
+  AA Tracker.vcxproj -> C:\Users\Adam\Documents\GitHub\AATracker\x64\Debug\AA Tracker.exe
