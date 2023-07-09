@@ -1691,9 +1691,9 @@ HWND Game::getMainWnd()
 	return main_Wnd;
 }
 
-void Game::hideScreen()
+void Game::hideScreen(bool force)
 {
-	if (lastScreen != whichScreen)
+	if (lastScreen != whichScreen || force)
 	{
 		switch (lastScreen)
 		{

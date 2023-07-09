@@ -243,6 +243,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             case IDM_DBG_BOUNDBOX:
             {
+                game->hideScreen(true);
+
                 if (!game->dbg_boundbox)
                 {
                     game->dbg_boundbox = true;
@@ -259,6 +261,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             case IDM_DBG_GRID_OFF:
             {
+                game->hideScreen(true);
+
                 if (game->dbg_grid != 0)
                 {
                     game->dbg_grid = 0;
@@ -270,6 +274,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             case IDM_DBG_GRID_DIV2:
             {
+                game->hideScreen(true);
+
                 if (game->dbg_grid != 2)
                 {
                     game->dbg_grid = 2;
@@ -281,6 +287,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             case IDM_DBG_GRID_DIV3:
             {
+                game->hideScreen(true);
+
                 if (game->dbg_grid != 3)
                 {
                     game->dbg_grid = 3;
@@ -292,6 +300,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             case IDM_DBG_GRID_DIV4:
             {
+                game->hideScreen(true);
+
                 if (game->dbg_grid != 4)
                 {
                     game->dbg_grid = 4;
@@ -303,6 +313,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             case IDM_DBG_GRID_DIV5:
             {
+                game->hideScreen(true);
+
                 if (game->dbg_grid != 5)
                 {
                     game->dbg_grid = 5;
@@ -314,6 +326,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             case IDM_DBG_GRID_DIV8:
             {
+                game->hideScreen(true);
+
                 if (game->dbg_grid != 8)
                 {
                     game->dbg_grid = 8;
@@ -325,6 +339,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             case IDM_DBG_LAYERS_ALL:
             {
+                game->hideScreen(true);
+
                 if (game->dbg_layers != 99)
                 {
                     game->dbg_layers = 99;
@@ -336,6 +352,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             case IDM_DBG_LAYERS_0:
             {
+                game->hideScreen(true);
+
                 if (game->dbg_layers != 0)
                 {
                     game->dbg_layers = 0;
@@ -347,6 +365,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             case IDM_DBG_LAYERS_1:
             {
+                game->hideScreen(true);
+
                 if (game->dbg_layers != 1)
                 {
                     game->dbg_layers = 1;
@@ -358,6 +378,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             case IDM_DBG_LAYERS_2:
             {
+                game->hideScreen(true);
+
                 if (game->dbg_layers != 2)
                 {
                     game->dbg_layers = 2;
@@ -369,6 +391,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             case IDM_DBG_LAYERS_3:
             {
+                game->hideScreen(true);
+
                 if (game->dbg_layers != 3)
                 {
                     game->dbg_layers = 3;
@@ -380,6 +404,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             case IDM_DBG_SECTIONS:
             {
+                game->hideScreen(true);
+
                 if (!game->dbg_sections)
                 {
                     game->dbg_sections = true;

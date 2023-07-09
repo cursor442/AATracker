@@ -144,7 +144,7 @@ public:
 	static void setMainWnd(HWND&);
 	static HWND getMainWnd();
 
-	static void hideScreen();
+	static void hideScreen(bool = false);
 
 	///////////////////////////////////////////////////////////////////////////
 	// Graphics
