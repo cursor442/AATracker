@@ -323,7 +323,7 @@ void Game::configNationScreen()
 	
 	// Buttons section 
 	{
-		REAL buttonLeft = (REAL)nameFrame.GetRight();
+		REAL buttonLeft = (REAL)nameFrame.GetRight() + 1;
 		REAL buttonWidth = cityFrameR.GetRight() - buttonLeft;
 
 		REAL purchBoxTop = phaseSection->getBoxEdge(PR_PHASE, BOX_TOP);
