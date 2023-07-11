@@ -10,7 +10,7 @@ StatusSection::StatusSection(Pen* p0, Pen* p1, FontFamily* ff, StringFormat* sf0
 	alliesBox = new AABox("Allies");
 
 	wcsncpy_s(axis, L"Axis control   /  cities and  /  of their own capitals.", ARRAYSIZE(axis));
-	wcsncpy_s(axisG, L"Axis control   /8 cities in Europe,  /6 cities in the Pacific,\tand  /3 of their own capitals.", ARRAYSIZE(axisG));
+	wcsncpy_s(axisG, L"Axis control   /8 cities in Europe,  /6 cities in the Pacific,\n\tand  /3 of their own capitals.", ARRAYSIZE(axisG));
 	wcsncpy_s(allies, L"Allies control  /  Axis capitals and  /  of their own.", ARRAYSIZE(allies));
 
 	statusFormat = NULL;
@@ -57,7 +57,7 @@ void StatusSection::updateStatusText(int axisCap, int axisEur, int axisPac, int 
 			axisG[14] = int2char_(axisEur);
 		}
 		axisG[36] = int2char_(axisPac);
-		axisG[67] = int2char_(axisCap);
+		axisG[68] = int2char_(axisCap);
 		allies[15] = int2char_(3 - axisCap);
 		allies[17] = '3';
 		allies[39] = '4';

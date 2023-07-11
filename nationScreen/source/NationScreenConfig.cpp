@@ -132,8 +132,8 @@ void Game::configNationScreen()
 		statusSection->configDrawTools(gfx->leftTopFormat, gfx->font17);
 
 		statusFrame = cityFrameL;
-		statusFrame.X -= 5;
-		statusFrame.Width += 50;
+		//statusFrame.X -= 5;
+		//statusFrame.Width += 50;
 		statusFrame.Y = cityFrameR.Y;
 		statusFrame.Height = cityFrameL.Y - cityFrameR.Y;
 		statusSection->configureStatusBox(statusFrame, 1);

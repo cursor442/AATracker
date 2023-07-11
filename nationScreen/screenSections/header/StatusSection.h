@@ -30,7 +30,7 @@ private:
 
 	// Section text
 	WCHAR axis[56];
-	WCHAR axisG[94];
+	WCHAR axisG[95];
 	WCHAR allies[55];
 
 	// Unique graphics
