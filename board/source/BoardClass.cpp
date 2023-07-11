@@ -241,18 +241,26 @@ void Board::setGameTurnPhase(uint16_t phase)
 
 void Board::incGameTurnPhase()
 {
-	if (gameTurnPhase == CI_PHASE)
+	if (gameTurnPhase == RS_PHASE)
+		gameTurnPhase = PR_PHASE;
+	else if (gameTurnPhase == PR_PHASE)
+		gameTurnPhase = CM_PHASE;
+	else if (gameTurnPhase == CM_PHASE)
+		gameTurnPhase = CC_PHASE;
+	else if (gameTurnPhase == CC_PHASE)
+		gameTurnPhase = NC_PHASE;
+	else if (gameTurnPhase == NC_PHASE)
+		gameTurnPhase = MN_PHASE;
+	else if (gameTurnPhase == MN_PHASE)
+		gameTurnPhase = CI_PHASE;
+	else if (gameTurnPhase == CI_PHASE)
 	{
 		if (gameResearch)
-		{
 			gameTurnPhase = RS_PHASE;
-		}
 		else
 			gameTurnPhase = PR_PHASE;
 		incGameCurrNation();
-	}
-	else
-		gameTurnPhase++;
+	}		
 }
 
 void Board::setNationSize(uint16_t n, uint16_t size)

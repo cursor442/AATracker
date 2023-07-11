@@ -32,8 +32,13 @@ void Game::drawPhaseFrame(HDC& hdc)
 
         phaseSection->drawPhaseBox(graphics, currPhase, gameBoard->getGameResearch(), dbg_boundbox, dbg_sections, dbg_layers);
     }
+    else
+    {
+        int currPhase = gameBoard->getGameTurnPhase();
+        int currNat = gameBoard->getGameCurrNation();
 
-    //nsPhase = NON_PHASE;
+        phaseSection->drawPhaseBox(graphics, currPhase, nsPhase, gameBoard->getGameResearch(), dbg_boundbox, dbg_sections, dbg_layers);
+    }
 }
 
 void Game::drawPhaseFrameButtons(HDC& hdc, bool force)

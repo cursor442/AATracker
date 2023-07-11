@@ -15,6 +15,7 @@ public:
 	void configBrushes1(SolidBrush*, SolidBrush*, SolidBrush*, SolidBrush*, SolidBrush*, SolidBrush*, SolidBrush*);
 
 	void drawPhaseBox(Graphics*, int, bool, bool, bool, int);
+	void drawPhaseBox(Graphics*, int, int, bool, bool, bool, int);
 
 	REAL getBoxEdge(int, int);
 

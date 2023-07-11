@@ -71,7 +71,7 @@ bool Game::nextTurnPhase(HWND& hWnd)
 		nsSection = NAME_SECT | STAT_SECT | PHASE_SECT | WAR_SECT | CITY_SECT |
 			PURCH_SECT | SPREAD_SECT | CHEST_SECT | BONUS_SECT;
 
-		nsPhase = ALL_PHASE;
+		nsPhase = RS_PHASE | PR_PHASE | CI_PHASE;
 		currUKButton = false; currUKButtonToggled = false;
 		nsUnit = PURCH_TITLE;
 
@@ -91,20 +91,20 @@ bool Game::nextTurnPhase(HWND& hWnd)
 	else if (phase == PR_PHASE && res == true)
 	{
 		nsSection = PHASE_SECT | PURCHT_SECT | SPREAD_SECT;
-		nsPhase = ALL_PHASE;
+		nsPhase = PR_PHASE | RS_PHASE;
 		nsTurn = gameBoard->getGameTurn();
 		nsCol = XPNS_POS;
 	}
 	else if (phase == CM_PHASE)
 	{
 		nsSection = PHASE_SECT;
-		nsPhase = ALL_PHASE;
+		nsPhase = PR_PHASE | CM_PHASE;
 	}
 	else if (phase == CC_PHASE)
 	{
 		captureAmount = 0;
 		nsSection = PHASE_SECT;
-		nsPhase = ALL_PHASE;
+		nsPhase = CM_PHASE | CC_PHASE;
 	}
 	else if (phase == NC_PHASE)
 	{
@@ -113,7 +113,11 @@ bool Game::nextTurnPhase(HWND& hWnd)
 			nsSection |= PHASE_SECT;
 		else
 			nsSection = PHASE_SECT;
-		nsPhase = ALL_PHASE;
+		nsPhase = CC_PHASE | NC_PHASE;
+	}
+	else if (phase == MN_PHASE)
+	{
+		nsPhase = NC_PHASE | MN_PHASE;
 	}
 	else if (phase == CI_PHASE)
 	{
@@ -130,7 +134,7 @@ bool Game::nextTurnPhase(HWND& hWnd)
 
 		nsTurn = gameBoard->getGameTurn();
 		nsSection = PHASE_SECT | SPREAD_SECT | BONUS_SECT;
-		nsPhase = ALL_PHASE;
+		nsPhase = MN_PHASE | NC_PHASE | CI_PHASE;
 	}
 	else
 	{

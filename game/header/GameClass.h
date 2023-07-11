@@ -8,9 +8,7 @@ WCHAR     Game::szWindowClass[MAX_LOADSTRING];
 HINSTANCE Game::hInst;                     
 ULONG_PTR Game::gdiplusToken;
 
-int  Game::whichScreen = MAIN_SCREEN;
-int  Game::purchaseTab;
-int  Game::ukTab;                     
+int  Game::whichScreen = MAIN_SCREEN;             
 int  Game::lastScreen = MAIN_SCREEN;
 bool Game::success = false;
 int  Game::price;
@@ -21,21 +19,6 @@ bool Game::lockPhase = false;
 int Game::numResDice[2] = {0, 0};
 int Game::currResDie = 0;
 int Game::bondAmount;
-
-// Nation screen graphics switches
-int Game::nsSection = ALL_SECT;
-int Game::nsPhase = ALL_PHASE;
-int Game::nsCity;       
-int Game::nsUnit = PURCH_TITLE;
-int Game::nsNeut = NEUT_ALL;
-int Game::nsTurn = SPREAD_ALL_ROWS;
-int Game::nsCol = SPREAD_ALL_COLS;
-int Game::nsWC = WC_ALL;
-int Game::nsBonusRow = BONS_ALL;
-
-// Nation screen graphics toggles
-bool Game::nsUKToggle = false;
-bool Game::warchestRotate = false;
 
 // Graph screen graphics switches
 int Game::updateNatGraph = 10;
@@ -161,6 +144,24 @@ framesList Game::screenFrames;
 ///////////////////////////////////////////////////////////////////////////
 //// Nation Screen
 ///////////////////////////////////////////////////////////////////////////
+
+// Nation screen graphics switches
+int Game::nsSection = ALL_SECT;
+int Game::nsPhase = ALL_PHASE;
+int Game::nsCity;
+int Game::nsUnit = PURCH_TITLE;
+int Game::nsNeut = NEUT_ALL;
+int Game::nsTurn = SPREAD_ALL_ROWS;
+int Game::nsCol = SPREAD_ALL_COLS;
+int Game::nsWC = WC_ALL;
+int Game::nsBonusRow = BONS_ALL;
+
+int Game::purchaseTab;
+int Game::ukTab;
+
+// Nation screen graphics toggles
+bool Game::nsUKToggle = false;
+bool Game::warchestRotate = false;
 
 // Nation screen frames
 RECT Game::nationScreenRect;

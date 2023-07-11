@@ -46,7 +46,7 @@ public:
 	static WCHAR szWindowClass[MAX_LOADSTRING];            // The main window class name
 	static HINSTANCE hInst;                                // Current instance
 	static ULONG_PTR gdiplusToken;
-	static int  whichScreen, purchaseTab, ukTab;           // The current screen, purchase, UK tabs
+	static int  whichScreen;                               // The current screen
 	static int  lastScreen;                                // For clearing buttons
 	static bool success;
 	static int price;
@@ -55,20 +55,6 @@ public:
 
 	// Research and bonus variables
 	static int numResDice[2], currResDie, bondAmount;
-	
-	// Nation screen graphics switches
-	static int nsSection;     // Screen section to update
-	static int nsPhase;       // Buttons only option, etc.
-	static int nsCity;        // City box to update
-	static int nsUnit;        // Purchase unit to update
-	static int nsNeut;        // Neutral territories to update
-	static int nsTurn, nsCol; // Mini spread box to update
-	static int nsWC;          // Warchest box to update
-	static int nsBonusRow;    // Bonus box to update
-
-	// Nation screen graphics toggles
-	static bool nsUKToggle;
-	static bool warchestRotate;
 
 	// Graph screen graphics switches
 	static int updateNatGraph;
@@ -183,6 +169,23 @@ public:
 	///////////////////////////////////////////////////////////////////////////
 	//// Nation screen
 	///////////////////////////////////////////////////////////////////////////
+
+	// Nation screen graphics switches
+	static int nsSection;     // Screen section to update
+	static int nsPhase;       // Buttons only option, etc.
+	static int nsCity;        // City box to update
+	static int nsUnit;        // Purchase unit to update
+	static int nsNeut;        // Neutral territories to update
+	static int nsTurn, nsCol; // Mini spread box to update
+	static int nsWC;          // Warchest box to update
+	static int nsBonusRow;    // Bonus box to update
+
+	static int purchaseTab;   // Current purchase section tab
+	static int ukTab;         // Current UK economy tab
+
+	// Nation screen graphics toggles
+	static bool nsUKToggle;
+	static bool warchestRotate;
 
 	// Nation screen configuration
 	static void configNationScreen();

@@ -284,7 +284,6 @@ INT_PTR CALLBACK Game::DeclareWar(HWND hDlg, UINT message, WPARAM wParam, LPARAM
             nsTurn = currTurn;
             nsCol = BONS_POS;
             nsBonusRow = BONS_UPD;
-            nsPhase = CM_PHASE;
             nsSection = PHASE_SECT | WAR_SECT | SPREAD_SECT | BONUS_SECT;
 
             gameLog->addLogText(currTurn, V_WAR, currNat, k);

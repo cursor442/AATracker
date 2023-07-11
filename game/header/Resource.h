@@ -265,17 +265,16 @@
 //// Turn Phases
 ///////////////////////////////////////////////////////////////////////////
 
-#define NON_PHASE    -3
-#define BUT_PHASE    -2
-#define ALL_PHASE    -1
-
-#define RS_PHASE      0
-#define PR_PHASE      1
-#define CM_PHASE      2
-#define CC_PHASE      3
-#define NC_PHASE      4
-#define MN_PHASE      5
-#define CI_PHASE      6
+#define NON_PHASE  0x000
+#define RS_PHASE   0x001
+#define PR_PHASE   0x002
+#define CM_PHASE   0x004
+#define CC_PHASE   0x008
+#define NC_PHASE   0x010
+#define MN_PHASE   0x020
+#define CI_PHASE   0x040
+#define BUT_PHASE  0x080
+#define ALL_PHASE  0x0FF
 
 ///////////////////////////////////////////////////////////////////////////
 //// Player Turns
