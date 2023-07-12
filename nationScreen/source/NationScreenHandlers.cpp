@@ -72,6 +72,7 @@ bool Game::nextTurnPhase(HWND& hWnd)
 			PURCH_SECT | SPREAD_SECT | CHEST_SECT | BONUS_SECT;
 
 		nsPhase = RS_PHASE | PR_PHASE | CI_PHASE;
+		nsWar = WAR_SECT_ALL;
 		currUKButton = false; currUKButtonToggled = false;
 		nsUnit = PURCH_TITLE;
 

@@ -155,8 +155,11 @@ void Game::drawWarFrame(HDC& hdc)
     int currNat = gameBoard->getGameCurrNation();
     int gameType = gameBoard->getGameType();
     
-    warSection->updateFormat(currNat, gameType, gameBoard->getWarMatrix());
-    warSection->drawWarBox(graphics, dbg_boundbox, dbg_sections, dbg_layers);
+    if (nsWar == WAR_SECT_ALL)
+        warSection->updateFormat(currNat, gameType, gameBoard->getWarMatrix());
+    else
+        nsWar = warSection->updateFormat(currNat, nsWarTgt, gameType, gameBoard->getWarMatrix());
+    warSection->drawWarBox(graphics, nsWar, dbg_boundbox, dbg_sections, dbg_layers);
 }
 
 void Game::drawCitiesFrame(HDC& hdc)
@@ -580,7 +583,8 @@ void Game::hidePhaseFrameButtons()
 
 void Game::hideWarFrame(bool clear)
 {
-
+    nsWar = WAR_SECT_ALL;
+    nsWarTgt = TURN_NON;
 }
 
 void Game::hideCitiesFrame(bool clear)

@@ -281,6 +281,8 @@ INT_PTR CALLBACK Game::DeclareWar(HWND hDlg, UINT message, WPARAM wParam, LPARAM
             // No need for popups, will be used in CI phase
             gameBoard.updateBonuses(hDlg, currNat, false, 0);
             updateSpreadsheet(currNat, currTurn, BONS_POS);
+            nsWar = WAR_SECT_NON;
+            nsWarTgt = k;
             nsTurn = currTurn;
             nsCol = BONS_POS;
             nsBonusRow = BONS_UPD;

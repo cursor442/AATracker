@@ -114,6 +114,8 @@ void Game::resetGameControls()
 	nsSection = ALL_SECT;
 
 	nsPhase = ALL_PHASE;
+	nsWar = WAR_SECT_ALL;
+	nsWarTgt = TURN_NON;
 	nsUnit = PURCH_TITLE;
 	nsNeut = NEUT_ALL;
 	nsTurn = SPREAD_ALL_ROWS;

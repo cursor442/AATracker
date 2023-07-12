@@ -15,8 +15,9 @@ public:
 	void configDrawTools(SolidBrush*, Font*, Font*);
 
 	void updateFormat(int, int, WarMatrix*);
+	int  updateFormat(int, int, int, WarMatrix*);
 
-	void drawWarBox(Graphics*, bool, bool, int);
+	void drawWarBox(Graphics*, int, bool, bool, int);
 
 private:
 

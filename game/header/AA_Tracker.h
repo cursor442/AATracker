@@ -171,17 +171,18 @@ public:
 	///////////////////////////////////////////////////////////////////////////
 
 	// Nation screen graphics switches
-	static int nsSection;     // Screen section to update
-	static int nsPhase;       // Buttons only option, etc.
-	static int nsCity;        // City box to update
-	static int nsUnit;        // Purchase unit to update
-	static int nsNeut;        // Neutral territories to update
-	static int nsTurn, nsCol; // Mini spread box to update
-	static int nsWC;          // Warchest box to update
-	static int nsBonusRow;    // Bonus box to update
+	static int nsSection;       // Screen section to update
+	static int nsPhase;         // Buttons only option, etc.
+	static int nsWar, nsWarTgt; // War box to update
+	static int nsCity;          // City box to update
+	static int nsUnit;          // Purchase unit to update
+	static int nsNeut;          // Neutral territories to update
+	static int nsTurn, nsCol;   // Mini spread box to update
+	static int nsWC;            // Warchest box to update
+	static int nsBonusRow;      // Bonus box to update
 
-	static int purchaseTab;   // Current purchase section tab
-	static int ukTab;         // Current UK economy tab
+	static int purchaseTab;     // Current purchase section tab
+	static int ukTab;           // Current UK economy tab
 
 	// Nation screen graphics toggles
 	static bool nsUKToggle;

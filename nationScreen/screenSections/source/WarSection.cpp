@@ -499,7 +499,189 @@ void WarSection::updateFormat(int nat, int type, WarMatrix* warMatrix)
 	}
 }
 
-void WarSection::drawWarBox(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, int layers)
+int WarSection::updateFormat(int nat, int tgt, int type, WarMatrix* warMatrix)
+{
+	updateFormat(nat, type, warMatrix);
+
+	int tgtBox = WAR_SECT_NON;
+
+	switch (nat)
+	{
+	case TURN_GER:
+	{
+		if (type == EUROPE_GAME)
+		{
+			if (tgt == TURN_SOV)
+				tgtBox = WAR_SECT_BL;
+			else if (tgt == TURN_USA)
+				tgtBox = WAR_SECT_BR;
+		}
+		else if (type == GLOBAL_GAME)
+		{
+			if (tgt == TURN_SOV)
+				tgtBox = WAR_SECT_TR;
+			else if (tgt == TURN_CHN)
+				tgtBox = WAR_SECT_BL;
+			else if (tgt == TURN_USA)
+				tgtBox = WAR_SECT_BR;
+		}
+		break;
+	}
+	case TURN_SOV:
+	{
+		if (type == EUROPE_GAME)
+		{
+			if (tgt == TURN_GER)
+				tgtBox = WAR_SECT_TOP;
+			else if (tgt == TURN_ITA)
+				tgtBox = WAR_SECT_BOT;
+		}
+		else if (type == GLOBAL_GAME)
+		{
+			if (tgt == TURN_GER)
+				tgtBox = WAR_SECT_TL;
+			else if (tgt == TURN_ITA)
+				tgtBox = WAR_SECT_TR;
+			else if (tgt == TURN_JPN)
+				tgtBox = WAR_SECT_BL;
+		}
+		break;
+	}
+	case TURN_JPN:
+	{
+		if (type == PACIFIC_GAME)
+		{
+			if (tgt == TURN_USA)
+				tgtBox = WAR_SECT_TR;
+			else if (tgt == TURN_UKP)
+				tgtBox = WAR_SECT_BL | WAR_SECT_BR;
+		}
+		else if (type == GLOBAL_GAME)
+		{
+			if (tgt == TURN_UKE)
+				tgtBox = WAR_SECT_TL;
+			else if (tgt == TURN_FRA)
+				tgtBox = WAR_SECT_TL;
+			else if (tgt == TURN_SOV)
+				tgtBox = WAR_SECT_TR;
+			else if (tgt == TURN_USA)
+				tgtBox = WAR_SECT_BR;
+		}
+		break;
+	}
+	case TURN_USA:
+	{
+		if (type == EUROPE_GAME)
+		{
+			if (tgt == TURN_GER)
+				tgtBox = WAR_SECT_TOP;
+			else if (tgt == TURN_ITA)
+				tgtBox = WAR_SECT_BOT;
+		}
+		else if (type == PACIFIC_GAME)
+		{
+			if (tgt == TURN_JPN)
+				tgtBox = WAR_SECT_TOP;
+		}
+		else if (type == GLOBAL_GAME)
+		{
+			if (tgt == TURN_GER)
+				tgtBox = WAR_SECT_TL;
+			else if (tgt == TURN_ITA)
+				tgtBox = WAR_SECT_TR;
+			else if (tgt == TURN_JPN)
+				tgtBox = WAR_SECT_BL;
+		}
+		break;
+	}
+	case TURN_CHN:
+	{
+		if (type == PACIFIC_GAME)
+		{
+			
+		}
+		else if (type == GLOBAL_GAME)
+		{
+			if (tgt == TURN_GER)
+				tgtBox = WAR_SECT_TL;
+			else if (tgt == TURN_ITA)
+				tgtBox = WAR_SECT_TR;
+		}
+		break;
+	}
+	case TURN_UKE: case TURN_UKP:
+	{
+		if (type == EUROPE_GAME)
+		{
+			
+		}
+		else if (type == PACIFIC_GAME)
+		{
+			if (tgt == TURN_JPN)
+				tgtBox = WAR_SECT_TOP;
+		}
+		else if (type == GLOBAL_GAME)
+		{
+			if (tgt == TURN_JPN)
+				tgtBox = WAR_SECT_BL;
+		}
+		break;
+	}
+	case TURN_ITA:
+	{
+		if (type == EUROPE_GAME)
+		{
+			if (tgt == TURN_SOV)
+				tgtBox = WAR_SECT_BL;
+			else if (tgt == TURN_USA)
+				tgtBox = WAR_SECT_BR;
+		}
+		else if (type == GLOBAL_GAME)
+		{
+			if (tgt == TURN_SOV)
+				tgtBox = WAR_SECT_TR;
+			else if (tgt == TURN_CHN)
+				tgtBox = WAR_SECT_BL;
+			else if (tgt == TURN_USA)
+				tgtBox = WAR_SECT_BR;
+		}
+		break;
+	}
+	case TURN_ANZ:
+	{
+		if (type == PACIFIC_GAME)
+		{
+			if (tgt == TURN_JPN)
+				tgtBox = WAR_SECT_TOP;
+		}
+		else if (type == GLOBAL_GAME)
+		{
+			if (tgt == TURN_JPN)
+				tgtBox = WAR_SECT_BL;
+		}
+		break;
+	}
+	case TURN_FRA:
+	{
+		if (type == EUROPE_GAME)
+		{
+			
+		}
+		else if (type == GLOBAL_GAME)
+		{
+			if (tgt == TURN_JPN)
+				tgtBox = WAR_SECT_BL;
+		}
+		break;
+	}
+	default:
+		break;
+	}
+
+	return tgtBox;
+}
+
+void WarSection::drawWarBox(Graphics* graphics, int sect, bool dbg_boundbox, bool dbg_sections, int layers)
 {
 	if (dbg_boundbox) // Show bounding box
 		pen = borderPen;
@@ -550,39 +732,52 @@ void WarSection::drawWarBox(Graphics* graphics, bool dbg_boundbox, bool dbg_sect
 	}
 	else // Actual graphics
 	{
-		warWithBox->drawBox(graphics, pen, headFont, centerFormat, textBrush, redBrush, L"At War With", layers);
+		if ((sect & WAR_SECT_ALL) != 0)
+			warWithBox->drawBox(graphics, pen, headFont, centerFormat, textBrush, redBrush, L"At War With", layers);
 
 		switch (warBoxFormat)
 		{
 		case 1:
 		{
-			warD1Tri->drawTri(graphics, pen, warD1Brush, layers);
-			warD2Tri->drawTri(graphics, pen, warD2Brush, layers);
-			warD3Tri->drawTri(graphics, pen, warD3Brush, layers);
-			warTRBox->drawBox(graphics, pen, font1, centerFormat, textBrush, warTRBrush, name1, layers);
-			warBLBox->drawBox(graphics, pen, font2, centerFormat, textBrush, warBLBrush, name2, layers);
-			warBRBox->drawBox(graphics, pen, font3, centerFormat, textBrush, warBRBrush, name3, layers);
+			if ((sect & WAR_SECT_TL) != 0)
+			{
+				warD1Tri->drawTri(graphics, pen, warD1Brush, layers);
+				warD2Tri->drawTri(graphics, pen, warD2Brush, layers);
+				warD3Tri->drawTri(graphics, pen, warD3Brush, layers);
+			}
+			if ((sect & WAR_SECT_TR) != 0)
+				warTRBox->drawBox(graphics, pen, font1, centerFormat, textBrush, warTRBrush, name1, layers);
+			if ((sect & WAR_SECT_BL) != 0)
+				warBLBox->drawBox(graphics, pen, font2, centerFormat, textBrush, warBLBrush, name2, layers);
+			if ((sect & WAR_SECT_BR) != 0)
+				warBRBox->drawBox(graphics, pen, font3, centerFormat, textBrush, warBRBrush, name3, layers);
 			break;
 		}
 		case 3:
 		{
-			warTLBox->drawBox(graphics, pen, font0, centerFormat, textBrush, warTLBrush, name0, layers);
-			warTRBox->drawBox(graphics, pen, font1, centerFormat, textBrush, warTRBrush, name1, layers);
-			warBLBox->drawBox(graphics, pen, font2, centerFormat, textBrush, warBLBrush, name2, layers);
-			if (!warBoxIgnoreLast)
-				warBRBox->drawBox(graphics, pen, font3, centerFormat, textBrush, warBRBrush, name3, layers);
-			else
-				warBRBox->drawBox(graphics, pen, font3, centerFormat, textBrush, backBrush, L"", layers);
+			if ((sect & WAR_SECT_TL) != 0)
+				warTLBox->drawBox(graphics, pen, font0, centerFormat, textBrush, warTLBrush, name0, layers);
+			if ((sect & WAR_SECT_TR) != 0)
+				warTRBox->drawBox(graphics, pen, font1, centerFormat, textBrush, warTRBrush, name1, layers);
+			if ((sect & WAR_SECT_BL) != 0)
+				warBLBox->drawBox(graphics, pen, font2, centerFormat, textBrush, warBLBrush, name2, layers);
+			if ((sect & WAR_SECT_BR) != 0)
+				if (!warBoxIgnoreLast)
+					warBRBox->drawBox(graphics, pen, font3, centerFormat, textBrush, warBRBrush, name3, layers);
+				else
+					warBRBox->drawBox(graphics, pen, font3, centerFormat, textBrush, backBrush, L"", layers);
 
 			break;
 		}
 		case 4:
 		{
-			warTopBox->drawBox(graphics, pen, font0, centerFormat, textBrush, warTopBrush, name0, layers);
-			if (!warBoxIgnoreLast)
-				warBotBox->drawBox(graphics, pen, font1, centerFormat, textBrush, warBotBrush, name1, layers);
-			else
-				warBotBox->drawBox(graphics, pen, font3, centerFormat, textBrush, backBrush, L"", layers);
+			if ((sect & WAR_SECT_TOP) != 0)
+				warTopBox->drawBox(graphics, pen, font0, centerFormat, textBrush, warTopBrush, name0, layers);
+			if ((sect & WAR_SECT_BOT) != 0)
+				if (!warBoxIgnoreLast)
+					warBotBox->drawBox(graphics, pen, font1, centerFormat, textBrush, warBotBrush, name1, layers);
+				else
+					warBotBox->drawBox(graphics, pen, font3, centerFormat, textBrush, backBrush, L"", layers);
 			break;
 		}
 		default:

@@ -148,6 +148,8 @@ framesList Game::screenFrames;
 // Nation screen graphics switches
 int Game::nsSection = ALL_SECT;
 int Game::nsPhase = ALL_PHASE;
+int Game::nsWar = WAR_SECT_ALL;
+int Game::nsWarTgt = TURN_NON;
 int Game::nsCity;
 int Game::nsUnit = PURCH_TITLE;
 int Game::nsNeut = NEUT_ALL;
