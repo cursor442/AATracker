@@ -319,7 +319,7 @@
 #define VIC_ALLIES_GLO 5
 
 // Victory cities
-#define CITY_NON     -1
+#define CITY_NONE    -1
 #define CITY_BERLIN   0
 #define CITY_ROME     1
 #define CITY_WARSAW   2
@@ -339,6 +339,7 @@
 #define CITY_SYDNEY   16
 #define CITY_HONO     17
 #define CITY_SANFRAN  18
+#define CITY_ALL      20
 
 ///////////////////////////////////////////////////////////////////////////
 //// War Sections

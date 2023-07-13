@@ -350,7 +350,7 @@ void CitiesSection::updateFormat(int city, int own, bool thisSide)
 	}
 }
 
-void CitiesSection::drawCityBox(Graphics* graphics, int gameType, bool dbg_boundbox, bool dbg_sections, int layers)
+void CitiesSection::drawCityBox(Graphics* graphics, int gameType, int city, bool dbg_boundbox, bool dbg_sections, int layers)
 {
 	if (dbg_boundbox) // Show bounding box
 		pen = borderPen;
@@ -386,70 +386,99 @@ void CitiesSection::drawCityBox(Graphics* graphics, int gameType, bool dbg_bound
 	{
 		if (gameType == EUROPE_GAME)
 		{
-			tokyoBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, jpnBrushF, L"", layers);
-			calcBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, ukBrushF, L"", layers);
-			sydBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, anzBrushF, L"", layers);
+			if (city == CITY_ALL)
+			{
+				tokyoBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, jpnBrushF, L"", layers);
+				calcBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, ukBrushF, L"", layers);
+				sydBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, anzBrushF, L"", layers);
 
-			shangBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, jpnBrushF, L"", layers);
-			hongBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, ukBrushF, L"", layers);
-			manilaBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, usaBrushF, L"", layers);
-			honoBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, usaBrushF, L"", layers);
+				shangBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, jpnBrushF, L"", layers);
+				hongBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, ukBrushF, L"", layers);
+				manilaBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, usaBrushF, L"", layers);
+				honoBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, usaBrushF, L"", layers);
+			}
 		}
 		else
 		{
-			tokyoBox->drawFrameFill(graphics, pen, capFont, centerFormat, textBrush, tokyoBrush, layers);
-			calcBox->drawFrameFill(graphics, pen, capFont, centerFormat, textBrush, calcBrush, layers);
-			sydBox->drawFrameFill(graphics, pen, capFont, centerFormat, textBrush, sydBrush, layers);
+			if (city == CITY_TOKYO || city == CITY_ALL)
+				tokyoBox->drawFrameFill(graphics, pen, capFont, centerFormat, textBrush, tokyoBrush, layers);
+			if (city == CITY_CALC || city == CITY_ALL)
+				calcBox->drawFrameFill(graphics, pen, capFont, centerFormat, textBrush, calcBrush, layers);
+			if (city == CITY_SYDNEY || city == CITY_ALL)
+				sydBox->drawFrameFill(graphics, pen, capFont, centerFormat, textBrush, sydBrush, layers);
 
-			shangBox->drawFrameFill(graphics, pen, cityFont, centerFormat, textBrush, shangBrush, layers);
-			hongBox->drawFrameFill(graphics, pen, hongFont, centerFormat, textBrush, hongBrush, layers);
-			manilaBox->drawFrameFill(graphics, pen, cityFont, centerFormat, textBrush, manilaBrush, layers);
-			honoBox->drawFrameFill(graphics, pen, cityFont, centerFormat, textBrush, honoBrush, layers);
+			if (city == CITY_SHANG || city == CITY_ALL)
+				shangBox->drawFrameFill(graphics, pen, cityFont, centerFormat, textBrush, shangBrush, layers);
+			if (city == CITY_HONG || city == CITY_ALL)
+				hongBox->drawFrameFill(graphics, pen, hongFont, centerFormat, textBrush, hongBrush, layers);
+			if (city == CITY_MANILA || city == CITY_ALL)
+				manilaBox->drawFrameFill(graphics, pen, cityFont, centerFormat, textBrush, manilaBrush, layers);
+			if (city == CITY_HONO || city == CITY_ALL)
+				honoBox->drawFrameFill(graphics, pen, cityFont, centerFormat, textBrush, honoBrush, layers);
 		}
 
 		if (gameType == PACIFIC_GAME)
 		{
-			berlinBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, gerBrushF, L"", layers);
-			romeBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, itaBrushF, L"", layers);
-			londonBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, ukBrushF, L"", layers);
-			parisBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, fraBrushF, L"", layers);
-			moscowBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, sovBrushF, L"", layers);
+			if (city == CITY_ALL)
+			{
+				berlinBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, gerBrushF, L"", layers);
+				romeBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, itaBrushF, L"", layers);
+				londonBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, ukBrushF, L"", layers);
+				parisBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, fraBrushF, L"", layers);
+				moscowBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, sovBrushF, L"", layers);
 
-			warsawBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, gerBrushF, L"", layers);
-			ottawaBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, ukBrushF, L"", layers);
-			cairoBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, ukBrushF, L"", layers);
-			leninBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, sovBrushF, L"", layers);
-			stalinBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, sovBrushF, L"", layers);
+				warsawBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, gerBrushF, L"", layers);
+				ottawaBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, ukBrushF, L"", layers);
+				cairoBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, ukBrushF, L"", layers);
+				leninBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, sovBrushF, L"", layers);
+				stalinBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, sovBrushF, L"", layers);
+			}
 		}
 		else
 		{
-			berlinBox->drawFrameFill(graphics, pen, capFont, centerFormat, textBrush, berlinBrush, layers);
-			romeBox->drawFrameFill(graphics, pen, capFont, centerFormat, textBrush, romeBrush, layers);
-			londonBox->drawFrameFill(graphics, pen, capFont, centerFormat, textBrush, londonBrush, layers);
-			parisBox->drawFrameFill(graphics, pen, capFont, centerFormat, textBrush, parisBrush, layers);
-			moscowBox->drawFrameFill(graphics, pen, capFont, centerFormat, textBrush, moscowBrush, layers);
+			if (city == CITY_BERLIN || city == CITY_ALL)
+				berlinBox->drawFrameFill(graphics, pen, capFont, centerFormat, textBrush, berlinBrush, layers);
+			if (city == CITY_ROME || city == CITY_ALL)
+				romeBox->drawFrameFill(graphics, pen, capFont, centerFormat, textBrush, romeBrush, layers);
+			if (city == CITY_LONDON || city == CITY_ALL)
+				londonBox->drawFrameFill(graphics, pen, capFont, centerFormat, textBrush, londonBrush, layers);
+			if (city == CITY_PARIS || city == CITY_ALL)
+				parisBox->drawFrameFill(graphics, pen, capFont, centerFormat, textBrush, parisBrush, layers);
+			if (city == CITY_MOSCOW || city == CITY_ALL)
+				moscowBox->drawFrameFill(graphics, pen, capFont, centerFormat, textBrush, moscowBrush, layers);
 
-			warsawBox->drawFrameFill(graphics, pen, cityFont, centerFormat, textBrush, warsawBrush, layers);
-			ottawaBox->drawFrameFill(graphics, pen, cityFont, centerFormat, textBrush, ottawaBrush, layers);
-			cairoBox->drawFrameFill(graphics, pen, cityFont, centerFormat, textBrush, cairoBrush, layers);
-			leninBox->drawFrameFill(graphics, pen, cityFont, centerFormat, textBrush, leninBrush, layers);
-			stalinBox->drawFrameFill(graphics, pen, cityFont, centerFormat, textBrush, stalinBrush, layers);
+			if (city == CITY_WARSAW || city == CITY_ALL)
+				warsawBox->drawFrameFill(graphics, pen, cityFont, centerFormat, textBrush, warsawBrush, layers);
+			if (city == CITY_OTTAWA || city == CITY_ALL)
+				ottawaBox->drawFrameFill(graphics, pen, cityFont, centerFormat, textBrush, ottawaBrush, layers);
+			if (city == CITY_CAIRO || city == CITY_ALL)
+				cairoBox->drawFrameFill(graphics, pen, cityFont, centerFormat, textBrush, cairoBrush, layers);
+			if (city == CITY_LENIN || city == CITY_ALL)
+				leninBox->drawFrameFill(graphics, pen, cityFont, centerFormat, textBrush, leninBrush, layers);
+			if (city == CITY_STALIN || city == CITY_ALL)
+				stalinBox->drawFrameFill(graphics, pen, cityFont, centerFormat, textBrush, stalinBrush, layers);
 		}
 
 		if (gameType == EUROPE_GAME)
 		{
-			washBox->drawFrameFill(graphics, pen, capFont, centerFormat, textBrush, washBrush, layers);
-			sanfranBox->drawBox(graphics, pen, sanFranFont, centerFormat, textBrush, usaBrushF, L"", layers);
+			if (city == CITY_WASH || city == CITY_ALL)
+				washBox->drawFrameFill(graphics, pen, capFont, centerFormat, textBrush, washBrush, layers);
+			if (city == CITY_ALL)
+				sanfranBox->drawBox(graphics, pen, sanFranFont, centerFormat, textBrush, usaBrushF, L"", layers);
 		}
 		else if (gameType == PACIFIC_GAME)
 		{
-			washBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, sanfranBrush, L"San Francisco", layers);
-			sanfranBox->drawBox(graphics, pen, sanFranFont, centerFormat, textBrush, usaBrushF, L"", layers);
+			if (city == CITY_ALL)
+				washBox->drawBox(graphics, pen, cityFont, centerFormat, textBrush, sanfranBrush, L"San Francisco", layers);
+			if (city == CITY_SANFRAN || city == CITY_ALL)
+				sanfranBox->drawBox(graphics, pen, sanFranFont, centerFormat, textBrush, usaBrushF, L"", layers);
 		}
 		else if (gameType == GLOBAL_GAME)
 		{
-			washBox->drawFrameFill(graphics, pen, capFont, centerFormat, textBrush, washBrush, layers);
-			sanfranBox->drawFrameFill(graphics, pen, sanFranFont, centerFormat, textBrush, sanfranBrush, layers);
+			if (city == CITY_WASH || city == CITY_ALL)
+				washBox->drawFrameFill(graphics, pen, capFont, centerFormat, textBrush, washBrush, layers);
+			if (city == CITY_SANFRAN || city == CITY_ALL)
+				sanfranBox->drawFrameFill(graphics, pen, sanFranFont, centerFormat, textBrush, sanfranBrush, layers);
 		}		
 	}
 }

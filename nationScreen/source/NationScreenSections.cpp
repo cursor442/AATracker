@@ -168,21 +168,30 @@ void Game::drawCitiesFrame(HDC& hdc)
     int currSide = whichSide(currNat);
     int gameType = gameBoard->getGameType();
 
-    int min = CITY_BERLIN;
-    if (gameType == PACIFIC_GAME)
-        min = CITY_SHANG;
-    int max = CITY_SANFRAN;
-    if (gameType == EUROPE_GAME)
-        max = CITY_STALIN;
-    
-    for (int city = min; city <= max; city++)
+    if (nsCity == CITY_ALL)
+    {
+        int min = CITY_BERLIN;
+        if (gameType == PACIFIC_GAME)
+            min = CITY_SHANG;
+        int max = CITY_SANFRAN;
+        if (gameType == EUROPE_GAME)
+            max = CITY_STALIN;
+
+        for (int city = min; city <= max; city++)
+        {
+            bool thisSide;
+            int own = getCityOwn(city, thisSide);
+            citiesSection->updateFormat(city, own, thisSide);
+        }
+    }
+    else
     {
         bool thisSide;
-        int own = getCityOwn(city, thisSide);
-        citiesSection->updateFormat(city, own, thisSide);
+        int own = getCityOwn(nsCity, thisSide);
+        citiesSection->updateFormat(nsCity, own, thisSide);
     }
 
-    citiesSection->drawCityBox(graphics, gameType, dbg_boundbox, dbg_sections, dbg_layers);
+    citiesSection->drawCityBox(graphics, gameType, nsCity, dbg_boundbox, dbg_sections, dbg_layers);
 }
 
 void Game::drawPurchaseFrame(HDC& hdc)
@@ -589,7 +598,7 @@ void Game::hideWarFrame(bool clear)
 
 void Game::hideCitiesFrame(bool clear)
 {
-
+    nsCity = CITY_ALL;
 }
 
 void Game::hidePurchaseFrame(bool clear)

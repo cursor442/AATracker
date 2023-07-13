@@ -596,7 +596,10 @@ int Territories::getTerritoryAlphabet(int ter)
 
 int Territories::getTerritoryOwner(int ter)
 {
-	return territories[ter]->getOwner();
+	if (ter != TER_NONE)
+		return territories[ter]->getOwner();
+	else
+		return TURN_NON;
 }
 
 int Territories::getTerritoryOwnerSide(int ter)

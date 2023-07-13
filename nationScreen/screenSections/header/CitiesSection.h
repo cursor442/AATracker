@@ -14,7 +14,7 @@ public:
 
 	void updateFormat(int, int, bool);
 
-	void drawCityBox(Graphics*, int, bool, bool, int);
+	void drawCityBox(Graphics*, int, int, bool, bool, int);
 
 private:
 

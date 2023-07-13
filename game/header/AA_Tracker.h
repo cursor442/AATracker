@@ -234,6 +234,7 @@ public:
 	static void swapBrush(HDC&);
 	static void resetBrush(HDC&);
 	static int  getCityOwn(int, bool&);
+	static int  getTerCity(int);
 
 	// Nation screen handlers
 	static void configSpread(Board&);

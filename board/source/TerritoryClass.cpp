@@ -9,7 +9,7 @@ Territory::Territory(WCHAR* n, int a, int orig, int own, int v, int m, bool coas
 	value = v;
 
 	map = m;
-	city = CITY_NON;
+	city = CITY_NONE;
 	isCap = false;
 
 	isCoastal = coast;

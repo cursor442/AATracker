@@ -101,7 +101,7 @@ void Game::resetBrush(HDC& hdc)
 
 int Game::getCityOwn(int city, bool& sameSide)
 {
-	int ter = 0;
+	int ter = TER_NONE;
 	switch (city)
 	{
 	case CITY_BERLIN:
@@ -170,4 +170,73 @@ int Game::getCityOwn(int city, bool& sameSide)
 
 	sameSide = (side == currSide);
 	return own;
+}
+
+int Game::getTerCity(int ter)
+{
+	int city = CITY_NONE;
+
+	switch (ter)
+	{
+	case TER_GERMANY:
+		city = CITY_BERLIN;
+		break;
+	case TER_RUSSIA:
+		city = CITY_MOSCOW;
+		break;
+	case TER_JAPAN:
+		city = CITY_TOKYO;
+		break;
+	case TER_EASTERN_USA:
+		city = CITY_WASH;
+		break;
+	case TER_WESTERN_USA:
+		city = CITY_SANFRAN;
+		break;
+	case TER_UTD_KINGDOM:
+		city = CITY_LONDON;
+		break;
+	case TER_INDIA:
+		city = CITY_CALC;
+		break;
+	case TER_SOUTH_ITALY:
+		city = CITY_ROME;
+		break;
+	case TER_NEW_S_WALES:
+		city = CITY_SYDNEY;
+		break;
+	case TER_FRANCE:
+		city = CITY_PARIS;
+		break;
+	case TER_ONTARIO:
+		city = CITY_OTTAWA;
+		break;
+	case TER_POLAND:
+		city = CITY_WARSAW;
+		break;
+	case TER_NOVGOROD:
+		city = CITY_LENIN;
+		break;
+	case TER_VOLGOGRAD:
+		city = CITY_STALIN;
+		break;
+	case TER_EGYPT:
+		city = CITY_CAIRO;
+		break;
+	case TER_KIANGSU:
+		city = CITY_SHANG;
+		break;
+	case TER_KWANGTUNG:
+		city = CITY_HONG;
+		break;
+	case TER_PHILIPPINES:
+		city = CITY_MANILA;
+		break;
+	case TER_HAWAII:
+		city = CITY_HONO;
+		break;
+	default: break;
+	}
+
+	return city;
 }

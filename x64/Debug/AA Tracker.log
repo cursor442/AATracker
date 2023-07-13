@@ -1,2 +1,35 @@
-﻿  NationScreenHandlers.cpp
+﻿  BoardClass.cpp
+  TerritoryClass.cpp
+  WarMatrix.cpp
+  AAButton.cpp
+  AAButtons.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\AAButtons.cpp(89,57): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\AAButtons.cpp(90,58): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\AAButtons.cpp(355,46): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\AAButtons.cpp(355,23): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\AAButtons.cpp(356,47): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\AAButtons.cpp(356,23): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\AAButtons.cpp(357,46): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\AAButtons.cpp(357,23): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\AAButtons.cpp(358,47): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\AAButtons.cpp(358,23): warning C4244: 'argument': conversion from 'Gdiplus::REAL' to 'int', possible loss of data
+  NameSection.cpp
+  NeutralSection.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\NeutralSection.cpp(34,21): warning C4156: deletion of an array expression without using the array form of 'delete'; array form substituted
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\NeutralSection.cpp(34,21): warning C4154: deletion of an array expression; conversion to pointer supplied
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\NeutralSection.cpp(145,11): warning C4244: 'initializing': conversion from '__int64' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\NeutralSection.cpp(187,3): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\NeutralSection.cpp(204,3): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  NationScreenSections.cpp
+  NationClass.cpp
+  SpreadsheetClass.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\spreadScreen\source\SpreadsheetClass.cpp(122,26): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
+C:\Users\Adam\Documents\GitHub\AATracker\spreadScreen\source\SpreadsheetClass.cpp(100): warning C4172: returning address of local variable or temporary: tmp
+C:\Users\Adam\Documents\GitHub\AATracker\spreadScreen\source\SpreadsheetClass.cpp(111): warning C4172: returning address of local variable or temporary: tmp
+C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\AAButtons.cpp(153): warning C4715: 'AAButtons::pressButton': not all control paths return a value
+C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\AAButtons.cpp(183): warning C4715: 'AAButtons::getButtonValInt': not all control paths return a value
+C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\AAButtons.cpp(161): warning C4715: 'AAButtons::releaseButton': not all control paths return a value
+C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\AAButtons.cpp(204): warning C4715: 'AAButtons::getButtonScreen': not all control paths return a value
+C:\Users\Adam\Documents\GitHub\AATracker\graphics\source\AAButtons.cpp(212): warning C4715: 'AAButtons::getButtonSection': not all control paths return a value
   AA Tracker.vcxproj -> C:\Users\Adam\Documents\GitHub\AATracker\x64\Debug\AA Tracker.exe

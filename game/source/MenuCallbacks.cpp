@@ -565,6 +565,7 @@ INT_PTR CALLBACK Game::CaptureTerritory(HWND hDlg, UINT message, WPARAM wParam, 
 
             }
 
+            nsCity = getTerCity(alphabetizedTerritories[k].id);
             nsCol = SPREAD_ALL_COLS;
             nsTurn = SPREAD_ALL_ROWS;
             nsWC |= 1 << prev;

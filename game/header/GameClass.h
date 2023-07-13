@@ -150,7 +150,7 @@ int Game::nsSection = ALL_SECT;
 int Game::nsPhase = ALL_PHASE;
 int Game::nsWar = WAR_SECT_ALL;
 int Game::nsWarTgt = TURN_NON;
-int Game::nsCity;
+int Game::nsCity = CITY_ALL;
 int Game::nsUnit = PURCH_TITLE;
 int Game::nsNeut = NEUT_ALL;
 int Game::nsTurn = SPREAD_ALL_ROWS;

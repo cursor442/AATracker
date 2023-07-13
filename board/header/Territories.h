@@ -4,6 +4,8 @@
 #define EUROPE_MAP  0
 #define PACIFIC_MAP 1
 
+#define TER_NONE        -1
+
 // Europe map territories
 // North America
 #define TER_ALBERTA      0
