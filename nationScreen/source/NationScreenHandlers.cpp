@@ -69,12 +69,12 @@ bool Game::nextTurnPhase(HWND& hWnd)
 	if ((phase == PR_PHASE && res == false) || phase == RS_PHASE)
 	{
 		nsSection = NAME_SECT | STAT_SECT | PHASE_SECT | WAR_SECT | CITY_SECT |
-			PURCH_SECT | SPREAD_SECT | CHEST_SECT | BONUS_SECT;
+			PURCH_SECT | PURCHT_SECT | SPREAD_SECT | CHEST_SECT | BONUS_SECT;
 
 		nsPhase = RS_PHASE | PR_PHASE | CI_PHASE;
 		nsWar = WAR_SECT_ALL;
 		currUKButton = false; currUKButtonToggled = false;
-		nsUnit = PURCH_TITLE;
+		nsUnit = PURCH_ALL;
 
 		nsTurn = SPREAD_ALL_ROWS;
 		nsCol = SPREAD_ALL_COLS;
