@@ -21,7 +21,7 @@ public:
 	bool getNeutralConfig();
 	void updateNeutralFormat(int, vector<territoryTransaction>&);
 
-	void drawNeutralBox(Graphics*, bool, bool, int);
+	void drawNeutralBox(Graphics*, int, bool, bool, int);
 
 private:
 
@@ -36,6 +36,7 @@ private:
 
 	// Section variables
 	vector<int> neutralPos;
+	vector<int> neutralUpdatePos;
 
 	// Section graphics
 	SolidBrush* tileBrushL;

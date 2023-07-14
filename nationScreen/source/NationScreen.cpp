@@ -35,12 +35,10 @@ bool Game::NationScreen(HDC& hdc, PAINTSTRUCT& ps)
             }
             else if (purchaseTab == TAB_NEUTRAL)
             {
-                //hidePurchaseFrameButtons();
                 drawNeutralBox(hdc);
             }
             else if (purchaseTab == TAB_COMB)
             {
-                //hidePurchaseFrameButtons();
                 drawCombinedArms(hdc);
             }
         }
@@ -102,7 +100,7 @@ bool Game::NationScreen(HDC& hdc, PAINTSTRUCT& ps)
             showTabBar(purchaseSectionTabs);
         }
 
-        if ((nsSection & PURCHT_SECT) != 0)
+        if ((nsSection & PURCHT_SECT) != 0 && purchaseTab == TAB_PURCH)
             drawPurchaseCostUpdate(hdc);
 
         if ((nsSection & SPREAD_SECT) != 0)

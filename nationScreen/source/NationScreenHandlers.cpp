@@ -265,7 +265,7 @@ void Game::attackNeutralButtonHandler(HWND& hWnd)
 			gameLog->addLogText(gameBoard->getGameTurn(), V_NEUTRAL_ALLY, TURN_NON, TURN_NON);
 	}
 
-	nsSection |= PHASE_SECT | PURCH_SECT;
+	nsSection |= PHASE_SECT | ((purchaseTab == TAB_NEUTRAL) ? PURCH_SECT : NO_SECT);
 	nsPhase = BUT_PHASE;
 	nsNeut = NEUT_UPD;
 	RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
@@ -285,7 +285,7 @@ void Game::attackMongoliaButtonHandler(HWND& hWnd)
 		}
 	}
 
-	nsSection |= PHASE_SECT | PURCH_SECT;
+	nsSection |= PHASE_SECT | ((purchaseTab == TAB_NEUTRAL) ? PURCH_SECT : NO_SECT);
 	nsPhase = BUT_PHASE;
 	nsNeut = NEUT_UPD;
 	RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);

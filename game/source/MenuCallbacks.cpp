@@ -566,11 +566,17 @@ INT_PTR CALLBACK Game::CaptureTerritory(HWND hDlg, UINT message, WPARAM wParam, 
             }
 
             nsCity = getTerCity(alphabetizedTerritories[k].id);
-            nsCol = SPREAD_ALL_COLS;
             nsTurn = SPREAD_ALL_ROWS;
+            nsCol = SPREAD_ALL_COLS;
             nsWC |= 1 << prev;
             nsBonusRow = BONS_UPD;
             nsSection = STAT_SECT | CITY_SECT | SPREAD_SECT | CHEST_SECT | BONUS_SECT;
+
+            if (gameBoard->getNeutralTerrUpdateSize() != 0 && purchaseTab == TAB_NEUTRAL)
+            {
+                nsNeut = NEUT_UPD;
+                nsSection |= PURCH_SECT;
+            }
 
             EndDialog(hDlg, TRUE);
             return TRUE;
@@ -1241,7 +1247,7 @@ INT_PTR CALLBACK Game::OccupyNeutral(HWND hDlg, UINT message, WPARAM wParam, LPA
 
             gameLog->addLogText(currTurn, V_OCCUPY, currNat, validNeutrals[k].id);
 
-            nsSection = PURCH_SECT | SPREAD_SECT;
+            nsSection = ((purchaseTab == TAB_NEUTRAL) ? PURCH_SECT : NO_SECT) | SPREAD_SECT;
             nsNeut = NEUT_UPD;
             nsCol = SPREAD_ALL_COLS;
             nsTurn = SPREAD_ALL_ROWS;

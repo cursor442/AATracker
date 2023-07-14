@@ -7,7 +7,6 @@ void Game::nationScreenHandleMainScreenTab(HWND& hWnd)
     {
         whichScreen = NATION_SCREEN;
         nsSection = ALL_SECT;
-        nsNeut = NEUT_ALL;
         RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
     }
 }
@@ -73,6 +72,7 @@ void Game::nationScreenHandlePurchaseSectionTab(HWND& hWnd)
     {
         purchaseTab = TAB_PURCH;
         nsSection = PURCH_SECT;
+        nsUnit = PURCH_TITLE;
         hideNeutralBox();
         RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
     }

@@ -278,13 +278,13 @@ void Game::drawNeutralBox(HDC& hdc)
             neutralSection->updateNeutralFormat(gameType, terrs);
         }
 
-        neutralSection->drawNeutralBox(graphics, dbg_boundbox, dbg_sections, dbg_layers);
+        neutralSection->drawNeutralBox(graphics, nsNeut, dbg_boundbox, dbg_sections, dbg_layers);
     }
     else if (nsNeut == NEUT_UPD)
     {
         gameBoard->getNeutralTerrUpdate(terrs);
         neutralSection->updateNeutralFormat(gameType, terrs);
-        neutralSection->drawNeutralBox(graphics, dbg_boundbox, dbg_sections, dbg_layers);
+        neutralSection->drawNeutralBox(graphics, nsNeut, dbg_boundbox, dbg_sections, dbg_layers);
         gameBoard->resetNeutralTerrUpdate();
     }
 

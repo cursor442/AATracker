@@ -67,7 +67,7 @@ void Game::nationScreenHandleAttackMongolia(HWND& hWnd)
 void Game::nationScreenHandleAttackJapan(HWND& hWnd)
 {
     gameBoard->attackJapan(hWnd);
-    nsSection |= PHASE_SECT | PURCH_SECT;
+    nsSection |= PHASE_SECT | ((purchaseTab == TAB_NEUTRAL) ? PURCH_SECT : NO_SECT);
     nsPhase = BUT_PHASE;
     nsNeut = NEUT_UPD;
     RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
@@ -76,7 +76,7 @@ void Game::nationScreenHandleAttackJapan(HWND& hWnd)
 void Game::nationScreenHandleAttackSoviet(HWND& hWnd)
 {
     gameBoard->attackSoviet(hWnd);
-    nsSection |= PHASE_SECT | PURCH_SECT;
+    nsSection |= PHASE_SECT | ((purchaseTab == TAB_NEUTRAL) ? PURCH_SECT : NO_SECT);
     nsPhase = BUT_PHASE;
     nsNeut = NEUT_UPD;
     RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE);
