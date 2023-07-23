@@ -12,7 +12,7 @@ public:
 	~WarSection();
 
 	void configureWarBox(RectF&, int);
-	void configDrawTools(SolidBrush*, Font*, Font*);
+	void configDrawTools(SolidBrush*, Font*, Font*, Font*);
 
 	void updateFormat(int, int, WarMatrix*);
 	int  updateFormat(int, int, int, WarMatrix*);
@@ -56,7 +56,7 @@ private:
 		* warTRBrush, * warTLBrush, * warBLBrush, * warBRBrush,
 		* warD1Brush, * warD2Brush, * warD3Brush;
 
-	Font* headFont, * headFont_s;
+	Font* headFont, * headFont_m, * headFont_s;
 
 	Font* font0, * font1, * font2, * font3;
 };

@@ -16,6 +16,7 @@
 #define GRAY_MAX       256
 
 #define FONT12_S        12
+#define FONT13_S        13
 #define FONT14_S        14
 #define FONT16_S        16
 #define FONT17_S        17
@@ -86,6 +87,7 @@ public:
 
 	// Fonts
 	Font* font12, * font12_b;
+	Font* font13_b;
 	Font* font14, * font14_b;
 	Font* font16, * font16_b, * font16_bl;
 	Font* font17;

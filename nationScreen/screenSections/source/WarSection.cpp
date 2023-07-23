@@ -47,7 +47,7 @@ WarSection::WarSection(Pen* p0, Pen* p1, FontFamily* ff, StringFormat* sf0, Stri
 	warTRBrush = NULL; warTLBrush = NULL; warBLBrush = NULL; warBRBrush = NULL;
 	warD1Brush = NULL; warD2Brush = NULL; warD3Brush = NULL;
 
-	headFont = NULL; headFont_s = NULL;
+	headFont = NULL; headFont_m = NULL; headFont_s = NULL;
 
 	font0 = NULL; font1 = NULL; font2 = NULL; font3 = NULL;
 }
@@ -112,11 +112,12 @@ void WarSection::configureWarBox(RectF& frame, int layer)
 		{ warTLBox->box.GetRight(),  warTLBox->box.Y }, layer + 1);
 }
 
-void WarSection::configDrawTools(SolidBrush* b0, Font* f0, Font* f1)
+void WarSection::configDrawTools(SolidBrush* b0, Font* f0, Font* f1, Font* f2)
 {
 	redBrush = b0;
 	headFont = f0;
-	headFont_s = f1;
+	headFont_m = f1;
+	headFont_s = f2;
 }
 
 void WarSection::updateFormat(int nat, int type, WarMatrix* warMatrix)
@@ -142,8 +143,8 @@ void WarSection::updateFormat(int nat, int type, WarMatrix* warMatrix)
 
 			wcsncpy_s(name0, natNames[TURN_UKE], ARRAYSIZE(natNames[TURN_UKE])); font0 = headFont_s;
 			wcsncpy_s(name1, natNames[TURN_FRA], ARRAYSIZE(natNames[TURN_FRA])); font1 = headFont;
-			wcsncpy_s(name2, natNames[TURN_SOV], ARRAYSIZE(natNames[TURN_SOV])); font2 = headFont_s;
-			wcsncpy_s(name3, natNames[TURN_USA], ARRAYSIZE(natNames[TURN_USA])); font3 = headFont_s;
+			wcsncpy_s(name2, natNames[TURN_SOV], ARRAYSIZE(natNames[TURN_SOV])); font2 = headFont_m;
+			wcsncpy_s(name3, natNames[TURN_USA], ARRAYSIZE(natNames[TURN_USA])); font3 = headFont_m;
 			warBoxFormat = 3;
 		}
 		else if (type == GLOBAL_GAME)
@@ -165,9 +166,9 @@ void WarSection::updateFormat(int nat, int type, WarMatrix* warMatrix)
 			else
 				warBRBrush = usaBrushF;
 
-			wcsncpy_s(name1, natNames[TURN_SOV], ARRAYSIZE(natNames[TURN_SOV])); font1 = headFont_s;
+			wcsncpy_s(name1, natNames[TURN_SOV], ARRAYSIZE(natNames[TURN_SOV])); font1 = headFont_m;
 			wcsncpy_s(name2, natNames[TURN_CHN], ARRAYSIZE(natNames[TURN_CHN])); font2 = headFont;
-			wcsncpy_s(name3, natNames[TURN_USA], ARRAYSIZE(natNames[TURN_USA])); font3 = headFont_s;
+			wcsncpy_s(name3, natNames[TURN_USA], ARRAYSIZE(natNames[TURN_USA])); font3 = headFont_m;
 			warBoxFormat = 1;
 		}
 		break;
@@ -233,7 +234,7 @@ void WarSection::updateFormat(int nat, int type, WarMatrix* warMatrix)
 			}
 
 			wcsncpy_s(name0, natNames[TURN_CHN], ARRAYSIZE(natNames[TURN_CHN])); font0 = headFont;
-			wcsncpy_s(name1, natNames[TURN_USA], ARRAYSIZE(natNames[TURN_USA])); font1 = headFont_s;
+			wcsncpy_s(name1, natNames[TURN_USA], ARRAYSIZE(natNames[TURN_USA])); font1 = headFont_m;
 			wcsncpy_s(name2, natNames[TURN_UKE], ARRAYSIZE(natNames[TURN_UKE])); font2 = headFont_s;
 			wcsncpy_s(name3, natNames[TURN_ANZ], ARRAYSIZE(natNames[TURN_ANZ])); font3 = headFont;
 			warBoxFormat = 3;
@@ -264,9 +265,9 @@ void WarSection::updateFormat(int nat, int type, WarMatrix* warMatrix)
 			else
 				warBRBrush = usaBrushF;
 
-			wcsncpy_s(name1, natNames[TURN_SOV], ARRAYSIZE(natNames[TURN_SOV])); font1 = headFont_s;
+			wcsncpy_s(name1, natNames[TURN_SOV], ARRAYSIZE(natNames[TURN_SOV])); font1 = headFont_m;
 			wcsncpy_s(name2, natNames[TURN_CHN], ARRAYSIZE(natNames[TURN_CHN])); font2 = headFont;
-			wcsncpy_s(name3, natNames[TURN_USA], ARRAYSIZE(natNames[TURN_USA])); font3 = headFont_s;
+			wcsncpy_s(name3, natNames[TURN_USA], ARRAYSIZE(natNames[TURN_USA])); font3 = headFont_m;
 			warBoxFormat = 1;
 		}
 		break;
@@ -407,8 +408,8 @@ void WarSection::updateFormat(int nat, int type, WarMatrix* warMatrix)
 
 			wcsncpy_s(name0, natNames[TURN_UKE], ARRAYSIZE(natNames[TURN_UKE])); font0 = headFont_s;
 			wcsncpy_s(name1, natNames[TURN_FRA], ARRAYSIZE(natNames[TURN_FRA])); font1 = headFont;
-			wcsncpy_s(name2, natNames[TURN_SOV], ARRAYSIZE(natNames[TURN_SOV])); font2 = headFont_s;
-			wcsncpy_s(name3, natNames[TURN_USA], ARRAYSIZE(natNames[TURN_USA])); font3 = headFont_s;
+			wcsncpy_s(name2, natNames[TURN_SOV], ARRAYSIZE(natNames[TURN_SOV])); font2 = headFont_m;
+			wcsncpy_s(name3, natNames[TURN_USA], ARRAYSIZE(natNames[TURN_USA])); font3 = headFont_m;
 			warBoxFormat = 3;
 		}
 		else if (type == GLOBAL_GAME)
@@ -429,9 +430,9 @@ void WarSection::updateFormat(int nat, int type, WarMatrix* warMatrix)
 			else
 				warBRBrush = usaBrushF;
 
-			wcsncpy_s(name1, natNames[TURN_SOV], ARRAYSIZE(natNames[TURN_SOV])); font1 = headFont_s;
+			wcsncpy_s(name1, natNames[TURN_SOV], ARRAYSIZE(natNames[TURN_SOV])); font1 = headFont_m;
 			wcsncpy_s(name2, natNames[TURN_CHN], ARRAYSIZE(natNames[TURN_CHN])); font2 = headFont;
-			wcsncpy_s(name3, natNames[TURN_USA], ARRAYSIZE(natNames[TURN_USA])); font3 = headFont_s;
+			wcsncpy_s(name3, natNames[TURN_USA], ARRAYSIZE(natNames[TURN_USA])); font3 = headFont_m;
 			warBoxFormat = 1;
 		}
 		break;

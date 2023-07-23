@@ -50,6 +50,7 @@ AAGraphics::AAGraphics(HWND hWnd, RectF rect)
 	vertLeftCenterFormat = NULL; vertRightCenterFormat = NULL;
 
 	font12 = NULL; font12_b = NULL;
+	font13_b = NULL;
 	font14 = NULL; font14_b = NULL;
 	font16 = NULL; font16_b = NULL; font16_bl = NULL;
 	font17 = NULL;
@@ -163,6 +164,7 @@ AAGraphics::~AAGraphics()
 	delete vertLeftCenterFormat; delete vertRightCenterFormat;
 
 	delete font12; delete font12_b;
+	delete font13_b;
 	delete font14; delete font14_b;
 	delete font16; delete font16_b; delete font16_bl;
 	delete font17;
@@ -334,6 +336,7 @@ void AAGraphics::config(HDC& hdc)
 
 	font12    = new Font(calibriFamily, FONT12_S, FontStyleRegular, UnitPixel);
 	font12_b  = new Font(calibriFamily, FONT12_S, FontStyleBold, UnitPixel);
+	font13_b  = new Font(calibriFamily, FONT13_S, FontStyleBold, UnitPixel);
 	font14    = new Font(calibriFamily, FONT14_S, FontStyleRegular, UnitPixel);
 	font14_b  = new Font(calibriFamily, FONT14_S, FontStyleBold, UnitPixel);
 	font16    = new Font(calibriFamily, FONT16_S, FontStyleRegular, UnitPixel);

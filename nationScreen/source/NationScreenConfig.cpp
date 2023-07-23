@@ -65,7 +65,7 @@ void Game::configNationScreen()
 	{
 		warSection = new WarSection(gfx->blackPen1, gfx->borderlessPen, gfx->calibriFamily, gfx->leftCenterFormat, gfx->centerFormat,
 			gfx->font16, gfx->font24_b, gfx->textBrush, gfx->backBrush, gfx->paneBrush);
-		warSection->configDrawTools(gfx->redBrush, gfx->font20_b, gfx->font12_b);
+		warSection->configDrawTools(gfx->redBrush, gfx->font20_b, gfx->font16_b, gfx->font13_b);
 		warSection->configNationBrushesP(gfx->gerBrushP, gfx->sovBrushP, gfx->jpnBrushP, gfx->usaBrushP, gfx->chnBrushP, gfx->ukBrushP, 
 			gfx->itaBrushP, gfx->anzBrushP, gfx->fraBrushP);
 		warSection->configNationBrushesF(gfx->gerBrushF, gfx->sovBrushF, gfx->jpnBrushF, gfx->usaBrushF, gfx->chnBrushF, gfx->ukBrushF,
