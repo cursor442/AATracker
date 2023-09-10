@@ -218,6 +218,7 @@ void Game::drawPurchaseFrame(HDC& hdc)
     }
     else if (nsUnit == PURCH_ALL)
     {
+        purchaseSection->updatePurchaseText(resShips);
         purchaseSection->updatePurchaseText(purchases, currUKButton);
         purchaseSection->drawPurchaseBox(graphics, PURCH_ALL, dbg_boundbox, dbg_sections, dbg_layers);
     }
@@ -252,8 +253,11 @@ void Game::drawPurchaseFrameButtons(bool force)
 
 void Game::drawPurchaseCostUpdate(HDC& hdc)
 {
-    purchaseSection->updatePurchaseText(true);
-    purchaseSection->drawPurchaseBox(graphics, true, dbg_boundbox, dbg_sections, dbg_layers);
+    if (gameBoard->getResearch(gameBoard->getGameCurrNation(), RES_SHIPYARDS))
+    {
+        purchaseSection->updatePurchaseText(true);
+        purchaseSection->drawPurchaseBox(graphics, true, dbg_boundbox, dbg_sections, dbg_layers);
+    }
 }
 
 void Game::drawNeutralBox(HDC& hdc)

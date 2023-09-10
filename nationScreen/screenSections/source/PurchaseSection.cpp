@@ -1080,11 +1080,11 @@ void PurchaseSection::drawPurchaseBox(Graphics* graphics, bool resShips, bool db
 	if (!dbg_sections)
 	{
 		battleRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_COST, false, L"", dbg_sections, layers);
-		airccRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_COST, false, L"", dbg_sections, layers);
+		airccRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_COST, false, L"", dbg_sections, layers);
 		cruiseRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_COST, false, L"", dbg_sections, layers);
-		destrRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_COST, false, L"", dbg_sections, layers);
+		destrRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_COST, false, L"", dbg_sections, layers);
 		subRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_COST, false, L"", dbg_sections, layers);
-		transRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_COST, false, L"", dbg_sections, layers);
+		transRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_COST, false, L"", dbg_sections, layers);
 	}
 }
 
