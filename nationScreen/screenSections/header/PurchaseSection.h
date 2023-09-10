@@ -4,7 +4,12 @@
 #include "../../../graphics/header/Section.h"
 #include "../../../nationScreen/header/PurchaseClass.h"
 #include "../../graphics/header/GraphicsHeader.h"
+#include "../../header/PurchaseRow.h"
 
+#define PURCH_ROW_UNIT_WIDTH    0.30
+#define PURCH_ROW_STAT_WIDTH    0.40
+#define PURCH_ROW_QUANT_WIDTH   0.16
+#define PURCH_ROW_TOTAL_WIDTH   0.14
 #define PURCH_BUTTON_D_OFFSET 488
 #define PURCH_BUTTON_U_OFFSET 548
 
@@ -42,13 +47,15 @@ private:
 	AABox* purchaseFrame;
 
 	// Section boxes
-	AABox* purchTitleBox, * purchHeadBox,
-		* infBox, * artBox, * mechBox, * tankBox,
-		* aaaBox, * fightBox, * tactBox, * stratBox,
-		* battleBox, * airccBox, * cruiseBox, * destrBox,
-		* subBox, * transBox, * majorBox, * minorBox,
-		* minorUpBox, * airbBox, * navbBox, * repBox,
-		* totBox;
+	AABox* purchTitleBox;
+
+	PurchaseRow* purchHeadRow,
+		* infRow, * artRow, * mechRow, * tankRow,
+		* aaaRow, * fightRow, * tactRow, * stratRow,
+		* battleRow, * airccRow, * cruiseRow, * destrRow,
+		* subRow, * transRow, * majorRow, * minorRow,
+		* minorUpRow, * airbRow, * navbRow, * repRow,
+		* totRow;
 		
 	PointF* titleP0, * titleP1;
 
@@ -78,47 +85,6 @@ private:
 	int airbDButton, airbUButton;
 	int navbDButton, navbUButton;
 	int repairDButton, repairUButton;
-
-	AABox* infQBox, * artQBox, * mechQBox, * tankQBox,
-		* aaaQBox, * fightQBox, * tactQBox, * stratQBox,
-		* battleQBox, * airccQBox, * cruiseQBox, * destrQBox,
-		* subQBox, * transQBox, * majorQBox, * minorQBox,
-		* minorUpQBox, * airbQBox, * navbQBox, * repQBox,
-		* totQBox;
-
-	AABox* infCBox, * artCBox, * mechCBox, * tankCBox,
-		* aaaCBox, * fightCBox, * tactCBox, * stratCBox,
-		* battleCBox, * airccCBox, * cruiseCBox, * destrCBox,
-		* subCBox, * transCBox, * majorCBox, * minorCBox,
-		* minorUpCBox, * airbCBox, * navbCBox, * repCBox,
-		* totCBox;
-
-	AABox* battleBoxU, * airccBoxU, * cruiseBoxU, * destrBoxU,
-		* subBoxU, * transBoxU;
-
-	// Section text
-	WCHAR purchHeadText[PURCH_TEXTLEN];
-	WCHAR infText[PURCH_TEXTLEN];
-	WCHAR artText[PURCH_TEXTLEN];
-	WCHAR mechText[PURCH_TEXTLEN];
-	WCHAR tankText[PURCH_TEXTLEN];
-	WCHAR aaaText[PURCH_TEXTLEN];
-	WCHAR fightText[PURCH_TEXTLEN];
-	WCHAR tactText[PURCH_TEXTLEN];
-	WCHAR stratText[PURCH_TEXTLEN];
-	WCHAR battleText[PURCH_TEXTLEN];
-	WCHAR airccText[PURCH_TEXTLEN];
-	WCHAR cruiseText[PURCH_TEXTLEN];
-	WCHAR destrText[PURCH_TEXTLEN];
-	WCHAR subText[PURCH_TEXTLEN];
-	WCHAR transText[PURCH_TEXTLEN];
-	WCHAR majorText[PURCH_TEXTLEN];
-	WCHAR minorText[PURCH_TEXTLEN];
-	WCHAR minorUpText[PURCH_TEXTLEN];
-	WCHAR airbText[PURCH_TEXTLEN];
-	WCHAR navbText[PURCH_TEXTLEN];
-	WCHAR repText[PURCH_TEXTLEN];
-	WCHAR totText[PURCH_TEXTLEN];
 
 	int currUKButton;
 	void valConv(WCHAR*, int);

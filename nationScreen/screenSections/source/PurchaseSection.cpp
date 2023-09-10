@@ -7,79 +7,29 @@ PurchaseSection::PurchaseSection(Pen* p0, Pen* p1, FontFamily* ff, StringFormat*
 	purchaseFrame = new AABox("Purchase Section");
 
 	purchTitleBox = new AABox("Purchase New Units");
-	purchHeadBox = new AABox("Header");
-	infBox = new AABox("Infantry");
-	artBox = new AABox("Artillery");
-	mechBox = new AABox("Mechanized");
-	tankBox = new AABox("Tank");
-	aaaBox = new AABox("AAA");
-	fightBox = new AABox("Fighter");
-	tactBox = new AABox("Tactical");
-	stratBox = new AABox("Strategic");
-	battleBox = new AABox("Battleship");
-	airccBox = new AABox("Aircraft");
-	cruiseBox = new AABox("Cruiser");
-	destrBox = new AABox("Destroyer");
-	subBox = new AABox("Submarine");
-	transBox = new AABox("Transport");
-	majorBox = new AABox("Major");
-	minorBox = new AABox("Minor");
-	minorUpBox = new AABox("Upgrade");
-	airbBox = new AABox("Air");
-	navbBox = new AABox("Naval");
-	repBox = new AABox("Repair");
-	totBox = new AABox("Total");
 
-	infQBox = new AABox("I");
-	artQBox = new AABox("A");
-	mechQBox = new AABox("M");
-	tankQBox = new AABox("T");
-	aaaQBox = new AABox("A");
-	fightQBox = new AABox("F");
-	tactQBox = new AABox("T");
-	stratQBox = new AABox("S");
-	battleQBox = new AABox("B");
-	airccQBox = new AABox("A");
-	cruiseQBox = new AABox("C");
-	destrQBox = new AABox("D");
-	subQBox = new AABox("S");
-	transQBox = new AABox("T");
-	majorQBox = new AABox("M");
-	minorQBox = new AABox("M");
-	minorUpQBox = new AABox("U");
-	airbQBox = new AABox("A");
-	navbQBox = new AABox("N");
-	repQBox = new AABox("R");
-	totQBox = new AABox("T");
-
-	infCBox = new AABox("I");
-	artCBox = new AABox("A");
-	mechCBox = new AABox("M");
-	tankCBox = new AABox("T");
-	aaaCBox = new AABox("A");
-	fightCBox = new AABox("F");
-	tactCBox = new AABox("T");
-	stratCBox = new AABox("S");
-	battleCBox = new AABox("B");
-	airccCBox = new AABox("A");
-	cruiseCBox = new AABox("C");
-	destrCBox = new AABox("D");
-	subCBox = new AABox("S");
-	transCBox = new AABox("T");
-	majorCBox = new AABox("M");
-	minorCBox = new AABox("M");
-	minorUpCBox = new AABox("U");
-	airbCBox = new AABox("A");
-	navbCBox = new AABox("N");
-	repCBox = new AABox("R");
-	totCBox = new AABox("T");
-
-	battleBoxU = new AABox("  17"); 
-	airccBoxU = new AABox("  13"); 
-	cruiseBoxU = new AABox("   9"); 
-	destrBoxU = new AABox("   7");
-	subBoxU = new AABox("   5"); 
-	transBoxU = new AABox("   6");
+	purchHeadRow = new PurchaseRow("Header" );
+	infRow       = new PurchaseRow("Infantry", "I");
+	artRow       = new PurchaseRow("Artillery", "A");
+	mechRow      = new PurchaseRow("Mechanized", "M");
+	tankRow      = new PurchaseRow("Tank", "T");
+	aaaRow       = new PurchaseRow("AAA", "A");
+	fightRow     = new PurchaseRow("Fighter", "F");
+	tactRow      = new PurchaseRow("Tactical", "T");
+	stratRow     = new PurchaseRow("Strategic", "S");
+	battleRow    = new PurchaseRow("Battleship", "B");
+	airccRow     = new PurchaseRow("Aircraft", "A");
+	cruiseRow    = new PurchaseRow("Cruiser", "C");
+	destrRow     = new PurchaseRow("Destroyer", "D");
+	subRow       = new PurchaseRow("Submarine", "S");
+	transRow     = new PurchaseRow("Transport", "T");
+	majorRow     = new PurchaseRow("Major", "M");
+	minorRow     = new PurchaseRow("Minor", "M");
+	minorUpRow   = new PurchaseRow("Upgrade", "U");
+	airbRow      = new PurchaseRow("Air", "A");
+	navbRow      = new PurchaseRow("Naval", "N");
+	repRow       = new PurchaseRow("Repair", "R");
+	totRow       = new PurchaseRow("Total", "T");
 
 	titleP0 = NULL; titleP1 = NULL;
 
@@ -88,6 +38,7 @@ PurchaseSection::PurchaseSection(Pen* p0, Pen* p1, FontFamily* ff, StringFormat*
 	buttons = NULL;
 	showButton = NULL;
 	hideButton = NULL;
+	hideButtonNoDraw = NULL;
 
 	infDButton     = BB_ID_NULL; infUButton     = BB_ID_NULL;
 	artDButton     = BB_ID_NULL; artUButton     = BB_ID_NULL;
@@ -110,51 +61,29 @@ PurchaseSection::PurchaseSection(Pen* p0, Pen* p1, FontFamily* ff, StringFormat*
 	navbDButton    = BB_ID_NULL; navbUButton    = BB_ID_NULL;
 	repairDButton  = BB_ID_NULL; repairUButton  = BB_ID_NULL;
 
-	WCHAR head[]    = L" Unit Stats:\tCost\tAttack\tDefense\tMove\tQuantity\tCost";
-	WCHAR inf[]     = L" Infantry\t   3\t     1\t      2\t     1";
-	WCHAR art[]     = L" Artillery\t   4\t     2\t      2\t     1";
-	WCHAR mech[]    = L" Mechanized Infantry\t   4\t     1\t      2\t     2";
-	WCHAR tank[]    = L" Tank\t   6\t     3\t      3\t     2";
-	WCHAR aaa[]     = L" AAA\t   5\t\t      1\t     1";
-	WCHAR fight[]   = L" Fighter\t  10\t     3\t      4\t     4";
-	WCHAR tact[]    = L" Tactical Bomber\t  11\t     3\t      3\t     4";
-	WCHAR strat[]   = L" Strategic Bomber\t  12\t     4\t      1\t     6";
-	WCHAR battle[]  = L" Battleship\t  20\t     4\t      4\t     2";
-	WCHAR aircc[]   = L" Aircraft Carrier\t  16\t\t      2\t     2";
-	WCHAR cruise[]  = L" Cruiser\t  12\t     3\t      3\t     2";
-	WCHAR destr[]   = L" Destroyer\t   8\t     2\t      2\t     2";
-	WCHAR sub[]     = L" Submarine\t   6\t     2\t      1\t     2";
-	WCHAR trans[]   = L" Transport\t   7\t\t\t     2";
-	WCHAR major[]   = L" Major Industrial Complex\t  30";
-	WCHAR minor[]   = L" Minor Industrial Complex\t  12";
-	WCHAR minorUp[] = L"     Upgrade Minor IC\t  20";
-	WCHAR airb[]    = L" Air Base\t  15";
-	WCHAR navb[]    = L" Naval Base\t  15";
-	WCHAR rep[]     = L" Repairs\t   1";
-	WCHAR tot[]     = L" Total:";
-
-	wcsncpy_s(purchHeadText, head, ARRAYSIZE(head));
-	wcsncpy_s(infText, inf, ARRAYSIZE(inf));
-	wcsncpy_s(artText, art, ARRAYSIZE(art));
-	wcsncpy_s(mechText, mech, ARRAYSIZE(mech));
-	wcsncpy_s(tankText, tank, ARRAYSIZE(tank));
-	wcsncpy_s(aaaText, aaa, ARRAYSIZE(aaa));
-	wcsncpy_s(fightText, fight, ARRAYSIZE(fight));
-	wcsncpy_s(tactText, tact, ARRAYSIZE(tact));
-	wcsncpy_s(stratText, strat, ARRAYSIZE(strat));
-	wcsncpy_s(battleText, battle, ARRAYSIZE(battle));
-	wcsncpy_s(airccText, aircc, ARRAYSIZE(aircc));
-	wcsncpy_s(cruiseText, cruise, ARRAYSIZE(cruise));
-	wcsncpy_s(destrText, destr, ARRAYSIZE(destr));
-	wcsncpy_s(subText, sub, ARRAYSIZE(sub));
-	wcsncpy_s(transText, trans, ARRAYSIZE(trans));
-	wcsncpy_s(majorText, major, ARRAYSIZE(major));
-	wcsncpy_s(minorText, minor, ARRAYSIZE(minor));
-	wcsncpy_s(minorUpText, minorUp, ARRAYSIZE(minorUp));
-	wcsncpy_s(airbText, airb, ARRAYSIZE(airb));
-	wcsncpy_s(navbText, navb, ARRAYSIZE(navb));
-	wcsncpy_s(repText, rep, ARRAYSIZE(rep));
-	wcsncpy_s(totText, tot, ARRAYSIZE(tot));
+	purchHeadRow->configRowText(" Unit Stats:", "Cost", "Attack", "Defend", "Move");
+	purchHeadRow->configQuantTotText("Quantity", "Total");
+	infRow->configRowText(" Infantry", "3", "1", "2", "1");
+	artRow->configRowText(" Artillery", "4", "2", "2", "1");
+	mechRow->configRowText(" Mechanized Infantry", "4", "1", "2", "2");
+	tankRow->configRowText(" Tank", "6", "3", "3", "2");
+	aaaRow->configRowText(" AAA", "5", " ", "1", "1");
+	fightRow->configRowText(" Fighter", "10", "3", "4", "4");
+	tactRow->configRowText(" Tactical Bomber", "11", "3", "3", "4");
+	stratRow->configRowText(" Strategic Bomber", "12", "4", "1", "6");
+	battleRow->configRowText(" Battleship", "20", "4", "4", "2");
+	airccRow->configRowText(" Aircraft Carrier", "16", "", "2", "2");
+	cruiseRow->configRowText(" Cruiser", "12", "3", "3", "2");
+	destrRow->configRowText(" Destroyer", "8", "2", "2", "2");
+	subRow->configRowText(" Submarine", "6", "2", "1", "2");
+	transRow->configRowText(" Transport", "7", "", "", "2");
+	majorRow->configRowText(" Major Industrial Complex", "30", "", "", "");
+	minorRow->configRowText(" Minor Industrial Complex", "12", "", "", "");
+	minorUpRow->configRowText("     Upgrade Minor IC", "20", "", "", "");
+	airbRow->configRowText(" Air Base", "15", "", "", "");
+	navbRow->configRowText(" Naval Base", "15", "", "", "");
+	repRow->configRowText(" Repairs", "1", "", "", "");
+	totRow->configRowText(" Total:", "", "", "", "");
 
 	currUKButton = 0;
 
@@ -218,79 +147,28 @@ PurchaseSection::~PurchaseSection()
 	delete purchaseFrame;
 
 	delete purchTitleBox;
-	delete purchHeadBox;
-	delete infBox;
-	delete artBox;
-	delete mechBox;
-	delete tankBox;
-	delete aaaBox;
-	delete fightBox;
-	delete tactBox;
-	delete stratBox;
-	delete battleBox;
-	delete airccBox;
-	delete cruiseBox;
-	delete destrBox;
-	delete subBox;
-	delete transBox;
-	delete majorBox;
-	delete minorBox;
-	delete minorUpBox;
-	delete airbBox;
-	delete navbBox;
-	delete repBox;
-	delete totBox;
 
-	delete infQBox;
-	delete artQBox;
-	delete mechQBox;
-	delete tankQBox;
-	delete aaaQBox;
-	delete fightQBox;
-	delete tactQBox;
-	delete stratQBox;
-	delete battleQBox;
-	delete airccQBox;
-	delete cruiseQBox;
-	delete destrQBox;
-	delete subQBox;
-	delete transQBox;
-	delete majorQBox;
-	delete minorQBox;
-	delete minorUpQBox;
-	delete airbQBox;
-	delete navbQBox;
-	delete repQBox;
-	delete totQBox;
-
-	delete infCBox;
-	delete artCBox;
-	delete mechCBox;
-	delete tankCBox;
-	delete aaaCBox;
-	delete fightCBox;
-	delete tactCBox;
-	delete stratCBox;
-	delete battleCBox;
-	delete airccCBox;
-	delete cruiseCBox;
-	delete destrCBox;
-	delete subCBox;
-	delete transCBox;
-	delete majorCBox;
-	delete minorCBox;
-	delete minorUpCBox;
-	delete airbCBox;
-	delete navbCBox;
-	delete repCBox;
-	delete totCBox;
-
-	delete battleBoxU;
-	delete airccBoxU;
-	delete cruiseBoxU;
-	delete destrBoxU;
-	delete subBoxU;
-	delete transBoxU;
+	delete purchHeadRow;
+	delete infRow;
+	delete artRow;
+	delete mechRow;
+	delete aaaRow;
+	delete fightRow;
+	delete tactRow;
+	delete stratRow;
+	delete battleRow;
+	delete airccRow;
+	delete cruiseRow;
+	delete destrRow;
+	delete subRow;
+	delete transRow;
+	delete majorRow;
+	delete minorRow;
+	delete minorUpRow;
+	delete airbRow;
+	delete navbRow;
+	delete repRow;
+	delete totRow;
 
 	delete titleP0; delete titleP1;
 }
@@ -307,235 +185,81 @@ void PurchaseSection::configurePurchaseBox(Graphics* graphics, HWND& hWnd, RectF
 	titleP0 = new PointF(purchTitleBox->box.X, purchTitleBox->box.GetBottom());
 	titleP1 = new PointF(purchTitleBox->box.GetRight(), purchTitleBox->box.GetBottom());
 
-	purchHeadBox->config(purchTitleBox->box, layer + 1);
-	purchHeadBox->box.Y = purchTitleBox->box.GetBottom();
-	purchHeadBox->box.Height = frame.Height / 25;
+	purchHeadRow->configRow(purchTitleBox->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, false, layer + 1);
+	purchHeadRow->setRowY(purchTitleBox->box.GetBottom());
+	purchHeadRow->setRowHeight(frame.Height / 25);
 
-	infBox->config(purchHeadBox->box, layer + 1);
-	infBox->box.Y = purchHeadBox->box.GetBottom();
+	infRow->configRow(purchHeadRow->getBox()->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, true, layer + 1);
+	infRow->setRowY(purchHeadRow->bottom());
 
-	artBox->config(infBox->box, layer + 1);
-	artBox->box.Y = infBox->box.GetBottom();
+	artRow->configRow(infRow->getBox()->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, true, layer + 1);
+	artRow->setRowY(infRow->bottom());
 
-	mechBox->config(artBox->box, layer + 1);
-	mechBox->box.Y = artBox->box.GetBottom();
+	mechRow->configRow(artRow->getBox()->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, true, layer + 1);
+	mechRow->setRowY(artRow->bottom());
 
-	tankBox->config(mechBox->box, layer + 1);
-	tankBox->box.Y = mechBox->box.GetBottom();
+	tankRow->configRow(mechRow->getBox()->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, true, layer + 1);
+	tankRow->setRowY(mechRow->bottom());
+	
+	aaaRow->configRow(tankRow->getBox()->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, true, layer + 1);
+	aaaRow->setRowY(tankRow->bottom());
 
-	aaaBox->config(tankBox->box, layer + 1);
-	aaaBox->box.Y = tankBox->box.GetBottom();
+	fightRow->configRow(aaaRow->getBox()->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, true, layer + 1);
+	fightRow->setRowY(aaaRow->bottom());
 
-	fightBox->config(aaaBox->box, layer + 1);
-	fightBox->box.Y = aaaBox->box.GetBottom();
+	tactRow->configRow(fightRow->getBox()->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, true, layer + 1);
+	tactRow->setRowY(fightRow->bottom());
 
-	tactBox->config(fightBox->box, layer + 1);
-	tactBox->box.Y = fightBox->box.GetBottom();
+	stratRow->configRow(tactRow->getBox()->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, true, layer + 1);
+	stratRow->setRowY(tactRow->bottom());
 
-	stratBox->config(tactBox->box, layer + 1);
-	stratBox->box.Y = tactBox->box.GetBottom();
+	battleRow->configRow(stratRow->getBox()->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, true, layer + 1);
+	battleRow->setRowY(stratRow->bottom());
 
-	battleBox->config(stratBox->box, layer + 1);
-	battleBox->box.Y = stratBox->box.GetBottom();
+	airccRow->configRow(battleRow->getBox()->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, true, layer + 1);
+	airccRow->setRowY(battleRow->bottom());
 
-	airccBox->config(battleBox->box, layer + 1);
-	airccBox->box.Y = battleBox->box.GetBottom();
+	cruiseRow->configRow(airccRow->getBox()->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, true, layer + 1);
+	cruiseRow->setRowY(airccRow->bottom());
 
-	cruiseBox->config(airccBox->box, layer + 1);
-	cruiseBox->box.Y = airccBox->box.GetBottom();
+	destrRow->configRow(cruiseRow->getBox()->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, true, layer + 1);
+	destrRow->setRowY(cruiseRow->bottom());
+	
+	subRow->configRow(destrRow->getBox()->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, true, layer + 1);
+	subRow->setRowY(destrRow->bottom());
 
-	destrBox->config(cruiseBox->box, layer + 1);
-	destrBox->box.Y = cruiseBox->box.GetBottom();
+	transRow->configRow(subRow->getBox()->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, true, layer + 1);
+	transRow->setRowY(subRow->bottom());
 
-	subBox->config(destrBox->box, layer + 1);
-	subBox->box.Y = destrBox->box.GetBottom();
+	majorRow->configRow(transRow->getBox()->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, true, layer + 1);
+	majorRow->setRowY(transRow->bottom());
 
-	transBox->config(subBox->box, layer + 1);
-	transBox->box.Y = subBox->box.GetBottom();
+	minorRow->configRow(majorRow->getBox()->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, true, layer + 1);
+	minorRow->setRowY(majorRow->bottom());
+	
+	minorUpRow->configRow(minorRow->getBox()->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, true, layer + 1);
+	minorUpRow->setRowY(minorRow->bottom());
 
-	majorBox->config(transBox->box, layer + 1);
-	majorBox->box.Y = transBox->box.GetBottom();
+	airbRow->configRow(minorUpRow->getBox()->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, true, layer + 1);
+	airbRow->setRowY(minorUpRow->bottom());
 
-	minorBox->config(majorBox->box, layer + 1);
-	minorBox->box.Y = majorBox->box.GetBottom();
+	navbRow->configRow(airbRow->getBox()->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, true, layer + 1);
+	navbRow->setRowY(airbRow->bottom());
 
-	minorUpBox->config(minorBox->box, layer + 1);
-	minorUpBox->box.Y = minorBox->box.GetBottom();
+	repRow->configRow(navbRow->getBox()->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, true, layer + 1);
+	repRow->setRowY(navbRow->bottom());
 
-	airbBox->config(minorUpBox->box, layer + 1);
-	airbBox->box.Y = minorUpBox->box.GetBottom();
-
-	navbBox->config(airbBox->box, layer + 1);
-	navbBox->box.Y = airbBox->box.GetBottom();
-
-	repBox->config(navbBox->box, layer + 1);
-	repBox->box.Y = navbBox->box.GetBottom();
-
-	totBox->config(repBox->box, layer + 1);
-	totBox->box.Y = repBox->box.GetBottom();
-	totBox->box.Height = frame.GetBottom() - totBox->box.Y;
+	totRow->configRow(repRow->getBox()->box, PURCH_ROW_UNIT_WIDTH, PURCH_ROW_STAT_WIDTH, PURCH_ROW_QUANT_WIDTH, PURCH_ROW_TOTAL_WIDTH, false, layer + 1);
+	totRow->setRowY(repRow->bottom());
+	totRow->setRowHeight(frame.GetBottom() - totRow->getBox()->box.Y);
 
 	configPurchaseButtons(graphics, buttons, purchaseButton);
-
-	infQBox->config(infBox->box, layer + 2);
-	infQBox->box.X = PURCH_BUTTON_D_OFFSET + infBox->box.Height + 1;
-	infQBox->box.Width = PURCH_BUTTON_U_OFFSET - infQBox->box.X - 1;
-
-	artQBox->config(infQBox->box, layer + 2);
-	artQBox->box.Y = infQBox->box.GetBottom();
-
-	mechQBox->config(artQBox->box, layer + 2);
-	mechQBox->box.Y = artQBox->box.GetBottom();
-
-	tankQBox->config(mechQBox->box, layer + 2);
-	tankQBox->box.Y = mechQBox->box.GetBottom();
-
-	aaaQBox->config(tankQBox->box, layer + 2);
-	aaaQBox->box.Y = tankQBox->box.GetBottom();
-
-	fightQBox->config(aaaQBox->box, layer + 2);
-	fightQBox->box.Y = aaaQBox->box.GetBottom();
-
-	tactQBox->config(fightQBox->box, layer + 2);
-	tactQBox->box.Y = fightQBox->box.GetBottom();
-
-	stratQBox->config(tactQBox->box, layer + 2);
-	stratQBox->box.Y = tactQBox->box.GetBottom();
-
-	battleQBox->config(stratQBox->box, layer + 2);
-	battleQBox->box.Y = stratQBox->box.GetBottom();
-
-	airccQBox->config(battleQBox->box, layer + 2);
-	airccQBox->box.Y = battleQBox->box.GetBottom();
-
-	cruiseQBox->config(airccQBox->box, layer + 2);
-	cruiseQBox->box.Y = airccQBox->box.GetBottom();
-
-	destrQBox->config(cruiseQBox->box, layer + 2);
-	destrQBox->box.Y = cruiseQBox->box.GetBottom();
-
-	subQBox->config(destrQBox->box, layer + 2);
-	subQBox->box.Y = destrQBox->box.GetBottom();
-
-	transQBox->config(subQBox->box, layer + 2);
-	transQBox->box.Y = subQBox->box.GetBottom();
-
-	majorQBox->config(transQBox->box, layer + 2);
-	majorQBox->box.Y = transQBox->box.GetBottom();
-
-	minorQBox->config(majorQBox->box, layer + 2);
-	minorQBox->box.Y = majorQBox->box.GetBottom();
-
-	minorUpQBox->config(minorQBox->box, layer + 2);
-	minorUpQBox->box.Y = minorQBox->box.GetBottom();
-
-	airbQBox->config(minorUpQBox->box, layer + 2);
-	airbQBox->box.Y = minorUpQBox->box.GetBottom();
-
-	navbQBox->config(airbQBox->box, layer + 2);
-	navbQBox->box.Y = airbQBox->box.GetBottom();
-
-	repQBox->config(navbQBox->box, layer + 2);
-	repQBox->box.Y = navbQBox->box.GetBottom();
-
-	totQBox->config(repQBox->box, layer + 2);
-	totQBox->box.Y = repQBox->box.GetBottom();
-	totQBox->box.Height = purchaseFrame->box.GetBottom() - totQBox->box.Y;
-
-	infCBox->config(infBox->box, layer + 2);
-	infCBox->box.X = PURCH_BUTTON_U_OFFSET + infBox->box.Height + 1;
-	infCBox->box.Width = purchaseFrame->box.GetRight() - infCBox->box.X - 1;
-
-	artCBox->config(infCBox->box, layer + 2);
-	artCBox->box.Y = infCBox->box.GetBottom();
-
-	mechCBox->config(artCBox->box, layer + 2);
-	mechCBox->box.Y = artCBox->box.GetBottom();
-
-	tankCBox->config(mechCBox->box, layer + 2);
-	tankCBox->box.Y = mechCBox->box.GetBottom();
-
-	aaaCBox->config(tankCBox->box, layer + 2);
-	aaaCBox->box.Y = tankCBox->box.GetBottom();
-
-	fightCBox->config(aaaCBox->box, layer + 2);
-	fightCBox->box.Y = aaaCBox->box.GetBottom();
-
-	tactCBox->config(fightCBox->box, layer + 2);
-	tactCBox->box.Y = fightCBox->box.GetBottom();
-
-	stratCBox->config(tactCBox->box, layer + 2);
-	stratCBox->box.Y = tactCBox->box.GetBottom();
-
-	battleCBox->config(stratCBox->box, layer + 2);
-	battleCBox->box.Y = stratCBox->box.GetBottom();
-
-	airccCBox->config(battleCBox->box, layer + 2);
-	airccCBox->box.Y = battleCBox->box.GetBottom();
-
-	cruiseCBox->config(airccCBox->box, layer + 2);
-	cruiseCBox->box.Y = airccCBox->box.GetBottom();
-
-	destrCBox->config(cruiseCBox->box, layer + 2);
-	destrCBox->box.Y = cruiseCBox->box.GetBottom();
-
-	subCBox->config(destrCBox->box, layer + 2);
-	subCBox->box.Y = destrCBox->box.GetBottom();
-
-	transCBox->config(subCBox->box, layer + 2);
-	transCBox->box.Y = subCBox->box.GetBottom();
-
-	majorCBox->config(transCBox->box, layer + 2);
-	majorCBox->box.Y = transCBox->box.GetBottom();
-
-	minorCBox->config(majorCBox->box, layer + 2);
-	minorCBox->box.Y = majorCBox->box.GetBottom();
-
-	minorUpCBox->config(minorCBox->box, layer + 2);
-	minorUpCBox->box.Y = minorCBox->box.GetBottom();
-
-	airbCBox->config(minorUpCBox->box, layer + 2);
-	airbCBox->box.Y = minorUpCBox->box.GetBottom();
-
-	navbCBox->config(airbCBox->box, layer + 2);
-	navbCBox->box.Y = airbCBox->box.GetBottom();
-
-	repCBox->config(navbCBox->box, layer + 2);
-	repCBox->box.Y = navbCBox->box.GetBottom();
-
-	totCBox->config(repCBox->box, layer + 2);
-	totCBox->box.Y = repCBox->box.GetBottom();
-	totCBox->box.Height = purchaseFrame->box.GetBottom() - totCBox->box.Y;
 
 	REAL firstTabOffset;
 	REAL tabStops[6];
 	purchaseFormat->GetTabStops(6, &firstTabOffset, tabStops);
 
 	REAL X = purchaseFrame->box.X + firstTabOffset + tabStops[0];
-
-	battleBoxU->config(battleBox->box, layer + 2);
-	battleBoxU->box.X = X;
-	battleBoxU->box.Width = tabStops[1];
-
-	airccBoxU->config(airccBox->box, layer + 2);
-	airccBoxU->box.X = X;
-	airccBoxU->box.Width = tabStops[1];
-
-	cruiseBoxU->config(cruiseBox->box, layer + 2);
-	cruiseBoxU->box.X = X;
-	cruiseBoxU->box.Width = tabStops[1];
-
-	destrBoxU->config(destrBox->box, layer + 2);
-	destrBoxU->box.X = X;
-	destrBoxU->box.Width = tabStops[1];
-
-	subBoxU->config(subBox->box, layer + 2);
-	subBoxU->box.X = X;
-	subBoxU->box.Width = tabStops[1];
-
-	transBoxU->config(transBox->box, layer + 2);
-	transBoxU->box.X = X;
-	transBoxU->box.Width = tabStops[1];
 }
 
 void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns, void (*purchaseButton)(HWND&, int))
@@ -546,7 +270,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		infDButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_D_OFFSET, infBox->box.Y, infBox->box.Height, infBox->box.Height };
+		RectF rect = { infRow->buttonDownX(), infRow->y(), infRow->height(), infRow->height() };
 		buttons->registerButton(graphics, infDButton, NATION_SCREEN, PURCH_SECT, rect, "-", purchaseButton);
 		buttons->activateButton(infDButton);
 		buttons->setButtonFuncId(infDButton, IDB_INFDN);
@@ -557,7 +281,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		infUButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_U_OFFSET, infBox->box.Y, infBox->box.Height, infBox->box.Height };
+		RectF rect = { infRow->buttonUpX(), infRow->y(), infRow->height(), infRow->height() };
 		buttons->registerButton(graphics, infUButton, NATION_SCREEN, PURCH_SECT, rect, "+", purchaseButton);
 		buttons->activateButton(infUButton);
 		buttons->setButtonFuncId(infUButton, IDB_INFUP);
@@ -569,7 +293,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		artDButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_D_OFFSET, artBox->box.Y, artBox->box.Height, artBox->box.Height };
+		RectF rect = { artRow->buttonDownX(), artRow->y(), artRow->height(), artRow->height() };
 		buttons->registerButton(graphics, artDButton, NATION_SCREEN, PURCH_SECT, rect, "-", purchaseButton);
 		buttons->activateButton(artDButton);
 		buttons->setButtonFuncId(artDButton, IDB_ARTDN);
@@ -580,7 +304,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		artUButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_U_OFFSET, artBox->box.Y, artBox->box.Height, artBox->box.Height };
+		RectF rect = { artRow->buttonUpX(), artRow->y(), artRow->height(), artRow->height() };
 		buttons->registerButton(graphics, artUButton, NATION_SCREEN, PURCH_SECT, rect, "+", purchaseButton);
 		buttons->activateButton(artUButton);
 		buttons->setButtonFuncId(artUButton, IDB_ARTUP);
@@ -592,7 +316,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		mechDButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_D_OFFSET, mechBox->box.Y, mechBox->box.Height, mechBox->box.Height };
+		RectF rect = { mechRow->buttonDownX(), mechRow->y(), mechRow->height(), mechRow->height() };
 		buttons->registerButton(graphics, mechDButton, NATION_SCREEN, PURCH_SECT, rect, "-", purchaseButton);
 		buttons->activateButton(mechDButton);
 		buttons->setButtonFuncId(mechDButton, IDB_MECHDN);
@@ -603,7 +327,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		mechUButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_U_OFFSET, mechBox->box.Y, mechBox->box.Height, mechBox->box.Height };
+		RectF rect = { mechRow->buttonUpX(), mechRow->y(), mechRow->height(), mechRow->height() };
 		buttons->registerButton(graphics, mechUButton, NATION_SCREEN, PURCH_SECT, rect, "+", purchaseButton);
 		buttons->activateButton(mechUButton);
 		buttons->setButtonFuncId(mechUButton, IDB_MECHUP);
@@ -615,7 +339,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		tankDButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_D_OFFSET, tankBox->box.Y, tankBox->box.Height, tankBox->box.Height };
+		RectF rect = { tankRow->buttonDownX(), tankRow->y(), tankRow->height(), tankRow->height() };
 		buttons->registerButton(graphics, tankDButton, NATION_SCREEN, PURCH_SECT, rect, "-", purchaseButton);
 		buttons->activateButton(tankDButton);
 		buttons->setButtonFuncId(tankDButton, IDB_TANKDN);
@@ -626,7 +350,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		tankUButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_U_OFFSET, tankBox->box.Y, tankBox->box.Height, tankBox->box.Height };
+		RectF rect = { tankRow->buttonUpX(), tankRow->y(), tankRow->height(), tankRow->height() };
 		buttons->registerButton(graphics, tankUButton, NATION_SCREEN, PURCH_SECT, rect, "+", purchaseButton);
 		buttons->activateButton(tankUButton);
 		buttons->setButtonFuncId(tankUButton, IDB_TANKUP);
@@ -638,7 +362,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		aaaDButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_D_OFFSET, aaaBox->box.Y, aaaBox->box.Height, aaaBox->box.Height };
+		RectF rect = { aaaRow->buttonDownX(), aaaRow->y(), aaaRow->height(), aaaRow->height() };
 		buttons->registerButton(graphics, aaaDButton, NATION_SCREEN, PURCH_SECT, rect, "-", purchaseButton);
 		buttons->activateButton(aaaDButton);
 		buttons->setButtonFuncId(aaaDButton, IDB_AAADN);
@@ -649,7 +373,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		aaaUButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_U_OFFSET, aaaBox->box.Y, aaaBox->box.Height, aaaBox->box.Height };
+		RectF rect = { aaaRow->buttonUpX(), aaaRow->y(), aaaRow->height(), aaaRow->height() };
 		buttons->registerButton(graphics, aaaUButton, NATION_SCREEN, PURCH_SECT, rect, "+", purchaseButton);
 		buttons->activateButton(aaaUButton);
 		buttons->setButtonFuncId(aaaUButton, IDB_AAAUP);
@@ -661,7 +385,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		fightDButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_D_OFFSET, fightBox->box.Y, fightBox->box.Height, fightBox->box.Height };
+		RectF rect = { fightRow->buttonDownX(), fightRow->y(), fightRow->height(), fightRow->height() };
 		buttons->registerButton(graphics, fightDButton, NATION_SCREEN, PURCH_SECT, rect, "-", purchaseButton);
 		buttons->activateButton(fightDButton);
 		buttons->setButtonFuncId(fightDButton, IDB_FIGHTDN);
@@ -672,7 +396,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		fightUButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_U_OFFSET, fightBox->box.Y, fightBox->box.Height, fightBox->box.Height };
+		RectF rect = { fightRow->buttonUpX(), fightRow->y(), fightRow->height(), fightRow->height() };
 		buttons->registerButton(graphics, fightUButton, NATION_SCREEN, PURCH_SECT, rect, "+", purchaseButton);
 		buttons->activateButton(fightUButton);
 		buttons->setButtonFuncId(fightUButton, IDB_FIGHTUP);
@@ -684,7 +408,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		tactDButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_D_OFFSET, tactBox->box.Y, tactBox->box.Height, tactBox->box.Height };
+		RectF rect = { tactRow->buttonDownX(), tactRow->y(), tactRow->height(), tactRow->height() };
 		buttons->registerButton(graphics, tactDButton, NATION_SCREEN, PURCH_SECT, rect, "-", purchaseButton);
 		buttons->activateButton(tactDButton);
 		buttons->setButtonFuncId(tactDButton, IDB_TACTDN);
@@ -695,7 +419,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		tactUButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_U_OFFSET, tactBox->box.Y, tactBox->box.Height, tactBox->box.Height };
+		RectF rect = { tactRow->buttonUpX(), tactRow->y(), tactRow->height(), tactRow->height() };
 		buttons->registerButton(graphics, tactUButton, NATION_SCREEN, PURCH_SECT, rect, "+", purchaseButton);
 		buttons->activateButton(tactUButton);
 		buttons->setButtonFuncId(tactUButton, IDB_TACTUP);
@@ -707,7 +431,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		stratDButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_D_OFFSET, stratBox->box.Y, stratBox->box.Height, stratBox->box.Height };
+		RectF rect = { stratRow->buttonDownX(), stratRow->y(), stratRow->height(), stratRow->height() };
 		buttons->registerButton(graphics, stratDButton, NATION_SCREEN, PURCH_SECT, rect, "-", purchaseButton);
 		buttons->activateButton(stratDButton);
 		buttons->setButtonFuncId(stratDButton, IDB_STRATDN);
@@ -718,7 +442,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		stratUButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_U_OFFSET, stratBox->box.Y, stratBox->box.Height, stratBox->box.Height };
+		RectF rect = { stratRow->buttonUpX(), stratRow->y(), stratRow->height(), stratRow->height() };
 		buttons->registerButton(graphics, stratUButton, NATION_SCREEN, PURCH_SECT, rect, "+", purchaseButton);
 		buttons->activateButton(stratUButton);
 		buttons->setButtonFuncId(stratUButton, IDB_STRATUP);
@@ -730,7 +454,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		battleDButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_D_OFFSET, battleBox->box.Y, battleBox->box.Height, battleBox->box.Height };
+		RectF rect = { battleRow->buttonDownX(), battleRow->y(), battleRow->height(), battleRow->height() };
 		buttons->registerButton(graphics, battleDButton, NATION_SCREEN, PURCH_SECT, rect, "-", purchaseButton);
 		buttons->activateButton(battleDButton);
 		buttons->setButtonFuncId(battleDButton, IDB_BATTLEDN);
@@ -741,7 +465,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		battleUButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_U_OFFSET, battleBox->box.Y, battleBox->box.Height, battleBox->box.Height };
+		RectF rect = { battleRow->buttonUpX(), battleRow->y(), battleRow->height(), battleRow->height() };
 		buttons->registerButton(graphics, battleUButton, NATION_SCREEN, PURCH_SECT, rect, "+", purchaseButton);
 		buttons->activateButton(battleUButton);
 		buttons->setButtonFuncId(battleUButton, IDB_BATTLEUP);
@@ -753,7 +477,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		airccDButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_D_OFFSET, airccBox->box.Y, airccBox->box.Height, airccBox->box.Height };
+		RectF rect = { airccRow->buttonDownX(), airccRow->y(), airccRow->height(), airccRow->height() };
 		buttons->registerButton(graphics, airccDButton, NATION_SCREEN, PURCH_SECT, rect, "-", purchaseButton);
 		buttons->activateButton(airccDButton);
 		buttons->setButtonFuncId(airccDButton, IDB_AIRCCDN);
@@ -764,7 +488,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		airccUButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_U_OFFSET, airccBox->box.Y, airccBox->box.Height, airccBox->box.Height };
+		RectF rect = { airccRow->buttonUpX(), airccRow->y(), airccRow->height(), airccRow->height() };
 		buttons->registerButton(graphics, airccUButton, NATION_SCREEN, PURCH_SECT, rect, "+", purchaseButton);
 		buttons->activateButton(airccUButton);
 		buttons->setButtonFuncId(airccUButton, IDB_AIRCCUP);
@@ -776,7 +500,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		cruiseDButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_D_OFFSET, cruiseBox->box.Y, cruiseBox->box.Height, cruiseBox->box.Height };
+		RectF rect = { cruiseRow->buttonDownX(), cruiseRow->y(), cruiseRow->height(), cruiseRow->height() };
 		buttons->registerButton(graphics, cruiseDButton, NATION_SCREEN, PURCH_SECT, rect, "-", purchaseButton);
 		buttons->activateButton(cruiseDButton);
 		buttons->setButtonFuncId(cruiseDButton, IDB_CRUISEDN);
@@ -787,7 +511,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		cruiseUButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_U_OFFSET, cruiseBox->box.Y, cruiseBox->box.Height, cruiseBox->box.Height };
+		RectF rect = { cruiseRow->buttonUpX(), cruiseRow->y(), cruiseRow->height(), cruiseRow->height() };
 		buttons->registerButton(graphics, cruiseUButton, NATION_SCREEN, PURCH_SECT, rect, "+", purchaseButton);
 		buttons->activateButton(cruiseUButton);
 		buttons->setButtonFuncId(cruiseUButton, IDB_CRUISEUP);
@@ -799,7 +523,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		destrDButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_D_OFFSET, destrBox->box.Y, destrBox->box.Height, destrBox->box.Height };
+		RectF rect = { destrRow->buttonDownX(), destrRow->y(), destrRow->height(), destrRow->height() };
 		buttons->registerButton(graphics, destrDButton, NATION_SCREEN, PURCH_SECT, rect, "-", purchaseButton);
 		buttons->activateButton(destrDButton);
 		buttons->setButtonFuncId(destrDButton, IDB_DESTRDN);
@@ -810,7 +534,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		destrUButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_U_OFFSET, destrBox->box.Y, destrBox->box.Height, destrBox->box.Height };
+		RectF rect = { destrRow->buttonUpX(), destrRow->y(), destrRow->height(), destrRow->height() };
 		buttons->registerButton(graphics, destrUButton, NATION_SCREEN, PURCH_SECT, rect, "+", purchaseButton);
 		buttons->activateButton(destrUButton);
 		buttons->setButtonFuncId(destrUButton, IDB_DESTRUP);
@@ -822,7 +546,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		subDButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_D_OFFSET, subBox->box.Y, subBox->box.Height, subBox->box.Height };
+		RectF rect = { subRow->buttonDownX(), subRow->y(), subRow->height(), subRow->height() };
 		buttons->registerButton(graphics, subDButton, NATION_SCREEN, PURCH_SECT, rect, "-", purchaseButton);
 		buttons->activateButton(subDButton);
 		buttons->setButtonFuncId(subDButton, IDB_SUBDN);
@@ -833,7 +557,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		subUButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_U_OFFSET, subBox->box.Y, subBox->box.Height, subBox->box.Height };
+		RectF rect = { subRow->buttonUpX(), subRow->y(), subRow->height(), subRow->height() };
 		buttons->registerButton(graphics, subUButton, NATION_SCREEN, PURCH_SECT, rect, "+", purchaseButton);
 		buttons->activateButton(subUButton);
 		buttons->setButtonFuncId(subUButton, IDB_SUBUP);
@@ -845,7 +569,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		transDButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_D_OFFSET, transBox->box.Y, transBox->box.Height, transBox->box.Height };
+		RectF rect = { transRow->buttonDownX(), transRow->y(), transRow->height(), transRow->height() };
 		buttons->registerButton(graphics, transDButton, NATION_SCREEN, PURCH_SECT, rect, "-", purchaseButton);
 		buttons->activateButton(transDButton);
 		buttons->setButtonFuncId(transDButton, IDB_TRANSDN);
@@ -856,7 +580,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		transUButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_U_OFFSET, transBox->box.Y, transBox->box.Height, transBox->box.Height };
+		RectF rect = { transRow->buttonUpX(), transRow->y(), transRow->height(), transRow->height() };
 		buttons->registerButton(graphics, transUButton, NATION_SCREEN, PURCH_SECT, rect, "+", purchaseButton);
 		buttons->activateButton(transUButton);
 		buttons->setButtonFuncId(transUButton, IDB_TRANSUP);
@@ -868,7 +592,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		majorDButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_D_OFFSET, majorBox->box.Y, majorBox->box.Height, majorBox->box.Height };
+		RectF rect = { majorRow->buttonDownX(), majorRow->y(), majorRow->height(), majorRow->height() };
 		buttons->registerButton(graphics, majorDButton, NATION_SCREEN, PURCH_SECT, rect, "-", purchaseButton);
 		buttons->activateButton(majorDButton);
 		buttons->setButtonFuncId(majorDButton, IDB_MAJORDN);
@@ -879,7 +603,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		majorUButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_U_OFFSET, majorBox->box.Y, majorBox->box.Height, majorBox->box.Height };
+		RectF rect = { majorRow->buttonUpX(), majorRow->y(), majorRow->height(), majorRow->height() };
 		buttons->registerButton(graphics, majorUButton, NATION_SCREEN, PURCH_SECT, rect, "+", purchaseButton);
 		buttons->activateButton(majorUButton);
 		buttons->setButtonFuncId(majorUButton, IDB_MAJORUP);
@@ -891,7 +615,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		minorDButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_D_OFFSET, minorBox->box.Y, minorBox->box.Height, minorBox->box.Height };
+		RectF rect = { minorRow->buttonDownX(), minorRow->y(), minorRow->height(), minorRow->height() };
 		buttons->registerButton(graphics, minorDButton, NATION_SCREEN, PURCH_SECT, rect, "-", purchaseButton);
 		buttons->activateButton(minorDButton);
 		buttons->setButtonFuncId(minorDButton, IDB_MINORDN);
@@ -902,7 +626,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		minorUButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_U_OFFSET, minorBox->box.Y, minorBox->box.Height, minorBox->box.Height };
+		RectF rect = { minorRow->buttonUpX(), minorRow->y(), minorRow->height(), minorRow->height() };
 		buttons->registerButton(graphics, minorUButton, NATION_SCREEN, PURCH_SECT, rect, "+", purchaseButton);
 		buttons->activateButton(minorUButton);
 		buttons->setButtonFuncId(minorUButton, IDB_MINORUP);
@@ -914,7 +638,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		minorUpDButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_D_OFFSET, minorUpBox->box.Y, minorUpBox->box.Height, minorUpBox->box.Height };
+		RectF rect = { minorUpRow->buttonDownX(), minorUpRow->y(), minorUpRow->height(), minorUpRow->height() };
 		buttons->registerButton(graphics, minorUpDButton, NATION_SCREEN, PURCH_SECT, rect, "-", purchaseButton);
 		buttons->activateButton(minorUpDButton);
 		buttons->setButtonFuncId(minorUpDButton, IDB_MINORUPDN);
@@ -925,7 +649,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		minorUpUButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_U_OFFSET, minorUpBox->box.Y, minorUpBox->box.Height, minorUpBox->box.Height };
+		RectF rect = { minorUpRow->buttonUpX(), minorUpRow->y(), minorUpRow->height(), minorUpRow->height() };
 		buttons->registerButton(graphics, minorUpUButton, NATION_SCREEN, PURCH_SECT, rect, "+", purchaseButton);
 		buttons->activateButton(minorUpUButton);
 		buttons->setButtonFuncId(minorUpUButton, IDB_MINORUPUP);
@@ -937,7 +661,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		airbDButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_D_OFFSET, airbBox->box.Y, airbBox->box.Height, airbBox->box.Height };
+		RectF rect = { airbRow->buttonDownX(), airbRow->y(), airbRow->height(), airbRow->height() };
 		buttons->registerButton(graphics, airbDButton, NATION_SCREEN, PURCH_SECT, rect, "-", purchaseButton);
 		buttons->activateButton(airbDButton);
 		buttons->setButtonFuncId(airbDButton, IDB_AIRBDN);
@@ -948,7 +672,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		airbUButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_U_OFFSET, airbBox->box.Y, airbBox->box.Height, airbBox->box.Height };
+		RectF rect = { airbRow->buttonUpX(), airbRow->y(), airbRow->height(), airbRow->height() };
 		buttons->registerButton(graphics, airbUButton, NATION_SCREEN, PURCH_SECT, rect, "+", purchaseButton);
 		buttons->activateButton(airbUButton);
 		buttons->setButtonFuncId(airbUButton, IDB_AIRBUP);
@@ -960,7 +684,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		navbDButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_D_OFFSET, navbBox->box.Y, navbBox->box.Height, navbBox->box.Height };
+		RectF rect = { navbRow->buttonDownX(), navbRow->y(), navbRow->height(), navbRow->height() };
 		buttons->registerButton(graphics, navbDButton, NATION_SCREEN, PURCH_SECT, rect, "-", purchaseButton);
 		buttons->activateButton(navbDButton);
 		buttons->setButtonFuncId(navbDButton, IDB_NAVBDN);
@@ -971,7 +695,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		navbUButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_U_OFFSET, navbBox->box.Y, navbBox->box.Height, navbBox->box.Height };
+		RectF rect = { navbRow->buttonUpX(), navbRow->y(), navbRow->height(), navbRow->height() };
 		buttons->registerButton(graphics, navbUButton, NATION_SCREEN, PURCH_SECT, rect, "+", purchaseButton);
 		buttons->activateButton(navbUButton);
 		buttons->setButtonFuncId(navbUButton, IDB_NAVBUP);
@@ -983,7 +707,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		repairDButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_D_OFFSET, repBox->box.Y, repBox->box.Height, repBox->box.Height };
+		RectF rect = { repRow->buttonDownX(), repRow->y(), repRow->height(), repRow->height() };
 		buttons->registerButton(graphics, repairDButton, NATION_SCREEN, PURCH_SECT, rect, "-", purchaseButton);
 		buttons->activateButton(repairDButton);
 		buttons->setButtonFuncId(repairDButton, IDB_REPAIRDN);
@@ -994,7 +718,7 @@ void PurchaseSection::configPurchaseButtons(Graphics* graphics, AAButtons* btns,
 	{
 		repairUButton = buttons->createButtonId();
 
-		RectF rect = { PURCH_BUTTON_U_OFFSET, repBox->box.Y, repBox->box.Height, repBox->box.Height };
+		RectF rect = { repRow->buttonUpX(), repRow->y(), repRow->height(), repRow->height() };
 		buttons->registerButton(graphics, repairUButton, NATION_SCREEN, PURCH_SECT, rect, "+", purchaseButton);
 		buttons->activateButton(repairUButton);
 		buttons->setButtonFuncId(repairUButton, IDB_REPAIRUP);
@@ -1072,28 +796,23 @@ void PurchaseSection::resetPurchaseText()
 
 void PurchaseSection::updatePurchaseText(bool shipRes)
 {
-	WCHAR cruise0[] = L" Cruiser\t  12\t     3\t      3\t     2";
-	WCHAR cruise1[] = L" Cruiser\t   9\t     3\t      3\t     2";
-
 	if (shipRes)
 	{
-		battleText[14] = '1';
-		battleText[15] = '7';
-		airccText[21] = '3';
-		wcsncpy_s(cruiseText, cruise1, ARRAYSIZE(cruise1));
-		destrText[14] = '7';
-		subText[14] = '5';
-		transText[14] = '6';
+		battleRow->updatePurchaseText(PURCH_ROW_COST, L"17");
+		airccRow->updatePurchaseText(PURCH_ROW_COST, L"13");
+		cruiseRow->updatePurchaseText(PURCH_ROW_COST, L"9");
+		destrRow->updatePurchaseText(PURCH_ROW_COST, L"7");
+		subRow->updatePurchaseText(PURCH_ROW_COST, L"5");
+		transRow->updatePurchaseText(PURCH_ROW_COST, L"6");
 	}
 	else
 	{
-		battleText[14] = '2';
-		battleText[15] = '0';
-		airccText[21] = '6';
-		wcsncpy_s(cruiseText, cruise0, ARRAYSIZE(cruise0));
-		destrText[14] = '8';
-		subText[14] = '6';
-		transText[14] = '7';
+		battleRow->updatePurchaseText(PURCH_ROW_COST, L"20");
+		airccRow->updatePurchaseText(PURCH_ROW_COST, L"16");
+		cruiseRow->updatePurchaseText(PURCH_ROW_COST, L"12");
+		destrRow->updatePurchaseText(PURCH_ROW_COST, L"8");
+		subRow->updatePurchaseText(PURCH_ROW_COST, L"6");
+		transRow->updatePurchaseText(PURCH_ROW_COST, L"7");
 	}
 }
 
@@ -1295,72 +1014,28 @@ void PurchaseSection::drawPurchaseBox(Graphics* graphics, bool dbg_boundbox, boo
 
 		purchTitleBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
 
-		purchHeadBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		infBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		artBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		mechBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		tankBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		aaaBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		fightBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		tactBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		stratBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		battleBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		airccBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		cruiseBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		destrBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		subBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		transBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		majorBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		minorBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		minorUpBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		airbBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		navbBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		repBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		totBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-
-		infQBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		artQBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		mechQBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		tankQBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		aaaQBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		fightQBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		tactQBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		stratQBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		battleQBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		airccQBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		cruiseQBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		destrQBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		subQBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		transQBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		majorQBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		minorQBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		minorUpQBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		airbQBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		navbQBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		repQBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		totQBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-
-		infCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		artCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		mechCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		tankCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		aaaCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		fightCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		tactCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		stratCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		battleCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		airccCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		cruiseCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		destrCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		subCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		transCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		majorCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		minorCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		minorUpCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		airbCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		navbCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		repCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		totCBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		purchHeadRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		infRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		artRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		mechRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		tankRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		aaaRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		fightRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		tactRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		stratRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		battleRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		airccRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		cruiseRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		destrRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		subRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		transRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		majorRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		minorRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		minorUpRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		airbRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		navbRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		repRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		totRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
 
 		hidePurchaseButtons();		
 	}
@@ -1368,74 +1043,30 @@ void PurchaseSection::drawPurchaseBox(Graphics* graphics, bool dbg_boundbox, boo
 	{
 		purchTitleBox->drawFrameFill(graphics, pen, baseTitleFont, centerFormat, textBrush, tileBrushD, layers);
 
-		purchHeadBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushD, purchHeadText, layers);
-		infBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushL, infText, layers);
-		artBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushD, artText, layers);
-		mechBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushL, mechText, layers);
-		tankBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushD, tankText, layers);
-		aaaBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushL, aaaText, layers);
-		fightBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushD, fightText, layers);
-		tactBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushL, tactText, layers);
-		stratBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushD, stratText, layers);
-		battleBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushL, battleText, layers);
-		airccBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushD, airccText, layers);
-		cruiseBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushL, cruiseText, layers);
-		destrBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushD, destrText, layers);
-		subBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushL, subText,layers);
-		transBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushD, transText, layers);
-		majorBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushL, majorText, layers);
-		minorBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushD, minorText, layers);
-		minorUpBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushD, minorUpText, layers);
-		airbBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushL, airbText, layers);
-		navbBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushD, navbText, layers);
-		repBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushL, repText, layers);
-		totBox->drawBox(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushD, totText, layers);
+		purchHeadRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
+		infRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg_sections, layers);
+		artRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
+		mechRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg_sections, layers);
+		tankRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
+		aaaRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg_sections, layers);
+		fightRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
+		tactRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg_sections, layers);
+		stratRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
+		battleRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg_sections, layers);
+		airccRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
+		cruiseRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg_sections, layers);
+		destrRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
+		subRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg_sections, layers);
+		transRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
+		majorRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg_sections, layers);
+		minorRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
+		minorUpRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
+		airbRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg_sections, layers);
+		navbRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
+		repRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg_sections, layers);
+		totRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
 
 		graphics->DrawLine(backPen, *titleP0, *titleP1);
-
-		infQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, infQ, layers);
-		artQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, artQ, layers);
-		mechQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, mechQ, layers);
-		tankQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, tankQ, layers);
-		aaaQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, aaaQ, layers);
-		fightQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, fightQ, layers);
-		tactQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, tactQ, layers);
-		stratQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, stratQ, layers);
-		battleQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, battleQ, layers);
-		airccQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, airccQ, layers);
-		cruiseQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, cruiseQ, layers);
-		destrQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, destrQ, layers);
-		subQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, subQ, layers);
-		transQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, transQ, layers);
-		majorQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, majorQ, layers);
-		minorQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, minorQ, layers);
-		minorUpQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, minorUpQ, layers);
-		airbQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, airbQ, layers);
-		navbQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, navbQ, layers);
-		repQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, repQ, layers);
-		totQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, totQ, layers);
-
-		infCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, infC, layers);
-		artCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, artC, layers);
-		mechCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, mechC, layers);
-		tankCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, tankC, layers);
-		aaaCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, aaaC, layers);
-		fightCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, fightC, layers);
-		tactCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, tactC, layers);
-		stratCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, stratC, layers);
-		battleCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, battleC, layers);
-		airccCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, airccC, layers);
-		cruiseCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, cruiseC, layers);
-		destrCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, destrC, layers);
-		subCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, subC, layers);
-		transCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, transC, layers);
-		majorCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, majorC, layers);
-		minorCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, minorC, layers);
-		minorUpCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, minorUpC, layers);
-		airbCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, airbC, layers);
-		navbCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, navbC, layers);
-		repCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, repC, layers);
-		totCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, clearBrush, totC, layers);
 	}
 }
 
@@ -1448,12 +1079,12 @@ void PurchaseSection::drawPurchaseBox(Graphics* graphics, bool resShips, bool db
 
 	if (!dbg_sections)
 	{
-		battleBoxU->drawFrameFill(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushL, layers);
-		airccBoxU->drawFrameFill(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushD, layers);
-		cruiseBoxU->drawFrameFill(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushL, layers);
-		destrBoxU->drawFrameFill(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushD, layers);
-		subBoxU->drawFrameFill(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushL, layers);
-		transBoxU->drawFrameFill(graphics, pen, purchFont, purchaseFormat, textBrush, tileBrushD, layers);
+		battleRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_COST, false, L"", dbg_sections, layers);
+		airccRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_COST, false, L"", dbg_sections, layers);
+		cruiseRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_COST, false, L"", dbg_sections, layers);
+		destrRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_COST, false, L"", dbg_sections, layers);
+		subRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_COST, false, L"", dbg_sections, layers);
+		transRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_COST, false, L"", dbg_sections, layers);
 	}
 }
 
@@ -1470,174 +1101,135 @@ void PurchaseSection::drawPurchaseBox(Graphics* graphics, int type, bool dbg_bou
 		{
 		case PURCH_INF:
 		{
-			infQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, infQ, layers);
-			infCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, infC, layers);
+			infRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, infQ, dbg_sections, layers);
+			infRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, infC, dbg_sections, layers);
 			break;
 		}
 		case PURCH_ART:
 		{
-			artQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, artQ, layers);
-			artCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, artC, layers);
+			artRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, artQ, dbg_sections, layers);
+			artRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, artC, dbg_sections, layers);
 			break;
 		}
 		case PURCH_MECH:
 		{
-			mechQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, mechQ, layers);
-			mechCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, mechC, layers);
+			mechRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, mechQ, dbg_sections, layers);
+			mechRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, mechC, dbg_sections, layers);
 			break;
 		}
 		case PURCH_TANK:
 		{
-			tankQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, tankQ, layers);
-			tankCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, tankC, layers);
+			tankRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, tankQ, dbg_sections, layers);
+			tankRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, tankC, dbg_sections, layers);
 			break;
 		}
 		case PURCH_AAA:
 		{
-			aaaQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, aaaQ, layers);
-			aaaCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, aaaC, layers);
+			aaaRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, aaaQ, dbg_sections, layers);
+			aaaRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, aaaC, dbg_sections, layers);
 			break;
 		}
 		case PURCH_FIGHT:
 		{
-			fightQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, fightQ, layers);
-			fightCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, fightC, layers);
+			fightRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, fightQ, dbg_sections, layers);
+			fightRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, fightC, dbg_sections, layers);
 			break;
 		}
 		case PURCH_TACT:
 		{
-			tactQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, tactQ, layers);
-			tactCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, tactC, layers);
+			tactRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, tactQ, dbg_sections, layers);
+			tactRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, tactC, dbg_sections, layers);
 			break;
 		}
 		case PURCH_STRAT:
 		{
-			stratQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, stratQ, layers);
-			stratCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, stratC, layers);
+			stratRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, stratQ, dbg_sections, layers);
+			stratRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, stratC, dbg_sections, layers);
 			break;
 		}
 		case PURCH_BATTLE:
 		{
-			battleQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, battleQ, layers);
-			battleCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, battleC, layers);
+			battleRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, battleQ, dbg_sections, layers);
+			battleRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, battleC, dbg_sections, layers);
 			break;
 		}
 		case PURCH_AIRCC:
 		{
-			airccQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, airccQ, layers);
-			airccCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, airccC, layers);
+			airccRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, airccQ, dbg_sections, layers);
+			airccRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, airccC, dbg_sections, layers);
 			break;
 		}
 		case PURCH_CRUISE:
 		{
-			cruiseQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, cruiseQ, layers);
-			cruiseCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, cruiseC, layers);
+			cruiseRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, cruiseQ, dbg_sections, layers);
+			cruiseRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, cruiseC, dbg_sections, layers);
 			break;
 		}
 		case PURCH_DESTR:
 		{
-			destrQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, destrQ, layers);
-			destrCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, destrC, layers);
+			destrRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, destrQ, dbg_sections, layers);
+			destrRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, destrC, dbg_sections, layers);
 			break;
 		}
 		case PURCH_SUB:
 		{
-			subQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, subQ, layers);
-			subCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, subC, layers);
+			subRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, subQ, dbg_sections, layers);
+			subRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, subC, dbg_sections, layers);
 			break;
 		}
 		case PURCH_TRANS:
 		{
-			transQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, transQ, layers);
-			transCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, transC, layers);
+			transRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, transQ, dbg_sections, layers);
+			transRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, transC, dbg_sections, layers);
 			break;
 		}
 		case PURCH_MAJOR:
 		{
-			majorQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, majorQ, layers);
-			majorCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, majorC, layers);
+			majorRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, majorQ, dbg_sections, layers);
+			majorRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, majorC, dbg_sections, layers);
 			break;
 		}
 		case PURCH_MINOR:
 		{
-			minorQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, minorQ, layers);
-			minorCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, minorC, layers);
+			minorRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, minorQ, dbg_sections, layers);
+			minorRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, minorC, dbg_sections, layers);
 			break;
 		}
 		case PURCH_MINORUP:
 		{
-			minorUpQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, minorUpQ, layers);
-			minorUpCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, minorUpC, layers);
+			minorUpRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, minorUpQ, dbg_sections, layers);
+			minorUpRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, minorUpC, dbg_sections, layers);
 			break;
 		}
 		case PURCH_AIRB:
 		{
-			airbQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, airbQ, layers);
-			airbCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, airbC, layers);
+			airbRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, airbQ, dbg_sections, layers);
+			airbRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, airbC, dbg_sections, layers);
 			break;
 		}
 		case PURCH_NAVB:
 		{
-			navbQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, navbQ, layers);
-			navbCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, navbC, layers);
+			navbRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, navbQ, dbg_sections, layers);
+			navbRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, navbC, dbg_sections, layers);
 			break;
 		}
 		case PURCH_REP:
 		{
-			repQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, repQ, layers);
-			repCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, repC, layers);
+			repRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, repQ, dbg_sections, layers);
+			repRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, repC, dbg_sections, layers);
 			break;
 		}
 		case PURCH_ALL:
 		{
-			infQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, infQ, layers);
-			infCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, infC, layers);
-			artQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, artQ, layers);
-			artCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, artC, layers);
-			mechQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, mechQ, layers);
-			mechCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, mechC, layers);
-			tankQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, tankQ, layers);
-			tankCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, tankC, layers);
-			aaaQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, aaaQ, layers);
-			aaaCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, aaaC, layers);
-			fightQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, fightQ, layers);
-			fightCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, fightC, layers);
-			tactQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, tactQ, layers);
-			tactCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, tactC, layers);
-			stratQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, stratQ, layers);
-			stratCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, stratC, layers);
-			battleQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, battleQ, layers);
-			battleCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, battleC, layers);
-			airccQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, airccQ, layers);
-			airccCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, airccC, layers);
-			cruiseQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, cruiseQ, layers);
-			cruiseCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, cruiseC, layers);
-			destrQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, destrQ, layers);
-			destrCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, destrC, layers);
-			subQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, subQ, layers);
-			subCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, subC, layers);
-			transQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, transQ, layers);
-			transCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, transC, layers);
-			majorQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, majorQ, layers);
-			majorCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, majorC, layers);
-			minorQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, minorQ, layers);
-			minorCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, minorC, layers);
-			minorUpQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, minorUpQ, layers);
-			minorUpCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, minorUpC, layers);
-			airbQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, airbQ, layers);
-			airbCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, airbC, layers);
-			navbQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, navbQ, layers);
-			navbCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, navbC, layers);
-			repQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, repQ, layers);
-			repCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushL, repC, layers);
+			drawPurchaseBox(graphics, dbg_boundbox, dbg_sections, layers);
 			break;
 		}
 		default:
 			break;
 		}
 
-		totQBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, totQ, layers);
-		totCBox->drawBox(graphics, pen, costFont, centerFormat, textBrush, tileBrushD, totC, layers);
+		totRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, totQ, dbg_sections, layers);
+		totRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, totC, dbg_sections, layers);
 	}
 }
 
@@ -1802,70 +1394,70 @@ REAL PurchaseSection::getBoxEdge(int whichBox, int edge)
 		tmp = purchTitleBox;
 		break;
 	case PURCH_HEAD:
-		tmp = purchHeadBox;
+		tmp = purchHeadRow->getBox();
 		break;
 	case PURCH_INF:
-		tmp = infBox;
+		tmp = infRow->getBox();
 		break;
 	case PURCH_ART:
-		tmp = artBox;
+		tmp = artRow->getBox();
 		break;
 	case PURCH_MECH:
-		tmp = mechBox;
+		tmp = mechRow->getBox();
 		break;
 	case PURCH_TANK:
-		tmp = tankBox;
+		tmp = tankRow->getBox();
 		break;
 	case PURCH_AAA:
-		tmp = aaaBox;
+		tmp = aaaRow->getBox();
 		break;
 	case PURCH_FIGHT:
-		tmp = fightBox;
+		tmp = fightRow->getBox();
 		break;
 	case PURCH_TACT:
-		tmp = tactBox;
+		tmp = tactRow->getBox();
 		break;
 	case PURCH_STRAT:
-		tmp = stratBox;
+		tmp = stratRow->getBox();
 		break;
 	case PURCH_BATTLE:
-		tmp = battleBox;
+		tmp = battleRow->getBox();
 		break;
 	case PURCH_AIRCC:
-		tmp = airccBox;
+		tmp = airccRow->getBox();
 		break;
 	case PURCH_CRUISE:
-		tmp = cruiseBox;
+		tmp = cruiseRow->getBox();
 		break;
 	case PURCH_DESTR:
-		tmp = destrBox;
+		tmp = destrRow->getBox();
 		break;
 	case PURCH_SUB:
-		tmp = subBox;
+		tmp = subRow->getBox();
 		break;
 	case PURCH_TRANS:
-		tmp = transBox;
+		tmp = transRow->getBox();
 		break;
 	case PURCH_MAJOR:
-		tmp = majorBox;
+		tmp = majorRow->getBox();
 		break;
 	case PURCH_MINOR:
-		tmp = minorBox;
+		tmp = minorRow->getBox();
 		break;
 	case PURCH_MINORUP:
-		tmp = minorUpBox;
+		tmp = minorUpRow->getBox();
 		break;
 	case PURCH_AIRB:
-		tmp = airbBox;
+		tmp = airbRow->getBox();
 		break;
 	case PURCH_NAVB:
-		tmp = navbBox;
+		tmp = navbRow->getBox();
 		break;
 	case PURCH_REP:
-		tmp = repBox;
+		tmp = repRow->getBox();
 		break;
 	case PURCH_TOT:
-		tmp = totBox;
+		tmp = totRow->getBox();
 		break;
 	default:
 		tmp = purchaseFrame;

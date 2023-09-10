@@ -1,2 +1,59 @@
-﻿  AAGraphics.cpp
+﻿  AA_Tracker.cpp
+  AuxFunctions.cpp
+  ButtonHanders.cpp
+  GameClass.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(426): warning C4267: 'argument': conversion from 'size_t' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(683,40): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1181,31): warning C4267: 'argument': conversion from 'size_t' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1182,48): warning C4267: 'argument': conversion from 'size_t' to 'uint16_t', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1746,42): warning C4244: '=': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1747,53): warning C4244: '=': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1748,42): warning C4244: '=': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\GameClass.cpp(1749,55): warning C4244: '=': conversion from 'LONG' to 'Gdiplus::REAL', possible loss of data
+  MenuCallbacks.cpp
+  MouseHandlers.cpp
+  TabHandlers.cpp
+  GraphScreen.cpp
+  DebugSwitches.cpp
+  GraphicsHandlers.cpp
+  LogScreen.cpp
+  MainScreen.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\mainScreen\MainScreen.cpp(11,36): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  PurchaseSection.cpp
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(188,152): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(192,154): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(195,148): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(198,149): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(201,150): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(204,149): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(207,150): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(210,151): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(213,151): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(216,153): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(219,153): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(222,153): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(225,153): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(228,150): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(231,150): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(234,152): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(237,152): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(240,154): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(243,153): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(246,150): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(249,149): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+C:\Users\Adam\Documents\GitHub\AATracker\nationScreen\screenSections\source\PurchaseSection.cpp(252,149): warning C4305: 'argument': truncation from 'double' to 'Gdiplus::REAL'
+  NatScreenPurchHelp.cpp
+  NationScreen.cpp
+  NationScreenAux.cpp
+  NationScreenConfig.cpp
+  NationScreenHandlers.cpp
+  NationScreenSections.cpp
+  ReferenceScreen.cpp
+  Generating Code...
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\AuxFunctions.cpp(70): warning C4172: returning address of local variable or temporary: str
+C:\Users\Adam\Documents\GitHub\AATracker\game\source\AuxFunctions.cpp(18): warning C4172: returning address of local variable or temporary: str
+  Compiling...
+  ResearchScreen.cpp
+  SpreadScreen.cpp
+  Generating Code...
   AA Tracker.vcxproj -> C:\Users\Adam\Documents\GitHub\AATracker\x64\Debug\AA Tracker.exe

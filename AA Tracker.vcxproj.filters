@@ -264,6 +264,12 @@
     <ClInclude Include="graphics\header\AATabBar.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="logScreen\header\LogScreenWrappers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nationScreen\header\PurchaseRow.h">
+      <Filter>Header Files\Nation Screen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="nationScreen\screenSections\source\BonusSection.cpp">
@@ -478,6 +484,12 @@
     </ClCompile>
     <ClCompile Include="game\source\TabHandlers.cpp">
       <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="referenceScreen\source\ReferenceScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nationScreen\source\PurchaseRow.cpp">
+      <Filter>Source Files\Nation Screen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

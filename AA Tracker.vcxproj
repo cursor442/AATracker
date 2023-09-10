@@ -189,6 +189,7 @@
     <ClInclude Include="logScreen\header\LogText.h" />
     <ClInclude Include="nationScreen\header\NationScreenWrappers.h" />
     <ClInclude Include="nationScreen\header\PurchaseClass.h" />
+    <ClInclude Include="nationScreen\header\PurchaseRow.h" />
     <ClInclude Include="nationScreen\screenSections\header\BonusSection.h" />
     <ClInclude Include="nationScreen\screenSections\header\CitiesSection.h" />
     <ClInclude Include="nationScreen\screenSections\header\MiniSpreadSection.h" />
@@ -270,6 +271,7 @@
     <ClCompile Include="nationScreen\source\NationScreenSections.cpp" />
     <ClCompile Include="nationScreen\source\NatScreenPurchHelp.cpp" />
     <ClCompile Include="nationScreen\source\PurchaseClass.cpp" />
+    <ClCompile Include="nationScreen\source\PurchaseRow.cpp" />
     <ClCompile Include="nations\source\ANZACClass.cpp" />
     <ClCompile Include="nations\source\ChinaClass.cpp" />
     <ClCompile Include="nations\source\FranceClass.cpp" />

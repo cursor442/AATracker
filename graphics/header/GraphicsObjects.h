@@ -6,6 +6,7 @@
 
 #define DEFAULT_TEXTLEN 20
 #define PURCH_TEXTLEN   64
+#define PURCH_TEXTLEN_T 28
 
 #define BOX_LEFT        0
 #define BOX_RIGHT       1
