@@ -177,7 +177,7 @@ void Game::deleteBoard()
 
 	destroySpreadScreen();
 	destroyGraphScreen();
-	destroyLogScreen();
+	destroyLogScreen(false);
 	graphConfigured = false;
 
 	// Debug
@@ -1728,11 +1728,8 @@ void Game::hideScreen(bool force)
 		gfx->tabs->hideAllTabs(graphics);
 	}
 
-	if (whichScreen == MAIN_SCREEN)
-		hideTabBar(nationScreenTabs);
-
-	if (whichScreen != LOG_SCREEN)
-		hideTabBar(logScreenTabs);
+	//if (whichScreen == MAIN_SCREEN)
+	hideTabBar(nationScreenTabs);
 }
 
 void Game::configGraphics(HDC& hdc)

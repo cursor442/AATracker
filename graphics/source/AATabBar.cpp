@@ -61,7 +61,7 @@ void AATabBar::addTab(Graphics* graphics, const char* text, void (*tbFunc)(HWND&
 	tbTabs[tbTabIdx] = new AATab(tbTabIdx, tbOrient);
 
 	// Configure new tab width
-	RectF rect = calcTabWidth(*graphics, text);
+	RectF rect = calcTabWidths(graphics, text);
 
 	tbTabs[tbTabIdx]->configTab(graphics, objScr, rect, text, tbFunc);
 	configTabDrawTools(tbTabIdx);
@@ -85,7 +85,7 @@ void AATabBar::addTab(Graphics* graphics, const char* text, void (*tbFunc)(HWND&
 	tbTabs[tbTabIdx] = new AATab(tbTabIdx, tbOrient);
 
 	// Configure new tab width
-	RectF rect = calcTabWidth(*graphics, text);
+	RectF rect = calcTabWidths(graphics, text);
 
 	tbTabs[tbTabIdx]->configTab(graphics, objScr, rect, text, tbFunc);
 	configTabDrawTools(tbTabIdx);
@@ -182,6 +182,53 @@ bool AATabBar::releaseTab(int idx)
 	}
 }
 
+bool AATabBar::deleteTab(Graphics* graphics, int idx)
+{
+	if (idx < tbTabCnt)
+	{
+		if ((idx = tbTabCnt - 1) && idx != 0)
+		{
+			tbTabs[idx]->hideTab(graphics);
+
+			tbTabCnt--;
+			tbTabIdx--;
+			
+			delete tbTabs[idx];
+			tbTabs.resize(tbTabCnt);
+
+			isDrawn = false;
+
+			// If this tab had been selected, select tab 0
+			if (idx == tbState)
+			{
+				tbState = 0;
+				tbTabs[0]->pressTab();
+			}
+
+			if (tbConfig == TB_CFG_FILL || tbConfig == TB_CFG_EVEN)
+			{
+				tbTabWidths.resize(tbTabCnt);
+				tbTabWeights.resize(tbTabCnt);
+				tbTabStarts.resize(tbTabCnt);
+
+				calcTabWidths(graphics);
+			}
+
+			return true;
+		}
+		else
+		{
+			// Can only delete the last tab in a bar for now
+			// Cannot delete the first tab in a bar for now
+			return false;
+		}
+	}
+	else
+	{
+		return false;
+	}
+}
+
 int AATabBar::getTabId()
 {
 	return getObjectId();
@@ -203,6 +250,11 @@ int AATabBar::whichTabContainsPoint(int xPos, int yPos)
 	return -1;
 }
 
+int AATabBar::getTabCount()
+{
+	return tbTabCnt;
+}
+
 int AATabBar::getTabState()
 {
 	return tbState;
@@ -216,7 +268,7 @@ void AATabBar::configTabDrawTools(int idx)
 	tbTabs[idx]->configDrawTools(*grayColor, *grayBrush, clearBrush, tbFont);
 }
 
-RectF AATabBar::calcTabWidth(Graphics& graphics, const char* text)
+RectF AATabBar::calcTabWidths(Graphics* graphics, const char* text)
 {
 	RectF tmpRect;
 
@@ -241,16 +293,16 @@ RectF AATabBar::calcTabWidth(Graphics& graphics, const char* text)
 	case TB_CFG_FILL:
 	{
 		// Calculate minimum width required
-		RectF* bounds = calcTextWidth(graphics, text);
-
 		if (tbTabWidths.size() < tbTabCnt)
 		{
+			RectF* bounds = calcTextWidth(graphics, text);
+
 			tbTabWidths.resize(tbTabCnt);
 			tbTabWeights.resize(tbTabCnt);
 			tbTabStarts.resize(tbTabCnt);
-		}
 
-		tbTabWidths[tbTabIdx] = bounds->Width;
+			tbTabWidths[tbTabIdx] = bounds->Width;
+		}
 
 		// Fill provided tab bar area weighted by text length
 		REAL accum = 0;
@@ -299,7 +351,7 @@ RectF AATabBar::calcTabWidth(Graphics& graphics, const char* text)
 	return tmpRect;
 }
 
-RectF* AATabBar::calcTextWidth(Graphics& graphics, const char* text)
+RectF* AATabBar::calcTextWidth(Graphics* graphics, const char* text)
 {
 	RectF tmpRect;
 
@@ -323,7 +375,7 @@ RectF* AATabBar::calcTextWidth(Graphics& graphics, const char* text)
 
 	RectF* bounds = new RectF(0, 0, 0, 0);
 
-	graphics.MeasureString(wtext, len, tbFont, *origin, bounds);
+	graphics->MeasureString(wtext, len, tbFont, *origin, bounds);
 	delete origin;
 
 	// Integer widths only

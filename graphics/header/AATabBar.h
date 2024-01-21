@@ -26,8 +26,11 @@ public:
 	bool pressTab(HWND, int);
 	bool releaseTab(int);
 
+	bool deleteTab(Graphics*, int);
+
 	int  getTabId();
 	int  whichTabContainsPoint(int, int);
+	int  getTabCount();
 	int  getTabState();
 
 private:
@@ -56,8 +59,8 @@ private:
 
 	void configTabDrawTools(int);
 
-	RectF calcTabWidth(Graphics&, const char* = nullptr);
-	RectF* calcTextWidth(Graphics&, const char* = nullptr);
+	RectF calcTabWidths(Graphics*, const char* = nullptr);
+	RectF* calcTextWidth(Graphics*, const char* = nullptr);
 	void  updateTabWidths(REAL = 0);
 
 	bool  tbOrientVert;

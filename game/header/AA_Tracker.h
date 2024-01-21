@@ -323,7 +323,7 @@ public:
 	static void     LogScreen(HDC&, UINT);
 	static void     addLogTab(int);
 	static void     hideLogScreen();
-	static void     destroyLogScreen();
+	static void     destroyLogScreen(bool = true);
 
 	/////////////////////////////////////////////////////////////////////////
 	// Log screen tab handlers

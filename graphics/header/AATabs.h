@@ -30,16 +30,20 @@ public:
 	bool pressTab(HWND, int, int);
 	bool releaseTab(int, int);
 
+	bool deleteTab(Graphics*, int, int);
+
 	int  createTabId();
 	void setTabFuncId(int, int, int);
 
 	int getTabScreen(int);
 	int getTabSection(int);
+	int getTabBarTabs(int);
 
 	bool registerTab(Graphics*, int, int, int, int, RectF&, const char*, bool, bool);
 	bool registerTab(Graphics*, int, int, int, int, RectF&, const char*, void (*bbFunc)(HWND&), bool = false);
 	bool activateTab(int);
 	bool deactivateTab(int);
+	bool deleteTabBar(int);
 
 	int  isPointInTabBox(int, int);
 	int  whichTabBox(int, int, int);
@@ -55,6 +59,7 @@ private:
 	int  nextTabId; // The next unique ID to assign to a newly registered tab
 	void convIdToIdx(int);
 	void convIdToIdxInactive(int);
+	bool getIsActive(int, bool&);
 
 	// Active and inactive tabs
 	vector<AATabBar*> activeTabs;

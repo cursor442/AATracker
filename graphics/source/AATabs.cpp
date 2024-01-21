@@ -176,6 +176,32 @@ bool AATabs::releaseTab(int barId, int tabId)
 	return false;
 }
 
+bool AATabs::deleteTab(Graphics* graphics, int barId, int tabId)
+{
+	bool isActive;
+	bool exists = getIsActive(barId, isActive);
+
+	if (!exists)
+		return false;
+
+	if (isActive)
+	{
+		convIdToIdx(barId);
+
+		if (currIdx != TB_ID_NULL)
+			return activeTabs[currIdx]->deleteTab(graphics, tabId);
+	}
+	else
+	{
+		convIdToIdxInactive(barId);
+
+		if (currIdx != TB_ID_NULL)
+			return inactiveTabs[currIdx]->deleteTab(graphics, tabId);
+	}
+
+	return false;
+}
+
 int AATabs::createTabId()
 {
 	return nextTabId++;
@@ -205,6 +231,19 @@ int AATabs::getTabSection(int id)
 
 	if (currIdx != TB_ID_NULL)
 		return activeTabs[currIdx]->getObjectSection();
+
+	return NULL;
+}
+
+int AATabs::getTabBarTabs(int id)
+{
+	for (int i = 0; i < activeTabs.size(); i++)
+		if (activeTabs[i]->getTabId() == id)
+			return activeTabs[i]->getTabCount();
+
+	for (int i = 0; i < inactiveTabs.size(); i++)
+		if (inactiveTabs[i]->getTabId() == id)
+			return inactiveTabs[i]->getTabCount();
 
 	return NULL;
 }
@@ -270,6 +309,34 @@ bool AATabs::registerTab(Graphics* graphics, int id, int screen, int cfg, int or
 	}
 	else
 		return false;
+}
+
+bool AATabs::deleteTabBar(int id)
+{
+	// Ensure that the id exists
+	bool active = false;
+	bool inactive = false;
+	
+	for (int i = 0; i < activeTabs.size(); i++)
+		if (activeTabs[i]->getTabId() == id)
+		{
+			active = true;
+			delete activeTabs[i];
+			activeTabs.erase(activeTabs.begin() + i);
+		}
+
+	for (int i = 0; i < inactiveTabs.size(); i++)
+		if (inactiveTabs[i]->getTabId() == id)
+		{
+			inactive = true;
+			delete inactiveTabs[i];
+			inactiveTabs.erase(inactiveTabs.begin() + i);
+		}
+
+	if (!active && !inactive)
+		return false;
+	else
+		return true;
 }
 
 bool AATabs::activateTab(int id)
@@ -411,4 +478,27 @@ void AATabs::convIdToIdxInactive(int id)
 
 	currId = id;
 	currIdx = idx;
+}
+
+bool AATabs::getIsActive(int id, bool& isActive)
+{
+	// Return true if the id exists
+
+	isActive = false;
+
+	for (int i = 0; i < activeTabs.size(); i++)
+		if (activeTabs[i]->getTabId() == id)
+		{
+			isActive = true;
+			return true;
+		}
+
+	for (int i = 0; i < inactiveTabs.size(); i++)
+		if (inactiveTabs[i]->getTabId() == id)
+		{
+			isActive = false;
+			return true;
+		}
+
+	return false;
 }

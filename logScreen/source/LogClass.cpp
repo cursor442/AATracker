@@ -67,7 +67,7 @@ Log::Log(int type, RECT logPane)
 	occPos.page = 0; occPos.col = 0; occPos.row = 0;
 	resPos.page = 0; resPos.col = 0; resPos.row = 0;
 
-	newPage = false;
+	newPage = true;
 
 	configDrawTools();
 }
