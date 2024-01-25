@@ -9,7 +9,7 @@ Log::Log(int type, RECT logPane)
 
 	logBox.resize(1);
 	logBox[0].resize(1);
-	logBox[0][0].resize(ROWS);
+	logBox[0][0].resize(LOG_ROWS);
 
 	currPage = 0;
 	currCol = 0;
@@ -335,9 +335,9 @@ void Log::addCol()
 		page = currPage;
 
 		logBox[page].resize(2);
-		logBox[page][1].resize(ROWS);
+		logBox[page][1].resize(LOG_ROWS);
 
-		for (int k = 0; k < ROWS; k++)
+		for (int k = 0; k < LOG_ROWS; k++)
 			logBox[page][1][k] = new LogPair((pane.right - pane.left) / 2 + 10, k, globalGame);
 	}
 	else
@@ -348,9 +348,9 @@ void Log::addCol()
 		logBox.resize(page);
 		page--;
 		logBox[page].resize(1);
-		logBox[page][0].resize(ROWS);
+		logBox[page][0].resize(LOG_ROWS);
 
-		for (int k = 0; k < ROWS; k++)
+		for (int k = 0; k < LOG_ROWS; k++)
 			logBox[page][0][k] = new LogPair(pane.left + 10, k, globalGame);
 	}
 }
@@ -370,8 +370,8 @@ void Log::setCurrCol(int val)
 	for (int i = 0; i <= currPage; i++)
 	{
 		logBox[i].resize(2);
-		logBox[i][0].resize(ROWS);
-		logBox[i][1].resize(ROWS);
+		logBox[i][0].resize(LOG_ROWS);
+		logBox[i][1].resize(LOG_ROWS);
 
 		if (i == currPage && val == 0)
 			logBox[i].resize(1);
@@ -382,19 +382,19 @@ void Log::setCurrRow(int val)
 {
 	currRow = val;
 
-	if (val >= ROWS - 5)
+	if (val >= LOG_ROWS - 5)
 	{
 		if (currCol == 0)
 		{
 			logBox[currPage].resize(2);
-			logBox[currPage][1].resize(ROWS);
+			logBox[currPage][1].resize(LOG_ROWS);
 		}
 		else
 		{
 			int temp = currPage + 2;
 			logBox.resize(temp);
 			logBox[--temp].resize(1);
-			logBox[temp][0].resize(ROWS);
+			logBox[temp][0].resize(LOG_ROWS);
 		}
 	}
 
@@ -402,14 +402,14 @@ void Log::setCurrRow(int val)
 	{
 		// Col 0
 		{
-			for (int k = 0; k < ROWS; k++)
+			for (int k = 0; k < LOG_ROWS; k++)
 				logBox[i][0][k] = new LogPair(pane.left + 10, k, globalGame);
 		}
 
 		// Col 1
 		if (logBox[i].size() == 2)
 		{
-			for (int k = 0; k < ROWS; k++)
+			for (int k = 0; k < LOG_ROWS; k++)
 				logBox[i][1][k] = new LogPair((pane.right - pane.left) / 2 + 10, k, globalGame);
 		}
 	}
@@ -677,7 +677,7 @@ char Log::getCust(int page, int col, int row, int idx)
 void Log::incCell()
 {
 	currRow++;
-	if (currRow == ROWS)
+	if (currRow == LOG_ROWS)
 	{
 		currRow = 0;
 
@@ -689,7 +689,7 @@ void Log::incCell()
 			currPage++;
 		}
 	}
-	else if (currRow > ROWS - 5) // Set up nex page/col
+	else if (currRow > LOG_ROWS - 5) // Set up nex page/col
 		addCol();
 }
 
@@ -698,7 +698,7 @@ void Log::decCell()
 	currRow--;
 	if (currRow == -1)
 	{
-		currRow = ROWS - 1;
+		currRow = LOG_ROWS - 1;
 
 		if (currCol == 1)
 			currCol--;
@@ -721,29 +721,29 @@ void Log::shiftCells(int page, int col, int row, int verb, int object, int indir
 
 	if (page != currPage) // Page adjustment needed
 	{
-		adj = (currPage - page) * 2 * ROWS;
+		adj = (currPage - page) * 2 * LOG_ROWS;
 		newPage = true;
 
 		if (col == 0 && currCol == 1) // Column adjustment
 		{
-			adj += ROWS;
+			adj += LOG_ROWS;
 			newCol = true;
 		}
 		else if (col == 1 && currCol == 0) // Column adjustment
 		{
-			adj -= ROWS;
+			adj -= LOG_ROWS;
 			newCol = true;
 		}
 	}
 	else if (col != currCol) // Column adjustment needed
 	{
-		adj = ROWS;
+		adj = LOG_ROWS;
 		newCol = true;
 	}
 
 	if (rowIdx0 == 0) // Ensure source index wraps
 	{
-		rowIdx1 = ROWS - 1;
+		rowIdx1 = LOG_ROWS - 1;
 
 		if (colIdx1 == 1)
 		{
@@ -818,7 +818,7 @@ void Log::shiftCells(int page, int col, int row, int verb, int object, int indir
 
 		if (rowIdx1 == 0)
 		{
-			rowIdx1 = ROWS - 1;
+			rowIdx1 = LOG_ROWS - 1;
 
 			if (colIdx1 == 0)
 			{
@@ -840,7 +840,7 @@ void Log::shiftCells(int page, int col, int row, int verb, int object, int indir
 	{
 		capPos[object].page = currPage;
 
-		if (row == ROWS - 1)
+		if (row == LOG_ROWS - 1)
 		{
 			capPos[object].row = 0;
 
@@ -863,7 +863,7 @@ void Log::shiftCells(int page, int col, int row, int verb, int object, int indir
 	{
 		libPos[object][indirect].page = currPage;
 
-		if (row == ROWS - 1)
+		if (row == LOG_ROWS - 1)
 		{
 			libPos[object][indirect].row = 0;
 
@@ -886,7 +886,7 @@ void Log::shiftCells(int page, int col, int row, int verb, int object, int indir
 	{
 		recPos[object].page = currPage;
 
-		if (row == ROWS - 1)
+		if (row == LOG_ROWS - 1)
 		{
 			recPos[object].row = 0;
 
@@ -909,7 +909,7 @@ void Log::shiftCells(int page, int col, int row, int verb, int object, int indir
 	{
 		occPos.page = currPage;
 
-		if (row == ROWS - 1)
+		if (row == LOG_ROWS - 1)
 		{
 			occPos.row = 0;
 
@@ -932,7 +932,7 @@ void Log::shiftCells(int page, int col, int row, int verb, int object, int indir
 	{
 		resPos.page = currPage;
 
-		if (row == ROWS - 1)
+		if (row == LOG_ROWS - 1)
 		{
 			resPos.row = 0;
 
@@ -984,7 +984,7 @@ void Log::shiftCellsBack(int page, int col, int row)
 			prevPage = page - 1;
 			prevCol = 1;
 		}
-		prevRow = ROWS - 1;
+		prevRow = LOG_ROWS - 1;
 	}
 	switch (oldVerb)
 	{
@@ -1080,23 +1080,23 @@ void Log::shiftCellsBack(int page, int col, int row)
 
 	if (page != currPage) // Page adjustment needed
 	{
-		adj = (currPage - page) * 2 * ROWS;
+		adj = (currPage - page) * 2 * LOG_ROWS;
 
 		if (col == 0 && currCol == 1) // Column adjustment
 		{
-			adj += ROWS;
+			adj += LOG_ROWS;
 		}
 		else if (col == 1 && currCol == 0) // Column adjustment
 		{
-			adj -= ROWS;
+			adj -= LOG_ROWS;
 		}
 	}
 	else if (col != currCol) // Column adjustment needed
 	{
-		adj = ROWS;
+		adj = LOG_ROWS;
 	}
 
-	if (rowIdx0 == ROWS - 1) // Ensure source index wraps
+	if (rowIdx0 == LOG_ROWS - 1) // Ensure source index wraps
 	{
 		rowIdx1 = 0;
 
@@ -1174,7 +1174,7 @@ void Log::shiftCellsBack(int page, int col, int row)
 
 		pageIdx0 = pageIdx1; colIdx0 = colIdx1; rowIdx0 = rowIdx1;
 
-		if (rowIdx1 == ROWS - 1)
+		if (rowIdx1 == LOG_ROWS - 1)
 		{
 			rowIdx1 = 0;
 
@@ -1240,7 +1240,8 @@ void Log::adjustLog(int currOwn, int origOwn, vector<int> &targets)
 
 				if (r == 0)
 				{
-					r = ROWS - 1;
+					r = LOG_ROWS - 1;
+					r = LOG_ROWS - 1;
 
 					if (c == 0)
 					{

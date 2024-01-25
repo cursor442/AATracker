@@ -6,7 +6,8 @@
 #include "LogPair.h"
 #include "../../graphics/header/GraphicsHeader.h"
 
-#define ROWS         25
+#define LOG_ROWS      25
+#define LOG_COLS       2
 
 struct idxLog {
 	int page;

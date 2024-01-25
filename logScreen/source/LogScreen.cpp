@@ -2,49 +2,6 @@
 
 void quickConv(int, char*, char*);
 
-void Game::configLogScreen()
-{
-	uint16_t type = gameBoard->getGameType();
-
-	if (screenFrames.s.size() < (LOG_SCREEN + 1))
-		screenFrames.s.resize((LOG_SCREEN + 1));
-
-	if (gameLog == NULL)
-		gameLog = new Log(type, nationScreenWindow);
-
-	// Config Tabs
-	if (logScreenTabs == TB_ID_NULL)
-	{
-		logScreenTabs = gfx->tabs->createTabId();
-
-		RectF rect = { 0, 24, 750, 24 };
-
-		gfx->tabs->registerTab(graphics, logScreenTabs, LOG_SCREEN, TB_CFG_LEFT, TB_ORT_UP, rect, "Log Screen Tabs", false, false);
-		gfx->tabs->activateTab(logScreenTabs);
-		gfx->tabs->addTab(graphics, logScreenTabs, "Page 1", logScreenHandlePageTab);
-		gfx->tabs->setTabFuncId(logScreenTabs, 0, 0);
-		gfx->tabs->deactivateTab(logScreenTabs);
-	}
-
-	// Config custom log button
-	if (customLogButton == BB_ID_NULL)
-	{
-		customLogButton = gfx->buttons->createButtonId();
-
-		RectF rect = { TURNWIDTH + TEXTWIDTH + 5 - 128, 2, 164, 24 };
-		gfx->buttons->registerButton(graphics, customLogButton, LOG_SCREEN, LOG_LEFT_SECT_IDX, rect, "Custom Log Entry", logScreenHandleCustomEntry);
-	}
-
-	// Make the couple sections of this screen into classes/frames later to improve graphics performance
-	if (screenFrames.s[LOG_SCREEN].f.size() < (LOG_LEFT_SECT_IDX + 1))
-	{
-		screenFrames.s[LOG_SCREEN].f.resize(LOG_LEFT_SECT_IDX + 1);
-		screenFrames.s[LOG_SCREEN].b.resize(LOG_LEFT_SECT_IDX + 1);
-	}
-	screenFrames.s[LOG_SCREEN].f[LOG_LEFT_SECT_IDX] = nameFrame;
-	screenFrames.s[LOG_SCREEN].b[LOG_LEFT_SECT_IDX] = LOG_LEFT_SECT;
-}
-
 void Game::LogScreen(HDC& hdc, UINT _page)
 {
 	hideScreen(true);
@@ -60,6 +17,11 @@ void Game::LogScreen(HDC& hdc, UINT _page)
 	showButton(customLogButton);
 
 	gameLog->drawPage(hdc, (int)_page);
+
+	for (int i = 0; i < logSections.size(); i++)
+	{
+		logSections[i]->drawLogBox(graphics, dbg_boundbox, dbg_sections, dbg_layers);
+	}
 }
 
 void Game::addLogTab(int page)

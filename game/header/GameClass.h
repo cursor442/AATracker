@@ -26,9 +26,6 @@ int Game::updateNatGraph = 10;
 bool Game::whichUpdateNatGraph = false;
 bool Game::doUpdateGraph = false;
 
-// Log screen graphics switches
-int  Game::whichLogTab;
-
 // Tabs
 bool Game::tabClick = false;
 int Game::currTab = TB_ID_NULL;
@@ -276,9 +273,19 @@ RECT Game::checkNations[9];
 //// Log Screen
 ///////////////////////////////////////////////////////////////////////////
 
-Log* Game::gameLog = NULL;
-int  Game::customLogButton = BB_ID_NULL;
+// Log screen graphics switches
+int  Game::whichLogTab;
 int  Game::nextPage = 2;
+
+// Log sections
+vector<LogSection*> Game::logSections;
+vector<RectF> Game::logFrame;
+
+// Log buttons
+int  Game::customLogButton = BB_ID_NULL;
+
+// Log object
+Log* Game::gameLog = NULL;
 
 ///////////////////////////////////////////////////////////////////////////
 //// Research Screen

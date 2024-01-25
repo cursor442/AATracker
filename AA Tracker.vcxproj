@@ -187,6 +187,7 @@
     <ClInclude Include="logScreen\header\LogScreenWrappers.h" />
     <ClInclude Include="logScreen\header\LogTerrs.h" />
     <ClInclude Include="logScreen\header\LogText.h" />
+    <ClInclude Include="logScreen\screenSections\header\LogSection.h" />
     <ClInclude Include="nationScreen\header\NationScreenWrappers.h" />
     <ClInclude Include="nationScreen\header\PurchaseClass.h" />
     <ClInclude Include="nationScreen\header\PurchaseRow.h" />
@@ -250,6 +251,8 @@
     <ClCompile Include="graphics\source\Section.cpp" />
     <ClCompile Include="graphScreen\source\GraphClass.cpp" />
     <ClCompile Include="graphScreen\source\GraphScreen.cpp" />
+    <ClCompile Include="logScreen\screenSections\source\LogScreenConfig.cpp" />
+    <ClCompile Include="logScreen\screenSections\source\LogSection.cpp" />
     <ClCompile Include="logScreen\source\LogClass.cpp" />
     <ClCompile Include="logScreen\source\LogPair.cpp" />
     <ClCompile Include="logScreen\source\LogScreen.cpp" />

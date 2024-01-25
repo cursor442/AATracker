@@ -7,6 +7,7 @@
 
 #include "../../graphics/header/DebugGrid.h"
 
+// Nation Screen
 #include "../../nationScreen/screenSections/header/NameSection.h"
 #include "../../nationScreen/screenSections/header/PhaseSection.h"
 #include "../../nationScreen/screenSections/header/WarSection.h"
@@ -17,6 +18,9 @@
 #include "../../nationScreen/screenSections/header/MiniSpreadSection.h"
 #include "../../nationScreen/screenSections/header/WarchestSection.h"
 #include "../../nationScreen/screenSections/header/BonusSection.h"
+
+// Log Screen
+#include "../../logScreen/screenSections/header/LogSection.h"
 
 #include "../../board/header/Territories.h"
 #include "../../nations/header/NationClass.h"
@@ -60,9 +64,6 @@ public:
 	static int updateNatGraph;
 
 	static bool whichUpdateNatGraph, doUpdateGraph;
-
-	// Log screen graphics switches
-	static int  whichLogTab; // Current log tab
 
 	// Tabs
 	static bool tabClick;                     // The mouse has clicked on an active tab
@@ -319,10 +320,23 @@ public:
 	//// Log screen
 	///////////////////////////////////////////////////////////////////////////
 
+	// Log screen graphics switches
+	static int whichLogTab; // Current log tab
+	static int nextPage;	
+
+	// Log screen graphics toggles
+
+	// Log screen configuration
 	static void     configLogScreen();
+
+	// Log screen draw
 	static void     LogScreen(HDC&, UINT);
-	static void     addLogTab(int);
 	static void     hideLogScreen();
+
+	// Log screen section updates
+
+	// Log screen handlers
+	static void     addLogTab(int);
 	static void     destroyLogScreen(bool = true);
 
 	/////////////////////////////////////////////////////////////////////////
@@ -509,9 +523,15 @@ private:
 	//// Log Screen
 	///////////////////////////////////////////////////////////////////////////
 
-	static Log* gameLog;
+	// Log sections
+	static vector<LogSection*> logSections;
+	static vector<RectF> logFrame;
+
+	// Log buttons
 	static int  customLogButton;
-	static int nextPage;
+	
+	// Log object
+	static Log* gameLog;
 
 	///////////////////////////////////////////////////////////////////////////
 	//// Research Screen

@@ -85,6 +85,12 @@
     <Filter Include="Resource Files\Buttons">
       <UniqueIdentifier>{787eeb1f-5c2d-414a-a963-aa3fc0896f1a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Log Screen\Screen Sections">
+      <UniqueIdentifier>{451e8b20-a0a7-4d05-8b2e-f986a857c4da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Log Screen\Screen Sections">
+      <UniqueIdentifier>{539209bd-e404-4496-b8c2-7deb24ff3459}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\header\DebugGrid.h">
@@ -269,6 +275,9 @@
     </ClInclude>
     <ClInclude Include="nationScreen\header\PurchaseRow.h">
       <Filter>Header Files\Nation Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="logScreen\screenSections\header\LogSection.h">
+      <Filter>Header Files\Log Screen\Screen Sections</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -490,6 +499,12 @@
     </ClCompile>
     <ClCompile Include="nationScreen\source\PurchaseRow.cpp">
       <Filter>Source Files\Nation Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="logScreen\screenSections\source\LogSection.cpp">
+      <Filter>Source Files\Log Screen\Screen Sections</Filter>
+    </ClCompile>
+    <ClCompile Include="logScreen\screenSections\source\LogScreenConfig.cpp">
+      <Filter>Source Files\Log Screen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

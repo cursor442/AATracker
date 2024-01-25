@@ -892,7 +892,7 @@ bool Game::doSaveGame(HWND hWnd, Board& gameBoard)
 
 				for (int j = 0; j <= page_; j++)
 					for (int k = 0; k <= (j == page_ ? col_ : 1); k++)
-						for (int n = 0; n <= ((j == page_ && k == col_) ? row_ - 1 : ROWS - 1); n++)
+						for (int n = 0; n <= ((j == page_ && k == col_) ? row_ - 1 : LOG_ROWS - 1); n++)
 						{
 							char text_[33] = "                               \n";
 
@@ -1598,7 +1598,7 @@ void Game::doLoadGame(HWND hWnd, Board& gameBoard)
 					int p = j + 1;
 					addLogTab(p);
 				}
-				if (col_ == 1 && row_ >= ROWS - 5)
+				if (col_ == 1 && row_ >= LOG_ROWS - 5)
 				{
 					int p = page_ + 2;
 					addLogTab(p);
@@ -1606,7 +1606,7 @@ void Game::doLoadGame(HWND hWnd, Board& gameBoard)
 
 				for (int j = 0; j <= page_; j++)
 					for (int k = 0; k <= (j == page_ ? col_ : 1); k++)
-						for (int n = 0; n <= ((j == page_ && k == col_) ? row_ - 1 : ROWS - 1); n++)
+						for (int n = 0; n <= ((j == page_ && k == col_) ? row_ - 1 : LOG_ROWS - 1); n++)
 						{
 							success = ReadFile(hFile, str, (DWORD)32, &bytesRead, NULL);
 
