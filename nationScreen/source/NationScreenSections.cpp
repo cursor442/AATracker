@@ -3,7 +3,7 @@
 void Game::drawNameFrame(HDC& hdc)
 {
     nameSection->updateNameText(gameBoard->getGameCurrNation(), gameBoard->getGameType(), gameBoard->getGameTurn());
-    nameSection->drawNameBox(graphics, dbg_boundbox, dbg_sections, dbg_layers);
+    nameSection->drawNameBox(graphics, dbg);
 }
 
 void Game::drawStatusFrame(HDC& hdc)
@@ -20,7 +20,7 @@ void Game::drawStatusFrame(HDC& hdc)
     int allyCap = gameBoard->getNumCapCities(SIDE_ALLIES);
 
     statusSection->updateStatusText(axisCap, axisEur, axisPac, allyCap, gameType);
-    statusSection->drawStatusBox(graphics, gameType, dbg_boundbox, dbg_sections, dbg_layers);
+    statusSection->drawStatusBox(graphics, gameType, dbg);
 }
 
 void Game::drawPhaseFrame(HDC& hdc)
@@ -30,14 +30,14 @@ void Game::drawPhaseFrame(HDC& hdc)
         int currPhase = gameBoard->getGameTurnPhase();
         int currNat = gameBoard->getGameCurrNation();
 
-        phaseSection->drawPhaseBox(graphics, currPhase, gameBoard->getGameResearch(), dbg_boundbox, dbg_sections, dbg_layers);
+        phaseSection->drawPhaseBox(graphics, currPhase, gameBoard->getGameResearch(), dbg);
     }
     else
     {
         int currPhase = gameBoard->getGameTurnPhase();
         int currNat = gameBoard->getGameCurrNation();
 
-        phaseSection->drawPhaseBox(graphics, currPhase, nsPhase, gameBoard->getGameResearch(), dbg_boundbox, dbg_sections, dbg_layers);
+        phaseSection->drawPhaseBox(graphics, currPhase, nsPhase, gameBoard->getGameResearch(), dbg);
     }
 }
 
@@ -159,7 +159,7 @@ void Game::drawWarFrame(HDC& hdc)
         warSection->updateFormat(currNat, gameType, gameBoard->getWarMatrix());
     else
         nsWar = warSection->updateFormat(currNat, nsWarTgt, gameType, gameBoard->getWarMatrix());
-    warSection->drawWarBox(graphics, nsWar, dbg_boundbox, dbg_sections, dbg_layers);
+    warSection->drawWarBox(graphics, nsWar, dbg);
 }
 
 void Game::drawCitiesFrame(HDC& hdc)
@@ -191,7 +191,7 @@ void Game::drawCitiesFrame(HDC& hdc)
         citiesSection->updateFormat(nsCity, own, thisSide);
     }
 
-    citiesSection->drawCityBox(graphics, gameType, nsCity, dbg_boundbox, dbg_sections, dbg_layers);
+    citiesSection->drawCityBox(graphics, gameType, nsCity, dbg);
 }
 
 void Game::drawPurchaseFrame(HDC& hdc)
@@ -213,24 +213,24 @@ void Game::drawPurchaseFrame(HDC& hdc)
     if (nsUKToggle)
     {
         purchaseSection->updatePurchaseText(purchases, currUKButton);
-        purchaseSection->drawPurchaseBox(graphics, PURCH_ALL, dbg_boundbox, dbg_sections, dbg_layers);
+        purchaseSection->drawPurchaseBox(graphics, PURCH_ALL, dbg);
         nsUKToggle = false;
     }
     else if (nsUnit == PURCH_ALL)
     {
         purchaseSection->updatePurchaseText(resShips);
         purchaseSection->updatePurchaseText(purchases, currUKButton);
-        purchaseSection->drawPurchaseBox(graphics, PURCH_ALL, dbg_boundbox, dbg_sections, dbg_layers);
+        purchaseSection->drawPurchaseBox(graphics, PURCH_ALL, dbg);
     }
     else if (nsUnit == PURCH_TITLE)
     {
         purchaseSection->updatePurchaseText(resShips);
-        purchaseSection->drawPurchaseBox(graphics, dbg_boundbox, dbg_sections, dbg_layers);
+        purchaseSection->drawPurchaseBox(graphics, dbg);
     }
     else
     {
         purchaseSection->updatePurchaseText(purchases, nsUnit);
-        purchaseSection->drawPurchaseBox(graphics, nsUnit, dbg_boundbox, dbg_sections, dbg_layers);
+        purchaseSection->drawPurchaseBox(graphics, nsUnit, dbg);
     }
 }
 
@@ -256,7 +256,7 @@ void Game::drawPurchaseCostUpdate(HDC& hdc)
     if (gameBoard->getResearch(gameBoard->getGameCurrNation(), RES_SHIPYARDS))
     {
         purchaseSection->updatePurchaseText(true);
-        purchaseSection->drawPurchaseBox(graphics, true, dbg_boundbox, dbg_sections, dbg_layers);
+        purchaseSection->drawPurchaseBox(graphics, true, dbg);
     }
 }
 
@@ -282,13 +282,13 @@ void Game::drawNeutralBox(HDC& hdc)
             neutralSection->updateNeutralFormat(gameType, terrs);
         }
 
-        neutralSection->drawNeutralBox(graphics, nsNeut, dbg_boundbox, dbg_sections, dbg_layers);
+        neutralSection->drawNeutralBox(graphics, nsNeut, dbg);
     }
     else if (nsNeut == NEUT_UPD)
     {
         gameBoard->getNeutralTerrUpdate(terrs);
         neutralSection->updateNeutralFormat(gameType, terrs);
-        neutralSection->drawNeutralBox(graphics, nsNeut, dbg_boundbox, dbg_sections, dbg_layers);
+        neutralSection->drawNeutralBox(graphics, nsNeut, dbg);
         gameBoard->resetNeutralTerrUpdate();
     }
 
@@ -318,12 +318,12 @@ void Game::drawMiniSpread(HDC& hdc)
     {
         miniSpreadSection->updateMiniSpreadText(turn);
         miniSpreadSection->updateMiniSpreadFormat(currNat);
-        miniSpreadSection->drawMiniSpread(graphics, nationSpreads[currNat], dbg_boundbox, dbg_sections, dbg_layers);
+        miniSpreadSection->drawMiniSpread(graphics, nationSpreads[currNat], dbg);
     }
     else if (nsCol != SPREAD_ALL_COLS)
     {
-        miniSpreadSection->drawMiniSpread(graphics, nationSpreads[currNat], nsTurn, nsCol, dbg_boundbox, dbg_sections, dbg_layers);
-        miniSpreadSection->drawMiniSpread(graphics, nationSpreads[currNat], nsTurn + 1, BANK_POS, dbg_boundbox, dbg_sections, dbg_layers);
+        miniSpreadSection->drawMiniSpread(graphics, nationSpreads[currNat], nsTurn, nsCol, dbg);
+        miniSpreadSection->drawMiniSpread(graphics, nationSpreads[currNat], nsTurn + 1, BANK_POS, dbg);
     }
 }
 
@@ -532,7 +532,7 @@ void Game::drawWarchestFrame(HDC& hdc)
         nsWC = WC_NON;
     }
 
-    warchestSection->drawWarchestBox(graphics, dbg_boundbox, dbg_sections, dbg_layers);
+    warchestSection->drawWarchestBox(graphics, dbg);
 
     if (warchestRotate)
         warchestRotate = false;
@@ -551,7 +551,7 @@ void Game::drawBonusFrame(HDC& hdc)
     if (nsBonusRow == BONS_ALL)
     {
         bonusSection->updateBonusText(gameType, currNat);
-        bonusSection->drawBonusBox(graphics, dbg_boundbox, dbg_sections, dbg_layers);
+        bonusSection->drawBonusBox(graphics, dbg);
     }
     else if (bonusUpdate.size() > 0)
     {
@@ -559,7 +559,7 @@ void Game::drawBonusFrame(HDC& hdc)
             bonusSection->updateBonusText(gameType, bonusUpdate[i].nat, bonusUpdate[i].bonus, bonusUpdate[i].val, bonusUpdate[i].bin);
         gameBoard->resetBonusUpdate();
 
-        bonusSection->drawBonusBox(graphics, true, dbg_boundbox, dbg_sections, dbg_layers);
+        bonusSection->drawBonusBox(graphics, true, dbg);
     }
 
     nsBonusRow = BONS_ALL;

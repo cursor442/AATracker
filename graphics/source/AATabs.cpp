@@ -124,12 +124,12 @@ int AATabs::checkForTab(HWND& hWnd, LPARAM lParam, bool& clickTab, int& tbTabIdx
 	return tbTab;
 }
 
-void AATabs::drawTab(int id, Graphics* graphics, bool dbg_boundbox, bool dbg_sections, int layers)
+void AATabs::drawTab(int id, Graphics* graphics, DBG& dbg)
 {
 	convIdToIdx(id);
 
 	if (currIdx != TB_ID_NULL)
-		activeTabs[currIdx]->drawTab(graphics, dbg_boundbox, dbg_sections, layers);
+		activeTabs[currIdx]->drawTab(graphics, dbg);
 }
 
 void AATabs::hideTab(int id, Graphics* graphics)

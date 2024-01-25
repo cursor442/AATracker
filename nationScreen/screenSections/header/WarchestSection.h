@@ -25,7 +25,7 @@ public:
 
 	void resetWarchestBox();
 
-	void drawWarchestBox(Graphics*, bool, bool, int);
+	void drawWarchestBox(Graphics*, DBG&);
 
 private:
 

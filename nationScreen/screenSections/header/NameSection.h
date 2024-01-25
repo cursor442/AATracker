@@ -18,7 +18,7 @@ public:
 
 	void updateNameText(int, int, int);
 
-	void drawNameBox(Graphics*, bool, bool, int);
+	void drawNameBox(Graphics*, DBG&);
 
 	REAL getBoxEdge(int, int);
 

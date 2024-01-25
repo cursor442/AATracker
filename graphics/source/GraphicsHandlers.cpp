@@ -3,7 +3,7 @@
 void Game::drawTooltip(HWND& hWnd, LPARAM lParam)
 {
 	if (activeTooltip)
-		gfx->tooltips->drawTooltip(hWnd, lParam, graphics, dbg_boundbox, dbg_sections, dbg_layers);
+		gfx->tooltips->drawTooltip(hWnd, lParam, graphics, dbg);
 }
 
 void Game::hideTooltip(HWND& hWnd, LPARAM lParam)
@@ -52,7 +52,7 @@ void Game::hideTooltip(HWND& hWnd, LPARAM lParam)
 void Game::showTabBar(int tab)
 {
     gfx->tabs->activateTab(tab);
-    gfx->tabs->drawTab(tab, graphics, dbg_boundbox, dbg_sections, dbg_layers);
+    gfx->tabs->drawTab(tab, graphics, dbg);
 }
 
 void Game::hideTabBar(int tab)
@@ -64,7 +64,7 @@ void Game::hideTabBar(int tab)
 void Game::showButton(int button, bool tt)
 {
     gfx->buttons->activateButton(button);
-    gfx->buttons->drawButton(button, graphics, dbg_boundbox, dbg_sections, dbg_layers);
+    gfx->buttons->drawButton(button, graphics, dbg);
 
     if (tt)
         gfx->tooltips->activateTooltip(button);

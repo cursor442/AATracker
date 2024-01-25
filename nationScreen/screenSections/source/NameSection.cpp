@@ -59,26 +59,26 @@ void NameSection::updateNameText(int nat, int type, int turn)
 	turnConv(turn);	
 }
 
-void NameSection::drawNameBox(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, int layers)
+void NameSection::drawNameBox(Graphics* graphics, DBG& dbg)
 {
-	if (dbg_boundbox) // Show bounding box
+	if (dbg.boundbox) // Show bounding box
 		pen = borderPen;
 	else
 		pen = borderlessPen;
 
-	if (dbg_sections) // Show box names
+	if (dbg.sections) // Show box names
 	{
-		nameFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
+		nameFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, dbg.layers);
 
-		nameBox->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, backBrush, layers);
-		typeBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		turnBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		nameBox->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, backBrush, dbg.layers);
+		typeBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
+		turnBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
 	}
 	else // Actual graphics
 	{
-		nameBox->drawBox(graphics, pen, nameFont, textFormat, textBrush, backBrush, name, layers);
-		typeBox->drawBox(graphics, pen, descrFont, textFormat, textBrush, backBrush, gameType, layers);
-		turnBox->drawBox(graphics, pen, descrFont, textFormat, textBrush, backBrush, gameTurn, layers);
+		nameBox->drawBox(graphics, pen, nameFont, textFormat, textBrush, backBrush, name, dbg.layers);
+		typeBox->drawBox(graphics, pen, descrFont, textFormat, textBrush, backBrush, gameType, dbg.layers);
+		turnBox->drawBox(graphics, pen, descrFont, textFormat, textBrush, backBrush, gameTurn, dbg.layers);
 	}
 }
 

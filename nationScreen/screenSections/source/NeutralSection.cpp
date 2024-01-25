@@ -168,30 +168,30 @@ void NeutralSection::updateNeutralFormat(int gameType, vector<territoryTransacti
 	}
 }
 
-void NeutralSection::drawNeutralBox(Graphics* graphics, int sect, bool dbg_boundbox, bool dbg_sections, int layers)
+void NeutralSection::drawNeutralBox(Graphics* graphics, int sect, DBG& dbg)
 {
-	if (dbg_boundbox) // Show bounding box
+	if (dbg.boundbox) // Show bounding box
 		pen = borderPen;
 	else
 		pen = borderlessPen;
 
-	if (dbg_sections) // Show box names
+	if (dbg.sections) // Show box names
 	{
-		neutralFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
+		neutralFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, dbg.layers);
 
 		int idxC = 0, idxR = 0;
 		for (int i = 0; i < neutralBrush.size(); i++)
 		{
 			idxC = i / NEUTRAL_ROWS;
 			idxR = i % NEUTRAL_ROWS;
-			neutralBox[idxC][idxR]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, neutralText[i].t, layers);
+			neutralBox[idxC][idxR]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, neutralText[i].t, dbg.layers);
 		}
 
 		for (int i = neutralBrush.size(); i < (NEUTRAL_COLS * NEUTRAL_ROWS); i++)
 		{
 			idxC = i / NEUTRAL_ROWS;
 			idxR = i % NEUTRAL_ROWS;
-			neutralBox[idxC][idxR]->drawFrameFill(graphics, borderPen, baseTextFont, textFormat, textBrush, backBrush, layers);
+			neutralBox[idxC][idxR]->drawFrameFill(graphics, borderPen, baseTextFont, textFormat, textBrush, backBrush, dbg.layers);
 		}
 	}
 	else // Actual graphics
@@ -203,7 +203,7 @@ void NeutralSection::drawNeutralBox(Graphics* graphics, int sect, bool dbg_bound
 			{
 				idxC = i / NEUTRAL_ROWS;
 				idxR = i % NEUTRAL_ROWS;
-				neutralBox[idxC][idxR]->drawBox(graphics, pen, neutralFont, centerFormat, textBrush, neutralBrush[i], neutralText[i].t, layers);
+				neutralBox[idxC][idxR]->drawBox(graphics, pen, neutralFont, centerFormat, textBrush, neutralBrush[i], neutralText[i].t, dbg.layers);
 			}
 		}
 		else
@@ -212,7 +212,7 @@ void NeutralSection::drawNeutralBox(Graphics* graphics, int sect, bool dbg_bound
 			{
 				idxC = neutralUpdatePos[i] / NEUTRAL_ROWS;
 				idxR = neutralUpdatePos[i] % NEUTRAL_ROWS;
-				neutralBox[idxC][idxR]->drawBox(graphics, pen, neutralFont, centerFormat, textBrush, neutralBrush[neutralUpdatePos[i]], neutralText[neutralUpdatePos[i]].t, layers);
+				neutralBox[idxC][idxR]->drawBox(graphics, pen, neutralFont, centerFormat, textBrush, neutralBrush[neutralUpdatePos[i]], neutralText[neutralUpdatePos[i]].t, dbg.layers);
 			}
 		}
 
@@ -224,7 +224,7 @@ void NeutralSection::drawNeutralBox(Graphics* graphics, int sect, bool dbg_bound
 			{
 				idxC = i / NEUTRAL_ROWS;
 				idxR = i % NEUTRAL_ROWS;
-				neutralBox[idxC][idxR]->drawBox(graphics, pen, baseTextFont, textFormat, textBrush, tileBrushL, L"", layers);
+				neutralBox[idxC][idxR]->drawBox(graphics, pen, baseTextFont, textFormat, textBrush, tileBrushL, L"", dbg.layers);
 			}
 		}
 	}

@@ -1,10 +1,7 @@
 #ifndef AA_GRAPHICS
 #define AA_GRAPHICS
 
-#include "../../game/header/framework.h"
-#include "UseGDI.h"
-
-#include "GraphicsObjects.h"
+#include "AAGraphicsObject.h"
 #include "../../logScreen/header/LogText.h"
 #include "AATooltips.h"
 #include "AAButtons.h"

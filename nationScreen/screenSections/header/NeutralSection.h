@@ -21,7 +21,7 @@ public:
 	bool getNeutralConfig();
 	void updateNeutralFormat(int, vector<territoryTransaction>&);
 
-	void drawNeutralBox(Graphics*, int, bool, bool, int);
+	void drawNeutralBox(Graphics*, int, DBG&);
 
 private:
 

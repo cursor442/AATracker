@@ -320,7 +320,7 @@ void Game::GraphScreen(HDC& hdc)
 	else
 		graphs[currGraph]->updateGraph(hdc, updateNatGraph, whichUpdateNatGraph, currGraphNats);
 
-	if (!dbg_boundbox)
+	if (!dbg.boundbox)
 		hPen = (HPEN)SelectObject(hdc, borderless);
 	else
 		hPen = (HPEN)SelectObject(hdc, bordered);

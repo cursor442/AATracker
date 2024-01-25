@@ -822,55 +822,55 @@ void BonusSection::configFraBonusText(int idx)
 	wcsncpy_s(bonusText[idx][BONS_FRA_LIB].sts, L"Not Awarded", 12);
 }
 
-void BonusSection::drawBonusBox(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, int layers)
+void BonusSection::drawBonusBox(Graphics* graphics, DBG& dbg)
 {
-	if (dbg_boundbox) // Show bounding box
+	if (dbg.boundbox) // Show bounding box
 		pen = borderPen;
 	else
 		pen = borderlessPen;
 
-	if (dbg_sections) // Show box names
+	if (dbg.sections) // Show box names
 	{
-		bonusFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
+		bonusFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, dbg.layers);
 
 		for (int i = 0; i < BONS_COLS; i++)
-			bonusHead[i]->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+			bonusHead[i]->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
 
 		if (bonusSel == BONS_4)
 		{
 			for (int i = 0; i < 4; i++)
 				for (int j = 0; j < BONS_COLS; j++)
-					bonus4Box[i][j]->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+					bonus4Box[i][j]->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
 		}
 		else if (bonusSel == BONS_6)
 		{
 			for (int i = 0; i < 6; i++)
 				for (int j = 0; j < BONS_COLS; j++)
-					bonus6Box[i][j]->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+					bonus6Box[i][j]->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
 		}
 	}
 	else // Actual graphics
 	{
 		for (int i = 0; i < BONS_COLS; i++)
-			bonusHead[i]->drawFrameFill(graphics, borderPen, headFont, centerFormat, textBrush, bonusBrushP, layers);
+			bonusHead[i]->drawFrameFill(graphics, borderPen, headFont, centerFormat, textBrush, bonusBrushP, dbg.layers);
 
 		if (bonusSel == BONS_4)
 		{
 			for (int i = 0; i < bonusText[natIdx].size(); i++)
 			{
 				bonusBrush = (i % 2 == 1) ? bonusBrushP : bonusBrushS;
-				bonus4Box[i][BONS_OBJ]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrush, bonusText[natIdx][i].obj, layers);
-				bonus4Box[i][BONS_CON]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrush, bonusText[natIdx][i].con, layers);
-				bonus4Box[i][BONS_BNS]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrush, bonusText[natIdx][i].bon, layers);
-				bonus4Box[i][BONS_STS]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrush, bonusText[natIdx][i].sts, layers);
+				bonus4Box[i][BONS_OBJ]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrush, bonusText[natIdx][i].obj, dbg.layers);
+				bonus4Box[i][BONS_CON]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrush, bonusText[natIdx][i].con, dbg.layers);
+				bonus4Box[i][BONS_BNS]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrush, bonusText[natIdx][i].bon, dbg.layers);
+				bonus4Box[i][BONS_STS]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrush, bonusText[natIdx][i].sts, dbg.layers);
 			}
 
 			for (int i = bonusText[natIdx].size(); i < 4; i++)
 			{
-				bonus4Box[i][BONS_OBJ]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrushF, L"", layers);
-				bonus4Box[i][BONS_CON]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrushF, L"", layers);
-				bonus4Box[i][BONS_BNS]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrushF, L"", layers);
-				bonus4Box[i][BONS_STS]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrushF, L"", layers);
+				bonus4Box[i][BONS_OBJ]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrushF, L"", dbg.layers);
+				bonus4Box[i][BONS_CON]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrushF, L"", dbg.layers);
+				bonus4Box[i][BONS_BNS]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrushF, L"", dbg.layers);
+				bonus4Box[i][BONS_STS]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrushF, L"", dbg.layers);
 			}
 		}
 		else if (bonusSel == BONS_6)
@@ -878,31 +878,31 @@ void BonusSection::drawBonusBox(Graphics* graphics, bool dbg_boundbox, bool dbg_
 			for (int i = 0; i < bonusText[natIdx].size(); i++)
 			{
 				bonusBrush = (i % 2 == 1) ? bonusBrushP : bonusBrushS;
-				bonus6Box[i][BONS_OBJ]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrush, bonusText[natIdx][i].obj, layers);
-				bonus6Box[i][BONS_CON]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrush, bonusText[natIdx][i].con, layers);
-				bonus6Box[i][BONS_BNS]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrush, bonusText[natIdx][i].bon, layers);
-				bonus6Box[i][BONS_STS]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrush, bonusText[natIdx][i].sts, layers);
+				bonus6Box[i][BONS_OBJ]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrush, bonusText[natIdx][i].obj, dbg.layers);
+				bonus6Box[i][BONS_CON]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrush, bonusText[natIdx][i].con, dbg.layers);
+				bonus6Box[i][BONS_BNS]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrush, bonusText[natIdx][i].bon, dbg.layers);
+				bonus6Box[i][BONS_STS]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrush, bonusText[natIdx][i].sts, dbg.layers);
 			}
 
 			for (int i = bonusText[natIdx].size(); i < 6; i++)
 			{
-				bonus6Box[i][BONS_OBJ]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrushF, L"", layers);
-				bonus6Box[i][BONS_CON]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrushF, L"", layers);
-				bonus6Box[i][BONS_BNS]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrushF, L"", layers);
-				bonus6Box[i][BONS_STS]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrushF, L"", layers);
+				bonus6Box[i][BONS_OBJ]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrushF, L"", dbg.layers);
+				bonus6Box[i][BONS_CON]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrushF, L"", dbg.layers);
+				bonus6Box[i][BONS_BNS]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrushF, L"", dbg.layers);
+				bonus6Box[i][BONS_STS]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrushF, L"", dbg.layers);
 			}
 		}
 	}
 }
 
-void BonusSection::drawBonusBox(Graphics* graphics, bool valsOnly, bool dbg_boundbox, bool dbg_sections, int layers)
+void BonusSection::drawBonusBox(Graphics* graphics, bool valsOnly, DBG& dbg)
 {
-	if (dbg_boundbox) // Show bounding box
+	if (dbg.boundbox) // Show bounding box
 		pen = borderPen;
 	else
 		pen = borderlessPen;
 
-	if (dbg_sections) // Show box names
+	if (dbg.sections) // Show box names
 	{
 		
 	}
@@ -913,7 +913,7 @@ void BonusSection::drawBonusBox(Graphics* graphics, bool valsOnly, bool dbg_boun
 			for (int i = 0; i < bonusText[natIdx].size(); i++)
 			{
 				bonusBrush = (i % 2 == 1) ? bonusBrushP : bonusBrushS;
-				bonus4Box[i][BONS_STS]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrush, bonusText[natIdx][i].sts, layers);
+				bonus4Box[i][BONS_STS]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrush, bonusText[natIdx][i].sts, dbg.layers);
 			}
 		}
 		else if (bonusSel == BONS_6)
@@ -921,7 +921,7 @@ void BonusSection::drawBonusBox(Graphics* graphics, bool valsOnly, bool dbg_boun
 			for (int i = 0; i < bonusText[natIdx].size(); i++)
 			{
 				bonusBrush = (i % 2 == 1) ? bonusBrushP : bonusBrushS;
-				bonus6Box[i][BONS_STS]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrush, bonusText[natIdx][i].sts, layers);
+				bonus6Box[i][BONS_STS]->drawBox(graphics, borderPen, baseTextFont, centerFormat, textBrush, bonusBrush, bonusText[natIdx][i].sts, dbg.layers);
 			}
 		}
 	}

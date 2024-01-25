@@ -2,12 +2,12 @@
 
 void Game::debugSwitches()
 {
-	if (dbg_boundbox)
+	if (dbg.boundbox)
 		CheckMenuItem(main_Menu, IDM_DBG_BOUNDBOX, MF_CHECKED);
 	else
 		CheckMenuItem(main_Menu, IDM_DBG_BOUNDBOX, MF_UNCHECKED);
 
-	switch (dbg_layers)
+	switch (dbg.layers)
 	{
 	case 99:
 	{
@@ -64,12 +64,12 @@ void Game::debugSwitches()
 	}
 	}
 
-	if (dbg_sections)
+	if (dbg.sections)
 		CheckMenuItem(main_Menu, IDM_DBG_SECTIONS, MF_CHECKED);
 	else
 		CheckMenuItem(main_Menu, IDM_DBG_SECTIONS, MF_UNCHECKED);
 
-	switch (dbg_grid)
+	switch (dbg.grid)
 	{
 	case 0:
 	{

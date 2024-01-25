@@ -29,11 +29,11 @@ public:
 	void updatePurchaseText(Purchase*, int);
 	void updatePurchaseText(Purchase*, bool);
 
-	void drawPurchaseBox(Graphics*, bool, bool, int);
-	void drawPurchaseBox(Graphics*, bool, bool, bool, int);
-	void drawPurchaseBox(Graphics*, int, bool, bool, int);
+	void drawPurchaseBox(Graphics*, DBG&);
+	void drawPurchaseBox(Graphics*, bool, DBG&);
+	void drawPurchaseBox(Graphics*, int, DBG&);
 
-	void drawPurchaseBoxButtons(Graphics*, bool, bool, int);
+	void drawPurchaseBoxButtons(Graphics*, DBG&);
 
 	void showPurchaseButtons();
 	void showPurchaseButtons(int);

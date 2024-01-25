@@ -14,7 +14,6 @@
 #define TB_LEFT_LAYERS  2
 #define TB_RIGHT_LAYERS 2
 
-#include "../../game/header/Resource.h"
 #include "AAGraphicsObject.h"
 
 class AATab : public AAGraphicsObject
@@ -31,7 +30,7 @@ public:
 	void setTabFuncId(int);
 	void setTabState(bool);
 
-	void drawTab(Graphics*, bool, bool, int);
+	void drawTab(Graphics*, DBG&);
 	void hideTab(Graphics*);
 
 	bool pressTab();

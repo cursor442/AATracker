@@ -3,7 +3,6 @@
 
 #include "../../game/header/framework.h"
 #include "../../game/header/Resource.h"
-#include "../../graphics/header/GraphicsHeader.h"
 
 #include "../../graphics/header/DebugGrid.h"
 
@@ -90,10 +89,7 @@ public:
 	static void hideTooltip(HWND&, LPARAM); // Hide the previously selected tooltip
 
 	// Debug
-	static bool dbg_boundbox;
-	static int  dbg_layers;
-	static bool dbg_sections;
-	static int  dbg_grid;
+	static DBG  dbg;
 
 	// Tabs
 	static int  nationScreenTabs;

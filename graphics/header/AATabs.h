@@ -6,7 +6,6 @@
 
 #define TB_SMALL_FONT  true
 
-#include "../../game/header/framework.h"
 #include "AATabBar.h"
 
 class AATabs
@@ -22,7 +21,7 @@ public:
 
 	int  checkForTab(HWND&, LPARAM, bool&, int&);
 
-	void drawTab(int, Graphics*, bool, bool, int);
+	void drawTab(int, Graphics*, DBG&);
 	void hideTab(int, Graphics*);
 	void hideAllTabs(Graphics*);
 

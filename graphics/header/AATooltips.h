@@ -8,7 +8,6 @@
 #define TT_GRID_ADD        0
 #define TT_GRID_SUB        1
 
-#include "../../game/header/framework.h"
 #include "AATooltip.h"
 
 class AATooltips
@@ -21,7 +20,7 @@ public:
 	void configScreenFrames(framesList*);
 
 	void updateCurrPoint(HWND&, LPARAM, bool&, bool&);
-	void drawTooltip(HWND&, LPARAM, Graphics*, bool, bool, int);
+	void drawTooltip(HWND&, LPARAM, Graphics*, DBG&);
 	void hideTooltip(HWND&, LPARAM, Graphics*, int&);
 
 	bool registerTooltip(Graphics* graphics, int, int, int, RectF&, int, const char*);

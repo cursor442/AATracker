@@ -20,7 +20,7 @@ void Game::LogScreen(HDC& hdc, UINT _page)
 
 	for (int i = 0; i < logSections.size(); i++)
 	{
-		logSections[i]->drawLogBox(graphics, dbg_boundbox, dbg_sections, dbg_layers);
+		logSections[i]->drawLogBox(graphics, dbg);
 	}
 }
 

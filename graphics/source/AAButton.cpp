@@ -113,13 +113,13 @@ void AAButton::setButtonFuncId(int val)
 	hasFuncId = true;
 }
 
-void AAButton::drawButton(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, int layers)
+void AAButton::drawButton(Graphics* graphics, DBG& dbg)
 {
-	drawObject(graphics, dbg_boundbox, dbg_sections, layers);
+	drawObject(graphics, dbg);
 
-	if (dbg_sections) // Show box names
+	if (dbg.sections) // Show box names
 	{
-		bbBlankBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, layers);
+		bbBlankBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, dbg.layers);
 	}
 	else // Actual graphics
 	{
@@ -127,20 +127,20 @@ void AAButton::drawButton(Graphics* graphics, bool dbg_boundbox, bool dbg_sectio
 		{
 			if (bbState == BB_UP)
 			{
-				bbUpBox[0]->drawFrame(graphics, bbUpBorderPen[0], baseTextFont, centerFormat, textBrush, layers);
-				bbUpBox[1]->drawFrame(graphics, bbUpBorderPen[1], baseTextFont, centerFormat, textBrush, layers);
-				bbUpBox[2]->drawFrame(graphics, bbUpBorderPen[2], baseTextFont, centerFormat, textBrush, layers);
-				bbUpBox[3]->drawFrame(graphics, bbUpBorderPen[3], baseTextFont, centerFormat, textBrush, layers);
-				bbUpBox[4]->drawFrame(graphics, bbUpBorderPen[4], baseTextFont, centerFormat, textBrush, layers);
+				bbUpBox[0]->drawFrame(graphics, bbUpBorderPen[0], baseTextFont, centerFormat, textBrush, dbg.layers);
+				bbUpBox[1]->drawFrame(graphics, bbUpBorderPen[1], baseTextFont, centerFormat, textBrush, dbg.layers);
+				bbUpBox[2]->drawFrame(graphics, bbUpBorderPen[2], baseTextFont, centerFormat, textBrush, dbg.layers);
+				bbUpBox[3]->drawFrame(graphics, bbUpBorderPen[3], baseTextFont, centerFormat, textBrush, dbg.layers);
+				bbUpBox[4]->drawFrame(graphics, bbUpBorderPen[4], baseTextFont, centerFormat, textBrush, dbg.layers);
 
-				bbUpTextBox->drawBox(graphics, borderlessPen, bbFont, centerFormat, textBrush, bbCenterBrush, objText, layers);
+				bbUpTextBox->drawBox(graphics, borderlessPen, bbFont, centerFormat, textBrush, bbCenterBrush, objText, dbg.layers);
 			}
 			else if (bbState == BB_DN)
 			{
-				bbDnBox[0]->drawFrame(graphics, bbDnBorderPen[0], baseTextFont, centerFormat, textBrush, layers);
-				bbDnBox[1]->drawFrame(graphics, bbDnBorderPen[1], baseTextFont, centerFormat, textBrush, layers);
+				bbDnBox[0]->drawFrame(graphics, bbDnBorderPen[0], baseTextFont, centerFormat, textBrush, dbg.layers);
+				bbDnBox[1]->drawFrame(graphics, bbDnBorderPen[1], baseTextFont, centerFormat, textBrush, dbg.layers);
 
-				bbDnTextBox->drawBox(graphics, borderlessPen, bbFont, centerFormat, textBrush, bbCenterBrush, objText, layers);
+				bbDnTextBox->drawBox(graphics, borderlessPen, bbFont, centerFormat, textBrush, bbCenterBrush, objText, dbg.layers);
 			}
 
 			isDrawn = true;

@@ -17,7 +17,7 @@ public:
 	void updateFormat(int, int, WarMatrix*);
 	int  updateFormat(int, int, int, WarMatrix*);
 
-	void drawWarBox(Graphics*, int, bool, bool, int);
+	void drawWarBox(Graphics*, int, DBG&);
 
 private:
 

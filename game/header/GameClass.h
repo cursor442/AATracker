@@ -44,10 +44,12 @@ bool Game::activeTooltip = false;
 bool Game::deactivateTooltip = false;
 
 // Debug
-bool Game::dbg_boundbox = false;
-int  Game::dbg_layers = 99;
-bool Game::dbg_sections = false;
-int  Game::dbg_grid = 0;
+DBG Game::dbg = { 
+	false, // boundbox
+	99,    // layers
+	false, // sections
+	0      // grid
+};
 
 // Tabs
 int  Game::nationScreenTabs = TB_ID_NULL;

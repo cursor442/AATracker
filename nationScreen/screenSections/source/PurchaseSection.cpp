@@ -1001,241 +1001,241 @@ void PurchaseSection::updatePurchaseText(Purchase* purchases, bool currUK)
 	valConv(totC, price);
 }
 
-void PurchaseSection::drawPurchaseBox(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, int layers)
+void PurchaseSection::drawPurchaseBox(Graphics* graphics, DBG& dbg)
 {
-	if (dbg_boundbox) // Show bounding box
+	if (dbg.boundbox) // Show bounding box
 		pen = borderPen;
 	else
 		pen = borderlessPen;
 
-	if (dbg_sections) // Show box names
+	if (dbg.sections) // Show box names
 	{
-		purchaseFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
+		purchaseFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, dbg.layers);
 
-		purchTitleBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		purchTitleBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
 
-		purchHeadRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
-		infRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
-		artRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
-		mechRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
-		tankRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
-		aaaRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
-		fightRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
-		tactRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
-		stratRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
-		battleRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
-		airccRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
-		cruiseRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
-		destrRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
-		subRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
-		transRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
-		majorRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
-		minorRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
-		minorUpRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
-		airbRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
-		navbRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
-		repRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
-		totRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg_sections, layers);
+		purchHeadRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
+		infRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
+		artRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
+		mechRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
+		tankRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
+		aaaRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
+		fightRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
+		tactRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
+		stratRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
+		battleRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
+		airccRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
+		cruiseRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
+		destrRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
+		subRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
+		transRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
+		majorRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
+		minorRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
+		minorUpRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
+		airbRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
+		navbRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
+		repRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
+		totRow->drawPurchaseRow(graphics, borderPen, purchFont, baseTextFont, centerFormat, centerFormat, textBrush, backBrush, dbg.sections, dbg.layers);
 
 		hidePurchaseButtons();		
 	}
 	else // Actual graphics
 	{
-		purchTitleBox->drawFrameFill(graphics, pen, baseTitleFont, centerFormat, textBrush, tileBrushD, layers);
+		purchTitleBox->drawFrameFill(graphics, pen, baseTitleFont, centerFormat, textBrush, tileBrushD, dbg.layers);
 
-		purchHeadRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
-		infRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg_sections, layers);
-		artRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
-		mechRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg_sections, layers);
-		tankRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
-		aaaRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg_sections, layers);
-		fightRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
-		tactRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg_sections, layers);
-		stratRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
-		battleRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg_sections, layers);
-		airccRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
-		cruiseRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg_sections, layers);
-		destrRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
-		subRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg_sections, layers);
-		transRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
-		majorRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg_sections, layers);
-		minorRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
-		minorUpRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
-		airbRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg_sections, layers);
-		navbRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
-		repRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg_sections, layers);
-		totRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg_sections, layers);
+		purchHeadRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg.sections, dbg.layers);
+		infRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg.sections, dbg.layers);
+		artRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg.sections, dbg.layers);
+		mechRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg.sections, dbg.layers);
+		tankRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg.sections, dbg.layers);
+		aaaRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg.sections, dbg.layers);
+		fightRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg.sections, dbg.layers);
+		tactRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg.sections, dbg.layers);
+		stratRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg.sections, dbg.layers);
+		battleRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg.sections, dbg.layers);
+		airccRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg.sections, dbg.layers);
+		cruiseRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg.sections, dbg.layers);
+		destrRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg.sections, dbg.layers);
+		subRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg.sections, dbg.layers);
+		transRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg.sections, dbg.layers);
+		majorRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg.sections, dbg.layers);
+		minorRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg.sections, dbg.layers);
+		minorUpRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg.sections, dbg.layers);
+		airbRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg.sections, dbg.layers);
+		navbRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg.sections, dbg.layers);
+		repRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, dbg.sections, dbg.layers);
+		totRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, dbg.sections, dbg.layers);
 
 		graphics->DrawLine(backPen, *titleP0, *titleP1);
 	}
 }
 
-void PurchaseSection::drawPurchaseBox(Graphics* graphics, bool resShips, bool dbg_boundbox, bool dbg_sections, int layers)
+void PurchaseSection::drawPurchaseBox(Graphics* graphics, bool resShips, DBG& dbg)
 {
-	if (dbg_boundbox) // Show bounding box
+	if (dbg.boundbox) // Show bounding box
 		pen = borderPen;
 	else
 		pen = borderlessPen;
 
-	if (!dbg_sections)
+	if (!dbg.sections)
 	{
-		battleRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_COST, false, L"", dbg_sections, layers);
-		airccRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_COST, false, L"", dbg_sections, layers);
-		cruiseRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_COST, false, L"", dbg_sections, layers);
-		destrRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_COST, false, L"", dbg_sections, layers);
-		subRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_COST, false, L"", dbg_sections, layers);
-		transRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_COST, false, L"", dbg_sections, layers);
+		battleRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_COST, false, L"", dbg.sections, dbg.layers);
+		airccRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_COST, false, L"", dbg.sections, dbg.layers);
+		cruiseRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_COST, false, L"", dbg.sections, dbg.layers);
+		destrRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_COST, false, L"", dbg.sections, dbg.layers);
+		subRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_COST, false, L"", dbg.sections, dbg.layers);
+		transRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_COST, false, L"", dbg.sections, dbg.layers);
 	}
 }
 
-void PurchaseSection::drawPurchaseBox(Graphics* graphics, int type, bool dbg_boundbox, bool dbg_sections, int layers)
+void PurchaseSection::drawPurchaseBox(Graphics* graphics, int type, DBG& dbg)
 {
-	if (dbg_boundbox) // Show bounding box
+	if (dbg.boundbox) // Show bounding box
 		pen = borderPen;
 	else
 		pen = borderlessPen;
 
-	if (!dbg_sections)
+	if (!dbg.sections)
 	{
 		switch (type)
 		{
 		case PURCH_INF:
 		{
-			infRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, infQ, dbg_sections, layers);
-			infRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, infC, dbg_sections, layers);
+			infRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, infQ, dbg.sections, dbg.layers);
+			infRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, infC, dbg.sections, dbg.layers);
 			break;
 		}
 		case PURCH_ART:
 		{
-			artRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, artQ, dbg_sections, layers);
-			artRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, artC, dbg_sections, layers);
+			artRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, artQ, dbg.sections, dbg.layers);
+			artRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, artC, dbg.sections, dbg.layers);
 			break;
 		}
 		case PURCH_MECH:
 		{
-			mechRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, mechQ, dbg_sections, layers);
-			mechRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, mechC, dbg_sections, layers);
+			mechRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, mechQ, dbg.sections, dbg.layers);
+			mechRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, mechC, dbg.sections, dbg.layers);
 			break;
 		}
 		case PURCH_TANK:
 		{
-			tankRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, tankQ, dbg_sections, layers);
-			tankRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, tankC, dbg_sections, layers);
+			tankRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, tankQ, dbg.sections, dbg.layers);
+			tankRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, tankC, dbg.sections, dbg.layers);
 			break;
 		}
 		case PURCH_AAA:
 		{
-			aaaRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, aaaQ, dbg_sections, layers);
-			aaaRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, aaaC, dbg_sections, layers);
+			aaaRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, aaaQ, dbg.sections, dbg.layers);
+			aaaRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, aaaC, dbg.sections, dbg.layers);
 			break;
 		}
 		case PURCH_FIGHT:
 		{
-			fightRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, fightQ, dbg_sections, layers);
-			fightRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, fightC, dbg_sections, layers);
+			fightRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, fightQ, dbg.sections, dbg.layers);
+			fightRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, fightC, dbg.sections, dbg.layers);
 			break;
 		}
 		case PURCH_TACT:
 		{
-			tactRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, tactQ, dbg_sections, layers);
-			tactRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, tactC, dbg_sections, layers);
+			tactRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, tactQ, dbg.sections, dbg.layers);
+			tactRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, tactC, dbg.sections, dbg.layers);
 			break;
 		}
 		case PURCH_STRAT:
 		{
-			stratRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, stratQ, dbg_sections, layers);
-			stratRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, stratC, dbg_sections, layers);
+			stratRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, stratQ, dbg.sections, dbg.layers);
+			stratRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, stratC, dbg.sections, dbg.layers);
 			break;
 		}
 		case PURCH_BATTLE:
 		{
-			battleRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, battleQ, dbg_sections, layers);
-			battleRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, battleC, dbg_sections, layers);
+			battleRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, battleQ, dbg.sections, dbg.layers);
+			battleRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, battleC, dbg.sections, dbg.layers);
 			break;
 		}
 		case PURCH_AIRCC:
 		{
-			airccRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, airccQ, dbg_sections, layers);
-			airccRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, airccC, dbg_sections, layers);
+			airccRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, airccQ, dbg.sections, dbg.layers);
+			airccRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, airccC, dbg.sections, dbg.layers);
 			break;
 		}
 		case PURCH_CRUISE:
 		{
-			cruiseRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, cruiseQ, dbg_sections, layers);
-			cruiseRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, cruiseC, dbg_sections, layers);
+			cruiseRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, cruiseQ, dbg.sections, dbg.layers);
+			cruiseRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, cruiseC, dbg.sections, dbg.layers);
 			break;
 		}
 		case PURCH_DESTR:
 		{
-			destrRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, destrQ, dbg_sections, layers);
-			destrRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, destrC, dbg_sections, layers);
+			destrRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, destrQ, dbg.sections, dbg.layers);
+			destrRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, destrC, dbg.sections, dbg.layers);
 			break;
 		}
 		case PURCH_SUB:
 		{
-			subRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, subQ, dbg_sections, layers);
-			subRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, subC, dbg_sections, layers);
+			subRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, subQ, dbg.sections, dbg.layers);
+			subRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, subC, dbg.sections, dbg.layers);
 			break;
 		}
 		case PURCH_TRANS:
 		{
-			transRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, transQ, dbg_sections, layers);
-			transRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, transC, dbg_sections, layers);
+			transRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, transQ, dbg.sections, dbg.layers);
+			transRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, transC, dbg.sections, dbg.layers);
 			break;
 		}
 		case PURCH_MAJOR:
 		{
-			majorRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, majorQ, dbg_sections, layers);
-			majorRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, majorC, dbg_sections, layers);
+			majorRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, majorQ, dbg.sections, dbg.layers);
+			majorRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, majorC, dbg.sections, dbg.layers);
 			break;
 		}
 		case PURCH_MINOR:
 		{
-			minorRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, minorQ, dbg_sections, layers);
-			minorRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, minorC, dbg_sections, layers);
+			minorRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, minorQ, dbg.sections, dbg.layers);
+			minorRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, minorC, dbg.sections, dbg.layers);
 			break;
 		}
 		case PURCH_MINORUP:
 		{
-			minorUpRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, minorUpQ, dbg_sections, layers);
-			minorUpRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, minorUpC, dbg_sections, layers);
+			minorUpRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, minorUpQ, dbg.sections, dbg.layers);
+			minorUpRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, minorUpC, dbg.sections, dbg.layers);
 			break;
 		}
 		case PURCH_AIRB:
 		{
-			airbRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, airbQ, dbg_sections, layers);
-			airbRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, airbC, dbg_sections, layers);
+			airbRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, airbQ, dbg.sections, dbg.layers);
+			airbRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, airbC, dbg.sections, dbg.layers);
 			break;
 		}
 		case PURCH_NAVB:
 		{
-			navbRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, navbQ, dbg_sections, layers);
-			navbRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, navbC, dbg_sections, layers);
+			navbRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, navbQ, dbg.sections, dbg.layers);
+			navbRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, navbC, dbg.sections, dbg.layers);
 			break;
 		}
 		case PURCH_REP:
 		{
-			repRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, repQ, dbg_sections, layers);
-			repRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, repC, dbg_sections, layers);
+			repRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_QUANT, true, repQ, dbg.sections, dbg.layers);
+			repRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushL, PURCH_ROW_TOTAL, true, repC, dbg.sections, dbg.layers);
 			break;
 		}
 		case PURCH_ALL:
 		{
-			drawPurchaseBox(graphics, dbg_boundbox, dbg_sections, layers);
+			drawPurchaseBox(graphics, dbg);
 			break;
 		}
 		default:
 			break;
 		}
 
-		totRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, totQ, dbg_sections, layers);
-		totRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, totC, dbg_sections, layers);
+		totRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_QUANT, true, totQ, dbg.sections, dbg.layers);
+		totRow->drawPurchaseRow(graphics, pen, purchFont, costFont, purchaseFormat, centerFormat, textBrush, tileBrushD, PURCH_ROW_TOTAL, true, totC, dbg.sections, dbg.layers);
 	}
 }
 
-void PurchaseSection::drawPurchaseBoxButtons(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, int layers)
+void PurchaseSection::drawPurchaseBoxButtons(Graphics* graphics, DBG& dbg)
 {
-	if (dbg_sections) // Show box names
+	if (dbg.sections) // Show box names
 		hidePurchaseButtons();
 	else // Actual graphics
 		showPurchaseButtons();

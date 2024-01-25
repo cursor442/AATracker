@@ -24,7 +24,7 @@ public:
 
 	void configTooltip(Graphics* graphics, int, int, RectF&, int, const char*, framesList*);
 
-	void drawTooltip(Graphics*, bool, bool, int);
+	void drawTooltip(Graphics*, DBG&);
 	void hideTooltip(Graphics*, int&);
 
 	int getTooltipId();

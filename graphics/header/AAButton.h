@@ -7,7 +7,6 @@
 #define BB_UP_LAYERS 5
 #define BB_DN_LAYERS 2
 
-#include "../../game/header/Resource.h"
 #include "AAGraphicsObject.h"
 
 class AAButton : public AAGraphicsObject
@@ -22,7 +21,7 @@ public:
 	void configDrawTools(vector<Color*>&, vector<SolidBrush*>&, SolidBrush*, Font*);
 	void setButtonFuncId(int);
 
-	void drawButton(Graphics*, bool, bool, int);
+	void drawButton(Graphics*, DBG&);
 	void hideButton(Graphics*);
 
 	bool pressButton();

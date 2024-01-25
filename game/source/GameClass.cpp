@@ -147,10 +147,10 @@ void Game::resetGameControls()
 	// Log Screen
 
 	// Debug
-	dbg_boundbox = false;
-	dbg_layers = 99;
-	dbg_sections = false;
-	dbg_grid = 0;
+	dbg.boundbox = false;
+	dbg.layers = 99;
+	dbg.sections = false;
+	dbg.grid = 0;
 	debugSwitches();
 }
 
@@ -181,8 +181,8 @@ void Game::deleteBoard()
 	graphConfigured = false;
 
 	// Debug
-	dbg_boundbox = false;
-	dbg_sections = false;
+	dbg.boundbox = false;
+	dbg.sections = false;
 }
 
 void Game::resetBoard()
@@ -197,8 +197,8 @@ void Game::resetBoard()
 	currBrush = true;
 
 	// Debug
-	dbg_boundbox = false;
-	dbg_sections = false;
+	dbg.boundbox = false;
+	dbg.sections = false;
 }
 
 bool Game::doSaveGame(HWND hWnd, Board& gameBoard)
@@ -1712,6 +1712,7 @@ void Game::hideScreen(bool force)
 			break;
 		case LOG_SCREEN:
 			hideLogScreen();
+			break;
 		case RES_SCREEN:
 			hideResearchScreen();
 			break;

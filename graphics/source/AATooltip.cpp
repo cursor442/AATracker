@@ -30,19 +30,19 @@ void AATooltip::configTooltip(Graphics* graphics, int screen, int sect, RectF& r
 	config(graphics, text, frames);
 }
 
-void AATooltip::drawTooltip(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, int layers)
+void AATooltip::drawTooltip(Graphics* graphics, DBG& dbg)
 {
-	drawObject(graphics, dbg_boundbox, dbg_sections, layers);
+	drawObject(graphics, dbg);
 
-	if (dbg_sections) // Show box names
+	if (dbg.sections) // Show box names
 	{
-		ttTriBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		ttTextBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		ttTriBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
+		ttTextBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
 	}
 	else // Actual graphics
 	{
-		ttTriBox->drawTri(graphics, pen, popupBrush, layers);
-		ttTextBox->drawBox(graphics, pen, baseTextFont, centerFormat, textBrush, popupBrush, objText, layers);
+		ttTriBox->drawTri(graphics, pen, popupBrush, dbg.layers);
+		ttTextBox->drawBox(graphics, pen, baseTextFont, centerFormat, textBrush, popupBrush, objText, dbg.layers);
 	}
 }
 

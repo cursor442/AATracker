@@ -237,13 +237,13 @@ void AATab::setTabState(bool state)
 	tbState = state;
 }
 
-void AATab::drawTab(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, int layers)
+void AATab::drawTab(Graphics* graphics, DBG& dbg)
 {
-	drawObject(graphics, dbg_boundbox, dbg_sections, layers);
+	drawObject(graphics, dbg);
 
-	if (dbg_sections) // Show box names
+	if (dbg.sections) // Show box names
 	{
-		tbBlankBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, layers);
+		tbBlankBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, dbg.layers);
 	}
 	else // Actual graphics
 	{
@@ -255,37 +255,37 @@ void AATab::drawTab(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, in
 
 			if (tbState == TB_UP)
 			{
-				tbUpTextBox->drawBox(graphics, borderlessPen, tbFont, centerFormat, textBrush, tbCenterBrush, objText, layers, angle);
+				tbUpTextBox->drawBox(graphics, borderlessPen, tbFont, centerFormat, textBrush, tbCenterBrush, objText, dbg.layers, angle);
 
 				for (int i = 0; i < TB_TOP_LAYERS; i++)
-					tbUpTopLine[i]->drawLine(graphics, tbTopPen[i], layers);
+					tbUpTopLine[i]->drawLine(graphics, tbTopPen[i], dbg.layers);
 				
 				//for (int i = 0; i < TB_BOT_LAYERS; i++)
-					//tbUpBotLine[i]->drawLine(graphics, tbBotPen[i], layers);
+					//tbUpBotLine[i]->drawLine(graphics, tbBotPen[i], dbg.layers);
 				
 				for (int i = 0; i < TB_LEFT_LAYERS; i++)
-					tbUpLeftLine[i]->drawLine(graphics, tbLeftPen[i], layers);
+					tbUpLeftLine[i]->drawLine(graphics, tbLeftPen[i], dbg.layers);
 				
 				for (int i = 0; i < TB_RIGHT_LAYERS; i++)
-					tbUpRightLine[i]->drawLine(graphics, tbRightPen[i], layers);
+					tbUpRightLine[i]->drawLine(graphics, tbRightPen[i], dbg.layers);
 			}
 			else if (tbState == TB_DN)
 			{
 				hideTab(graphics);
 
-				tbDnTextBox->drawBox(graphics, borderlessPen, tbFont, centerFormat, textBrush, tbCenterBrush, objText, layers, angle);
+				tbDnTextBox->drawBox(graphics, borderlessPen, tbFont, centerFormat, textBrush, tbCenterBrush, objText, dbg.layers, angle);
 
 				for (int i = 0; i < TB_TOP_LAYERS; i++)
-					tbDnTopLine[i]->drawLine(graphics, tbTopPen[i], layers);
+					tbDnTopLine[i]->drawLine(graphics, tbTopPen[i], dbg.layers);
 
 				for (int i = 0; i < TB_BOT_LAYERS; i++)
-					tbDnBotLine[i]->drawLine(graphics, tbBotPen[i], layers);
+					tbDnBotLine[i]->drawLine(graphics, tbBotPen[i], dbg.layers);
 
 				for (int i = 0; i < TB_LEFT_LAYERS; i++)
-					tbDnLeftLine[i]->drawLine(graphics, tbLeftPen[i], layers);
+					tbDnLeftLine[i]->drawLine(graphics, tbLeftPen[i], dbg.layers);
 
 				for (int i = 0; i < TB_RIGHT_LAYERS; i++)
-					tbDnRightLine[i]->drawLine(graphics, tbRightPen[i], layers);
+					tbDnRightLine[i]->drawLine(graphics, tbRightPen[i], dbg.layers);
 			}
 
 			isDrawn = true;

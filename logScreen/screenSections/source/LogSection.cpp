@@ -31,16 +31,16 @@ void LogSection::configDrawTools()
 	
 }
 
-void LogSection::drawLogBox(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, int layers)
+void LogSection::drawLogBox(Graphics* graphics, DBG& dbg)
 {
-	if (dbg_boundbox) // Show bounding box
+	if (dbg.boundbox) // Show bounding box
 		pen = borderPen;
 	else
 		pen = borderlessPen;
 
-	if (dbg_sections) // Show box names
+	if (dbg.sections) // Show box names
 	{
-		logFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
+		logFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, dbg.layers);
 	}
 	else // Actual graphics
 	{

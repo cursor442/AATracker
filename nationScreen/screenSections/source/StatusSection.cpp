@@ -95,27 +95,27 @@ void StatusSection::updateStatusText(int axisCap, int axisEur, int axisPac, int 
 	allies[37] = int2char_(allyCap);
 }
 
-void StatusSection::drawStatusBox(Graphics* graphics, int gameType, bool dbg_boundbox, bool dbg_sections, int layers)
+void StatusSection::drawStatusBox(Graphics* graphics, int gameType, DBG& dbg)
 {
-	if (dbg_boundbox) // Show bounding box
+	if (dbg.boundbox) // Show bounding box
 		pen = borderPen;
 	else
 		pen = borderlessPen;
 
-	if (dbg_sections) // Show box names
+	if (dbg.sections) // Show box names
 	{
-		statusFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
+		statusFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, dbg.layers);
 
-		axisBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-		alliesBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		axisBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
+		alliesBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
 		
 	}
 	else // Actual graphics
 	{
 		if (gameType == GLOBAL_GAME)
-			axisBox->drawBox(graphics, pen, statusFont, statusFormat, textBrush, backBrush, axisG, layers);
+			axisBox->drawBox(graphics, pen, statusFont, statusFormat, textBrush, backBrush, axisG, dbg.layers);
 		else
-			axisBox->drawBox(graphics, pen, statusFont, statusFormat, textBrush, backBrush, axis, layers);
-		alliesBox->drawBox(graphics, pen, statusFont, statusFormat, textBrush, backBrush, allies, layers);
+			axisBox->drawBox(graphics, pen, statusFont, statusFormat, textBrush, backBrush, axis, dbg.layers);
+		alliesBox->drawBox(graphics, pen, statusFont, statusFormat, textBrush, backBrush, allies, dbg.layers);
 	}
 }

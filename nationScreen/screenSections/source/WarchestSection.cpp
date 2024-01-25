@@ -281,25 +281,25 @@ void WarchestSection::resetWarchestBox()
 	}
 }
 
-void WarchestSection::drawWarchestBox(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, int layers)
+void WarchestSection::drawWarchestBox(Graphics* graphics, DBG& dbg)
 {
-	if (dbg_boundbox) // Show bounding box
+	if (dbg.boundbox) // Show bounding box
 		pen = borderPen;
 	else
 		pen = borderlessPen;
 
-	if (dbg_sections) // Show box names
+	if (dbg.sections) // Show box names
 	{
-		warchestFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
+		warchestFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, dbg.layers);
 
 		for (int i = 0; i < 3; i++)
 			for (int j = 0; j < 3; j++)
 			{
-				warchestBoxes[i][j]->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-				warchestValBoxes[i][j]->drawFrameFill(graphics, pen, baseTextFont, textFormat, textBrush, backBrush, layers);
+				warchestBoxes[i][j]->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
+				warchestValBoxes[i][j]->drawFrameFill(graphics, pen, baseTextFont, textFormat, textBrush, backBrush, dbg.layers);
 			}
 
-		warchestCone->drawQuad(graphics, borderPen, paneBrush, layers);
+		warchestCone->drawQuad(graphics, borderPen, paneBrush, dbg.layers);
 	}
 	else // Actual graphics
 	{
@@ -310,20 +310,20 @@ void WarchestSection::drawWarchestBox(Graphics* graphics, bool dbg_boundbox, boo
 				if (idx != 0)
 				{
 					warchestBoxes[i][j]->drawBox(graphics, pen, natFont, textFormat, textBrush,
-						warchestBrushes[i][j], natText[idx].t, layers);
+						warchestBrushes[i][j], natText[idx].t, dbg.layers);
 					warchestValBoxes[i][j]->drawBox(graphics, pen, baseTextFont, textFormat, textBrush,
-						warchestValBrushes[i][j], natVals[idx].t, layers);
+						warchestValBrushes[i][j], natVals[idx].t, dbg.layers);
 
 					if (ukPos.size() > 0 && ukPos[idx])
 						warchestUKValBox->drawBox(graphics, pen, baseTextFont, textFormat, textBrush,
-							warchestValBrushes[i][j], ukVal.t, layers);
+							warchestValBrushes[i][j], ukVal.t, dbg.layers);
 				}
 				else
 					warchestBoxes[0][0]->drawBox(graphics, pen, natFont, textFormat, textBrush,
-						warchestBrushes[0][0], L"", layers);
+						warchestBrushes[0][0], L"", dbg.layers);
 			}
 
-		warchestCone->drawQuad(graphics, pen, warchestBrushes[0][0], layers);
+		warchestCone->drawQuad(graphics, pen, warchestBrushes[0][0], dbg.layers);
 	}
 }
 

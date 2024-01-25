@@ -12,7 +12,6 @@
 #define BB_GRID_ADD        0
 #define BB_GRID_SUB        1
 
-#include "../../game/header/framework.h"
 #include "AAButton.h"
 
 class AAButtons
@@ -27,7 +26,7 @@ public:
 
 	int  checkForButton(HWND&, LPARAM, bool&, bool&, int = BB_ID_NULL, bool = true);
 
-	void drawButton(int, Graphics*, bool, bool, int);
+	void drawButton(int, Graphics*, DBG&);
 	void hideButton(int, Graphics*);
 	void hideButton(int);
 

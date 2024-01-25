@@ -107,20 +107,23 @@ void AATabBar::setTabFuncId(int idx, int val)
 		tbTabs[idx]->setTabFuncId(val);
 }
 
-void AATabBar::drawTab(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, int layers)
+void AATabBar::drawTab(Graphics* graphics, DBG& dbg)
 {
-	drawObject(graphics, dbg_boundbox, dbg_sections, layers);
+	drawObject(graphics, dbg);
 
-	if (dbg_sections) // Show box names
+	if (dbg.sections) // Show box names
 	{
-		tbBlankBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, layers);
+		tbBlankBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, dbg.layers);
+
+		for (int i = tbTabCnt - 1; i >= 0; i--)
+			tbTabs[i]->drawTab(graphics, dbg);
 	}
 	else // Actual graphics
 	{
 		if (!isDrawn)
 		{
 			for (int i = tbTabCnt - 1; i >= 0; i--)
-				tbTabs[i]->drawTab(graphics, dbg_boundbox, dbg_sections, layers);
+				tbTabs[i]->drawTab(graphics, dbg);
 
 			isDrawn = true;
 		}

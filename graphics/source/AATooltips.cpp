@@ -107,11 +107,11 @@ void AATooltips::updateCurrPoint(HWND& hWnd, LPARAM lParam, bool& activeTooltip,
 	SetTimer(hWnd, TT_SAMPLE_TIMER_ID, TT_SAMPLE_TIMEOUT, NULL);
 }
 
-void AATooltips::drawTooltip(HWND& hWnd, LPARAM lParam, Graphics* graphics, bool dbg_boundbox, bool dbg_sections, int layers)
+void AATooltips::drawTooltip(HWND& hWnd, LPARAM lParam, Graphics* graphics, DBG& dbg)
 {
 	if (currIdx != TT_ID_NULL)
 	{
-		activeTooltips[currIdx]->drawTooltip(graphics, dbg_boundbox, dbg_sections, layers);
+		activeTooltips[currIdx]->drawTooltip(graphics, dbg);
 		lastIdx = currIdx;
 	}
 }

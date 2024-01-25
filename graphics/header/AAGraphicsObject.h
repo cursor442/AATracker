@@ -1,7 +1,6 @@
 #ifndef AA_GRAPHICS_OBJECT
 #define AA_GRAPHICS_OBJECT
 
-#include "UseGDI.h"
 #include "../../game/header/Resource.h"
 #include "GraphicsObjects.h"
 
@@ -11,6 +10,13 @@
 #define GRAPHICS_RECT_BR   3
 
 #define GRAPHICS_TEXTLEN   128
+
+struct DBG {
+	bool boundbox;
+	int  layers;
+	bool sections;
+	int  grid;
+};
 
 class AAGraphicsObject
 {
@@ -23,7 +29,7 @@ public:
 	virtual void configObject(Graphics* graphics, int, int, RectF&, const char*);
 	virtual void configObject(Graphics* graphics, int, int, RectF&, const char*, framesList*);
 
-	virtual void drawObject(Graphics*, bool, bool, int);
+	virtual void drawObject(Graphics*, DBG&);
 	virtual void hideObject(Graphics*, int&);
 
 	virtual void  setObjectBox(RectF&);

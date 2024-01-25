@@ -14,7 +14,7 @@ public:
 	void configureLogBox(RectF&, int, int, Log*);
 	void configDrawTools();
 
-	void drawLogBox(Graphics*, bool, bool, int);
+	void drawLogBox(Graphics*, DBG&);
 
 private:
 

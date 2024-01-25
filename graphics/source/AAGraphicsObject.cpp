@@ -65,9 +65,9 @@ void AAGraphicsObject::configObject(Graphics* graphics, int screen, int sect, Re
 	configObject(graphics, screen, sect, rect, text);
 }
 
-void AAGraphicsObject::drawObject(Graphics* graphics, bool dbg_boundbox, bool dbg_sections, int layers)
+void AAGraphicsObject::drawObject(Graphics* graphics, DBG& dbg)
 {
-	if (dbg_boundbox) // Show bounding box
+	if (dbg.boundbox) // Show bounding box
 		pen = borderPen;
 	else
 		pen = borderlessPen;

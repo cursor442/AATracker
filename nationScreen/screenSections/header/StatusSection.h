@@ -18,7 +18,7 @@ public:
 
 	void updateStatusText(int, int, int, int, int);
 
-	void drawStatusBox(Graphics*, int, bool, bool, int);
+	void drawStatusBox(Graphics*, int, DBG&);
 
 private:
 

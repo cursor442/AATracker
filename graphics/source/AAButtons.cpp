@@ -120,12 +120,12 @@ int AAButtons::checkForButton(HWND& hWnd, LPARAM lParam, bool& clickButton, bool
 	return bbButton;
 }
 
-void AAButtons::drawButton(int id, Graphics* graphics, bool dbg_boundbox, bool dbg_sections, int layers)
+void AAButtons::drawButton(int id, Graphics* graphics, DBG& dbg)
 {
 	convIdToIdx(id);
 
 	if (currIdx != BB_ID_NULL)
-		activeButtons[currIdx]->drawButton(graphics, dbg_boundbox, dbg_sections, layers);
+		activeButtons[currIdx]->drawButton(graphics, dbg);
 }
 
 void AAButtons::hideButton(int id, Graphics* graphics)

@@ -682,48 +682,48 @@ int WarSection::updateFormat(int nat, int tgt, int type, WarMatrix* warMatrix)
 	return tgtBox;
 }
 
-void WarSection::drawWarBox(Graphics* graphics, int sect, bool dbg_boundbox, bool dbg_sections, int layers)
+void WarSection::drawWarBox(Graphics* graphics, int sect, DBG& dbg)
 {
-	if (dbg_boundbox) // Show bounding box
+	if (dbg.boundbox) // Show bounding box
 		pen = borderPen;
 	else
 		pen = borderlessPen;
 
-	if (dbg_sections) // Show box names
+	if (dbg.sections) // Show box names
 	{
-		warFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
-		warWithBox->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, backBrush, layers);
+		warFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, dbg.layers);
+		warWithBox->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, backBrush, dbg.layers);
 
 		switch (warBoxFormat)
 		{
 		case 1:
 		{
-			warD1Tri->drawTri(graphics, borderPen, backBrush, layers);
-			warD2Tri->drawTri(graphics, borderPen, backBrush, layers);
-			warD3Tri->drawTri(graphics, borderPen, backBrush, layers);
-			warTRBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-			warBLBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-			warBRBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+			warD1Tri->drawTri(graphics, borderPen, backBrush, dbg.layers);
+			warD2Tri->drawTri(graphics, borderPen, backBrush, dbg.layers);
+			warD3Tri->drawTri(graphics, borderPen, backBrush, dbg.layers);
+			warTRBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
+			warBLBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
+			warBRBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
 			break;
 		}
 		case 3:
 		{
-			warTLBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-			warTRBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
-			warBLBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+			warTLBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
+			warTRBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
+			warBLBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
 			if (!warBoxIgnoreLast)
-				warBRBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+				warBRBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
 			else
-				warBRBox->drawBox(graphics, pen, font3, centerFormat, textBrush, backBrush, L"", layers);
+				warBRBox->drawBox(graphics, pen, font3, centerFormat, textBrush, backBrush, L"", dbg.layers);
 			break;
 		}
 		case 4:
 		{
-			warTopBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+			warTopBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
 			if (!warBoxIgnoreLast)
-				warBotBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+				warBotBox->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
 			else
-				warBotBox->drawBox(graphics, pen, font3, centerFormat, textBrush, backBrush, L"", layers);
+				warBotBox->drawBox(graphics, pen, font3, centerFormat, textBrush, backBrush, L"", dbg.layers);
 			break;
 		}
 		default:
@@ -734,7 +734,7 @@ void WarSection::drawWarBox(Graphics* graphics, int sect, bool dbg_boundbox, boo
 	else // Actual graphics
 	{
 		if ((sect & WAR_SECT_ALL) != 0)
-			warWithBox->drawBox(graphics, pen, headFont, centerFormat, textBrush, redBrush, L"At War With", layers);
+			warWithBox->drawBox(graphics, pen, headFont, centerFormat, textBrush, redBrush, L"At War With", dbg.layers);
 
 		switch (warBoxFormat)
 		{
@@ -742,43 +742,43 @@ void WarSection::drawWarBox(Graphics* graphics, int sect, bool dbg_boundbox, boo
 		{
 			if ((sect & WAR_SECT_TL) != 0)
 			{
-				warD1Tri->drawTri(graphics, pen, warD1Brush, layers);
-				warD2Tri->drawTri(graphics, pen, warD2Brush, layers);
-				warD3Tri->drawTri(graphics, pen, warD3Brush, layers);
+				warD1Tri->drawTri(graphics, pen, warD1Brush, dbg.layers);
+				warD2Tri->drawTri(graphics, pen, warD2Brush, dbg.layers);
+				warD3Tri->drawTri(graphics, pen, warD3Brush, dbg.layers);
 			}
 			if ((sect & WAR_SECT_TR) != 0)
-				warTRBox->drawBox(graphics, pen, font1, centerFormat, textBrush, warTRBrush, name1, layers);
+				warTRBox->drawBox(graphics, pen, font1, centerFormat, textBrush, warTRBrush, name1, dbg.layers);
 			if ((sect & WAR_SECT_BL) != 0)
-				warBLBox->drawBox(graphics, pen, font2, centerFormat, textBrush, warBLBrush, name2, layers);
+				warBLBox->drawBox(graphics, pen, font2, centerFormat, textBrush, warBLBrush, name2, dbg.layers);
 			if ((sect & WAR_SECT_BR) != 0)
-				warBRBox->drawBox(graphics, pen, font3, centerFormat, textBrush, warBRBrush, name3, layers);
+				warBRBox->drawBox(graphics, pen, font3, centerFormat, textBrush, warBRBrush, name3, dbg.layers);
 			break;
 		}
 		case 3:
 		{
 			if ((sect & WAR_SECT_TL) != 0)
-				warTLBox->drawBox(graphics, pen, font0, centerFormat, textBrush, warTLBrush, name0, layers);
+				warTLBox->drawBox(graphics, pen, font0, centerFormat, textBrush, warTLBrush, name0, dbg.layers);
 			if ((sect & WAR_SECT_TR) != 0)
-				warTRBox->drawBox(graphics, pen, font1, centerFormat, textBrush, warTRBrush, name1, layers);
+				warTRBox->drawBox(graphics, pen, font1, centerFormat, textBrush, warTRBrush, name1, dbg.layers);
 			if ((sect & WAR_SECT_BL) != 0)
-				warBLBox->drawBox(graphics, pen, font2, centerFormat, textBrush, warBLBrush, name2, layers);
+				warBLBox->drawBox(graphics, pen, font2, centerFormat, textBrush, warBLBrush, name2, dbg.layers);
 			if ((sect & WAR_SECT_BR) != 0)
 				if (!warBoxIgnoreLast)
-					warBRBox->drawBox(graphics, pen, font3, centerFormat, textBrush, warBRBrush, name3, layers);
+					warBRBox->drawBox(graphics, pen, font3, centerFormat, textBrush, warBRBrush, name3, dbg.layers);
 				else
-					warBRBox->drawBox(graphics, pen, font3, centerFormat, textBrush, backBrush, L"", layers);
+					warBRBox->drawBox(graphics, pen, font3, centerFormat, textBrush, backBrush, L"", dbg.layers);
 
 			break;
 		}
 		case 4:
 		{
 			if ((sect & WAR_SECT_TOP) != 0)
-				warTopBox->drawBox(graphics, pen, font0, centerFormat, textBrush, warTopBrush, name0, layers);
+				warTopBox->drawBox(graphics, pen, font0, centerFormat, textBrush, warTopBrush, name0, dbg.layers);
 			if ((sect & WAR_SECT_BOT) != 0)
 				if (!warBoxIgnoreLast)
-					warBotBox->drawBox(graphics, pen, font1, centerFormat, textBrush, warBotBrush, name1, layers);
+					warBotBox->drawBox(graphics, pen, font1, centerFormat, textBrush, warBotBrush, name1, dbg.layers);
 				else
-					warBotBox->drawBox(graphics, pen, font3, centerFormat, textBrush, backBrush, L"", layers);
+					warBotBox->drawBox(graphics, pen, font3, centerFormat, textBrush, backBrush, L"", dbg.layers);
 			break;
 		}
 		default:

@@ -245,14 +245,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
                 game->hideScreen(true);
 
-                if (!game->dbg_boundbox)
+                if (!game->dbg.boundbox)
                 {
-                    game->dbg_boundbox = true;
+                    game->dbg.boundbox = true;
                     game->nsSection = ALL_SECT;
                 }
                 else
                 {
-                    game->dbg_boundbox = false;
+                    game->dbg.boundbox = false;
                     game->nsSection = ALL_SECT;
                 }
                 game->debugSwitches();
@@ -263,9 +263,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
                 game->hideScreen(true);
 
-                if (game->dbg_grid != 0)
+                if (game->dbg.grid != 0)
                 {
-                    game->dbg_grid = 0;
+                    game->dbg.grid = 0;
                     game->nsSection = ALL_SECT;
                     game->debugSwitches();
                     RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
@@ -276,9 +276,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
                 game->hideScreen(true);
 
-                if (game->dbg_grid != 2)
+                if (game->dbg.grid != 2)
                 {
-                    game->dbg_grid = 2;
+                    game->dbg.grid = 2;
                     game->nsSection = ALL_SECT;
                     game->debugSwitches();
                     RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
@@ -289,9 +289,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
                 game->hideScreen(true);
 
-                if (game->dbg_grid != 3)
+                if (game->dbg.grid != 3)
                 {
-                    game->dbg_grid = 3;
+                    game->dbg.grid = 3;
                     game->nsSection = ALL_SECT;
                     game->debugSwitches();
                     RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
@@ -302,9 +302,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
                 game->hideScreen(true);
 
-                if (game->dbg_grid != 4)
+                if (game->dbg.grid != 4)
                 {
-                    game->dbg_grid = 4;
+                    game->dbg.grid = 4;
                     game->nsSection = ALL_SECT;
                     game->debugSwitches();
                     RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
@@ -315,9 +315,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
                 game->hideScreen(true);
 
-                if (game->dbg_grid != 5)
+                if (game->dbg.grid != 5)
                 {
-                    game->dbg_grid = 5;
+                    game->dbg.grid = 5;
                     game->nsSection = ALL_SECT;
                     game->debugSwitches();
                     RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
@@ -328,9 +328,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
                 game->hideScreen(true);
 
-                if (game->dbg_grid != 8)
+                if (game->dbg.grid != 8)
                 {
-                    game->dbg_grid = 8;
+                    game->dbg.grid = 8;
                     game->nsSection = ALL_SECT;
                     game->debugSwitches();
                     RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
@@ -341,9 +341,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
                 game->hideScreen(true);
 
-                if (game->dbg_layers != 99)
+                if (game->dbg.layers != 99)
                 {
-                    game->dbg_layers = 99;
+                    game->dbg.layers = 99;
                     game->nsSection = ALL_SECT;
                     game->debugSwitches();
                     RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
@@ -354,9 +354,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
                 game->hideScreen(true);
 
-                if (game->dbg_layers != 0)
+                if (game->dbg.layers != 0)
                 {
-                    game->dbg_layers = 0;
+                    game->dbg.layers = 0;
                     game->nsSection = ALL_SECT;
                     game->debugSwitches();
                     RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
@@ -367,9 +367,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
                 game->hideScreen(true);
 
-                if (game->dbg_layers != 1)
+                if (game->dbg.layers != 1)
                 {
-                    game->dbg_layers = 1;
+                    game->dbg.layers = 1;
                     game->nsSection = ALL_SECT;
                     game->debugSwitches();
                     RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
@@ -380,9 +380,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
                 game->hideScreen(true);
 
-                if (game->dbg_layers != 2)
+                if (game->dbg.layers != 2)
                 {
-                    game->dbg_layers = 2;
+                    game->dbg.layers = 2;
                     game->nsSection = ALL_SECT;
                     game->debugSwitches();
                     RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
@@ -393,9 +393,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
                 game->hideScreen(true);
 
-                if (game->dbg_layers != 3)
+                if (game->dbg.layers != 3)
                 {
-                    game->dbg_layers = 3;
+                    game->dbg.layers = 3;
                     game->nsSection = ALL_SECT;
                     game->debugSwitches();
                     RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
@@ -406,14 +406,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             {
                 game->hideScreen(true);
 
-                if (!game->dbg_sections)
+                if (!game->dbg.sections)
                 {
-                    game->dbg_sections = true;
+                    game->dbg.sections = true;
                     game->nsSection = ALL_SECT;
                 }
                 else
                 {
-                    game->dbg_sections = false;
+                    game->dbg.sections = false;
                     game->nsSection = ALL_SECT;
                 }
                 game->debugSwitches();
@@ -555,8 +555,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         game->hideTooltip(hWnd, lParam);
         
         // Draw debug grid if enabled
-        if (game->dbg_grid != 0)
-            game->debugGrid->drawGrid(game->graphics, game->dbg_grid);
+        if (game->dbg.grid != 0)
+            game->debugGrid->drawGrid(game->graphics, game->dbg.grid);
 
         // Main draw function
         switch (game->whichScreen)

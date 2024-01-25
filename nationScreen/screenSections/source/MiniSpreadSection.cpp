@@ -170,23 +170,23 @@ void MiniSpreadSection::resetMiniSpreadText()
 		turnText[i][0] = '\0';
 }
 
-void MiniSpreadSection::drawMiniSpread(Graphics* graphics, Spreadsheet* spread, bool dbg_boundbox, bool dbg_sections, int layers)
+void MiniSpreadSection::drawMiniSpread(Graphics* graphics, Spreadsheet* spread, DBG& dbg)
 {
-	if (dbg_boundbox) // Always show bounding box
+	if (dbg.boundbox) // Always show bounding box
 		pen = borderPen;
 	else
 		pen = borderPen;
 
-	if (dbg_sections) // Show box names
+	if (dbg.sections) // Show box names
 	{
-		miniSpreadFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, layers);
+		miniSpreadFrame->drawFrameFill(graphics, borderPen, baseTitleFont, centerFormat, textBrush, paneBrush, dbg.layers);
 
 		for (int i = 0; i < SPREAD_COLS; i++)
-			spreadHead[i]->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+			spreadHead[i]->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
 
 		for (int i = 0; i < SPREAD_ROWS; i++)
 			for (int j = 0; j < SPREAD_COLS; j++)
-				spreadBox[i][j]->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+				spreadBox[i][j]->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
 		
 	}
 	else // Actual graphics
@@ -195,37 +195,37 @@ void MiniSpreadSection::drawMiniSpread(Graphics* graphics, Spreadsheet* spread, 
 
 		spreadLineBrush = spreadBrushP;
 		for (int i = 0; i < SPREAD_COLS; i++)
-			spreadHead[i]->drawFrameFill(graphics, borderPen, headFont, centerFormat, textBrush, spreadLineBrush, layers);
+			spreadHead[i]->drawFrameFill(graphics, borderPen, headFont, centerFormat, textBrush, spreadLineBrush, dbg.layers);
 
 		for (int i = 0; i < SPREAD_ROWS; i++)
 		{
 			spreadLineBrush = ((miniIdx + i) % 2 == 0) ? spreadBrushP : spreadBrushS;
-			spreadBox[i][0]->drawBox(graphics, borderPen, spreadFont, centerFormat, textBrush, spreadLineBrush, turnText[i], layers);
+			spreadBox[i][0]->drawBox(graphics, borderPen, spreadFont, centerFormat, textBrush, spreadLineBrush, turnText[i], dbg.layers);
 			for (int j = BANK_POS; j < SPREAD_COLS; j++)
 				spreadBox[i][j]->drawBox(graphics, borderPen, spreadFont, centerFormat, textBrush, spreadLineBrush,
-					spread->getMiniSpreadText(i, j - BANK_POS), layers);
+					spread->getMiniSpreadText(i, j - BANK_POS), dbg.layers);
 		}
 	}
 }
 
-void MiniSpreadSection::drawMiniSpread(Graphics* graphics, Spreadsheet* spread, int turn, int col, bool dbg_boundbox, bool dbg_sections, int layers)
+void MiniSpreadSection::drawMiniSpread(Graphics* graphics, Spreadsheet* spread, int turn, int col, DBG& dbg)
 {
-	if (dbg_boundbox) // Always show bounding box
+	if (dbg.boundbox) // Always show bounding box
 		pen = borderPen;
 	else
 		pen = borderPen;
 
 	int miniIdx = spread->getMiniIndex();
 
-	if (dbg_sections) // Show box names
+	if (dbg.sections) // Show box names
 	{
-		spreadBox[turn - miniIdx][col]->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, layers);
+		spreadBox[turn - miniIdx][col]->drawFrameFill(graphics, borderPen, baseTextFont, centerFormat, textBrush, backBrush, dbg.layers);
 	}
 	else // Actual graphics
 	{
 		spreadLineBrush = (turn % 2 == 0) ? spreadBrushP : spreadBrushS;
 		spreadBox[turn - miniIdx][col]->drawBox(graphics, borderPen, spreadFont, centerFormat, textBrush, spreadLineBrush,
-			spread->getMiniSpreadText(turn - miniIdx, col - BANK_POS), layers);
+			spread->getMiniSpreadText(turn - miniIdx, col - BANK_POS), dbg.layers);
 	}
 }
 

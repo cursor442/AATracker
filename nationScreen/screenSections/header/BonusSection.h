@@ -43,8 +43,8 @@ public:
 	void configAnzBonusText(int);
 	void configFraBonusText(int);
 
-	void drawBonusBox(Graphics*, bool, bool, int);
-	void drawBonusBox(Graphics*, bool, bool, bool, int);
+	void drawBonusBox(Graphics*, DBG&);
+	void drawBonusBox(Graphics*, bool, DBG&);
 
 private:
 

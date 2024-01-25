@@ -19,7 +19,7 @@ public:
 	void addTab(Graphics*, const char*, void (*tbFunc)(HWND&, int));
 	void setTabFuncId(int, int);
 
-	void drawTab(Graphics*, bool, bool, int);
+	void drawTab(Graphics*, DBG&);
 	void hideTab(Graphics*);
 
 	bool pressTab(int);

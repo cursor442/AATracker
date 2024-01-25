@@ -20,8 +20,8 @@ public:
 
 	SolidBrush* getLastLineBrush(int);
 
-	void drawMiniSpread(Graphics*, Spreadsheet*, bool, bool, int);
-	void drawMiniSpread(Graphics*, Spreadsheet*, int, int, bool, bool, int);
+	void drawMiniSpread(Graphics*, Spreadsheet*, DBG&);
+	void drawMiniSpread(Graphics*, Spreadsheet*, int, int, DBG&);
 
 	REAL getBoxEdge(int, int, int);
 
