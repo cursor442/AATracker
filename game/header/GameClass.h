@@ -48,7 +48,8 @@ DBG Game::dbg = {
 	false, // boundbox
 	99,    // layers
 	false, // sections
-	0      // grid
+	0,     // grid
+	0      // buttonTab
 };
 
 // Tabs

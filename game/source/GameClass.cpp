@@ -1726,11 +1726,16 @@ void Game::hideScreen(bool force)
 
 		lastScreen = whichScreen;
 
-		gfx->tabs->hideAllTabs(graphics);
+		hideInteractive();
 	}
 
-	//if (whichScreen == MAIN_SCREEN)
 	hideTabBar(nationScreenTabs);
+}
+
+void Game::hideInteractive()
+{
+	gfx->buttons->hideAllButtons(graphics);
+	gfx->tabs->hideAllTabs(graphics);
 }
 
 void Game::configGraphics(HDC& hdc)

@@ -26,7 +26,7 @@
 #include <vector>
 #include <cmath>
 #include <algorithm>
-#include "Winuser.h"
+//#include "Winuser.h"
 
 using std::string;
 using std::vector;

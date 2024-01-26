@@ -153,6 +153,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             CheckMenuItem(hMenu, IDM_DBG_GRID_OFF, MF_CHECKED);
             CheckMenuItem(hMenu, IDM_DBG_LAYERS_ALL, MF_CHECKED);
+            CheckMenuItem(hMenu, IDM_DBG_BTN_TAB_SHOW, MF_CHECKED);
         }
         break;
     case WM_GETMINMAXINFO:
@@ -418,6 +419,45 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 }
                 game->debugSwitches();
                 RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
+                break;
+            }
+            case IDM_DBG_BTN_TAB_SHOW:
+            {
+                game->hideInteractive();
+
+                if (game->dbg.buttonTab != DBG_SHOW)
+                {
+                    game->dbg.buttonTab = DBG_SHOW;
+                    game->nsSection = ALL_SECT;
+                    game->debugSwitches();
+                    RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
+                }
+                break;
+            }
+            case IDM_DBG_BTN_TAB_BOUND:
+            {
+                game->hideInteractive();
+
+                if (game->dbg.buttonTab != DBG_BOUND)
+                {
+                    game->dbg.buttonTab = DBG_BOUND;
+                    game->nsSection = ALL_SECT;
+                    game->debugSwitches();
+                    RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
+                }
+                break;
+            }
+            case IDM_DBG_BTN_TAB_HIDE:
+            {
+                game->hideInteractive();
+
+                if (game->dbg.buttonTab != DBG_HIDE)
+                {
+                    game->dbg.buttonTab = DBG_HIDE;
+                    game->nsSection = ALL_SECT;
+                    game->debugSwitches();
+                    RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
+                }
                 break;
             }
             case IDC_GRAPHSELECT:

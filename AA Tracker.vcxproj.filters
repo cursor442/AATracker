@@ -82,9 +82,6 @@
     <Filter Include="Source Files\Board\Territories">
       <UniqueIdentifier>{9bfaa408-9ece-4d24-823e-ced112c1815f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Buttons">
-      <UniqueIdentifier>{787eeb1f-5c2d-414a-a963-aa3fc0896f1a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Log Screen\Screen Sections">
       <UniqueIdentifier>{451e8b20-a0a7-4d05-8b2e-f986a857c4da}</UniqueIdentifier>
     </Filter>
@@ -543,9 +540,6 @@
     </Image>
     <Image Include="bitmaps\small.ico">
       <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="bitmaps\Buttons\unpressNextPhase.bmp">
-      <Filter>Resource Files\Buttons</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

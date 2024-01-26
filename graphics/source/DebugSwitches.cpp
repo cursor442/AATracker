@@ -142,4 +142,29 @@ void Game::debugSwitches()
 		break;
 	}
 	}	
+
+	switch (dbg.buttonTab)
+	{
+	case DBG_SHOW:
+	{
+		CheckMenuItem(main_Menu, IDM_DBG_BTN_TAB_SHOW, MF_CHECKED);
+		CheckMenuItem(main_Menu, IDM_DBG_BTN_TAB_BOUND, MF_UNCHECKED);
+		CheckMenuItem(main_Menu, IDM_DBG_BTN_TAB_HIDE, MF_UNCHECKED);
+		break;
+	}
+	case DBG_BOUND:
+	{
+		CheckMenuItem(main_Menu, IDM_DBG_BTN_TAB_SHOW, MF_UNCHECKED);
+		CheckMenuItem(main_Menu, IDM_DBG_BTN_TAB_BOUND, MF_CHECKED);
+		CheckMenuItem(main_Menu, IDM_DBG_BTN_TAB_HIDE, MF_UNCHECKED);
+		break;
+	}
+	case DBG_HIDE:
+	{
+		CheckMenuItem(main_Menu, IDM_DBG_BTN_TAB_SHOW, MF_UNCHECKED);
+		CheckMenuItem(main_Menu, IDM_DBG_BTN_TAB_BOUND, MF_UNCHECKED);
+		CheckMenuItem(main_Menu, IDM_DBG_BTN_TAB_HIDE, MF_CHECKED);
+		break;
+	}
+	}
 }

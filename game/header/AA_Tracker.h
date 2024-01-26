@@ -128,6 +128,7 @@ public:
 	static HWND getMainWnd();
 
 	static void hideScreen(bool = false);
+	static void hideInteractive();
 
 	///////////////////////////////////////////////////////////////////////////
 	// Graphics

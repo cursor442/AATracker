@@ -33,7 +33,7 @@
 #define IDM_LOADGAME            13
 #define IDM_EXIT				14
 
-// Debug (21-40)
+// Debug (21-50)
 #define IDM_DBG_BOUNDBOX        21
 
 #define IDM_DBG_GRID_OFF        22
@@ -51,8 +51,12 @@
 
 #define IDM_DBG_SECTIONS        40
 
+#define IDM_DBG_BTN_TAB_SHOW    42
+#define IDM_DBG_BTN_TAB_BOUND   43
+#define IDM_DBG_BTN_TAB_HIDE    44
+
 // Help
-#define IDM_ABOUT				41
+#define IDM_ABOUT				50
 
 ///////////////////////////////////////////////////////////////////////////
 //// Game Dialogues (81-120)
@@ -539,6 +543,14 @@
 #define INIT_PHASE    1
 #define PLAY_PHASE    2
 #define CLEAN_PHASE   3
+
+///////////////////////////////////////////////////////////////////////////
+//// Graphics debug constants
+///////////////////////////////////////////////////////////////////////////
+
+#define DBG_SHOW   0
+#define DBG_BOUND  1
+#define DBG_HIDE   2
 
 ///////////////////////////////////////////////////////////////////////////
 //// Useful functions

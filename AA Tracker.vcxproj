@@ -297,7 +297,6 @@
   <ItemGroup>
     <Image Include="bitmaps\AA_Tracker.ico" />
     <Image Include="bitmaps\ANZACIcon.bmp" />
-    <Image Include="bitmaps\Buttons\unpressNextPhase.bmp" />
     <Image Include="bitmaps\ChinaIcon.bmp" />
     <Image Include="bitmaps\FranceIcon.bmp" />
     <Image Include="bitmaps\GermanyIcon.bmp" />
