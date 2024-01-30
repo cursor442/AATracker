@@ -51,8 +51,13 @@ void Game::hideTooltip(HWND& hWnd, LPARAM lParam)
 
 void Game::showTabBar(int tab)
 {
-    gfx->tabs->activateTab(tab);
-    gfx->tabs->drawTab(tab, graphics, dbg);
+    if (dbg.tab != DBG_HIDE)
+    {
+        gfx->tabs->activateTab(tab);
+        gfx->tabs->drawTab(tab, graphics, dbg);
+    }
+    else
+        hideTabBar(tab);
 }
 
 void Game::hideTabBar(int tab)
@@ -63,11 +68,16 @@ void Game::hideTabBar(int tab)
 
 void Game::showButton(int button, bool tt)
 {
-    gfx->buttons->activateButton(button);
-    gfx->buttons->drawButton(button, graphics, dbg);
+    if (dbg.button != DBG_HIDE)
+    {
+        gfx->buttons->activateButton(button);
+        gfx->buttons->drawButton(button, graphics, dbg);
 
-    if (tt)
-        gfx->tooltips->activateTooltip(button);
+        if (tt)
+            gfx->tooltips->activateTooltip(button);
+    }
+    else
+        hideButton(button, tt);
 }
 
 void Game::hideButton(int button, bool tt)

@@ -117,7 +117,7 @@ void AAButton::drawButton(Graphics* graphics, DBG& dbg)
 {
 	drawObject(graphics, dbg);
 
-	if (dbg.sections) // Show box names
+	if (dbg.sections || dbg.button == DBG_BOUND) // Show box names
 	{
 		bbBlankBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, dbg.layers);
 	}

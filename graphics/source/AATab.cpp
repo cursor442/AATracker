@@ -241,7 +241,7 @@ void AATab::drawTab(Graphics* graphics, DBG& dbg)
 {
 	drawObject(graphics, dbg);
 
-	if (dbg.sections) // Show box names
+	if (dbg.sections || dbg.tab == DBG_BOUND) // Show box names
 	{
 		tbBlankBox->drawFrame(graphics, borderPen, baseTextFont, centerFormat, textBrush, dbg.layers);
 	}
