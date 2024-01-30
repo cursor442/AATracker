@@ -51,9 +51,13 @@
 
 #define IDM_DBG_SECTIONS        40
 
-#define IDM_DBG_BTN_TAB_SHOW    42
-#define IDM_DBG_BTN_TAB_BOUND   43
-#define IDM_DBG_BTN_TAB_HIDE    44
+#define IDM_DBG_BUTTON_SHOW     42
+#define IDM_DBG_BUTTON_BOUND    43
+#define IDM_DBG_BUTTON_HIDE     44
+
+#define IDM_DBG_TAB_SHOW        45
+#define IDM_DBG_TAB_BOUND       46
+#define IDM_DBG_TAB_HIDE        47
 
 // Help
 #define IDM_ABOUT				50

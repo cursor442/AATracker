@@ -1732,10 +1732,20 @@ void Game::hideScreen(bool force)
 	hideTabBar(nationScreenTabs);
 }
 
-void Game::hideInteractive()
+void Game::hideButtons()
 {
 	gfx->buttons->hideAllButtons(graphics);
+}
+
+void Game::hideTabs()
+{
 	gfx->tabs->hideAllTabs(graphics);
+}
+
+void Game::hideInteractive()
+{
+	hideButtons();
+	hideTabs();
 }
 
 void Game::configGraphics(HDC& hdc)

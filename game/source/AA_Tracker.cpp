@@ -151,9 +151,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
     case WM_CREATE:
         {
-            CheckMenuItem(hMenu, IDM_DBG_GRID_OFF, MF_CHECKED);
-            CheckMenuItem(hMenu, IDM_DBG_LAYERS_ALL, MF_CHECKED);
-            CheckMenuItem(hMenu, IDM_DBG_BTN_TAB_SHOW, MF_CHECKED);
+            CheckMenuItem(hMenu, IDM_DBG_GRID_OFF,    MF_CHECKED);
+            CheckMenuItem(hMenu, IDM_DBG_LAYERS_ALL,  MF_CHECKED);
+            CheckMenuItem(hMenu, IDM_DBG_BUTTON_SHOW, MF_CHECKED);
+            CheckMenuItem(hMenu, IDM_DBG_TAB_SHOW,    MF_CHECKED);
         }
         break;
     case WM_GETMINMAXINFO:
@@ -421,39 +422,78 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
                 break;
             }
-            case IDM_DBG_BTN_TAB_SHOW:
+            case IDM_DBG_BUTTON_SHOW:
             {
-                game->hideInteractive();
+                game->hideButtons();
 
-                if (game->dbg.buttonTab != DBG_SHOW)
+                if (game->dbg.button != DBG_SHOW)
                 {
-                    game->dbg.buttonTab = DBG_SHOW;
+                    game->dbg.button = DBG_SHOW;
                     game->nsSection = ALL_SECT;
                     game->debugSwitches();
                     RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
                 }
                 break;
             }
-            case IDM_DBG_BTN_TAB_BOUND:
+            case IDM_DBG_BUTTON_BOUND:
             {
-                game->hideInteractive();
+                game->hideButtons();
 
-                if (game->dbg.buttonTab != DBG_BOUND)
+                if (game->dbg.button != DBG_BOUND)
                 {
-                    game->dbg.buttonTab = DBG_BOUND;
+                    game->dbg.button = DBG_BOUND;
                     game->nsSection = ALL_SECT;
                     game->debugSwitches();
                     RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
                 }
                 break;
             }
-            case IDM_DBG_BTN_TAB_HIDE:
+            case IDM_DBG_BUTTON_HIDE:
             {
-                game->hideInteractive();
+                game->hideButtons();
 
-                if (game->dbg.buttonTab != DBG_HIDE)
+                if (game->dbg.button != DBG_HIDE)
                 {
-                    game->dbg.buttonTab = DBG_HIDE;
+                    game->dbg.button = DBG_HIDE;
+                    game->nsSection = ALL_SECT;
+                    game->debugSwitches();
+                    RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
+                }
+                break;
+            }
+            case IDM_DBG_TAB_SHOW:
+            {
+                game->hideTabs();
+
+                if (game->dbg.tab != DBG_SHOW)
+                {
+                    game->dbg.tab = DBG_SHOW;
+                    game->nsSection = ALL_SECT;
+                    game->debugSwitches();
+                    RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
+                }
+                break;
+            }
+            case IDM_DBG_TAB_BOUND:
+            {
+                game->hideTabs();
+
+                if (game->dbg.tab != DBG_BOUND)
+                {
+                    game->dbg.tab = DBG_BOUND;
+                    game->nsSection = ALL_SECT;
+                    game->debugSwitches();
+                    RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);
+                }
+                break;
+            }
+            case IDM_DBG_TAB_HIDE:
+            {
+                game->hideTabs();
+
+                if (game->dbg.tab != DBG_HIDE)
+                {
+                    game->dbg.tab = DBG_HIDE;
                     game->nsSection = ALL_SECT;
                     game->debugSwitches();
                     RedrawWindow(hWnd, NULL, NULL, RDW_ERASE | RDW_INVALIDATE);

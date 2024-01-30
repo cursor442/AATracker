@@ -16,7 +16,8 @@ struct DBG {
 	int  layers;
 	bool sections;
 	int  grid;
-	int  buttonTab;
+	int  button;
+	int  tab;
 };
 
 class AAGraphicsObject

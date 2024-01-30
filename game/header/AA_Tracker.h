@@ -128,6 +128,8 @@ public:
 	static HWND getMainWnd();
 
 	static void hideScreen(bool = false);
+	static void hideButtons();
+	static void hideTabs();
 	static void hideInteractive();
 
 	///////////////////////////////////////////////////////////////////////////
